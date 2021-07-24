@@ -3,11 +3,12 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
 	
+	<!-- web.xml을 건드리지 못해서 현재 xml 파일 계정 위치를 변경 -->
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
  		<property name="driverClass" value="oracle.jdbc.OracleDriver"/>
  		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"/>
- 		<property name="user" value="greenJSP"/>
- 		<property name="password" value="jsp1234"/>
+ 		<property name="user" value="test"/>
+ 		<property name="password" value="1234"/>
  	</bean>
 </beans>
