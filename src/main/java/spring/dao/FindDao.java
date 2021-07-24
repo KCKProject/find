@@ -6,19 +6,21 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Component;
 
 import spring.vo.Admin;
 import spring.vo.Member;
 
+@Component
 public class FindDao {
-
+	
 	private JdbcTemplate jdbcTemplate;
 	
-	
-	// 생성자
-	public FindDao(DataSource dataSource) {
+	@Autowired
+	public void setDataSource(DataSource dataSource) {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
