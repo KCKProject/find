@@ -13,7 +13,7 @@
 	<div class="search">
 		<form action="#" >
 			<input type="text" path="search" placeholder="검색어를 입력해주세요"/>
-			<button><img src="./img/hand"></button>
+			<button><img src="resources/img/search.png"></button>
 		</form>
 	</div>
 </nav>

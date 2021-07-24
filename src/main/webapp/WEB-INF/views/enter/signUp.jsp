@@ -10,7 +10,7 @@
 	<header>
 		<div class="headerInner">
 			<div id="mainTitle">
-				<img alt="로고" src="">
+				<img src="<spring:url value='/resources/img/hand.png'/>" />
 				<p>수원시 분실동물 찾기 서비스</p>
 			</div>
 		</div>

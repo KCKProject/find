@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <footer>
 	<div class="footerInner">
 		<div class="footerUpper">
@@ -20,16 +21,16 @@
 			<div class="footerLink">
 				<ul>
 					<!-- 아이콘 변경 가능 -->
-					<li><img src="../img/phone-call.png" art="전화번호"></li>
-					<li><img src="../img/mail.png" art="메일주소"></li>
-					<li><img src="../img/map.png" art="주소"></li>
+					<li><img src="<spring:url value='/resources/img/phone-call.png'/>"></li>
+					<li><img src="<spring:url value='/resources/img/mail.png'/>" alt="메일주소"></li>
+					<li><img src="<spring:url value='/resources/img/map.png'/>" alt="주소"></li>
 				</ul>
 			</div>
 		</div>
 		<div class="footerlower">
 			<p>
 				2021 KCK KOREA CODING KING<br>
-				<img src="../img/hand.png" art="로고">
+				<img src="<spring:url value='/resources/img/hand.png'/>">
 				Always be with you<br>
 				COPYRIGHT ©2021 KCK All Rights Reserved.©
 			</p>
