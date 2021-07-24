@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Sunflower', sans-serif;
+    color: #293B25;
+    transition: all.8s;
+}
+
+input::placeholder { font-size: 80%; }
+a { text-decoration:none } /*모든 a태그의 text-decoration 없애기*/
+
+/* 전체 설정 */
+
+header {
+    height: 100px;
+    width: 100%;
+    background-color: white;
+}
+
+.headerInner {
+    display: flex;
+    justify-content: space-between;
+    padding: 1% 5%;
+}
+
+.mainTitle {
+    display: flex;
+}
+
+.mainTitle img {
+    padding: 5px; /* 마우스클릭 시 선택범위 넓히기 위해 padding으로(margin x)*/
+}
+
+.mainTitle p {
+    font-size: 15px;
+    padding: 20px 5px;
+}
+
+.enter p {
+    font-size: 13px;
+    padding: 20px 5px;
+}
+
+.enter p a {
+    padding: 3px;
+}
+
+/* ~~ header ~~*/
+
+nav {
+    height: 50px;
+    width: 100%;
+    border-top: 0.1px solid black; 
+    border-bottom: 0.1px solid black; 
+    background-color: white;
+}
+
+.navInner {
+    display: flex;
+    justify-content: space-between;
+    padding: 0% 5%;
+}
+
+.mainMenu ul {
+    display: flex;
+}
+
+.mainMenu ul li {
+    list-style: none;
+    padding: 15px 100px;
+    font-size: 13px;
+    background-color: white;
+}
+
+.mainMenu ul li:hover {
+    cursor: pointer;
+    background-color: #1ABC9C;
+    border-radius: 8px; 
+    color: whitesmoke;
+    font-size: 15px;
+    letter-spacing: 3px;
+}    
+
+.search form input {
+    width: 80%;
+    margin: 15px 0;
+}
+
+.navToggleBtn {
+    display: none;
+}
+
+/* ~~ nav ~~ */
+
+footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    border-top: 1px solid black; /* border은 삭제 할지 미정 */
+}
+
+.site {
+    width: 100%;
+    height: 50px;
+}
+
+.site:first-child {
+    background-color: #FAF1E6;
+}
+
+.site:nth-of-type(2) {
+    background-color: #FDFAF6;
+}
+
+.site a {
+    position: relative;
+    top: 30%;
+    left: 40%;
+    font-size: 15px;
+}
+
+.site a:hover {
+    text-decoration: underline;
+}
+
+.footerUpper {
+    display: flex;
+    justify-content: space-between;
+    padding: 0% 5%;
+}
+
+.footerMenu ul {
+    display: flex;
+}
+
+.footerMenu ul li {
+    list-style: none;
+    padding: 20px;
+    font-size: 13px;
+}
+
+.footerMenu ul li:hover {
+    cursor: pointer;
+    color: palevioletred;
+    text-decoration: underline;
+}    
+
+.footerLink ul {
+    display: flex;
+}
+
+.footerLink ul li {
+    list-style: none;
+    padding: 20px;
+}
+
+.footerLink ul li img {
+    height: 15px;
+    width: 15px;
+}
+
+.footerLink ul li img:hover {
+    cursor: pointer;
+    height: 20px;
+    width: 20px;
+}
+
+.footerlower {
+    text-align: center;
+    letter-spacing: 2px;
+}
+
+/* ~~ footer ~~ */
+
+
+/* 사이즈 조정*/
+@media screen and (max-width: 989px) {
+    /* nav 사이즈 조정 설정 */
+    .navInner {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .mainMenu, .search {
+        display: none;
+    }
+
+    .navToggleBtn {
+        display: block;
+        position: fixed;
+        top: 12%;
+        right: 40px;
+        font-size: 25px;
+    }
+
+    .mainMenu ul{
+        position: fixed;
+        top: 15%;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        padding: 8px 24px; 
+        
+    }
+   
+    .mainMenu li {
+        width: 100%;
+        text-align: center;
+    }
+
+    .mainMenu.active {
+        display: flex;
+    }
+
+}
+
+@media screen and (max-width: 599px) {
+
+    .footerUpper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+    }
+    .footerMenu ul, .footerLink ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+

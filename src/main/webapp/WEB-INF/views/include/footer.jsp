@@ -1,37 +1,38 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <footer>
+	<div class="site">
+		<a href="www.naver.com">동물 어쩌구 저쩌구 사이트 바로가기 >>></a>
+	</div>
+	<div class="site">
+		<a href="www.naver.com">동물 어쩌구 저쩌구 사이트 바로가기 >>></a>
+	</div>
 	<div class="footerInner">
 		<div class="footerUpper">
 			<div class="footerMenu">
-				<!-- 살릴 메뉴 정하기 -->
+				<!-- 살릴 메뉴 정하기 -ok-->
 				<ul>
-					<li>회사소개</li>
-					<li>고객센터</li>
-					<li>이용약관</li>
-					<li>개인정보처리방침</li>
+					<li>서비스소개</li>
 					<li>제휴문의</li>
 					<li>공지사항</li>
-					<li>작업가이드</li>
-					<li>오려내기</li>
-					<li>오프린트미 앱</li>
+					<li>고객센터</li>
 				</ul>
 			</div>
 			<div class="footerLink">
 				<ul>
-					<!-- 아이콘 변경 가능 -->
-					<li><img src="../img/phone-call.png" art="전화번호"></li>
-					<li><img src="../img/mail.png" art="메일주소"></li>
-					<li><img src="../img/map.png" art="주소"></li>
+					<!-- 아이콘 변경 가능 -ok -->
+					<li><img src="img/phone-call.png" art="전화번호"></li>
+					<li><img src="img/mail.png" art="메일주소"></li>
+					<li><img src=" img/map.png" art="주소"></li>
 				</ul>
 			</div>
 		</div>
 		<div class="footerlower">
 			<p>
 				2021 KCK KOREA CODING KING<br>
-				<img src="../img/hand.png" art="로고">
-				Always be with you<br>
-				COPYRIGHT ©2021 KCK All Rights Reserved.©
+				<br> <img src="img/로고.png" art="로고" height="50px" width="40px">
+				Always be<br> with you<br>
+				<br> COPYRIGHT ©2021 KCK All Rights Reserved.©
 			</p>
 		</div>
 	</div>

@@ -15,15 +15,15 @@ NOCACHE;
 select * from member;
 
 INSERT INTO MEMBER
-VALUES(member_seq.nextval,'dog123','dog123','∞≠æ∆¡ˆ','010-1111-1111');
+VALUES(member_seq.nextval,'dog123','dog123','Í∞ïÏïÑÏßÄ','010-1111-1111');
 INSERT INTO MEMBER
-VALUES(member_seq.nextval,'cat123','cat123','∞ÌæÁ¿Ã','010-2222-2222');
+VALUES(member_seq.nextval,'cat123','cat123','Í≥†ÏñëÏù¥','010-2222-2222');
 INSERT INTO MEMBER
-VALUES(member_seq.nextval,'tiger123','tiger123','»£∂˚¿Ã','010-3333-3333');
+VALUES(member_seq.nextval,'tiger123','tiger123','Ìò∏ÎûëÏù¥','010-3333-3333');
 INSERT INTO MEMBER
-VALUES(member_seq.nextval,'zebra123','zebra123','æÛ∑Ë∏ª','010-4444-4444');
+VALUES(member_seq.nextval,'zebra123','zebra123','ÏñºÎ£©Îßê','010-4444-4444');
 INSERT INTO MEMBER
-VALUES(member_seq.nextval,'monkey123','monkey123','ø¯º˛¿Ã','010-5555-5555');
+VALUES(member_seq.nextval,'monkey123','monkey123','ÏõêÏà≠Ïù¥','010-5555-5555');
 
 commit;
 
@@ -33,12 +33,12 @@ CREATE TABLE ADMIN(
     adminname varchar2(20) not null
     );
     
-INSERT INTO MEMBER
-VALUES('admin1','1234','±Ë»ø¡¯');
-INSERT INTO MEMBER
-VALUES('admin2','1234','√÷¿Ø∏Æ');
-INSERT INTO MEMBER
-VALUES('admin3','1234','±Ë¬˘øÏ');
+INSERT INTO ADMIN
+VALUES('admin1','1234','ÍπÄÌö®ÏßÑ');
+INSERT INTO ADMIN
+VALUES('admin2','1234','ÏµúÏú†Î¶¨');
+INSERT INTO ADMIN
+VALUES('admin3','1234','ÍπÄÏ∞¨Ïö∞');
 
     
 CREATE TABLE lostBoard(
