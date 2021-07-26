@@ -56,7 +56,7 @@ public class FindDao {
 	
 	public List<Member> selectAll() {
 		List<Member> results = jdbcTemplate.query(
-				"SELECT * FROM member order by id asc",rowMapper);
+				"SELECT * FROM member order by membernumber asc",rowMapper);
 		return results;
 	}
 	
