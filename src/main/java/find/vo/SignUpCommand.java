@@ -7,16 +7,6 @@ public class SignUpCommand {
 	private String userName;
 	private String phone;
 	private String email;
-	
-	public SignUpCommand(String userId, String userPassword, String userPwdChk, String userName, String phone,
-			String email) {
-		this.userId = userId;
-		this.userPassword = userPassword;
-		this.userPwdChk = userPwdChk;
-		this.userName = userName;
-		this.phone = phone;
-		this.email = email;
-	}
 
 	// 비밀번호 확인용 메서드
 	public boolean isPasswordEqual() {

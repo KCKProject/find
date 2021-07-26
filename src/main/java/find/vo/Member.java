@@ -9,6 +9,8 @@ public class Member {
 	private String phone;
 	private String email;
 
+	public Member() {};
+	
 	public Member(String userId, String userPassword, String userName, String phone, String email) {
 		this.userId = userId;
 		this.userPassword = userPassword;

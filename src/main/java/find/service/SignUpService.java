@@ -1,33 +1,34 @@
 package find.service;
 
-import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import find.dao.FindDao;
 import find.exception.AlreadyExistionMemberException;
-import find.validator.SignUpCommandValidator;
 import find.vo.Member;
 import find.vo.SignUpCommand;
 
+@Service
 public class SignUpService {
+	
+	@Autowired
 	private FindDao dao;
 	
 	public SignUpService(FindDao dao) {
 		this.dao = dao;
 	}
 	
-	public void regist(SignUpCommand suCommand) {
-		Member m = dao.selectByEmail(suCommand.getEmail());
-		System.out.println("m 이메일 : "+m.getEmail());
+	public void regist(SignUpCommand signUpCommand) {
+		Member m = dao.selectByEmail(signUpCommand.getEmail());
 		
 		if(m!=null) {
-			throw new AlreadyExistionMemberException("이메일 중복 : "+suCommand.getEmail());
+			throw new AlreadyExistionMemberException("이메일 중복 : "+signUpCommand.getEmail());
 		}
+
 		Member newMember = new Member(
-				suCommand.getUserId(),suCommand.getUserPassword(),suCommand.getUserName(),
-				suCommand.getPhone(),suCommand.getEmail());
+				signUpCommand.getUserId(),signUpCommand.getUserPassword(),
+				signUpCommand.getUserName(),signUpCommand.getPhone(),signUpCommand.getEmail());
+		
 		dao.insertMember(newMember);
 	}
 	

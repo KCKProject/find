@@ -1,5 +1,7 @@
 package find.dao;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -8,7 +10,10 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import find.vo.Admin;
@@ -56,7 +61,7 @@ public class FindDao {
 	
 	public List<Member> selectAll() {
 		List<Member> results = jdbcTemplate.query(
-				"SELECT * FROM member order by membernumber asc",rowMapper);
+				"SELECT * FROM member order by membernumber ASC",rowMapper);
 		return results;
 	}
 	
@@ -80,14 +85,36 @@ public class FindDao {
 		return results.isEmpty() ? null : results.get(0);		
 	}
 
-	public void insertMember(Member newMember) {
-		// TODO Auto-generated method stub
-		
+	public void insertMember(Member member) {
+		KeyHolder key = new GeneratedKeyHolder();
+		jdbcTemplate.update(
+				new PreparedStatementCreator() {
+					
+					@Override
+					public PreparedStatement createPreparedStatement(Connection con) throws SQLException{
+						PreparedStatement psmt = con.prepareStatement(
+							"INSERT INTO member VALUES(member_seq.nextval,?,?,?,?,?)",
+							new String[] {"membernumber"});
+						
+						psmt.setString(1,member.getUserId());
+						psmt.setString(2,member.getUserPassword());
+						psmt.setString(3,member.getUserName());
+						psmt.setString(4,member.getPhone());
+						psmt.setString(5,member.getEmail());					
+						
+						return psmt;
+					}
+				},key);
+		Number keyValue = key.getKey();
+		member.setMemberNumber(keyValue.longValue());
 	}
 
 	public Member selectByEmail(String email) {
+		String sql = "SELECT * FROM member WHERE email=?";
 		
-		return null;
+		List<Member> results = jdbcTemplate.query(
+				sql,rowMapper,email);
+		return results.isEmpty() ? null : results.get(0);
 	}
 
 }

@@ -9,25 +9,31 @@
 	
 	<mvc:view-controller path="/" view-name="main"/>
 	
-	
+	<!-- admin -->
 	<bean id="AdminLoginController" class="com.green.KCK_find.controller.AdminLoginController">
 		<property name="adminAuthService" ref="adminAuthSvc" />
 	</bean>
-	
-	<bean id="loginController" class="com.green.KCK_find.controller.LoginController">
-		<property name="memberAuthService" ref="memberAuthSvc"></property>
-	</bean>
-	<bean id="sighUpController" class="com.green.KCK_find.controller.SignUpController"/>
+		
 	<bean id="AdminBoardController" class="com.green.KCK_find.controller.AdminBoardController"/>
+	
 	<bean id="AdminMemberController" class="com.green.KCK_find.controller.AdminMemberController">
 		<property name="dao" ref="findDao"></property>
 	</bean>
-	<bean id="AdminQuestionPageController" class="com.green.KCK_find.controller.AdminQuestionPageController"/>
 	
-	<bean id="LogOutController" class="com.green.KCK_find.controller.LogOutController"/>
+	<bean id="AdminQuestionPageController" class="com.green.KCK_find.controller.AdminQuestionPageController"/>
 	
 	<bean id="AdminLogOutController" class="com.green.KCK_find.controller.AdminLogOutController"/>
 	
+	<!-- member -->
+	<bean id="loginController" class="com.green.KCK_find.controller.LoginController">
+		<property name="memberAuthService" ref="memberAuthSvc"/>
+	</bean>
+	
+	<bean id="signUpController" class="com.green.KCK_find.controller.SignUpController">
+		<property name="signUpService" ref="signUpSvc"/>
+	</bean>
+	
+	<bean id="logOutController" class="com.green.KCK_find.controller.LogOutController"/>
 	
 <!-- 	<bean id="lostBoardController" class="com.green.KCK_find.controller.LostBoardListController"/> -->
 

@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,18 +21,20 @@ import find.vo.SignUpCommand;
 public class SignUpController {
 
 	private SignUpService signUpService;
-	
+
 	public void setSignUpService(SignUpService signUpService) {
 		this.signUpService = signUpService;
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String form() {
+	public String handlerStep2Get(Model model, SignUpCommand signUpCommand) {
+		model.addAttribute("signUpCommand",new SignUpCommand());
 		return "enter/signUp";
 	}
 	
-	@RequestMapping(value="/main",method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST)
 	public String handlerStep(@ModelAttribute("signUpCommand") SignUpCommand suCommand, Errors errors) {
+		
 		new SignUpCommandValidator().validate(suCommand,errors);
 		if(errors.hasErrors()) {
 			return "enter/signUp";
