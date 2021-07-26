@@ -1,14 +1,29 @@
 package com.green.KCK_find.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+
+import find.dao.FindDao;
+import find.vo.Member;
 
 @Controller
 public class AdminMemberController {
 	
-	@RequestMapping(value = "/adminmember", method = RequestMethod.GET)
-	public String list() {
+	private FindDao dao;
+
+	public void setDao(FindDao dao) {
+		this.dao = dao;
+	}
+
+	@RequestMapping("/admin/adminMember")
+	public String list(Model model) {
+	
+		List<Member> members= dao.selectAll();
+		model.addAttribute("members",members);
+		
 		return "admin/adminMember";
 	}
 }

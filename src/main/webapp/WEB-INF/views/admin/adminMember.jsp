@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,26 +37,26 @@
                 <td>
                 </td>
                 <td>
-                    <table>
-                        <tr>
-                            <td>번호</td>
-                            <td>이름</td>
-                            <td>아이디</td>
-                            <td>이메일</td>
-                            <td>연락처</td>
-                            <td>작성글</td>
-                        </tr>
-                        <%-- <c:forEach var="m" items="member">
-                        <tr>
-                            <td>1</td>
-                            <td>홍길동</td>
-                            <td>hong123</td>
-                            <td>hong@naver.com</td>
-                            <td>010-0000-0000</td>
-                            <td>0</td>
-                        </tr>
-                        </c:forEach>
- --%>                    </table>
+                	<c:if test="${!empty members}">
+                   		<table>
+                        	<tr>
+                            	<td>번호</td>
+                            	<td>이름</td>
+                            	<td>아이디</td>
+                            	<td>연락처</td>
+                            	<td>이메일</td>
+                        	</tr>
+	                        <c:forEach var="m" items="${members}">
+	                        <tr>
+	                            <td>${m.memberNumber}</td>
+	                            <td>${m.userName }</td>
+	                            <td>${m.userId }</td>
+	                            <td>${m.phone }</td>
+	                            <td>${m.email }</td>
+	                        </tr>
+	                        </c:forEach>
+	              		</table>
+	 				</c:if>
                     <div>	
                         <span onclick="alert('이전 페이지가 없습니다.');">이전</span>			
                     <c:set var = "page" value = "${(param.p==null)? 1: param.p}"/>

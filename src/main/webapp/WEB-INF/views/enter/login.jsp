@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,15 +21,15 @@
 		<div class="loginInner">
 			<h3>로그인</h3>
 			<div class="loginBox">
-				<form action="#" method="POST" name="loginForm">
-					<input type="text" name="userId" id="userId" placeholder="아이디">
-					<input type="password" name="userPwd" id="userPwd" placeholder="비밀번호">
+				<form:form commandName="memberLoginCommand">
+					<form:input path="userId" placeholder="아이디" />
+					<form:password path="userPassword" placeholder="비밀번호" />
 					<input type="submit" value="로그인">
-				</form>
+				</form:form>
 			</div>
 			<div class="loginBoxLower">
 				<p>
-					<a href="">아직 회원이 아니신가요?</a>
+					<a href="<c:url value='/enter/register'/>">아직 회원이 아니신가요?</a>
 				</p>
 			</div>
 		</div>

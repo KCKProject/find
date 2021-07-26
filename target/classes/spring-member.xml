@@ -34,4 +34,7 @@
  	<bean id="adminAuthSvc" class="find.service.AdminAuthService">
 		<property name="dao" ref="findDao"></property>
 	</bean>
+	<bean id="memberAuthSvc" class="find.service.MemberAuthService">
+		<property name="dao" ref="findDao"></property>
+	</bean>
 </beans>
