@@ -23,6 +23,12 @@
 		<property name="dao" ref="findDao"></property>
 	</bean>
 	<bean id="AdminQuestionPageController" class="com.green.KCK_find.controller.AdminQuestionPageController"/>
+	
+	<bean id="LogOutController" class="com.green.KCK_find.controller.LogOutController"/>
+	
+	<bean id="AdminLogOutController" class="com.green.KCK_find.controller.AdminLogOutController"/>
+	
+	
 <!-- 	<bean id="lostBoardController" class="com.green.KCK_find.controller.LostBoardListController"/> -->
 
 </beans>

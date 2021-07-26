@@ -7,14 +7,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class LogOutController {
-	
-	@RequestMapping("/enter/logout")
-	public String logout(HttpSession session,HttpServletRequest req) {
-		session.invalidate();
+public class AdminLogOutController {
+
+	@RequestMapping("/admin/logout")
+	public String logout(HttpSession session1,HttpServletRequest req) {
+		session1.invalidate();
 		
-		return "redirect:/main";
+		return "redirect:/admin";
 	}
-	
-	
 }
