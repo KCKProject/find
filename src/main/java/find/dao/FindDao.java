@@ -80,4 +80,14 @@ public class FindDao {
 		return results.isEmpty() ? null : results.get(0);		
 	}
 
+	public void insertMember(Member newMember) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public Member selectByEmail(String email) {
+		
+		return null;
+	}
+
 }
