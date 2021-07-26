@@ -7,17 +7,18 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="resources/css/style.css">
-<script src="https://kit.fontawesome.com/2d323a629b.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/2d323a629b.js"
+	crossorigin="anonymous"></script>
 <script src="resources/script/script.js" defer></script>
 
 <title>FIND:분실동물 찾기 서비스</title>
 </head>
 <body>
-	<jsp:include page="include/header.jsp"></jsp:include>
-	<jsp:include page="include/nav.jsp" />
-	<section>
+	<jsp:include page="include/header.jsp" />
+	<%-- 	<jsp:include page="include/nav.jsp" /> header에 병합 --%>
+	<main>
 		<div class="banner">
-			<img alt="배너" src="img/banner">
+			<img alt="배너" src="resources/img/banner.png" />
 		</div>
 		<div class="mainLost">
 			<p>다시 가족의 품으로 돌아갈 수 있도록 수원 시민 여러분의 도움이 필요합니다.</p>
@@ -57,7 +58,7 @@
 		<div class="admin">
 			<a href="<c:url value='/admin'/>">관리자사이트</a>
 		</div>
-	</section>
+	</main>
 	<jsp:include page="include/footer.jsp"></jsp:include>
 </body>
 </html>

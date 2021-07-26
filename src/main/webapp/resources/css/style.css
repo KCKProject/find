@@ -8,15 +8,15 @@
     transition: all.8s;
 }
 
-input::placeholder { font-size: 80%; }
+input::placeholder { font-size: 80%; text-align: center;}
 a { text-decoration:none } /*모든 a태그의 text-decoration 없애기*/
 
 /* 전체 설정 */
 
 header {
-    height: 100px;
     width: 100%;
     background-color: white;
+    position: fixed;
 }
 
 .headerInner {
@@ -59,7 +59,7 @@ nav {
 
 .navInner {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
 }
 
 .mainMenu ul {
@@ -175,9 +175,13 @@ footer {
 
 /* ~~ footer ~~ */
 
+main {
+	padding-top: 122px;
+}
+
 
 /* 사이즈 조정*/
-@media screen and (max-width: 989px) {
+@media screen and (max-width: 1120px) {
     /* nav 사이즈 조정 설정 */
     .navInner {
         display: flex;
@@ -192,14 +196,13 @@ footer {
     .navToggleBtn {
         display: block;
         position: fixed;
-        top: 12%;
+        top: 10%;
         right: 40px;
         font-size: 25px;
     }
 
     .mainMenu ul{
         position: fixed;
-        top: 15%;
         flex-direction: column;
         align-items: center;
         width: 100%;
@@ -229,5 +232,79 @@ footer {
         flex-direction: column;
         align-items: center;
     }
+}
+
+
+/* ========================관리자사이트============================*/
+
+.headerAdmin {
+    width: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+    font-size: 15px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.headerAdmin p img {
+    height: 40px;
+    width: 40px;
+    padding-right: 10px;
+}
+
+.adminLoginTitle {
+    padding: 5% 0% 3% 0%;
+    font-size: 20px;
+    padding-left: 50%;
+}
+
+.wrapAdminLogin {
+    width: 100%;
+    padding-left: 40%;
+}
+
+.adminLogin_bx {
+	height: 300px;
+	width: 500px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.adminLogin_bx form { 
+	padding-top: 10%;
+    padding-left: 18%;
+}
+
+.admin_id input, .admin_pwd input, .admin_submit input {
+    border-radius: 8px;
+    width: 80%;
+    height: 40px;
+    margin : 2% 0%;
+}
+
+.admin_submit input {
+    margin-top: 5%;
+    color: white;
+    background-color: #064420;
+}
+
+/* 어드민 로그인 페이지 */
+
+.adminNav ul{
+	display: flex;
+}
+
+.adminNav ul li {
+    list-style: none;
+    padding: 15px 100px;
+    font-size: 13px;
+    background-color: white;
+}
+
+.adminMainWrap {
+	padding-top: 10px;
+	position: relative;
+	
 }
 

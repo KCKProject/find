@@ -8,8 +8,8 @@
 <title>관리자 페이지_게시판 관리</title>
 </head>
 <body>
-	<jsp:include page="../decoration/adminHeader.jsp"></jsp:include>
-	<jsp:include page="../decoration/adminNav.jsp"></jsp:include>
+	<jsp:include page="../admin-include/adminHeader.jsp"></jsp:include>
+	<jsp:include page="../admin-include/adminNav.jsp"></jsp:include>
     <div class="wrap">
         <table border="1">
             <tr>
