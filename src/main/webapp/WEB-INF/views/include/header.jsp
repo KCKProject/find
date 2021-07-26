@@ -12,8 +12,14 @@
 		<div class="enter">
 			<p>
 				<!-- 로그인 시 로그아웃으로 변경되도록 기능 설정시 수정 -->
-				<a href="<c:url value='/enter/login'/>">로그인</a> <a>|</a> <a
-					href="<c:url value='/enter/signUp'/>">회원가입</a>
+				<c:if test="${memberAuthInfo == null }">
+					<a href="<c:url value='/enter/login'/>">로그인</a> <a>|</a>
+					<a href="<c:url value='/enter/signUp'/>">회원가입</a>
+				</c:if>
+				<c:if test="${memberAuthInfo != null }">
+					${memberAuthInfo.getUserName()}님 환영합니다.
+					<a href="<c:url value='/enter/logout'/>">로그아웃</a>
+				</c:if>
 			</p>
 		</div>
 	</div>

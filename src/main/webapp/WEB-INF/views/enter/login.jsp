@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%-- <link rel="stylesheet" href="<spring:url value='/resources/css/style.css'/>"> --%>
 <!DOCTYPE html>
 <html>
 <head>

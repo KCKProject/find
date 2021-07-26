@@ -5,7 +5,8 @@ CREATE TABLE member(
     userid varchar2(20) NOT NULL,
     userpassword varchar2(25) NOT NULL,
     username varchar2(20) NOT NULL,
-    phone varchar2(15) NOT NULL
+    phone varchar2(15) NOT NULL,
+    email varchar2(45) NOT NULL
     );
     
 CREATE SEQUENCE member_seq
@@ -15,16 +16,15 @@ NOCACHE;
 select * from member;
 
 INSERT INTO MEMBER
-<<<<<<< HEAD
-VALUES(member_seq.nextval,'dog123','dog123','강아지','010-1111-1111');
+VALUES(member_seq.nextval,'dog123','1234','강아지','010-1111-1111','dog123@naver.com');
 INSERT INTO MEMBER
-VALUES(member_seq.nextval,'cat123','cat123','고양이','010-2222-2222');
+VALUES(member_seq.nextval,'cat123','1234','고양이','010-2222-2222','cat123@naver.com');
 INSERT INTO MEMBER
-VALUES(member_seq.nextval,'tiger123','tiger123','호랑이','010-3333-3333');
+VALUES(member_seq.nextval,'tiger123','1234','호랑이','010-3333-3333','tiger123@naver.com');
 INSERT INTO MEMBER
-VALUES(member_seq.nextval,'zebra123','zebra123','얼룩말','010-4444-4444');
+VALUES(member_seq.nextval,'zebra123','1234','얼룩말','010-4444-4444','zebra123@naver.com');
 INSERT INTO MEMBER
-VALUES(member_seq.nextval,'monkey123','monkey123','원숭이','010-5555-5555');
+VALUES(member_seq.nextval,'monkey123','1234','원숭이','010-5555-5555','monkey123@naver.com');
 
 commit;
 

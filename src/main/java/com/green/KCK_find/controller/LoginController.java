@@ -44,7 +44,7 @@ public class LoginController {
 				session = req.getSession();
 				session.setAttribute("memberAuthInfo", memberAuthInfo);
 				
-				return "main";
+				return "redirect:/main";
 			}catch(IdPasswordNotMatchingException e) {
 				errors.reject("idPasswordNotMatching");
 				return "enter/login";

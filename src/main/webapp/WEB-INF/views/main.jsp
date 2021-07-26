@@ -10,7 +10,6 @@
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <script src="resources/script/script.js" defer></script>
-
 <title>FIND:분실동물 찾기 서비스</title>
 </head>
 <body>
