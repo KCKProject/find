@@ -60,7 +60,6 @@ nav {
 .navInner {
     display: flex;
     justify-content: space-between;
-    padding: 0% 5%;
 }
 
 .mainMenu ul {
@@ -204,7 +203,6 @@ footer {
         flex-direction: column;
         align-items: center;
         width: 100%;
-        padding: 8px 24px; 
         
     }
    
