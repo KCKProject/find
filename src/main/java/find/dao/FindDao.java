@@ -33,7 +33,8 @@ public class FindDao {
 						rs.getString("userId"),
 						rs.getString("userPassword"),
 						rs.getString("userName"),
-						rs.getString("phone")
+						rs.getString("phone"),
+						rs.getString("email")
 					);
 			m.setMemberNumber(rs.getLong("membernumber"));
 			return m;
@@ -61,9 +62,9 @@ public class FindDao {
 	
 	public Admin selectByAdminId(String adminId) {
 		String sql = "SELECT * FROM ADMIN WHERE adminId=?";
-		System.out.println("어드민 출력 확인");
+//		System.out.println("어드민 출력 확인");
 		List<Admin> results = jdbcTemplate.query(sql, adminRowMapper, adminId);
-		System.out.println("어드민 출력 확인 2");
+//		System.out.println("어드민 출력 확인 2");
 		return results.isEmpty() ? null : results.get(0);
 	}
 	
@@ -71,6 +72,12 @@ public class FindDao {
 		List<Admin> results = jdbcTemplate.query(
 				"SELECT * FROM admin ORDER BY id ASC",adminRowMapper);
 		return results;
+	}
+	
+	public Member selectByUserId(String userId) {
+		String sql = "SELECT * FROM member WHERE userId=?";
+		List<Member> results = jdbcTemplate.query(sql, rowMapper, userId);
+		return results.isEmpty() ? null : results.get(0);		
 	}
 
 }

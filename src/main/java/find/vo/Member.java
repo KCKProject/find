@@ -7,14 +7,14 @@ public class Member {
 	private String userPassword;
 	private String userName;
 	private String phone;
-	
-	
-	
-	public Member(String userId, String userPassword, String userName, String phone) {
+	private String email;
+
+	public Member(String userId, String userPassword, String userName, String phone, String email) {
 		this.userId = userId;
 		this.userPassword = userPassword;
 		this.userName = userName;
 		this.phone = phone;
+		this.email = email;
 	}
 	public long getMemberNumber() {
 		return memberNumber;
@@ -45,8 +45,13 @@ public class Member {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
+	}	
+	public String getEmail() {
+		return email;
 	}
-
+	public void setEmail(String email) {
+		this.email = email;
+	}
 	
 	
 }
