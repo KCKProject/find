@@ -1,12 +1,12 @@
-package spring.service;
+package find.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import spring.dao.FindDao;
-import spring.exception.IdPasswordNotMatchingException;
-import spring.vo.Admin;
-import spring.vo.AdminAuthInfo;
+import find.dao.FindDao;
+import find.exception.IdPasswordNotMatchingException;
+import find.vo.Admin;
+import find.vo.AdminAuthInfo;
 
 @Service
 public class AdminAuthService {

@@ -1,4 +1,4 @@
-package spring.vo;
+package find.vo;
 
 public class AdminLoginCommand { //입력받은 아이디 비밀번호 전달용 클래스
 	

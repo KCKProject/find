@@ -18,7 +18,7 @@
                 <button><img src="resources/img/img-include/검색.png" style="width: 10px; background-color: white;"></button>
             </form>
         </div>
-<!--         <a href="#" class="navToggleBtn">
-            <i class="fas fa-bars"></i></a> -->
+         <a href="#" class="navToggleBtn">
+            <i class="fas fa-bars"></i></a> 
     </div>
 </nav>

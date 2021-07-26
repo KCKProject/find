@@ -1,4 +1,4 @@
-package spring.vo;
+package find.vo;
 
 public class AdminAuthInfo { // 어드민 로그인 정보를 기억할 클래스
 	

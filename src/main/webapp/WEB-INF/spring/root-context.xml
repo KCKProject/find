@@ -5,10 +5,20 @@
 	
 	<!-- web.xml을 건드리지 못해서 현재 xml 파일 계정 위치를 변경 -->
 	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+<!-- 	
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
  		<property name="driverClass" value="oracle.jdbc.OracleDriver"/>
+ 		<property name="jdbcUrl" value="jdbc:oracle:thin:@db.interstander.com:41521:XE"/>
+ 		<property name="user" value="king"/>
+ 		<property name="password" value="king"/>
+ 		<property name="maxPoolSize" value="30"/>
+ 	</bean> -->
+	
+<!-- 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+ 		<property name="driverClass" value="oracle.jdbc.OracleDriver"/>
  		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"/>
- 		<property name="user" value="test"/>
- 		<property name="password" value="1234"/>
- 	</bean>
+ 		<property name="user" value="greenJSP2"/>
+ 		<property name="password" value="jsp1234"/>
+ 	</bean> -->
 </beans>

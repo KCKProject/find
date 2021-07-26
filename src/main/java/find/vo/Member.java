@@ -1,4 +1,4 @@
-package spring.vo;
+package find.vo;
 
 public class Member {
 	

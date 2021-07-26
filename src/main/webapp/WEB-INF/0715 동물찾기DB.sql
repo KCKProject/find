@@ -15,6 +15,7 @@ NOCACHE;
 select * from member;
 
 INSERT INTO MEMBER
+<<<<<<< HEAD
 VALUES(member_seq.nextval,'dog123','dog123','강아지','010-1111-1111');
 INSERT INTO MEMBER
 VALUES(member_seq.nextval,'cat123','cat123','고양이','010-2222-2222');

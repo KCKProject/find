@@ -1,4 +1,4 @@
-package spring.dao;
+package find.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,8 +11,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Component;
 
-import spring.vo.Admin;
-import spring.vo.Member;
+import find.vo.Admin;
+import find.vo.Member;
 
 @Component
 public class FindDao {

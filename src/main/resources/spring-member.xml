@@ -10,28 +10,28 @@
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
  		<property name="driverClass" value="oracle.jdbc.OracleDriver"/>
  		<property name="jdbcUrl" value="jdbc:oracle:thin:@db.interstander.com:41521:XE"/>
- 		<property name="user" value="greenJSP"/>
- 		<property name="password" value="jsp1234"/>
+ 		<property name="user" value="king"/>
+ 		<property name="password" value="king"/>
  		<property name="maxPoolSize" value="30"/>
  	</bean>
 
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+	<!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
  		<property name="driverClass" value="oracle.jdbc.OracleDriver"/>
  		<property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"/>
- 		<property name="user" value="greenJSP"/>
+ 		<property name="user" value="greenJSP2"/>
  		<property name="password" value="jsp1234"/>
  	</bean>
- 	
+ 	 -->
  	<bean id="transactionManager" 
 	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
  	
- 	<bean id="findDao" class="spring.dao.FindDao">
-		<constructor-arg ref="dataSource"/>
+ 	<bean id="findDao" class="find.dao.FindDao">
+		<property name="dataSource" ref="dataSource"></property>
 	</bean>
 	
- 	<bean id="adminAuthSvc" class="spring.service.AdminAuthService">
-		<property name="dao" ref="FindDao"></property>
+ 	<bean id="adminAuthSvc" class="find.service.AdminAuthService">
+		<property name="dao" ref="findDao"></property>
 	</bean>
 </beans>

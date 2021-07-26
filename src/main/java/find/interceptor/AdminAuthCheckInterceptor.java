@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import spring.vo.AdminAuthInfo;
+import find.vo.AdminAuthInfo;
 
 public class AdminAuthCheckInterceptor extends HandlerInterceptorAdapter {
 	

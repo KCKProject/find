@@ -1,4 +1,4 @@
-package spring.exception;
+package find.exception;
 
 public class IdPasswordNotMatchingException extends RuntimeException{
 

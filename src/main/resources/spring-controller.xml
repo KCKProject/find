@@ -14,8 +14,8 @@
 		<property name="adminAuthService" ref="adminAuthSvc" />
 	</bean>
 	
-	<bean id="loginController" class="spring.controller.LoginController"/>
-	<bean id="sighUpController" class="spring.controller.SighUpController"/>
-	<bean id="lostBoardController" class="spring.controller.LostBoardListController"/>
+	<bean id="loginController" class="com.green.KCK_find.controller.LoginController"/>
+	<bean id="sighUpController" class="com.green.KCK_find.controller.SignUpController"/>
+<!-- 	<bean id="lostBoardController" class="com.green.KCK_find.controller.LostBoardListController"/> -->
 
 </beans>

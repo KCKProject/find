@@ -10,11 +10,11 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import find.exception.IdPasswordNotMatchingException;
+import find.service.AdminAuthService;
 import find.validator.AdminLoginCommandVaildator;
-import spring.exception.IdPasswordNotMatchingException;
-import spring.service.AdminAuthService;
-import spring.vo.AdminAuthInfo;
-import spring.vo.AdminLoginCommand;
+import find.vo.AdminAuthInfo;
+import find.vo.AdminLoginCommand;
 
 @Controller
 @RequestMapping("/admin")
@@ -22,6 +22,10 @@ public class AdminLoginController {
 
 	@Autowired
 	private AdminAuthService adminAuthService;
+
+	public void setAdminAuthService(AdminAuthService adminAuthService) {
+		this.adminAuthService = adminAuthService;
+	}
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String form(AdminLoginCommand adminLoginCommand) {
