@@ -5,7 +5,7 @@
 <header>
 	<div class="headerInner">
 		<div class="mainTitle">
-			<img alt="로고" src="resources/img/img-include/로고.png" height="50px"
+			<img alt="로고" src="<spring:url value='/resources/img/img-include/로고.png'/>" height="50px"
 				width="50px">
 			<p>수원시 분실동물 찾기 서비스</p>
 		</div>
@@ -39,8 +39,8 @@
 				<form action="#">
 					<input type="text" path="search" placeholder="검색어를 입력해주세요" />
 					<button>
-						<img src="resources/img/img-include/검색.png"
-							style="width: 10px; background-color: white;">
+						<img src="<spring:url value='/resources/img/search.png'/>"
+							style="width: 15px; background-color: white;">
 					</button>
 				</form>
 			</div>

@@ -31,7 +31,8 @@
 		<div class="footerlower">
 			<p>
 				2021 KCK KOREA CODING KING<br>
-				<br> <img src="resources/img/img-include/로고.png" alt="로고" height="50px" width="40px">
+				<br> <img src="<spring:url value='/resources/img/img-include/로고.png'/>" alt="로고" height="50px" width="40px">
+				
 				Always be<br> with you<br>
 				<br> COPYRIGHT ©2021 KCK All Rights Reserved.©
 			</p>

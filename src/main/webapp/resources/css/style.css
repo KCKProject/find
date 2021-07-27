@@ -34,7 +34,7 @@ input::placeholder { font-size: 80%; text-align: center;}
 
 a { text-decoration:none } /*모든 a태그의 text-decoration 없애기*/
 
-section { padding-top: 122px; } /*header에 가려지지 않게 하기 위해-각 페이지마다 다를 수 있음*/
+section { padding-top: 140px; } /*header에 가려지지 않게 하기 위해-각 페이지마다 다를 수 있음*/
 
 /* ========================전체설정 여기까지============================*/
 
@@ -114,6 +114,14 @@ nav {
 .search form input {
     width: 80%;
     margin: 15px 0;
+    border: none;
+    border-bottom: black 1.5px solid;
+}
+
+.search form button {
+	border: none;
+    background-color: white;
+    padding-top: 5px;
 }
 
 .navToggleBtn {
@@ -205,46 +213,45 @@ footer {
 }
 
 /* login ~~*/
-.sectionLogin { /*class*/
+.sectionLogin {
    padding-top: 140px;
    padding-bottom: 140px;
    width: 100%
 }
 
-.loginTitle {/*class*/
+.loginTitle {
     padding: 5% 0% 2% 0%;
-    font-size: 20px;
-    padding-left: 50%;
+    font-size: 25px;
+    margin-left: 50%;
 }
 
 .loginBox {
    height: 300px;
    width: 500px;
-    border: 1px solid black;
-    border-radius: 10px;
-    margin-left: 40%;
+   border: 1px solid black;
+   border-radius: 10px;
+   margin-left: 40%;
 }
 
 .loginBox form { 
    padding-top: 10%;
-    padding-left: 18%;
+   padding-left: 18%;
 }
 
-.loginBoxInput {
+.loginBox Input {
     border-radius: 8px;
     width: 80%;
     height: 40px;
     margin : 2% 0%;
+    justify-content: center;
 }
 
 .loginBoxbtn {
-    margin-top: 5%;
     color: white;
     display: flex;
     background-color: #1ABC9C;
-    border-radius: 8px;
-    width: 80%;
-    height: 40px;
+    text-align: center;
+    cursor: pointer;
 }
 
 .loginBoxLower {
@@ -325,8 +332,12 @@ footer {
     background-color: #064420;
 }
 
+.admin_submit input:hover {
+	cursor: pointer;
+}
+
 /* 어드민 로그인 후 메인 페이지 */
-.adminMainWrap {/*class*/
+.adminMainWrap {
    padding: 20px 0px;
     width: 100%;
     text-align: center;
