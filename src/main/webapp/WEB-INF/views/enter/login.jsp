@@ -3,7 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%-- <link rel="stylesheet" href="<spring:url value='/resources/css/style.css'/>"> --%>
+<link rel="stylesheet" href="<spring:url value='/resources/css/style.css'/>">
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,22 +11,15 @@
 <title>로그인</title>
 </head>
 <body>
-	<header>
-		<div class="headerInner">
-			<div id="mainTitle">
-				<img src="<spring:url value='/resources/img/hand.png'/>" />
-				<p>수원시 분실동물 찾기 서비스</p>
-			</div>
-		</div>
-	</header>
-	<section>
+	<jsp:include page="../include/header.jsp" />
+	<section class="sectionLogin">
 		<div class="loginInner">
-			<h3>로그인</h3>
+			<h3 class="loginTitle">로그인</h3>
 			<div class="loginBox">
 				<form:form commandName="memberLoginCommand">
 					<form:input path="userId" placeholder="아이디" />
 					<form:password path="userPassword" placeholder="비밀번호" />
-					<input type="submit" value="로그인">
+					<input type="submit" value="로그인" class="loginBoxbtn">
 				</form:form>
 			</div>
 			<div class="loginBoxLower">
