@@ -25,11 +25,13 @@
 					<p>
 						<label>* 아이디  
 							<form:input path="userId" placeholder="아이디" />
+							<form:errors path="userId"/>
 						</label>
 					</p>
 					<p>
 						<label>* 비밀번호
 							<form:password path="userPassword" placeholder="비밀번호(영문,숫자,특수문자 조합 6~15자리)" />
+							<form:errors path="userPassword"/>
 						</label>
 					</p>
 					<p>
@@ -41,11 +43,13 @@
 					<p>
 						<label>* 이름
 							<form:input path="userName" placeholder="이름" />
+							<form:errors path="userName"/>
 						</label>
 					</p>
 					<p>
 						<label>* 연락처
 							<form:input path="phone" placeholder="연락처" />
+							<form:errors path="phone"/>
 						</label>
 					</p>
 					<p>
@@ -85,10 +89,9 @@
 						</tr>						
 					</table> -->
 					<div class="signUpTerms">
-						<input type="checkbox" name="term" id="term" value="agree"> 전체동의<br>
-						<input type="checkbox" name="term" id="term" value="ageAgree"> 만 14세 이상입니다.(필수)<br>
-						<input type="checkbox" name="term" id="term" value="serviceAgree"> 수원시 분실동물 찾기 서비스 이용약관 동의 (필수)<br>
-						<input type="checkbox" name="term" id="term" value="infoAgree"> 개인정보 수집 이용 동의 (필수)<br>
+						<input type="checkbox" name="term" id="term" value="ageAgree" required oninvalid="this.setCustomValidity('필수 체크사항입니다')" oninput="setCustomValidity('')"> 만 14세 이상입니다.(필수)<br>
+						<!-- <input type="checkbox" name="term" id="term" value="serviceAgree" required> 수원시 분실동물 찾기 서비스 이용약관 동의 (필수)<br> -->
+						<input type="checkbox" name="term" id="term" value="infoAgree" required oninvalid="this.setCustomValidity('필수 체크사항입니다')" oninput="setCustomValidity('')"> 개인정보 수집 이용 동의 (필수)<br>
 					</div>
 					<input type="submit" value="회원가입">
 				</form:form>

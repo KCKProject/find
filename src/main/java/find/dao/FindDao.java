@@ -117,4 +117,11 @@ public class FindDao {
 		return results.isEmpty() ? null : results.get(0);
 	}
 
+	public Member selectByMemberNumber(long memberNumber) {
+		String sql ="SELECT * FROM member WHERE memberNumber=?";
+		List<Member> results = jdbcTemplate.query(sql, rowMapper, memberNumber);
+		
+		return results.isEmpty() ? null : results.get(0);
+	}
+	
 }

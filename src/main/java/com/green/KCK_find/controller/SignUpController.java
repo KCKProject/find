@@ -1,9 +1,5 @@
 package com.green.KCK_find.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -44,7 +40,7 @@ public class SignUpController {
 			return "redirect:/main";
 		}catch(AlreadyExistionMemberException e) {
 			System.out.println("중복 에러 발생");
-			errors.rejectValue("email", "duplicate"); //이메일이 중복이 됩니다.
+			errors.rejectValue("email", "duplicate", "이미 존재하는 이메일입니다"); //이메일이 중복이 됩니다.
 			return "enter/signUp";
 		}	
 		
