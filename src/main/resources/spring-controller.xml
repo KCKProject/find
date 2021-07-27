@@ -39,6 +39,9 @@
 		<property name="dao" ref="findDao"></property>
 	</bean>
 	
+	<!-- board -->
+	<bean id="lostBoardController" class="com.green.KCK_find.controller.LostBoardList"/>
+	
 <!-- 	<bean id="lostBoardController" class="com.green.KCK_find.controller.LostBoardListController"/> -->
 
 </beans>

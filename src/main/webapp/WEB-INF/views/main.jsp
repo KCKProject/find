@@ -17,7 +17,9 @@
 	<%-- 	<jsp:include page="include/nav.jsp" /> header에 병합 --%>
 	<main>
 		<div class="banner">
-			<img alt="배너" src="resources/img/banner.png" />
+			<a href="#mainReview">
+				<img alt="배너" src="resources/img/banner.png" />
+			</a>
 		</div>
 		<div class="mainLost">
 			<p>다시 가족의 품으로 돌아갈 수 있도록 수원 시민 여러분의 도움이 필요합니다.</p>
@@ -42,7 +44,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="mainReview">
+		<div class="mainReview" id="mainReview">
 			<p>찾았어요! 후기</p>
 			<div class="mainReviewImg">
 				<ul>

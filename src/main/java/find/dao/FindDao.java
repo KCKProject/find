@@ -109,13 +109,13 @@ public class FindDao {
 		member.setMemberNumber(keyValue.longValue());
 	}
 
-	public Member selectByEmail(String email) {
-		String sql = "SELECT * FROM member WHERE email=?";
-		
-		List<Member> results = jdbcTemplate.query(
-				sql,rowMapper,email);
-		return results.isEmpty() ? null : results.get(0);
-	}
+//	public Member selectByEmail(String email) {
+//		String sql = "SELECT * FROM member WHERE email=?";
+//		
+//		List<Member> results = jdbcTemplate.query(
+//				sql,rowMapper,email);
+//		return results.isEmpty() ? null : results.get(0);
+//	}
 
 	public Member selectByMemberNumber(long memberNumber) {
 		String sql ="SELECT * FROM member WHERE memberNumber=?";

@@ -19,11 +19,10 @@ public class SignUpService {
 	}
 	
 	public void regist(SignUpCommand signUpCommand) {
-		Member m = dao.selectByEmail(signUpCommand.getEmail());
-		System.out.println(signUpCommand.getEmail());
+		Member m = dao.selectByUserId(signUpCommand.getUserId());
 		
 		if(m!=null) {
-			throw new AlreadyExistionMemberException("이메일 중복 : "+signUpCommand.getEmail());
+			throw new AlreadyExistionMemberException("아이디 중복 : "+signUpCommand.getUserName());
 		}
 
 		Member newMember = new Member(

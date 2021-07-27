@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<script src="resources/script/script.js" defer></script>
 </head>
 <body>
 	<header>
@@ -27,16 +28,17 @@
 							<form:input path="userId" placeholder="아이디" />
 							<form:errors path="userId"/>
 						</label>
+						<button name="userIdChk" id="userIdChk" onclick="function()">중복 확인</button>
 					</p>
 					<p>
 						<label>* 비밀번호
-							<form:password path="userPassword" placeholder="비밀번호(영문,숫자,특수문자 조합 6~15자리)" />
+							<form:password path="userPassword" placeholder="영문,숫자,특수문자 조합 6~15자리" />
 							<form:errors path="userPassword"/>
 						</label>
 					</p>
 					<p>
 						<label>* 비밀번호 확인
-							<form:password path="userPwdChk" placeholder="비밀번호 확인" /></td>
+							<form:password path="userPwdChk" placeholder="비밀번호 확인" />
 							<form:errors path="userPwdChk"/>
 						</label>
 					</p>
@@ -54,40 +56,58 @@
 					</p>
 					<p>
 						<label>* 이메일
-							<form:input path="email" type="email" placeholder="이메일(@를 포함한 주소 입력)"/>
+							<form:input path="email" type="email" placeholder="@를 포함한 주소 입력"/>
+							<form:errors path="email"/>
 						</label>
 					</p>
-					<!-- <table id="signUpTbl">
+					<%-- <table id="signUpTbl">
 						<tr>
-							<th>항목</th>
-							<th>입력란</th>
+							<td>항목</td>
+							<td>입력란</td>
 						</tr>
 						<tr>
 							<td>* 아이디</td>
-							<td><form:input path="userId" placeholder="아이디" /></td>
+							<td>
+								<form:input path="userId" placeholder="아이디" />
+								<form:errors path="userId"/>
+							</td>
 						</tr>
 						<tr>
 							<td>* 비밀번호</td>
-							<td><form:password path="userPassword" placeholder="비밀번호(영문,숫자,특수문자 조합 6~15자리)" /></td>
+							<td>
+								<form:password path="userPassword" placeholder="(영문,숫자,특수문자 조합 6~15자리)" />
+								<form:errors path="userPassword"/>
+							</td>
 						</tr>
 						<tr>
 							<td>* 비밀번호 확인</td>
-							<td><form:password path="userPwdChk" placeholder="비밀번호 확인" /></td>
-							<form:errors path="userPwdChk"/>
+							<td>
+								<form:password path="userPwdChk" placeholder="(영문,숫자,특수문자 조합 6~15자리)" />
+								<form:errors path="userPwdChk"/>
+							</td>
 						</tr>
 						<tr>
 							<td>* 이름</td>
-							<td><form:input path="userName" placeholder="이름" /></td>
+							<td>
+								<form:input path="userName" placeholder="이름" />
+								<form:errors path="userName"/>
+							</td>
 						</tr>
 						<tr>
 							<td>* 연락처</td>
-							<td><form:input path="phone" placeholder="연락처" /></td>
+							<td>
+								<form:input path="phone" placeholder="연락처" />
+								<form:errors path="phone"/>
+							</td>
 						</tr>
 						<tr>
 							<td>* 이메일</td>
-							<td><form:input path="email" type="email" placeholder="이메일(@를 포함한 주소 입력)"/></td>
+							<td>
+								<form:input path="email" type="email" placeholder="(@를 포함한 주소 입력)"/>
+								<form:errors path="email"/>
+							</td>
 						</tr>						
-					</table> -->
+					</table> --%>
 					<div class="signUpTerms">
 						<input type="checkbox" name="term" id="term" value="ageAgree" required oninvalid="this.setCustomValidity('필수 체크사항입니다')" oninput="setCustomValidity('')"> 만 14세 이상입니다.(필수)<br>
 						<!-- <input type="checkbox" name="term" id="term" value="serviceAgree" required> 수원시 분실동물 찾기 서비스 이용약관 동의 (필수)<br> -->
