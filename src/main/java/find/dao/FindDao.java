@@ -17,6 +17,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import find.vo.Admin;
+import find.vo.LostBoard;
 import find.vo.Member;
 
 @Component
@@ -59,9 +60,39 @@ public class FindDao {
 			}
 		};
 	
+	private RowMapper<LostBoard> lostBoardRowMapper = new RowMapper<LostBoard>() {
+		
+		public LostBoard mapRow(ResultSet rs, int rowNum) throws SQLException{
+			System.out.println("출력 확인");
+			LostBoard lb = new LostBoard(
+					rs.getString("title"),
+					rs.getString("writer"),
+					rs.getDate("writeDate"),
+					rs.getString("location"),
+					rs.getString("character"),
+					rs.getString("animal"),
+					rs.getString("gender"),
+					rs.getString("img"),
+					rs.getString("email"),
+					rs.getString("phone"),
+					rs.getDate("lostDate"),
+					rs.getInt("meet")
+					);
+			lb.setBoardNum(rs.getLong("boardNum"));
+			return lb;		
+		}
+	};
+	
+	
 	public List<Member> selectAll() {
 		List<Member> results = jdbcTemplate.query(
 				"SELECT * FROM member order by membernumber ASC",rowMapper);
+		return results;
+	}
+	
+	public List<LostBoard> selectAllLostBoard() {
+		List<LostBoard> results = jdbcTemplate.query(
+				"SELECT * FROM member order by membernumber ASC",lostBoardRowMapper);
 		return results;
 	}
 	
@@ -123,5 +154,6 @@ public class FindDao {
 		
 		return results.isEmpty() ? null : results.get(0);
 	}
+	
 	
 }
