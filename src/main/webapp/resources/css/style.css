@@ -11,9 +11,11 @@
 5
 6
 7
-8
 ======================
-9 관리자 페이지   admin/admin-include folder
+8 admin-include folder
+	header - nav
+9 admin folder
+	login - main - board - member - q&a // detail 진행중
 ======================
 10 사이즈 조정   
 */
@@ -36,6 +38,8 @@ input::placeholder { font-size: 80%; text-align: center;}
 a { text-decoration:none } /*모든 a태그의 text-decoration 없애기*/
 
 section { padding-top: 140px;} /*header에 가려지지 않게 하기 위해-각 페이지마다 다를 수 있음*/
+
+[id*='errors'] { color: #f7c180;} /*에러메세지 주황색 표기*/
 
 /* ========================전체설정 여기까지============================*/
 
@@ -110,7 +114,10 @@ nav {
     color: whitesmoke;
     font-size: 15px;
     letter-spacing: 3px;
-}    
+}
+
+
+  
 
 .search form input {
     width: 80%;
@@ -237,7 +244,15 @@ footer {
    width: 500px;
    border: 1px solid gray;
    border-radius: 10px;
-   margin: 0 30%;
+   margin: 0 35%;
+   background-color: #fbfbfb7d;
+   border: 1px solid #dcdcdc;
+   box-shadow: 2px 3px 5px 0px #cccccc;
+}
+
+.loginBox:hover {
+	border: 1px solid gray;
+	transition: all.3s;
 }
 
 .loginBox form { 
@@ -251,18 +266,33 @@ footer {
     height: 40px;
     margin : 2% 0%;
     justify-content: center;
+    border: #cecece 1px solid;
 }
+
+.loginBox Input:hover {
+	border: 1px solid gray;
+	transition: all.3s;
+}
+
 
 .loginBoxbtn {
     color: white;
     background-color: #1ABC9C;
     cursor: pointer;
+    border: 1px solid #dcdcdc;
+    box-shadow: 2px 3px 5px 0px #cccccc;
 }
 
 .loginBoxLower {
-   margin-top : 10px;
-   margin-left: 50%;
+   padding-top : 20px;
+   padding-left: 50%;
 }
+
+.loginBoxLowerText:hover{
+	font-size: 15px;
+	background-color: lightgoldenrodyellow;
+}
+
 
 /* signUp~~ */
 
@@ -283,6 +313,9 @@ footer {
     border-radius: 10px;
     padding: 20px 0 0 0;
     margin: 0 35%;
+    background-color: #fbfbfb7d;
+    border: 1px solid #dcdcdc;
+    box-shadow: 2px 3px 5px 0px #cccccc;
 }
 
 .signUpCommandWrap {
@@ -333,6 +366,13 @@ footer {
     border-radius: 8px;
     width: 50%;
     height: 40px;
+    border: 1px solid #dcdcdc;
+    box-shadow: 2px 3px 5px 0px #cccccc;
+}
+
+.signUpBoxbtn Input:hover {
+	border: 1px solid gray;
+	transition: all.3s;
 }
 
 .signUpCommandTitle p strong {
@@ -376,7 +416,7 @@ footer {
 }
 
 .checkbox .text {
-	margin-left: 5px;
+	margin: 0 10px;
 }
 
 .checkbox input:checked ~ .icon {
@@ -414,7 +454,7 @@ footer {
 
 /* ========================관리자사이트============================*/
 
-/* 어드민 기본 설정 */
+/* admin-include folder */
 
 .headerAdmin {
     width: 100%;
@@ -441,6 +481,13 @@ footer {
     padding: 15px 100px;
     font-size: 13px;
     background-color: white;
+}
+
+.adminNav ul li:hover {
+	cursor: pointer;
+	background-color: yellow;
+	color: navy;
+	border-radius: 10px;
 }
 
 /* 어드민 로그인 페이지 */
@@ -486,10 +533,120 @@ footer {
 }
 
 /* 어드민 로그인 후 메인 페이지 */
-.adminMainWrap {
+.adminMainWrap { /*공지사항*/
    padding: 20px 0px;
+   width: 100%;
+   text-align: center;
+}
+
+
+
+.wrapAdminLogin {
     width: 100%;
+    padding-left: 40%;
+}
+
+.adminLogin_bx {
+	height: 300px;
+	width: 500px;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.line{
+    width: 1px;
+    height: 800px;
+    border-left: 1px solid gray ;
+}
+
+.adminWrap {
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.left {
+    width: 200px;
     text-align: center;
+}
+
+.left div:first-child{
+    border-bottom: 1px solid gray;
+    height: 50px;
+    line-height: 40px;
+}
+
+.adminTitle{
+    font-size: 20px;
+}
+
+.left div:not(.left div:first-child) {
+    margin: 20px 0;
+    padding: 20px 0;
+}
+
+.left div:not(.left div:first-child):hover {
+	cursor: pointer;
+	background-color: yellow;
+	border-radius: 10px;
+}
+
+.right {
+    width: 100%;
+}
+
+.right div p input {
+	border-radius: 5px;
+	border: 1px gray solid;
+	position: absolute;
+	right: 60px;
+	top: 155px;
+}
+
+.right div p img {
+	position: absolute;
+	right: 40px;
+	top: 155px;
+}
+	
+.right div:first-child{
+    border-bottom: 1px solid gray;
+    height: 50px;
+    line-height: 40px;
+    font-size: 15px;
+    padding-left: 20px;
+}
+
+.right div:not(.right div:first-child) {/*날짜, 선택란 부분*/
+    padding: 10px 0px;
+}
+
+.right div input {
+    margin: 0 20px;
+}
+
+.right div label {
+	cursor: pointer;
+}
+
+.adminContents {
+	padding: 20px 0;
+    text-align: center;
+    width: 100%;
+ 	border-bottom: 1px solid gray;
+}
+
+.paging {
+	text-align: center;
+}
+
+.adminContents tbody tr td {
+	padding: 15px 0;
+}
+
+.adminContentsListTitle td {
+	border-bottom: 1px solid #c0c0c0;
+    font-size: 15px;
 }
 
 /* ========================관리자사이트 여기까지 ============================*/
@@ -511,7 +668,7 @@ footer {
     .navToggleBtn {
         display: block;
         position: fixed;
-        top: 10%;
+        top: 90px;
         right: 40px;
         font-size: 25px;
     }

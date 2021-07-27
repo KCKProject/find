@@ -29,7 +29,7 @@
 		<div class="navInner">
 			<div class="mainMenu">
 				<ul>
-					<li> </li>
+					<li style="background-color: white;"> </li>
 					<li>찾아주세요</li>
 					<li>찾아가세요</li>
 					<li>Q&A</li>

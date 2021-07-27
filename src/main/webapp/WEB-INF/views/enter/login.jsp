@@ -8,6 +8,9 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<spring:url value='/resources/css/style.css'/>">
+<script src="https://kit.fontawesome.com/2d323a629b.js"
+	crossorigin="anonymous"></script>
+<script src="<spring:url value='/resources/script/script.js'/>" defer></script>
 <title>로그인</title>
 </head>
 <body>
@@ -24,7 +27,7 @@
 			</div>
 			<div class="loginBoxLower">
 				<p>
-					<a href="<c:url value='/enter/signUp'/>">아직 회원이 아니신가요?</a>
+					<a href="<c:url value='/enter/signUp'/>" class="loginBoxLowerText">아직 회원이 아니신가요?</a>
 				</p>
 			</div>
 		</div>

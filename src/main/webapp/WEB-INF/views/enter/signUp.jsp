@@ -7,6 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="<spring:url value='/resources/css/style.css'/>">
+<script src="https://kit.fontawesome.com/2d323a629b.js"
+	crossorigin="anonymous"></script>
+<script src="<spring:url value='/resources/script/script.js'/>" defer></script>
 <title>회원가입</title>
 </head>
 <body>

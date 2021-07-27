@@ -11,7 +11,7 @@
 </head>
 
 <body>
-	<jsp:include page="../admin-include/adminHeaderBeforeLogin.jsp"></jsp:include>
+	<jsp:include page="../admin-include/adminHeaderBeforeLogin.jsp"/>
 	<div class="adminLoginTitle">
 		<h3>관리자 로그인</h3>
 	</div>
