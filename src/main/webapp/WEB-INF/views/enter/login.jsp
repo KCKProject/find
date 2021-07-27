@@ -3,18 +3,18 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<link rel="stylesheet" href="<spring:url value='/resources/css/style.css'/>">
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="<spring:url value='/resources/css/style.css'/>">
 <title>로그인</title>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
 	<section class="sectionLogin">
 		<div class="loginInner">
-			<h3 class="loginTitle">로그인</h3>
+			<h3 class="loginTitle"><!-- 로그인 --></h3>
 			<div class="loginBox">
 				<form:form commandName="memberLoginCommand">
 					<form:input path="userId" placeholder="아이디" />
