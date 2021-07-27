@@ -49,7 +49,9 @@
 	                        <c:forEach var="m" items="${members}">
 	                        <tr>
 	                            <td>${m.memberNumber}</td>
-	                            <td>${m.userName }</td>
+	                            <td> 
+	                           		<a href="<c:url value="/admin/detail/${m.memberNumber}"/>">${m.userName}</a>
+	                            </td>
 	                            <td>${m.userId }</td>
 	                            <td>${m.phone }</td>
 	                            <td>${m.email }</td>

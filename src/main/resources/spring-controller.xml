@@ -35,6 +35,10 @@
 	
 	<bean id="logOutController" class="com.green.KCK_find.controller.LogOutController"/>
 	
+	<bean id="MemberDetailController" class="com.green.KCK_find.controller.MemberDetailController">
+		<property name="dao" ref="findDao"></property>
+	</bean>
+	
 <!-- 	<bean id="lostBoardController" class="com.green.KCK_find.controller.LostBoardListController"/> -->
 
 </beans>
