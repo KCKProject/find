@@ -11,30 +11,33 @@ public class LostBoard {
 	private String location;
 	private String character;
 	private String animal;
+	private String kind;
 	private String gender;
 	private String img;
 	private String email;
 	private String phone;
 	private Date lostDate;
+	private String memo;
 	private int meet;
 	
 	
 	public LostBoard() {}
 
 	public LostBoard(String title, String writer, Date writeDate, String location, String character, String animal,
-			String gender, String img, String email, String phone, Date lostDate, int meet) {
-		super();
+			String kind, String gender, String img, String email, String phone, Date lostDate, String memo, int meet) {
 		this.title = title;
 		this.writer = writer;
 		this.writeDate = writeDate;
 		this.location = location;
 		this.character = character;
 		this.animal = animal;
+		this.kind = kind;
 		this.gender = gender;
 		this.img = img;
 		this.email = email;
 		this.phone = phone;
 		this.lostDate = lostDate;
+		this.memo = memo;
 		this.meet = meet;
 	}
 	public long getBoardNum() {
@@ -79,6 +82,14 @@ public class LostBoard {
 	public void setAnimal(String animal) {
 		this.animal = animal;
 	}
+	public String getKind() {
+		return kind;
+	}
+
+	public void setKind(String kind) {
+		this.kind = kind;
+	}
+
 	public String getGender() {
 		return gender;
 	}
@@ -109,15 +120,16 @@ public class LostBoard {
 	public void setLostDate(Date lostDate) {
 		this.lostDate = lostDate;
 	}
+	public String getMemo() {
+		return memo;
+	}
+	public void setMemo(String memo) {
+		this.memo = memo;
+	}
 	public int getMeet() {
 		return meet;
 	}
 	public void setMeet(int meet) {
 		this.meet = meet;
 	}
-	
-	
-	
-	
-	
 }
