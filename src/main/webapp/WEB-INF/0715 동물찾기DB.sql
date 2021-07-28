@@ -85,7 +85,8 @@ CREATE TABLE QNABoard(
     title varchar2(45) not null,
     writer varchar2(20) not null,
     writeDate date not null,
-    contents
+    contents varchar2(500) not null,
+    open number not null
     );
     
 CREATE SEQUENCE QNABoard_seq

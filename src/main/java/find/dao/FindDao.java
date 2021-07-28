@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 import find.vo.Admin;
 import find.vo.LostBoard;
 import find.vo.Member;
+import find.vo.QnABoard;
 
 @Component
 public class FindDao {
@@ -34,7 +35,6 @@ public class FindDao {
 		
 		@Override
 		public Member mapRow(ResultSet rs, int rowNum) throws SQLException{
-			System.out.println("출력 확인");
 			Member m = new Member(
 						rs.getString("userId"),
 						rs.getString("userPassword"),
@@ -50,7 +50,6 @@ public class FindDao {
 	private RowMapper<Admin> adminRowMapper = new RowMapper<Admin>() {
 			
 			public Admin mapRow(ResultSet rs, int rowNum) throws SQLException{
-				System.out.println("출력 확인");
 				Admin m = new Admin(
 							rs.getString("adminId"),
 							rs.getString("adminPassword"),
@@ -84,6 +83,21 @@ public class FindDao {
 		}
 	};
 	
+	private RowMapper<QnABoard> qnABoardRowMapper = new RowMapper<QnABoard>() {
+		
+		public QnABoard mapRow(ResultSet rs, int rowNum) throws SQLException{
+			QnABoard m = new QnABoard(
+						rs.getString("title"),
+						rs.getString("writer"),
+						rs.getDate("writeDate"),
+						rs.getString("contents"),
+						rs.getInt("open")
+					);
+			m.setBoardNum(rs.getLong("boardNum"));
+			return m;
+		}
+	};
+	
 	
 	public List<Member> selectAll() {
 		List<Member> results = jdbcTemplate.query(
@@ -94,6 +108,12 @@ public class FindDao {
 	public List<LostBoard> selectAllLostBoard() {
 		List<LostBoard> results = jdbcTemplate.query(
 				"SELECT * FROM lostBoard order by boardNum ASC",lostBoardRowMapper);
+		return results;
+	}
+	
+	public List<QnABoard> selectAllQnABoard() {
+		List<QnABoard> results = jdbcTemplate.query(
+				"SELECT * FROM QnABoard order by boardNum ASC",qnABoardRowMapper);
 		return results;
 	}
 	

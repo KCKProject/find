@@ -29,7 +29,12 @@
 		<div class="right">
 			<div>
 				<p>
-					회원 : 명
+					회원 :
+					<c:forEach items="${members}" var="i" varStatus="status">
+						<c:if test="${status.last}">
+							${i.memberNumber}명
+						</c:if>
+					</c:forEach>
 					<!-- 읽어서 받아올수 있게 만들기 -->
 					<input type="text" name="search" id="search"
 						placeholder="검색어를 입력해주세요"> <a href=""> <img
@@ -38,10 +43,20 @@
 				</p>
 			</div>
 			<div>
-				<input type="date" name="startDate" id="startDate"> ~ <input type="date" name="endDate" id="endDate"> 
+			<!-- 	<input type="date" name="startDate" id="startDate"> ~ <input type="date" name="endDate" id="endDate">  -->
 				<label class="checkbox"><input type="checkbox" name="all" id="all"><span class="icon"></span><span class="text">전체</span></label>
-				<label class="checkbox"><input type="checkbox" name="userDate" id="userDate"><span class="icon"></span><span class="text">기간</span></label> 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+				<!-- <label class="checkbox"><input type="checkbox" name="userDate" id="userDate"><span class="icon"></span><span class="text">기간</span></label> --> 
 				<label class="checkbox"><input type="checkbox" name="userName" id="userName"><span class="icon"></span><span class="text">이름</span></label> 
+=======
+				<label class="checkbox"><input type="checkbox" name="proceeding" id="proceeding"><span class="icon"></span><span class="text">기간</span></label> 
+				<label class="checkbox"><input type="checkbox" name="done" id="done"><span class="icon"></span><span class="text">이름</span></label> 
+>>>>>>> Stashed changes
+=======
+				<label class="checkbox"><input type="checkbox" name="proceeding" id="proceeding"><span class="icon"></span><span class="text">기간</span></label> 
+				<label class="checkbox"><input type="checkbox" name="done" id="done"><span class="icon"></span><span class="text">이름</span></label> 
+>>>>>>> Stashed changes
 			</div>
 			<div>
 				<table class="adminContents">

@@ -17,6 +17,9 @@
 					<li>제휴문의</li>
 					<li>공지사항</li>
 					<li>고객센터</li>
+					<li>
+						<a href="<spring:url value='/admin'/>">관리자페이지</a>
+					</li>
 				</ul>
 			</div>
 			<div class="footerLink">
