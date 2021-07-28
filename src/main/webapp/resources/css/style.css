@@ -31,7 +31,7 @@
     font-family: 'Sunflower', sans-serif;
     font-size: 13px;
     color: #293B25;
-    transition: all.8s;
+    transition: all .8s;
 }
 
 input::placeholder { font-size: 80%; text-align: center;}
@@ -50,6 +50,13 @@ ul, li {list-style: none;}
 
 /* header ~~*/
 
+.headerTop {
+	display: flex;
+	justify-content: flex-end;
+	padding: 0 10px 0 0;
+	font-size: 13px;
+}
+
 header {
     width: 100%;
     background-color: white;
@@ -59,21 +66,16 @@ header {
 
 .headerInner {
     display: flex;
-    justify-content: space-between;
-    padding: 1% 5%;
+    justify-content: center;
+    padding: 0 0 10px 0;
 }
 
 .mainTitle {
     display: flex;
 }
 
-.mainTitle img {
-    padding: 5px; /* 마우스클릭 시 선택범위 넓히기 위해 padding으로(margin x)*/
-}
-
 .mainTitle p {
-    font-size: 15px;
-    padding: 10px 5px;
+    padding: 10px;
 }
 
 .enter p {
@@ -82,7 +84,14 @@ header {
 }
 
 .enter p a {
-    padding: 3px;
+    padding: 0px 3px;
+    font-size: 10px;
+}
+
+.enter p a:hover {
+	font-size: 12px;
+	background-color: lightgoldenrodyellow;
+	transition: all .35s;
 }
 
 
@@ -99,7 +108,7 @@ nav {
 
 .navInner {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
 }
 
 .mainMenu ul {
@@ -116,15 +125,16 @@ nav {
     cursor: pointer;
     background-color: #1ABC9C;
     border-radius: 8px; 
-    color: whitesmoke;
     font-size: 14px;
     letter-spacing: 3px;
 }
 
+.mainMenu ul li:hover a {
+	color: white;
+}
 
 .search form input {
     width: 80%;
-    margin: 10px 0;
     border: none;
     border-bottom: gray 1.5px solid;
 }
@@ -472,14 +482,6 @@ footer {
     width: 100%;
 }
 
-.mainContentsWrap ul  li{
-    margin: 15px;
-    width: 150px;
-    height: 150px;
-    border-radius: 8px;
-    border: 1px solid gray;
-}
-
 .mainLost {
 	padding: 10px 0 0 0;
 	background-color: #fdfaf624;
@@ -603,15 +605,24 @@ label.right {
 /* -- 베너 슬라이드 효과 -- */
 
 /* 글 크기, 위치 통일 */
-.mainContentsWrap ul li,  
+.mainContentsWrap ul li {
+	width: 180px;
+    height: 250px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+ 
 .mainContentsWrap ul li button, 
 .mainContentsWrap ul li button img,
 .mainContentsWrap ul li button span {
-	border: 0.5px solid gray;
-    border-radius: 8px;
-    width: 150px;
-    height: 150px;
+    width: 100%;
+    height: 100%;
 }
+
+.mainContentsWrap ul  li{
+    margin: 15px;
+    box-shadow: 2px 2px 2px 2px #80808036;
+} 
 
 .mainContentsWrap ul li button, 
 .mainContentsWrap ul li button img,
@@ -628,26 +639,22 @@ label.right {
     position: absolute;
     top: 0%;
     left: 0%;
-    width: 150px; 
-    height: 150px;
+    width: 100%; 
+    height: 100%;
 }
 
 .mainContentsWrap ul li button span p {
 	padding: 20px;
-    width: 110px; 
-    height: 10px;
-    font-size: 0px;
+    opacity: 0;
+    line-height: 25px; /* 마우스 올렸을때 보이는 내용 글씨 상하 간격 - 내용 많을 시 다시 조정 하기*/
 }
 
 .mainContentsWrap ul li button:hover p{
 	cursor:pointer;
-	font-size: 12px;
-	width: 150px;
-	height: 150px;
 	border-radius: 8px;
     background-color: rgba(0, 0, 0, 0.6);
     color: white;
-    transition: all.8s;
+    opacity: 1;
 } 
 
 /* -- 글 크기, 위치 통일-- */
@@ -920,8 +927,9 @@ label.right {
     .navToggleBtn {
         display: block;
         position: absolute;
-        top: 75px;
+        top: 95px;
         right: 40px;
+        z-index: 1;
     }
 
     .mainMenu ul{
@@ -929,7 +937,7 @@ label.right {
         flex-direction: column;
         align-items: center;
         width: 100%;
-        
+        z-index: 1;
     }
    
     .mainMenu li {
