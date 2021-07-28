@@ -57,12 +57,20 @@
 				</div>
 			</div>
 			
-			<div> <!-- 버튼들 모음 -->
+			<div class="wrap-btns"> <!-- 버튼들 모음 -->
 				  <!-- 로그인한 사람이 본인 글에 들어왔을때만 보이는 버튼들 추가 -->
-				<input type="button" name="toList" id="toList" onclick="location='lostPage'" value="목록으로">
-				<c:if test="${memberAuthInfo.userName==detail.writer}">
-					<input type="button" name="delete" id="delete" onclick="" value="글 삭제">
-					<input type="button" name="meet" id="meet" value="발견완료로 변경">
+				<input type="button" name="toList" id="toList" onclick="location='<c:url value="/lostPage/lostPageList"/>'" value="목록으로">
+				<c:if test="${memberAuthInfo.userName eq detail.writer}">
+					<input type="button" name="delete" id="delete" onclick="del(${detail.boardNum})" value="글 삭제">
+					<!-- 발견완료 체크유무에 따른(=meet 컬럼 값에 따른) 버튼 종류의 차이 -->
+					<c:choose>
+						<c:when test="${detail.meet eq 0}">
+							<input type="button" name="meet" id="meet" onclick="location='<c:url value="/lostPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'" value="발견완료로 변경">
+						</c:when>
+						<c:when test="${detail.meet eq 1}">
+							<input type="button" name="meet" id="meet" onclick="location='<c:url value="/lostPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'" value="미발견으로 변경">
+						</c:when>
+					</c:choose>
 				</c:if>
 			</div>
 			
@@ -101,5 +109,14 @@
 	</div>
 
 	<jsp:include page="../include/footer.jsp" />
+	<script>
+
+	function del(boardNum) {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href="<c:url value='/lostPage/delete/'/>"+boardNum;
+		}
+	}	
+</script>
 </body>
 </html>

@@ -150,18 +150,35 @@ public class FindDao {
 //	}
 
 	public Member selectByMemberNumber(long memberNumber) {
-		String sql ="SELECT * FROM member WHERE memberNumber=?";
+		String sql="SELECT * FROM member WHERE memberNumber=?";
 		List<Member> results = jdbcTemplate.query(sql, rowMapper, memberNumber);
 		
 		return results.isEmpty() ? null : results.get(0);
 	}
 
 	public LostBoard selectByBoardNum(long boardNum) {
-		String sql = "SELECT * FROM lostBoard WHERE boardNum=?";
+		String sql="SELECT * FROM lostBoard WHERE boardNum=?";
 		List<LostBoard> results = jdbcTemplate.query(sql, lostBoardRowMapper, boardNum);
 		
 		return results.isEmpty() ? null : results.get(0);
 	}
 	
+	public void deleteByBoardNum(long boardNum) {
+		String sql="DELETE FROM lostBoard WHERE boardNum=?";
+		jdbcTemplate.query(sql,lostBoardRowMapper,boardNum);
+	}
 	
+	public void updateMeet(long boardNum, int meet) {
+		String sql = "";
+		if(meet==0) {
+			System.out.println("meet가 0");
+			sql = "UPDATE lostBoard SET meet=1 WHERE boardNum=?"; 
+		}
+		if(meet==1) {
+			System.out.println("meet가 1");
+			sql = "UPDATE lostBoard SET meet=0 WHERE boardNum=?";
+		}
+		jdbcTemplate.update(sql,boardNum);
+	}
+
 }

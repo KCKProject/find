@@ -25,4 +25,28 @@ public class LostBoardDetailController {
 		
 		return "lostPage/lostPageDetail";
 	}
+	
+	@RequestMapping("/lostPage/delete/{boardNum}")
+	public String delete(@PathVariable("boardNum") long boardNum) {
+		System.out.println("넘어온 boardNum : "+boardNum);
+//		dao.deleteByBoardNum(boardNum);
+//		
+//		System.out.println("삭제 완료");
+		return "redirect:/lostPage/lostPageList";
+	}
+	
+	@RequestMapping("/lostPage/changeMeet/{boardNum}&{meet}")
+	public String changeMeet(@PathVariable("boardNum") long boardNum,
+							 @PathVariable("meet") int meet,
+							 Model model){
+		System.out.println("넘어온 boardNum : "+boardNum);
+		System.out.println("넘어온 meet : "+meet);
+		
+		dao.updateMeet(boardNum, meet);
+		LostBoard detail = dao.selectByBoardNum(boardNum);
+		
+		model.addAttribute("detail", detail);
+		
+		return "lostPage/lostPageDetail";
+	}
 }
