@@ -27,6 +27,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
     font-family: 'Sunflower', sans-serif;
     font-size: 13px;
     color: #293B25;
@@ -37,9 +38,13 @@ input::placeholder { font-size: 80%; text-align: center;}
 
 a { text-decoration:none } /*모든 a태그의 text-decoration 없애기*/
 
-section { padding-top: 140px;} /*header에 가려지지 않게 하기 위해-각 페이지마다 다를 수 있음*/
-
 [id*='errors'] { color: #f7c180;} /*에러메세지 주황색 표기*/
+
+ul, li {list-style: none;}
+
+/* .section { padding-top: 120px;} header에 가려지지 않게 하기 위해-각 페이지마다 다를 수 있음 main 기준임 - header fixed 설정 해제로 해당 기능 필요 없음 */
+
+
 
 /* ========================전체설정 여기까지============================*/
 
@@ -48,7 +53,8 @@ section { padding-top: 140px;} /*header에 가려지지 않게 하기 위해-각
 header {
     width: 100%;
     background-color: white;
-    position: fixed;
+/*     position: fixed; */
+    box-shadow: 2px 2px 2px 2px #80808036;
 }
 
 .headerInner {
@@ -67,12 +73,12 @@ header {
 
 .mainTitle p {
     font-size: 15px;
-    padding: 20px 5px;
+    padding: 10px 5px;
 }
 
 .enter p {
     font-size: 13px;
-    padding: 20px 5px;
+    padding: 10px 5px;
 }
 
 .enter p a {
@@ -101,9 +107,8 @@ nav {
 }
 
 .mainMenu ul li {
-    list-style: none;
     padding: 15px 100px;
-    font-size: 13px;
+    font-size: 12px;
     background-color: white;
 }
 
@@ -112,16 +117,14 @@ nav {
     background-color: #1ABC9C;
     border-radius: 8px; 
     color: whitesmoke;
-    font-size: 15px;
+    font-size: 14px;
     letter-spacing: 3px;
 }
 
 
-  
-
 .search form input {
     width: 80%;
-    margin: 15px 0;
+    margin: 10px 0;
     border: none;
     border-bottom: gray 1.5px solid;
 }
@@ -132,9 +135,20 @@ nav {
     padding-top: 5px;
 }
 
+.search form button img {
+	width: 15px; 
+	background-color: white;
+	padding: 5px 0 0 5px;
+}
+
+.search form button img:hover {
+	cursor:pointer;
+}
+
 .navToggleBtn {
     display: none;
 }
+
 
 
 
@@ -184,14 +198,13 @@ footer {
 }
 
 .footerMenu ul li {
-    list-style: none;
     padding: 20px;
     font-size: 13px;
 }
 
 .footerMenu ul li:hover {
     cursor: pointer;
-    color: palevioletred;
+    color: #ed4848;
     text-decoration: underline;
 }    
 
@@ -200,7 +213,6 @@ footer {
 }
 
 .footerLink ul li {
-    list-style: none;
     padding: 20px;
 }
 
@@ -443,9 +455,250 @@ footer {
 /* 체크박스 젤리효과 */
 
 
+/* main~~ */
+.banner img {
+	width: 100%;
+	box-shadow: 2px 2px 2px 2px #80808036;
+}
+
+.mainSection  {
+    text-align: center;
+}
+
+.mainContentsWrap ul {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.mainContentsWrap ul  li{
+    margin: 15px;
+    width: 150px;
+    height: 150px;
+    border-radius: 8px;
+    border: 1px solid gray;
+}
+
+.mainLost {
+	padding: 10px 0 0 0;
+	background-color: #fdfaf624;
+    box-shadow: 3px 3px 3px 3px #80808036;
+}
+
+.mainLost p,.mainReview p {
+    padding: 40px 0;
+}
+
+.mainMore {
+    padding: 40px 0;
+}
+
+/* 베너 슬라이드 효과 */
+[name="slide"] {display: none;} /* 인풋 안보이게 */
+
+.slidebox {
+    max-width: 2000px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.slidebox img {
+    max-width: 100%;
+}
+
+.slidebox, .slidelist {
+    white-space: nowrap;
+    font-size: 0;
+    overflow: hidden;
+}
+
+.slidebox .slideitem {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    width: 100%;
+    transition: all .35s;
+}
+
+ .slidebox .slideitem label {
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+} 
+
+ label.left {
+    left: 20px;
+/*     background-image: url('../img/left-arrow.png'); */
+    background-position: center center;
+    background-size: 50%;
+    background-repeat: no-repeat;
+}
+
+label.right {
+    right: 20px;
+/*     background-image: url('../img/right-arrow.png'); */
+    background-position: center center;
+    background-size: 50%;
+    background-repeat: no-repeat;
+} 
+
+[id="slide01"]:checked ~ .slidelist .slideitem {transform: translateX(0); animation: slide01 10s infinite;}
+[id="slide02"]:checked ~ .slidelist .slideitem {transform: translateX(-100%); animation: slide02 10s infinite;}
+[id="slide03"]:checked ~ .slidelist .slideitem {transform: translateX(-200%); animation: slide03 10s infinite;}
+[id="slide04"]:checked ~ .slidelist .slideitem {transform: translateX(-300%); animation: slide04 10s infinite;}
 
 
+@keyframes slide01 {
+    0% {left: 0%;}
+    23% {left: 0%;}
+    25% {left: -100%;}
+    48% {left: -100%;}
+    50% {left: -200%;}
+    73% {left: -200%;}
+    75% {left: -300%;}
+    98% {left: -300%;}
+    100% {left: 0%;}
+}
 
+@keyframes slide02 {
+    0% {left: 0%;}
+    23% {left: 0%;}
+    25% {left: -100%;}
+    48% {left: -100%;}
+    50% {left: -200%;}
+    73% {left: -200%;}
+    75% {left: 100%;}
+    98% {left: 100%;}
+    100% {left: 0%;}
+}
+
+@keyframes slide03 {
+    0% {left: 0%;}
+    23% {left: 0%;}
+    25% {left: -100%;}
+    48% {left: -100%;}
+    50% {left: 200%;}
+    73% {left: 200%;}
+    75% {left: 100%;}
+    98% {left: 100%;}
+    100% {left: 0%;}
+}
+
+@keyframes slide04 {
+    0% {left: 0%;}
+    23% {left: 0%;}
+    25% {left: 300%;}
+    48% {left: 300%;}
+    50% {left: 200%;}
+    73% {left: 200%;}
+    75% {left: 100%;}
+    98% {left: 100%;}
+    100% {left: 0%;}
+} 
+/* -- 베너 슬라이드 효과 -- */
+
+/* 글 크기, 위치 통일 */
+.mainContentsWrap ul li,  
+.mainContentsWrap ul li button, 
+.mainContentsWrap ul li button img,
+.mainContentsWrap ul li button span {
+	border: 0.5px solid gray;
+    border-radius: 8px;
+    width: 150px;
+    height: 150px;
+}
+
+.mainContentsWrap ul li button, 
+.mainContentsWrap ul li button img,
+.mainContentsWrap ul li button span { 
+	border: none;
+}
+
+.mainContentsWrap ul li button {
+    position: relative;
+    left: 0;
+}
+
+.mainContentsWrap ul li button span, .mainContentsWrap ul li button span p{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 150px; 
+    height: 150px;
+}
+
+.mainContentsWrap ul li button span p {
+	padding: 20px;
+    width: 110px; 
+    height: 10px;
+    font-size: 0px;
+}
+
+.mainContentsWrap ul li button:hover p{
+	cursor:pointer;
+	font-size: 12px;
+	width: 150px;
+	height: 150px;
+	border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: white;
+    transition: all.8s;
+} 
+
+/* -- 글 크기, 위치 통일-- */
+
+
+/* more 버튼 효과 설정 */
+.btn {
+    background: none;
+    border: none;
+    border-bottom: 2px solid whitesmoke;
+    font-size: 15px;
+    color: #ed4848;
+    padding: 10px 20px;
+    width: 150px;
+    cursor: pointer;
+    position: relative;
+}
+
+.btn-swap span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 13px 20px;
+    width: 100%;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.btn-swap:hover span{
+    opacity: 1;
+    color: white;
+}
+
+.btn-swap::before {
+    content: '';
+    width: 0%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: #ed4848;
+    border-radius: 8px;
+}
+
+.btn-swap:hover::before {
+    width: 100%;
+    transition: width 0.5s;
+
+}
+
+/* -- more 버튼 효과 설정 -- */
 
 
 
@@ -477,7 +730,6 @@ footer {
 }
 
 .adminNav ul li {
-    list-style: none;
     padding: 15px 100px;
     font-size: 13px;
     background-color: white;
@@ -667,14 +919,13 @@ footer {
 
     .navToggleBtn {
         display: block;
-        position: fixed;
-        top: 90px;
+        position: absolute;
+        top: 75px;
         right: 40px;
-        font-size: 25px;
     }
 
     .mainMenu ul{
-        position: fixed;
+        position: absolute;
         flex-direction: column;
         align-items: center;
         width: 100%;
@@ -689,6 +940,11 @@ footer {
     .mainMenu.active {
         display: flex;
     }
+    
+    .fas { /*햄버거 크기조정*/
+    font-size: 25px;
+}
+    
 
 }
 
