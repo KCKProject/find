@@ -63,7 +63,6 @@ public class FindDao {
 	private RowMapper<LostBoard> lostBoardRowMapper = new RowMapper<LostBoard>() {
 		
 		public LostBoard mapRow(ResultSet rs, int rowNum) throws SQLException{
-			System.out.println("출력 확인");
 			LostBoard lb = new LostBoard(
 					rs.getString("title"),
 					rs.getString("writer"),
@@ -71,11 +70,13 @@ public class FindDao {
 					rs.getString("location"),
 					rs.getString("character"),
 					rs.getString("animal"),
+					rs.getString("kind"),
 					rs.getString("gender"),
 					rs.getString("img"),
 					rs.getString("email"),
 					rs.getString("phone"),
 					rs.getDate("lostDate"),
+					rs.getString("memo"),
 					rs.getInt("meet")
 					);
 			lb.setBoardNum(rs.getLong("boardNum"));
@@ -92,7 +93,7 @@ public class FindDao {
 	
 	public List<LostBoard> selectAllLostBoard() {
 		List<LostBoard> results = jdbcTemplate.query(
-				"SELECT * FROM member order by membernumber ASC",lostBoardRowMapper);
+				"SELECT * FROM lostBoard order by boardNum ASC",lostBoardRowMapper);
 		return results;
 	}
 	
@@ -151,6 +152,13 @@ public class FindDao {
 	public Member selectByMemberNumber(long memberNumber) {
 		String sql ="SELECT * FROM member WHERE memberNumber=?";
 		List<Member> results = jdbcTemplate.query(sql, rowMapper, memberNumber);
+		
+		return results.isEmpty() ? null : results.get(0);
+	}
+
+	public LostBoard selectByBoardNum(long boardNum) {
+		String sql = "SELECT * FROM lostBoard WHERE boardNum=?";
+		List<LostBoard> results = jdbcTemplate.query(sql, lostBoardRowMapper, boardNum);
 		
 		return results.isEmpty() ? null : results.get(0);
 	}

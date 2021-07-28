@@ -7,7 +7,7 @@
 		<div class="mainTitle">
 			<img alt="로고" src="<spring:url value='/resources/img/img-include/로고.png'/>" height="50px"
 				width="50px">
-			<p>수원시 분실동물 찾기 서비스</p>
+			<p><a href="<c:url value='/'/>">수원시 분실동물 찾기 서비스</a></p>
 		</div>
 		<div class="enter">
 			<p>
@@ -30,8 +30,8 @@
 			<div class="mainMenu">
 				<ul>
 					<li style="background-color: white;"> </li>
-					<li>찾아주세요</li>
-					<li>찾아가세요</li>
+					<li><a href="<c:url value='/lostPage/lostPageList'/>">찾아주세요</a></li>
+                	<li><a href="<c:url value='/findPage/findPageList'/>">찾아가세요</a></li>
 					<li>Q&A</li>
 				</ul>
 			</div>

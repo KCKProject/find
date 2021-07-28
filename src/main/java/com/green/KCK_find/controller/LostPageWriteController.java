@@ -1,16 +1,16 @@
 package com.green.KCK_find.controller;
 
-import java.util.List;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import find.dao.FindDao;
 import find.vo.LostBoard;
 
 @Controller
-public class LostBoardList {
+@RequestMapping("/lostPage/lostPageWrite")
+public class LostPageWriteController {
 
 	private FindDao dao;
 	
@@ -18,12 +18,9 @@ public class LostBoardList {
 		this.dao = dao;
 	}
 	
-	@RequestMapping("/lostPage/lostPageList")
-	public String list(Model model) {
-		
-		List<LostBoard> losts = dao.selectAllLostBoard();
-		model.addAttribute("losts",losts);
-		
-		return "lostPage/lostPageList";
+	@RequestMapping(method=RequestMethod.GET)
+	public String list(Model model, LostBoard lostBoard) {
+		model.addAttribute("lostBoard",new LostBoard());
+		return "lostPage/lostPageWrite";
 	}
 }
