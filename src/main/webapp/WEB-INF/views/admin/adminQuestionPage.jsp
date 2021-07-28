@@ -35,8 +35,8 @@
 				<input type="date" name="startDate" id="startDate"> ~ 
 				<input type="date" name="endDate" id="endDate"> 
 				<label class="checkbox"><input type="checkbox" name="all" id="all"><span class="icon"></span><span class="text">전체</span></label>
-				<label class="checkbox"><input type="checkbox" name="proceeding" id="proceeding"><span class="icon"></span><span class="text">공개</span></label> 
-				<label class="checkbox"><input type="checkbox" name="done" id="done"><span class="icon"></span><span class="text">비공개</span></label> 
+				<label class="checkbox"><input type="checkbox" name="open" id="open"><span class="icon"></span><span class="text">공개</span></label> 
+				<label class="checkbox"><input type="checkbox" name="close" id="close"><span class="icon"></span><span class="text">비공개</span></label> 
 			</div>
 			<div>
 				<table class="adminContents">
