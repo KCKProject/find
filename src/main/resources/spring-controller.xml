@@ -14,7 +14,9 @@
 		<property name="adminAuthService" ref="adminAuthSvc" />
 	</bean>
 		
-	<bean id="AdminBoardController" class="com.green.KCK_find.controller.AdminBoardController"/>
+	<bean id="AdminBoardController" class="com.green.KCK_find.controller.AdminBoardController">
+		<property name="dao" ref="findDao"/>
+	</bean>
 	
 	<bean id="AdminMemberController" class="com.green.KCK_find.controller.AdminMemberController">
 		<property name="dao" ref="findDao"></property>

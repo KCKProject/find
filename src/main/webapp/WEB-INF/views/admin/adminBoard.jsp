@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +29,12 @@
 
 		<div class="right">
 			<div>
-				<p>진행중 개 | 완료 개 | 전체 개 
+				<p>진행중 개 | 완료 개 | 
+				전체 <c:forEach items="${losts}" var="i" varStatus="status">
+						<c:if test="${status.last}">
+							${i.boardNum}
+						</c:if>
+					</c:forEach> 개 
 				<input type="text" name="search" id="search" placeholder="검색어를 입력해주세요"> 
 				<a href=""><img src="../resources/img/search.png" alt="검색" width="15px" height="15px"></a></p>
 				<!-- 읽어서 받아올수 있게 만들기 -->
@@ -42,27 +48,35 @@
 			</div>
 			<div>
 				<table class="adminContents">
-					<thead>
-						<tr>
-							<td>번호</td>
-							<td>완료</td>
-							<td>글제목</td>
-							<td>작성자</td>
-							<td>날짜</td>
-						</tr>
-					</thead>				
-					<tbody>
-						<tr>
-							<!-- <c:forEach var="t" items="text">   반복이용 해서 자동으로 받아오게 만들기
-                        <td>1</td> 
-                        <td>V</td>
-                        <td>글제목</td>
-                        <td>작성자</td>
-                        <td>날짜</td>
-                         </c:forEach>  -->
-						</tr>
-					</tbody>
-
+					<c:if test="${!empty losts}">
+						<thead>
+							<tr>
+								<td>번호</td>
+								<td>완료</td>
+								<td>글제목</td>
+								<td>작성자</td>
+								<td>날짜</td>
+							</tr>
+						</thead>				
+						<tbody>
+							<c:forEach var="m" items="${losts}">
+								<tr>
+									<td>${m.boardNum}</td>
+									<c:if test="${m.meet ==1}">
+										<td>완료</td>
+									</c:if>
+									<c:if test="${m.meet ==0}">
+										<td>미완료</td>
+									</c:if>
+									<td><a
+										href="<c:url value="/admin/detail/${m.title}"/>">${m.title}</a>
+									</td>
+									<td>${m.writer}</td>
+									<td><fmt:formatDate value="${m.writeDate}" pattern="yyyy-MM-dd"/></td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</c:if>
 				</table>
 				<div class="paging">
 					<span onclick="alert('이전 페이지가 없습니다.');">이전</span>
