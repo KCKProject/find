@@ -6,6 +6,6 @@
 	<ul>
 		<li> <a href="<c:url value='/admin/adminBoard'/>">게시판 관리</a></li>
 		<li> <a href="<c:url value='/admin/adminMember'/>">회원관리</a></li>
-		<li> <a href="<c:url value='/admin/adminQuestionPage'/>">Q&A관리</a></li>
+		<li> <a href="<c:url value='/admin/adminQuestionPage'/>">QnA관리</a></li>
 	</ul>
 </nav>

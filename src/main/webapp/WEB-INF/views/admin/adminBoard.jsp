@@ -68,8 +68,8 @@
 									<c:if test="${m.meet ==0}">
 										<td>미완료</td>
 									</c:if>
-									<td><a
-										href="<c:url value="/admin/detail/${m.title}"/>">${m.title}</a>
+									<td>
+									<a href="<c:url value="/admin/detail/${m.boardNum}"/>">${m.title}</a>
 									</td>
 									<td>${m.writer}</td>
 									<td><fmt:formatDate value="${m.writeDate}" pattern="yyyy-MM-dd"/></td>

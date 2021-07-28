@@ -1,12 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../resources/css/style.css">
-<title>관리자 페이지_회원관리</title>
+<title>관리자 페이지_QnA관리</title>
 </head>
 <body>
 	<jsp:include page="../admin-include/adminHeader.jsp"></jsp:include>
@@ -25,7 +28,13 @@
 
 		<div class="right">
 			<div>
-				<p> Q&A 개 <!-- 읽어서 받아올수 있게 만들기 -->
+				<p> Q&A 
+				<c:forEach items="${questions}" var="i" varStatus="status">
+					<c:if test="${status.last}">
+							${i.boardNum}
+					</c:if>
+				</c:forEach>
+				 개 <!-- 읽어서 받아올수 있게 만들기 -->
 				<!-- 검색창 필요 시 살릴 것 
 				<input type="text" name="search" id="search" placeholder="검색어를 입력해주세요"> 
 				<a href=""><img src="../resources/img/search.png" alt="검색" width="15px" height="15px"></a> -->
@@ -40,20 +49,35 @@
 			</div>
 			<div>
 				<table class="adminContents">
-					<tr>
-						<td>번호</td>
-						<td>작성자</td>
-						<td>글제목</td>
-						<td>작성일</td>
-						<td>공개</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>홍길동</td>
-						<td>~~방법은?</td>
-						<td>2020-07-20</td>
-						<td>공개</td>
-					</tr>
+					<c:if test="${!empty questions}">
+						<thead>
+							<tr>
+								<td>번호</td>
+								<td>작성자</td>
+								<td>글제목</td>
+								<td>작성일</td>
+								<td>공개여부</td>
+							</tr>
+						</thead>				
+						<tbody>
+							<c:forEach var="m" items="${questions}">
+								<tr>
+									<td>${m.boardNum}</td>
+									<td>${m.writer}</td>
+									<td>
+									<a href="<c:url value="/admin/detail/${m.boardNum}"/>">${m.title}</a>
+									</td>
+									<td><fmt:formatDate value="${m.writeDate}" pattern="yyyy-MM-dd"/></td>
+									<c:if test="${m.open ==1}">
+										<td>공개</td>
+									</c:if>
+									<c:if test="${m.open ==0}">
+										<td>비공개</td>
+									</c:if>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</c:if>
 				</table>
 				<div class="paging">
 					<span onclick="alert('이전 페이지가 없습니다.');"><<</span>

@@ -13,7 +13,7 @@ import find.vo.LostBoard;
 @Controller
 public class AdminBoardController {
 	
-private FindDao dao;
+	private FindDao dao;
 	
 	public void setDao(FindDao dao) {
 		this.dao = dao;
