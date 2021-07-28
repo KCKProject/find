@@ -297,14 +297,14 @@ footer {
     height: 30px;
 }
 
-.signUpCommandBox p label input {
+.signUpCommandBox p input {
 	border: 1px solid gray;
 	border-radius: 8px;
     width: 300px;
     height: 30px;
 }
 
-.signUpCommandBox p label input:hover {
+.signUpCommandBox p input:hover {
 	border: 1px solid #f7c180;
 	transition: all.3s;
 }

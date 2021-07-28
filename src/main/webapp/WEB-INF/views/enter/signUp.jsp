@@ -6,8 +6,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="<spring:url value='/resources/css/style.css'/>">
+<link rel="stylesheet" href="<spring:url value='/resources/css/style.css?'/>">
 <title>회원가입</title>
+<script type="text/javascript" src="<spring:url value='/resources/script/script.js'/>"></script>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
@@ -27,84 +28,45 @@
 						</div>
 						<div class="signUpCommandBox">
 							<p>
-								<label>
-									<form:input path="userId" placeholder="아이디" />
-									<form:errors path="userId"/>
-								</label>
+								<form:input path="userId" placeholder="아이디" requried="requried"/>
+								<form:errors path="userId"/>
 							</p>
 							<p>
-								<label>
-									<form:password path="userPassword" placeholder="비밀번호(영문,숫자,특수문자 조합 6~15자리)" />
-									<form:errors path="userPassword"/>
-								</label>
+								<form:password path="userPassword" placeholder="비밀번호(영문,숫자,특수문자 조합 6~15자리)" />
+								<form:errors path="userPassword"/>
 							</p>
 							<p>
-								<label>
-									<form:password path="userPwdChk" placeholder="비밀번호 확인" />
-									<form:errors path="userPwdChk"/>
-								</label>
+								<form:password path="userPwdChk" placeholder="비밀번호 확인" />
+								<form:errors path="userPwdChk"/>
 							</p>
 							<p>
-								<label>
-									<form:input path="userName" placeholder="이름" />
-									<form:errors path="userName"/>
-								</label>
+								<form:input path="userName" placeholder="이름" />
+								<form:errors path="userName"/>
 							</p>
 							<p>
-								<label>
-									<form:input path="phone" placeholder="연락처" />
-									<form:errors path="phone"/>
-								</label>
+								<form:input path="phone" placeholder="연락처" />
+								<form:errors path="phone"/>
 							</p>
 							<p>
-								<label>
-									<form:input path="email" type="email" placeholder="이메일(@를 포함한 주소 입력)"/>
-								</label>
+								<form:input path="email" type="email" placeholder="이메일(@를 포함한 주소 입력)"/>
+								<form:errors path="email"/>
 							</p>
 						</div>
 					</div>
-					<!-- <table id="signUpTbl">
-						<tr>
-							<th>항목</th>
-							<th>입력란</th>
-						</tr>
-						<tr>
-							<td><strong>*</strong> 아이디</td>
-							<td><form:input path="userId" placeholder="아이디" /></td>
-						</tr>
-						<tr>
-							<td><strong>*</strong> 비밀번호</td>
-							<td><form:password path="userPassword" placeholder="비밀번호(영문,숫자,특수문자 조합 6~15자리)" /></td>
-						</tr>
-						<tr>
-							<td><strong>*</strong> 비밀번호 확인</td>
-							<td><form:password path="userPwdChk" placeholder="비밀번호 확인" /></td>
-							<form:errors path="userPwdChk"/>
-						</tr>
-						<tr>
-							<td><strong>*</strong> 이름</td>
-							<td><form:input path="userName" placeholder="이름" /></td>
-						</tr>
-						<tr>
-							<td><strong>*</strong> 연락처</td>
-							<td><form:input path="phone" placeholder="연락처" /></td>
-						</tr>
-						<tr>
-							<td><strong>*</strong> 이메일</td>
-							<td><form:input path="email" type="email" placeholder="이메일(@를 포함한 주소 입력)"/></td>
-						</tr>						
-					</table> -->
 					<div class="signUpTerms">
 					
-						<label class="checkbox">
-							<input type="checkbox" name="term" id="term" value="ageAgree" required oninvalid="this.setCustomValidity('필수 체크사항')" oninput="setCustomValidity('')"> 
+						<div class="checkbox">
+							<input type="checkbox" name="term" id="ageAgree" value="ageAgree"> 
 							<span class="icon"></span>
-							<span class="text">만 14세 이상입니다.(필수)</span>
-						</label>
-						<label class="checkbox">
-							<input type="checkbox" name="term" id="term" value="infoAgree" required oninvalid="this.setCustomValidity('필수 체크사항')" oninput="setCustomValidity('')"> 
+							<span class="text"><label for="ageAgree">만 14세 이상입니다.(필수)</label></span>
+						</div>
+						<div class="checkbox">
+							<input type="checkbox" name="term" id="infoAgree" value="infoAgree"> 
 							<span class="icon"></span>
-							<span class="text">개인정보 수집 이용 동의 (필수)</span>
+							<span class="text"><label for="infoAgree">개인정보 수집 이용 동의 (필수)</label></span>
+						</div>
+						<label>
+							<input type="checkbox" name="term" id="term" value="addAgree" required oninvalid="this.setCustomValidity('필수 체크사항')" oninput="setCustomValidity('')">추가추가
 						</label>
 					
 						<!--
@@ -113,7 +75,7 @@
 						<input type="checkbox" name="term" id="term" value="infoAgree" required oninvalid="this.setCustomValidity('필수 체크사항입니다')" oninput="setCustomValidity('')"> 개인정보 수집 이용 동의 (필수)<br> -->
 					</div>
 					<div class="signUpBoxbtn">
-						<input type="submit" value="회원가입">
+						<input type="submit" value="회원가입" onclick="signUpChk()">
 					</div>
 				</form:form>
 			</div>			
