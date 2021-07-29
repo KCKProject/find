@@ -27,7 +27,7 @@
 	                <div>
 	                    <label for="slide04" class="left"></label>
 	                    <label for="slide02" class="right"></label>
-	                    <a><img src="resources/img/banner01.png"></a>
+	                    <a><img src="resources/img/banner01.png" onclick="window.scrollTo(1000,1000);"></a>
 	                </div>
 	            </li>
 	            <li class="slideitem">
@@ -54,17 +54,19 @@
 	        </ul>
 	    </div>
 			
-		<!-- 		
+		 <!-- 		
 		<div class="banner">
 			<a href="#mainReview">
 				<img alt="배너" src="resources/img/banner.png" />
 			</a>
-		</div> -->
+		</div>  -->
 		
 		
 		<div class="mainContentsWrap">
 		<div class="mainLost">
 			<p>다시 가족의 품으로 돌아갈 수 있도록 수원 시민 여러분의 도움이 필요합니다.</p>
+			<h3 class="contentsTitle">찾아주세요</h3>
+			<div class="titleLine"></div>
 			<div class="mainLostImg">
 				<!-- 게시판 글 끌어오기 -->
 				<ul>
@@ -148,7 +150,8 @@
 			</div>
 		</div>
 		<div class="mainReview">
-			<p>찾았어요! 후기</p>
+			<h3 class="contentsTitle">찾았어요! 후기</h3>
+			<div class="titleLine"></div>
 			<div class="mainReviewImg">
 				<ul>
                     <li>
@@ -195,5 +198,6 @@
 		</div>
 	</section>
 	<jsp:include page="include/footer.jsp"></jsp:include>
+	<button class="jellybutton" type="button" onclick="goTop()">TOP</button>
 </body>
 </html>

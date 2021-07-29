@@ -1,26 +1,26 @@
 /* css index 
 
-======================
 1 전체 설정
-======================
 2 include folder
    header - nav - footer
 3 enter folder
    login - signUp
-4 
-5
-6
+4 main
+5 board(lost,find) 셋팅
+6 lostPage folder
+	lostPageList - //
 7
+8
 ======================
-8 admin-include folder
+9 admin-include folder
 	header - nav
-9 admin folder
+10 admin folder
 	login - main - board - member - q&a // detail 진행중
 ======================
-10 사이즈 조정   
+11 사이즈 조정   
 */
 
-/* ========================전체설정============================*/
+/* index-1 전체설정 */
 
 @import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap');
 
@@ -45,10 +45,8 @@ ul, li {list-style: none;}
 /* .section { padding-top: 120px;} header에 가려지지 않게 하기 위해-각 페이지마다 다를 수 있음 main 기준임 - header fixed 설정 해제로 해당 기능 필요 없음 */
 
 
-
-/* ========================전체설정 여기까지============================*/
-
-/* header ~~*/
+/* ========================= */
+/*  index-2 include-header  */
 
 .headerTop {
 	display: flex;
@@ -96,7 +94,8 @@ header {
 
 
 
-/* nav ~~ */
+/* ========================= */
+/*  index-2 include-nav  */
 
 nav {
     height: 50px;
@@ -117,6 +116,7 @@ nav {
 
 .mainMenu ul li {
     padding: 15px 100px;
+    margin: 0px;
     font-size: 12px;
     background-color: white;
 }
@@ -161,8 +161,8 @@ nav {
 
 
 
-
-/* footer ~~ */
+/* ========================= */
+/* index-2 include-footer */
 
 footer {
     position: relative;
@@ -242,7 +242,8 @@ footer {
     letter-spacing: 2px;
 }
 
-/* login ~~*/
+/* ========================= */
+/*  index-3 enter-login  */
 
 .loginInner {
 	 width: 100%;
@@ -296,7 +297,6 @@ footer {
 	transition: all.3s;
 }
 
-
 .loginBoxbtn {
     color: white;
     background-color: #1ABC9C;
@@ -316,10 +316,11 @@ footer {
 }
 
 
-/* signUp~~ */
+/* ========================= */
+/*  index-3 enter-signup  */
 
 .sectionSignUp {
-	padding: 200px 0;
+	padding: 50px 0;
 }
 
 .signUpTitle {
@@ -401,7 +402,7 @@ footer {
 	color: red;
 }
 
-/* 체크박스 젤리효과 */
+/* -- 체크박스 젤리효과 -- */
 
 .checkbox input {
 	display: none;
@@ -462,10 +463,12 @@ footer {
 	to {transform: scale(1, 1);}
 }
 
-/* 체크박스 젤리효과 */
+/* -- 체크박스 젤리효과 -- */
 
 
-/* main~~ */
+/* ========================= */
+/* index-4 main */
+
 .banner img {
 	width: 100%;
 	box-shadow: 2px 2px 2px 2px #80808036;
@@ -488,15 +491,32 @@ footer {
     box-shadow: 3px 3px 3px 3px #80808036;
 }
 
-.mainLost p,.mainReview p {
+.mainLost p {
     padding: 40px 0;
 }
 
 .mainMore {
-    padding: 40px 0;
+    padding: 20px 0;
 }
 
-/* 베너 슬라이드 효과 */
+.mainReview {
+	margin-top: 50px;
+}
+
+.titleLine {
+	display: inline-flex;
+    width: 50px;
+    border-bottom: 1px solid #ee6260;
+}
+
+.contentsTitle {
+	padding: 10px 0 0 0;
+    text-align: center;
+    letter-spacing: 3px;
+}
+
+
+/* -- 베너 슬라이드 효과 -- */
 [name="slide"] {display: none;} /* 인풋 안보이게 */
 
 .slidebox {
@@ -507,6 +527,7 @@ footer {
 
 .slidebox img {
     max-width: 100%;
+    cursor: pointer;
 }
 
 .slidebox, .slidelist {
@@ -604,9 +625,9 @@ label.right {
 } 
 /* -- 베너 슬라이드 효과 -- */
 
-/* 글 크기, 위치 통일 */
+/* -- 메인 글 크기, 위치 셋팅 -- */
 .mainContentsWrap ul li {
-	width: 180px;
+	width: 200px;
     height: 250px;
     border-radius: 8px;
     overflow: hidden;
@@ -657,10 +678,34 @@ label.right {
     opacity: 1;
 } 
 
-/* -- 글 크기, 위치 통일-- */
+.jellybutton {
+	width: 80px;
+	color: #ed4848;
+    font-size: 15px;
+    cursor: pointer;
+    position: fixed;
+    right: 100px;
+    top: 600px;
+    padding: 10px;
+    background: none;
+    border-radius: 50px;
+    border: 1px solid whitesmoke;
+}
+
+.jellybutton:hover {
+    animation: jelly 0.6s ease;
+    border: 1px solid #ed4848;
+}
+
+.writebtn {
+	top: 550px; /* jellybtn 변경시 -50px 같이 변경 해야해서 여기로 배치 */
+}
 
 
-/* more 버튼 효과 설정 */
+/* -- 메인 글 크기, 위치 셋팅 -- */
+
+
+/* -- more 버튼 효과 설정 -- */
 .btn {
     background: none;
     border: none;
@@ -708,13 +753,67 @@ label.right {
 /* -- more 버튼 효과 설정 -- */
 
 
+/* ========================= */
+/* index-5 board(lost,find) 셋팅 찾아주세요, 찾아가세요 리스트 페이지 공통 적용 사항 */
+
+#contentsTitle {
+	text-align: -webkit-center;
+	margin: 30px 0 10px 0;
+}
+
+.wrapBoardlist {
+	width: 100%;
+/*     border-top: 1px solid whitesmoke;  */
+}
+
+.wrapBoardlist ul {
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+	width: 100%;
+	border-radius: 10px;
+	padding: 15px;
+}
+
+.wrapBoardlist ul li {
+	margin: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.wrapBoardlist ul li:hover {
+    border: 1px solid yellow;
+    box-shadow: 5px 5px 5px 5px #f1e8e8;
+}
+
+.wrapBoardlist ul li:hover .post-photo-top {
+	width: 205px;
+	height: 255px;
+}
+
+.post-photo-top { 
+	box-shadow: 2px 2px 2px 2px #80808036;
+	width: 200px;
+	height: 250px;
+	border-radius: 10px;
+}
+
+.post-contents-bottom div {
+	padding-top: 10px;
+	text-align: center;
+}
+
+.gratuity {
+	color: #ed4848;
+}
 
 
 
 
-/* ========================관리자사이트============================*/
 
-/* admin-include folder */
+
+/* ========================= */
+/* index-9 admin-include folder */
 
 .headerAdmin {
     width: 100%;
@@ -749,7 +848,8 @@ label.right {
 	border-radius: 10px;
 }
 
-/* 어드민 로그인 페이지 */
+
+/* index-10 admin folder */
 
 .adminLoginTitle {
     padding: 5% 0% 3% 0%;
@@ -791,14 +891,13 @@ label.right {
 	cursor: pointer;
 }
 
+/* ========================= */
 /* 어드민 로그인 후 메인 페이지 */
 .adminMainWrap { /*공지사항*/
    padding: 20px 0px;
    width: 100%;
    text-align: center;
 }
-
-
 
 .wrapAdminLogin {
     width: 100%;
@@ -908,10 +1007,12 @@ label.right {
     font-size: 15px;
 }
 
-/* ========================관리자사이트 여기까지 ============================*/
 
 
-/* 사이즈 조정 ~~ */
+
+/* ========================= */
+/* index-10 사이즈 조정 */
+
 @media screen and (max-width: 1120px) {
     /* nav 사이즈 조정 설정 */
     .navInner {

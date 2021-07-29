@@ -8,22 +8,29 @@
 <head>
 <meta charset="UTF-8">
 <title>lostPage</title>
-<link rel="stylesheet" href="resources/css/style.css">
+<link rel="stylesheet" href="../resources/css/style.css">
+<script src="https://kit.fontawesome.com/2d323a629b.js"
+	crossorigin="anonymous"></script>
+<script src="../resources/script/script.js" defer></script>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
-	<jsp:include page="../include/nav.jsp" />
 
-	<div class="wrap-all-lostPage">
+	<div class="wraplostPage">
 
-		<div class="write-btn">
+
+<%-- 		<div class="write-btn">
 			<!-- 글쓰기 버튼 -->
 			<!-- 예정) 로그인안한 회원은 로그인 페이지로 연결되도록 수정할 예정 -->
 			<input type="button" name="write" id="write"
-				onclick="location='<c:url value="/lostPage/lostPageWrite"/>'" value="글쓰기 >>">
+				onclick="location='<c:url value="/lostPage/lostPageWrite"/>'" value="글쓰기 >>"> --%>
+
+		<div id="contentsTitle">
+			<h3 class="contentsTitle">찾아주세요</h3>
+			<div class="titleLine"></div>
 		</div>
 
-		<div class="wrap-lostPage"> 
+		<div class="wrapBoardlist"> 
 		<!-- 게시글이 존재하지 않을 때 -->
 		<c:if test="${empty losts}">
 			<ul>
@@ -56,7 +63,7 @@
 							<p>특징 : ${l.character}</p>
 						</div>
 						<div>
-							<p>사례금 100만원</p>
+							<p class="gratuity">사례금 100만원</p>
 						</div>
 					</div>
 				</li>
@@ -65,8 +72,11 @@
 		</div>
 		<div class="page"> <!-- 페이징 작업 예정 -->
 		</div>
-
 	</div>
 	<jsp:include page="../include/footer.jsp" />
+	<button class="jellybutton topbtn" type="button" onclick="goTop()">TOP</button>
+		<!-- 글쓰기 버튼 -->
+		<!-- 예정) 로그인안한 회원은 로그인 페이지로 연결되도록 수정할 예정 -->
+	<button class="jellybutton writebtn" name="write" id="write" onclick="location='<c:url value="/lostPage/lostPageWrite"/>'">WIRTE</button>
 </body>
 </html>
