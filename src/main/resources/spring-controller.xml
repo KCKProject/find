@@ -52,6 +52,10 @@
 		<property name="dao" ref="findDao"/>
 	</bean>
 	
+	<bean id="lostBoardWriteController" class="com.green.KCK_find.controller.LostBoardWriteController">
+		<property name="dao" ref="findDao"/>
+	</bean>
+	
 	<bean id="findBoardController" class="com.green.KCK_find.controller.FindBoardList"/>
 	
 	

@@ -17,6 +17,7 @@ public class LostBoardDetailController {
 		this.dao = dao;
 	}
 	
+	// 글 클릭시 상세보기 메서드
 	@RequestMapping("/lostPage/lostPageDetail/{boardNum}")
 	public String detail(@PathVariable("boardNum") long boardNum, Model model) {
 		LostBoard detail = dao.selectByBoardNum(boardNum);
@@ -26,15 +27,15 @@ public class LostBoardDetailController {
 		return "lostPage/lostPageDetail";
 	}
 	
+	// 글 삭제 메서드
 	@RequestMapping("/lostPage/delete/{boardNum}")
 	public String delete(@PathVariable("boardNum") long boardNum) {
 		System.out.println("넘어온 boardNum : "+boardNum);
-//		dao.deleteByBoardNum(boardNum);
-//		
-//		System.out.println("삭제 완료");
+
 		return "redirect:/lostPage/lostPageList";
 	}
 	
+	// 발견완료/미발견 체크박스 변경 메서드
 	@RequestMapping("/lostPage/changeMeet/{boardNum}&{meet}")
 	public String changeMeet(@PathVariable("boardNum") long boardNum,
 							 @PathVariable("meet") int meet,

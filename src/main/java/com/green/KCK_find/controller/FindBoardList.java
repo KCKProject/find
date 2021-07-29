@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class FindBoardList {
 
-	@RequestMapping(value = "/findPage/findPage", method = RequestMethod.GET)
+	@RequestMapping(value = "/findPage/findPageList", method = RequestMethod.GET)
 	public String list() {
-		return "findPage/findPage";
+		return "findPage/findPageList";
 	}
 }

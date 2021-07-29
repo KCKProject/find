@@ -16,31 +16,42 @@
 		<div class="write-btn">
 			<!-- 글쓰기 버튼 -->
 			<input type="button" name="write" id="write"
-				onclick="location='findPageWrite'" value="글쓰기>>">
+				onclick="location='<c:url value="/findPage/findPageWrite"/>'" value="글쓰기>>">
 		</div>
 
 		<div class="wrap-findPage"> 
-			
-			<li> <!-- 여러개있을거라 우선 li태그로 했어요  -->
-				<div class="post-photo-top"> <!-- 게시글 사진 나오는 부분 --> 
-					<div>사진</div>
-				</div>
-				<div class="post-contents-bottom"> <!-- 게시글 내용 나오는 부분 -->
-					<div>
-						<p>이름 : 마루 | 성별 : 남</P>
+		<!-- 게시글이 존재하지 않을 때 -->
+		<c:if test="${empty losts}">
+			<ul>
+				<li>발견된 동물이 없습니다!</li>
+			</ul>
+		</c:if>
+		
+		<!-- 게시글이 1개 이상 존재할 때 -->
+		<ul>
+			 <!-- 게시물 li로 나열  -->
+			<c:forEach var="l" items="${losts}">
+				<li>
+					<div class="post-photo-top"> <!-- 게시글 사진 나오는 부분 --> 
+						<div>사진</div>
 					</div>
-					<div>
-						<p>발견 위치 : 경기대학교 후문 사거리</p>
-					</div>
-					<div>
-						<p>발견 시각 : 07-19 15:30</p>
-					</div>
-					<div>
-						<p>특징 : 어쩌구 저쩌구</p>
-					</div>
-				</div> 
-			</li>
-			
+					<div class="post-contents-bottom"> <!-- 게시글 내용 나오는 부분 -->
+						<div>
+							<p>이름 : 마루 | 성별 : 남</P>
+						</div>
+						<div>
+							<p>발견 위치 : 경기대학교 후문 사거리</p>
+						</div>
+						<div>
+							<p>발견 시각 : 07-19 15:30</p>
+						</div>
+						<div>
+							<p>특징 : 어쩌구 저쩌구</p>
+						</div>
+					</div> 
+				</li>
+			</c:forEach>
+		</ul>
 		</div>
 		<div class="page"> <!-- 페이징 작업 예정 -->
 		</div>

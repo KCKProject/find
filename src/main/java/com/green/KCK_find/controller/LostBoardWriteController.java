@@ -10,7 +10,7 @@ import find.vo.LostBoard;
 
 @Controller
 @RequestMapping("/lostPage/lostPageWrite")
-public class LostPageWriteController {
+public class LostBoardWriteController {
 
 	private FindDao dao;
 	

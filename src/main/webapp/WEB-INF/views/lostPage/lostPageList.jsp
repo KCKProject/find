@@ -18,6 +18,7 @@
 
 		<div class="write-btn">
 			<!-- 글쓰기 버튼 -->
+			<!-- 예정) 로그인안한 회원은 로그인 페이지로 연결되도록 수정할 예정 -->
 			<input type="button" name="write" id="write"
 				onclick="location='<c:url value="/lostPage/lostPageWrite"/>'" value="글쓰기 >>">
 		</div>
