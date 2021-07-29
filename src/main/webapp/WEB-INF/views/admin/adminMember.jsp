@@ -45,18 +45,9 @@
 			<div>
 			<!-- 	<input type="date" name="startDate" id="startDate"> ~ <input type="date" name="endDate" id="endDate">  -->
 				<label class="checkbox"><input type="checkbox" name="all" id="all"><span class="icon"></span><span class="text">전체</span></label>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 				<!-- <label class="checkbox"><input type="checkbox" name="userDate" id="userDate"><span class="icon"></span><span class="text">기간</span></label> --> 
-				<label class="checkbox"><input type="checkbox" name="userName" id="userName"><span class="icon"></span><span class="text">이름</span></label> 
-=======
-				<label class="checkbox"><input type="checkbox" name="proceeding" id="proceeding"><span class="icon"></span><span class="text">기간</span></label> 
 				<label class="checkbox"><input type="checkbox" name="done" id="done"><span class="icon"></span><span class="text">이름</span></label> 
->>>>>>> Stashed changes
-=======
-				<label class="checkbox"><input type="checkbox" name="proceeding" id="proceeding"><span class="icon"></span><span class="text">기간</span></label> 
-				<label class="checkbox"><input type="checkbox" name="done" id="done"><span class="icon"></span><span class="text">이름</span></label> 
->>>>>>> Stashed changes
+
 			</div>
 			<div>
 				<table class="adminContents">
