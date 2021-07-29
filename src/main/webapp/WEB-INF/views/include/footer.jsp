@@ -3,10 +3,10 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <footer>
 	<div class="site">
-		<a href="https://www.animal.go.kr/front/awtis/protection/protectionList.do?menuNo=1000000060">동물보호관리시스템 (전국 보호 중 동물 보러가기) >>></a>
+		<a href="https://www.animal.go.kr/front/awtis/protection/protectionList.do?menuNo=1000000060">동물보호관리시스템 (전국 보호 중 동물 보러가기)</a>
 	</div>
 	<div class="site">
-		<a href="https://www.instagram.com/suwonacc/">수원시 동물 보호센터 인스타그램 >>></a>
+		<a href="https://www.instagram.com/suwonacc/">수원시 동물 보호센터 인스타그램 바로가기 </a>
 	</div>
 	<div class="footerInner">
 		<div class="footerUpper">

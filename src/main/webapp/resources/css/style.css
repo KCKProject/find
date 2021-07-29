@@ -31,7 +31,7 @@
     font-family: 'Sunflower', sans-serif;
     font-size: 13px;
     color: #293B25;
-    transition: all .8s;
+    transition: all .35s;
 }
 
 input::placeholder { font-size: 80%; text-align: center;}
@@ -554,9 +554,9 @@ footer {
     cursor: pointer;
 } 
 
- label.left {
+/*  label.left {
     left: 20px;
-/*     background-image: url('../img/left-arrow.png'); */
+     background-image: url('../img/left-arrow.png'); 
     background-position: center center;
     background-size: 50%;
     background-repeat: no-repeat;
@@ -564,11 +564,11 @@ footer {
 
 label.right {
     right: 20px;
-/*     background-image: url('../img/right-arrow.png'); */
+     background-image: url('../img/right-arrow.png'); 
     background-position: center center;
     background-size: 50%;
     background-repeat: no-repeat;
-} 
+}  */
 
 [id="slide01"]:checked ~ .slidelist .slideitem {transform: translateX(0); animation: slide01 10s infinite;}
 [id="slide02"]:checked ~ .slidelist .slideitem {transform: translateX(-100%); animation: slide02 10s infinite;}
@@ -756,9 +756,13 @@ label.right {
 /* ========================= */
 /* index-5 board(lost,find) 셋팅 찾아주세요, 찾아가세요 리스트 페이지 공통 적용 사항 */
 
+.wrapboardPage {
+/* 	background-color: #fdfaf624; 게시판페이지 배경색상 비활성*/
+}
+
 #contentsTitle {
 	text-align: -webkit-center;
-	margin: 30px 0 10px 0;
+	padding: 40px 0 30px 0;
 }
 
 .wrapBoardlist {
@@ -771,25 +775,26 @@ label.right {
 	justify-content: center;
 	flex-wrap: wrap;
 	width: 100%;
-	border-radius: 10px;
-	padding: 15px;
+	padding: 15px 400px 200px 400px;
 }
 
 .wrapBoardlist ul li {
-	margin: 10px;
-    padding: 10px;
+	margin-bottom: 30px;
+    padding: 10px 30px;
     border-radius: 10px;
+    border-color: white;
 }
 
 .wrapBoardlist ul li:hover {
-    border: 1px solid yellow;
-    box-shadow: 5px 5px 5px 5px #f1e8e8;
+    border: 1px solid yellow; /* 색상 고민중 #E4EFE7 #1abc9c #ed4848 yellow */
+    box-shadow: 1px 3px 1px 2px #f1e8e8;
+    cursor: pointer;
 }
 
-.wrapBoardlist ul li:hover .post-photo-top {
+/* .wrapBoardlist ul li:hover .post-photo-top { 마우스 hover시 사진만 커지게 하기 비활성
 	width: 205px;
 	height: 255px;
-}
+} */
 
 .post-photo-top { 
 	box-shadow: 2px 2px 2px 2px #80808036;
@@ -804,6 +809,10 @@ label.right {
 }
 
 .gratuity {
+	color: #ed4848;
+}
+
+.finishText {
 	color: #ed4848;
 }
 
@@ -976,7 +985,7 @@ label.right {
 }
 
 .right div:not(.right div:first-child) {/*날짜, 선택란 부분*/
-    padding: 10px 0px;
+    padding: 10px;
 }
 
 .right div input {
@@ -988,7 +997,7 @@ label.right {
 }
 
 .adminContents {
-	padding: 20px 0;
+	padding: 0px 0 20px 0;
     text-align: center;
     width: 100%;
  	border-bottom: 1px solid gray;

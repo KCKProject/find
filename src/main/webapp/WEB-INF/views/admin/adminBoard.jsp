@@ -49,16 +49,14 @@
 			<div>
 				<table class="adminContents">
 					<c:if test="${!empty losts}">
-						<thead>
-							<tr>
+							<tr class="adminContentsListTitle">
 								<td>번호</td>
 								<td>완료</td>
 								<td>글제목</td>
 								<td>작성자</td>
 								<td>날짜</td>
 							</tr>
-						</thead>				
-						<tbody>
+
 							<c:forEach var="m" items="${losts}">
 								<tr>
 									<td>${m.boardNum}</td>
@@ -75,7 +73,7 @@
 									<td><fmt:formatDate value="${m.writeDate}" pattern="yyyy-MM-dd"/></td>
 								</tr>
 							</c:forEach>
-						</tbody>
+
 					</c:if>
 				</table>
 				<div class="paging">

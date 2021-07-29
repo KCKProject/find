@@ -7,19 +7,20 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>lostPage</title>
 <link rel="stylesheet" href="../resources/css/style.css">
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <script src="../resources/script/script.js" defer></script>
+<title>lostPage</title>
+
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
 
-	<div class="wraplostPage">
+	<div class="wrapboardPage">
 
-
-<%-- 		<div class="write-btn">
+		<%-- 
+		<div class="write-btn">
 			<!-- 글쓰기 버튼 -->
 			<!-- 예정) 로그인안한 회원은 로그인 페이지로 연결되도록 수정할 예정 -->
 			<input type="button" name="write" id="write"
@@ -50,7 +51,7 @@
 						<!-- 작성자가 본인 글에서 발견 버튼 클릭 시에만 생성 -->
 						<c:if test="${l.meet==1}">
 							<div>
-								<p>발견완료</p>
+								<p class="finishText">발견완료</p>
 							</div>
 						</c:if>
 						<div>

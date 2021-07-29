@@ -54,7 +54,7 @@
 					<!-- <td></td> -->
 
 					<c:if test="${!empty members}">
-						<tr class="adminContentsListTitle"">
+						<tr class="adminContentsListTitle">
 							<td>번호</td>
 							<td>이름</td>
 							<td>아이디</td>

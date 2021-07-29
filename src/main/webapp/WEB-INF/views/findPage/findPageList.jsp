@@ -5,21 +5,30 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="../resources/css/style.css">
+<script src="https://kit.fontawesome.com/2d323a629b.js"
+	crossorigin="anonymous"></script>
+<script src="../resources/script/script.js" defer></script>
 <title>findPage</title>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
-	<jsp:include page="../include/nav.jsp" />
 
-	<div class="wrap-all-findPage">
+	<div class="wrapboardPage">
 
+		<%-- 하단에 있음
 		<div class="write-btn">
 			<!-- 글쓰기 버튼 -->
 			<input type="button" name="write" id="write"
 				onclick="location='<c:url value="/findPage/findPageWrite"/>'" value="글쓰기>>">
+		</div> --%>
+
+		<div id="contentsTitle">
+			<h3 class="contentsTitle">찾아가세요</h3>
+			<div class="titleLine"></div>
 		</div>
 
-		<div class="wrap-findPage"> 
+		<div class="wrapBoardlist"> 
 		<!-- 게시글이 존재하지 않을 때 -->
 		<c:if test="${empty losts}">
 			<ul>
@@ -33,7 +42,7 @@
 			<c:forEach var="l" items="${losts}">
 				<li>
 					<div class="post-photo-top"> <!-- 게시글 사진 나오는 부분 --> 
-						<div>사진</div>
+						<div><a href="<c:url value="/findPage/findPageDetail/${l.boardNum}"/>">사진</a></div>
 					</div>
 					<div class="post-contents-bottom"> <!-- 게시글 내용 나오는 부분 -->
 						<div>
@@ -59,5 +68,10 @@
 	</div>
 
 	<jsp:include page="../include/footer.jsp" />
+	<button class="jellybutton topbtn" type="button" onclick="goTop()">TOP</button>
+		<!-- 글쓰기 버튼 -->
+		<!-- 예정) 로그인안한 회원은 로그인 페이지로 연결되도록 수정할 예정 -->
+	<button class="jellybutton writebtn" name="write" id="write" onclick="location='<c:url value="/findPage/findPageWrite"/>'">WIRTE</button>
+	
 </body>
 </html>

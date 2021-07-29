@@ -27,28 +27,28 @@
 	                <div>
 	                    <label for="slide04" class="left"></label>
 	                    <label for="slide02" class="right"></label>
-	                    <a><img src="resources/img/banner01.png" onclick="window.scrollTo(1000,1000);"></a>
+	                    <a href="https://www.peopet.co.kr/"><img src="resources/img/banner/banner05.png"></a>
 	                </div>
 	            </li>
 	            <li class="slideitem">
 	                <div>
 	                    <label for="slide01" class="left"></label>
 	                    <label for="slide03" class="right"></label>
-	                    <a><img src="resources/img/banner01.png"></a>
+	                    <a href="https://m.blog.naver.com/hm-0-z/222448908633"><img src="resources/img/banner/banner03.png"></a>
 	                </div>
 	            </li>
 	            <li class="slideitem">
 	                <div>
 	                    <label for="slide02" class="left"></label>
 	                    <label for="slide04" class="right"></label>
-	                    <a><img src="resources/img/banner01.png"></a>
+	                    <a><img src="resources/img/banner/banner01.png" onclick="window.scrollTo(1000,1000);"></a>
 	                </div>
 	            </li>
 	            <li class="slideitem">
 	                <div>
 	                    <label for="slide03" class="left"></label>
 	                    <label for="slide01" class="right"></label>
-	                    <a><img src="resources/img/banner01.png"></a>
+	                    <a><img src="resources/img/banner/banner07.png"></a>
 	                </div>
 	            </li>
 	        </ul>

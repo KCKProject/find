@@ -50,16 +50,14 @@
 			<div>
 				<table class="adminContents">
 					<c:if test="${!empty questions}">
-						<thead>
-							<tr>
+							<tr class="adminContentsListTitle">
 								<td>번호</td>
 								<td>작성자</td>
 								<td>글제목</td>
 								<td>작성일</td>
 								<td>공개여부</td>
 							</tr>
-						</thead>				
-						<tbody>
+
 							<c:forEach var="m" items="${questions}">
 								<tr>
 									<td>${m.boardNum}</td>
@@ -76,7 +74,7 @@
 									</c:if>
 								</tr>
 							</c:forEach>
-						</tbody>
+
 					</c:if>
 				</table>
 				<div class="paging">
