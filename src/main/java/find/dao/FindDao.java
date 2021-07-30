@@ -160,6 +160,31 @@ public class FindDao {
 		Number keyValue = key.getKey();
 		member.setMemberNumber(keyValue.longValue());
 	}
+	
+	
+	public void insertQnA(QnABoard qnABoard) {
+		KeyHolder key = new GeneratedKeyHolder();
+		jdbcTemplate.update(
+				new PreparedStatementCreator() {
+					
+					@Override
+					public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+						PreparedStatement psmt = con.prepareStatement(
+								"INSERT INTO QnABoard VALUES(QNABoard_seq.nextval,?,?,?,?,?)",
+								new String[] {"boardNum"});
+						
+						psmt.setString(1,qnABoard.getTitle());
+						psmt.setString(2,qnABoard.getWriter());
+						psmt.setDate(3,qnABoard.getWriteDate());
+						psmt.setString(4,qnABoard.getContents());
+						psmt.setInt(5, qnABoard.getOpen());
+						
+						return psmt;
+					}
+				},key);
+		Number keyValue = key.getKey();
+		qnABoard.setBoardNum(keyValue.longValue());
+	}
 
 //	public Member selectByEmail(String email) {
 //		String sql = "SELECT * FROM member WHERE email=?";

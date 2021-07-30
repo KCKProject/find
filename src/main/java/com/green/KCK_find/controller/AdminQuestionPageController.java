@@ -26,4 +26,5 @@ public class AdminQuestionPageController {
 		
 		return "admin/adminQuestionPage";
 	}
+	
 }

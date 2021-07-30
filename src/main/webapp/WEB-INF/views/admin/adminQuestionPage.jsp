@@ -88,6 +88,9 @@
 				</div>
 			</div>
 		</div>
+		<div>
+			<input type="button" name="insertQnA" id="insertQnA" value="QnA 등록" onclick="<c:url value="/admin/questionPageWrite/"/>">
+		</div>
 	</div>
 <%-- 			<div class="wrap">
 				<table border="1">
