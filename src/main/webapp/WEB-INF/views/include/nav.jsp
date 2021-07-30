@@ -9,7 +9,7 @@
             <ul>
                 <li><a href="<c:url value='/lostPage/lostPage'/>">찾아주세요</a></li>
                 <li><a href="<c:url value='/findPage/findPage'/>">찾아가세요</a></li>
-                <li>Q&A</li>
+                <li><a href="<c:url value='/questionPage/questionPage'/>">Q&A</a></li>
             </ul>
         </div>
         <div class="search">

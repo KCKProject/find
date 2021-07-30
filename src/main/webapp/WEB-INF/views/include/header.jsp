@@ -55,7 +55,7 @@
 					<!-- <li style="background-color: white;"> </li> -->
 					<li><a href="<c:url value='/lostPage/lostPageList'/>">찾아주세요</a></li>
                 	<li><a href="<c:url value='/findPage/findPageList'/>">찾아가세요</a></li>
-					<li><a>Q&A</a></li>
+					<li><a href="<c:url value='/questionPage/questionPage'/>">Q&A</a></li>
 				</ul>
 			</div>
 <%-- 			<div class="search">

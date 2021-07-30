@@ -72,4 +72,10 @@
 	<bean id="findBoardController" class="com.green.KCK_find.controller.FindBoardList"/>
 	
 	
+	<bean id="QuestionPageController" class="com.green.KCK_find.controller.QuestionPageController">
+		<property name="dao" ref="findDao"/>
+	</bean>
+	
+	
+	
 </beans>
