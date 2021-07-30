@@ -7,6 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="resources/css/style.css">
+<script src="https://kit.fontawesome.com/2d323a629b.js"
+	crossorigin="anonymous"></script>
+<script src="resources/script/script.js" defer></script>
 <title>관리자 페이지_메인</title>
 </head>
 <body>

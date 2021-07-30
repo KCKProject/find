@@ -7,17 +7,18 @@
    login - signUp
 4 main
 5 board(lost,find) 셋팅
-6 lostPage folder
-	lostPageList - //
+6 
 7
 8
 ======================
 9 admin-include folder
 	header - nav
 10 admin folder
-	login - main - board - member - q&a // detail 진행중
+	login - main - board - member - q&a 
+11 admin folder detail pages setting	
+	board - member - question // 진행중
 ======================
-11 사이즈 조정   
+12 사이즈 조정   
 */
 
 /* index-1 전체설정 */
@@ -872,8 +873,8 @@ label.right {
 	border-radius: 10px;
 }
 
-
-/* index-10 admin folder */
+/* ========================= */
+/* index-10 admin folder : login - main - board - member - q&a */
 
 .adminLoginTitle {
     padding: 5% 0% 3% 0%;
@@ -915,8 +916,8 @@ label.right {
 	cursor: pointer;
 }
 
-/* ========================= */
 /* 어드민 로그인 후 메인 페이지 */
+
 .adminMainWrap { /*공지사항*/
    padding: 20px 0px;
    width: 100%;
@@ -1031,11 +1032,17 @@ label.right {
     font-size: 15px;
 }
 
+/* ========================= */
+/* index-11 admin folder : detail pages setting */
+
+.wrapContents {
+	padding-top: 10px;
+}
 
 
 
 /* ========================= */
-/* index-10 사이즈 조정 */
+/* index-12 사이즈 조정 */
 
 @media screen and (max-width: 1120px) {
     /* nav 사이즈 조정 설정 */

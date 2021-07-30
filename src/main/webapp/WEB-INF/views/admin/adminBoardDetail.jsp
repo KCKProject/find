@@ -6,24 +6,52 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="../../resources/css/style.css">
+<script src="https://kit.fontawesome.com/2d323a629b.js"
+	crossorigin="anonymous"></script>
+<script src="../../resources/script/script.js" defer></script>
 <title>찾아주세요 글 상세 보기</title>
 </head>
 <body>
-	<div class="wrap">
-		<label>
-			글제목 : ${lostBoard.title}
-		</label>
-		<br>
-		<label>
-			작성자 : ${lostBoard.writer}
-		</label>
-		<br>
-		<label>
-			작성일 : <fmt:formatDate value="${lostBoard.writeDate}" pattern="yyyy-MM-dd"/>
-		</label>
-		<br>
-		<br>
-		<a href="<c:url value='/admin/adminBoard'/>">전체 글 보기</a>
+	<jsp:include page="../admin-include/adminHeader.jsp"></jsp:include>
+	<jsp:include page="../admin-include/adminNav.jsp"></jsp:include>
+	
+	<div class="adminWrap">
+		<div class="left">
+			<div>
+				<p class="adminTitle">게시판 관리</p>
+			</div>
+			<div>
+				<p>찾아주세요</p>
+			</div>
+			<div>
+				<p>찾아가세요</p>
+			</div>
+		</div>
+
+		<span class="line"></span>
+
+		<div class="right">
+			<div class="wrapContents">
+				<label>
+					글제목 : ${lostBoard.title}
+				</label>
+				<br>
+				<label>
+					작성자 : ${lostBoard.writer}
+				</label>
+				<br>
+				<label>
+					작성일 : <fmt:formatDate value="${lostBoard.writeDate}" pattern="yyyy-MM-dd"/>
+				</label>
+				<br>
+				<a href="<c:url value='/admin/adminBoard'/>">
+					<button class="btn btn-swap"> more <span>전체 글 보기 >></span> </button>
+				</a>
+			</div>
+		</div>
 	</div>
+		
+
 </body>
 </html>
