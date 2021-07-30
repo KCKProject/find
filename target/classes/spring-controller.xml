@@ -25,8 +25,23 @@
 	<bean id="AdminQuestionPageController" class="com.green.KCK_find.controller.AdminQuestionPageController">
 		<property name="dao" ref="findDao"/>
 	</bean>
+	
+	<bean id="AdminMemberDetailController" class="com.green.KCK_find.controller.AdminMemberDetailController">
+		<property name="dao" ref="findDao"/>
+	</bean>
+	
+	<bean id="AdminQuestionPageDetailController" class="com.green.KCK_find.controller.AdminQuestionPageDetailController">
+		<property name="dao" ref="findDao"/>
+	</bean>
+	
+	<bean id="AdminBoardDetailController" class="com.green.KCK_find.controller.AdminBoardDetailController">
+		<property name="dao" ref="findDao"/>
+	</bean>
+	
 		
 	<bean id="AdminLogOutController" class="com.green.KCK_find.controller.AdminLogOutController"/>
+	
+	
 	
 	<!-- member -->
 	<bean id="loginController" class="com.green.KCK_find.controller.LoginController">
@@ -39,9 +54,7 @@
 	
 	<bean id="logOutController" class="com.green.KCK_find.controller.LogOutController"/>
 	
-	<bean id="MemberDetailController" class="com.green.KCK_find.controller.MemberDetailController">
-		<property name="dao" ref="findDao"/>
-	</bean>
+	
 	
 	<!-- board -->
 	<bean id="lostBoardController" class="com.green.KCK_find.controller.LostBoardList">

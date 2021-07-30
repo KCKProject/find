@@ -63,7 +63,7 @@
 									<td>${m.boardNum}</td>
 									<td>${m.writer}</td>
 									<td>
-									<a href="<c:url value="/admin/detail/${m.boardNum}"/>">${m.title}</a>
+									<a href="<c:url value="/admin/questionDetail/${m.boardNum}"/>">${m.title}</a>
 									</td>
 									<td><fmt:formatDate value="${m.writeDate}" pattern="yyyy-MM-dd"/></td>
 									<c:if test="${m.open ==1}">

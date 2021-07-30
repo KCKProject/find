@@ -183,6 +183,13 @@ public class FindDao {
 		return results.isEmpty() ? null : results.get(0);
 	}
 	
+	public QnABoard selectByQuestionBoardNum(long boardNum) {
+		String sql="SELECT * FROM QnABoard WHERE boardNum=?";
+		List<QnABoard> results = jdbcTemplate.query(sql, qnABoardRowMapper, boardNum);
+		
+		return results.isEmpty() ? null : results.get(0);
+	}
+	
 	public void deleteByBoardNum(long boardNum) {
 		String sql="DELETE FROM lostBoard WHERE boardNum=?";
 		jdbcTemplate.query(sql,lostBoardRowMapper,boardNum);

@@ -7,10 +7,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import find.dao.FindDao;
 import find.exception.MemberNotFoundException;
-import find.vo.Member;
+import find.vo.QnABoard;
+
 
 @Controller
-public class MemberDetailController {
+public class AdminQuestionPageDetailController {
 
 	private FindDao dao;
 
@@ -18,17 +19,17 @@ public class MemberDetailController {
 		this.dao = dao;
 	}
 	
-	@RequestMapping("/admin/detail/{memberNumber}")
-	public String detail(@PathVariable("memberNumber") long id, Model model) {
+	@RequestMapping("/admin/questionDetail/{boardNum}")
+	public String detail(@PathVariable("boardNum") long boardNum, Model model) {
 		
-		Member member = dao.selectByMemberNumber(id);
+		QnABoard qnABoard = dao.selectByQuestionBoardNum(boardNum);
 		
-		if(member == null) {
+		if(qnABoard == null) {
 			throw new MemberNotFoundException();
 		}
-		model.addAttribute("member",member);
+		model.addAttribute("qnABoard",qnABoard);
 		
-		return "admin/memberDetail";
+		return "admin/adminQuestionDetail";
 	}
 	
 }
