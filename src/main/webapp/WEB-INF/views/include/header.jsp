@@ -29,7 +29,7 @@
 	</div>
 	<div class="headerInner">
 		<div class="mainTitle">
-			<img alt="로고" src="<spring:url value='/resources/img/img-include/로고.png'/>" height="35px" width="35px">
+			<i class="fab fa-accusoft"></i>	
 			<p><a href="<c:url value='/'/>">수원시 분실동물 찾기 서비스</a></p>
 		</div>
 <%-- 		<div class="enter">

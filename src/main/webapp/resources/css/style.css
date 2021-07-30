@@ -23,6 +23,7 @@
 /* index-1 전체설정 */
 
 @import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@500&display=swap');
 
 * {
     margin: 0;
@@ -31,6 +32,7 @@
     font-family: 'Sunflower', sans-serif;
     font-size: 13px;
     color: #293B25;
+    letter-spacing: 1px;
     transition: all .35s;
 }
 
@@ -65,15 +67,25 @@ header {
 .headerInner {
     display: flex;
     justify-content: center;
-    padding: 0 0 10px 0;
 }
 
 .mainTitle {
     display: flex;
+    margin-bottom: 10px;
 }
 
 .mainTitle p {
-    padding: 10px;
+    padding: 0 0 10px 15px;
+}
+
+.mainTitle p a {
+    font-size: 18px;
+    letter-spacing: 2px;
+}
+
+.fa-accusoft { /* 로고 크기/색상 조정 */
+	font-size: 25px;
+    color: #283988;
 }
 
 .enter p {
@@ -85,12 +97,14 @@ header {
     padding: 0px 3px;
     font-size: 10px;
 }
-
+s
 .enter p a:hover {
 	font-size: 12px;
 	background-color: lightgoldenrodyellow;
 	transition: all .35s;
 }
+
+
 
 
 
@@ -158,6 +172,7 @@ nav {
 .navToggleBtn {
     display: none;
 }
+
 
 
 
@@ -1059,7 +1074,7 @@ label.right {
         display: flex;
     }
     
-    .fas { /*햄버거 크기조정*/
+    .fa-bars { /*햄버거 크기조정*/
     font-size: 25px;
 }
     

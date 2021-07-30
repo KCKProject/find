@@ -33,11 +33,11 @@
 		</div>
 		<div class="footerlower">
 			<p>
-				2021 KCK KOREA CODING KING<br>
-				<br> <img src="<spring:url value='/resources/img/img-include/로고.png'/>" alt="로고" height="50px" width="40px">
-				
-				Always be<br> with you<br>
-				<br> COPYRIGHT ©2021 KCK All Rights Reserved.©
+				2021 KCK KOREA CODING KING<br><br>
+				<i class="fab fa-accusoft"></i>		
+				Always be<br> 
+				with you
+				<br><br> COPYRIGHT ©2021 KCK All Rights Reserved.©
 			</p>
 		</div>
 	</div>
