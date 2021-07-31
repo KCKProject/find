@@ -35,8 +35,8 @@
 					<c:forEach var="q" items="${questions}">
 						<tr>
 							<td>${q.boardNum}</td>
-							<td>${q.title }</td>
-							<td>}</td>
+							<td>${q.title}</td>
+							<td>${q.writer}</td>
 							<td><fmt:formatDate value="${q.writeDate}"
 									pattern="yyyy-MM-dd" /></td>
 							<td>
