@@ -6,74 +6,62 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="../resources/css/style.css">
+<script src="https://kit.fontawesome.com/2d323a629b.js"
+	crossorigin="anonymous"></script>
+<script src="../resources/script/script.js" defer></script>
 <title>questionPage</title>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
-	<jsp:include page="../include/nav.jsp" />
 
-	<div class="wrap-all-questionPage">
-
-		<div class="wrap-questionPage"> 
-			
-			<div class="bx-question">
-				<c:if test="${empty questions}">
-					<ul>
-						<li>등록된 QnA가 없습니다.</li>
-					</ul>
-				</c:if>
-				<c:if test="${!empty questions}">
-					<table>
+	<div class="wrapQuestionPage">
+		<div class="qaBx">
+			<c:if test="${empty questions}">
+				<ul>
+					<li>등록된 QnA가 없습니다.</li>
+				</ul>
+			</c:if>
+			<c:if test="${!empty questions}">
+				<table>
+				<!-- q&a 데이터 많지 않아서 jsp 에서 애초에 저 데이터까지 받아와놓고 css로 안보이게해놧다가 보여주게 해도 될듯 합니당 -->
+					<tr class="qaBxListTitle">
+						<th>번호</th>
+						<th>제목</th>
+						<th>작성자</th>
+						<th>작성일</th>
+						<th><i class="fas fa-check" style="color: white;"></i></th>
+					</tr>
+					<c:forEach var="q" items="${questions}">
 						<tr>
-							<th>번호</th>
-							<th>제목</th>
-							<th>작성자</th>
-							<th>작성일</th>
+							<td>${q.boardNum}</td>
+							<td>${q.title }</td>
+							<td>}</td>
+							<td><fmt:formatDate value="${q.writeDate}"
+									pattern="yyyy-MM-dd" /></td>
+							<td>
+								<a class="dnBtnQa"><i class="fas fa-chevron-down"></i></a>
+								<br>
+								<a class="upBtnQa"><i class="fas fa-chevron-up"></i></a>
+							</td>
 						</tr>
-						<c:forEach var="q" items="${questions}">
-							<tr>
-								<td>${q.boardNum}</td>
-								<td>${q.title }</td>
-								<td>${q.writer}</td>
-								<td><fmt:formatDate value="${q.writeDate}" pattern="yyyy-MM-dd"/></td>
-							</tr>
-							<!-- <tr>
-								<td>1</td>
-								<td>반려동물 분실 시 대처 방법</td>
-								<td>김00</td>
-								<td>2021-07-19</td>
-							</tr>
-							<tr>
-								<td>2</td>
-								<td>반려동물 분실 시 대처 방법</td>
-								<td>김00</td>
-								<td>2021-07-19</td>
-							</tr>
-							<tr>
-								<td>3</td>
-								<td>반려동물 분실 시 대처 방법</td>
-								<td>김00</td>
-								<td>2021-07-19</td>
-							</tr>
-							<tr>
-								<td>4</td>
-								<td>반려동물 분실 시 대처 방법</td>
-								<td>김00</td>
-								<td>2021-07-19</td>
-							</tr>
-							<tr>
-								<td>5</td>
-								<td>반려동물 분실 시 대처 방법</td>
-								<td>김00</td>
-								<td>2021-07-19</td>
-							</tr> -->
-						</c:forEach>
-					</table>
-				</c:if>
-			</div>
+						<tr class="qacontentsBx">
+							<td colspan="5" class="qacontents">${q.contents}</td>
+						</tr>
+
+					</c:forEach>
+				</table>
+			</c:if>
 		</div>
 	</div>
 
 	<jsp:include page="../include/footer.jsp" />
+	<button class="jellybutton topbtn" type="button" onclick="goTop()">TOP</button>
+		<!-- Service Center 버튼 -->
+		<!-- 내용 미정 -->
+	<div class="centerbtn">		
+		<div class="jellybutton sidebtn2" name="centerHidden" id="centerHidden"><p>Service Center<br>! 아이디와 비밀번호 분실 시<br>! 작성자와 직접 컨택 원할 시<br> ! 사이트 이용 안내 필요 시</p></div>
+		<button class="jellybutton sidebtn1" name="center" id="center" onclick="location='<c:url value="주소"/>'">CENTER</button>
+	</div>
 </body>
 </html>

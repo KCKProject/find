@@ -7,7 +7,8 @@
    login - signUp
 4 main
 5 board(lost,find) 셋팅
-6 
+6 questionPage folder
+	questionPage
 7
 8
 ======================
@@ -62,7 +63,7 @@ header {
     width: 100%;
     background-color: white;
 /*     position: fixed; */
-    box-shadow: 2px 2px 2px 2px #80808036;
+    box-shadow: 1px 1px 10px 1px #80808036;
 }
 
 .headerInner {
@@ -86,19 +87,19 @@ header {
 
 .fa-accusoft { /* 로고 크기/색상 조정 */
 	font-size: 25px;
-    color: #283988;
+    color: #fed400;
 }
 
 .enter p {
     font-size: 13px;
-    padding: 10px 5px;
+    padding: 10px;
 }
 
 .enter p a {
     padding: 0px 3px;
     font-size: 10px;
 }
-s
+
 .enter p a:hover {
 	font-size: 12px;
 	background-color: lightgoldenrodyellow;
@@ -146,6 +147,10 @@ nav {
 
 .mainMenu ul li:hover a {
 	color: white;
+}
+
+.search {
+	padding-top: 5px;
 }
 
 .search form input {
@@ -395,7 +400,7 @@ footer {
 .signUpBoxbtn {
     display: flex;
     justify-content: center;
-    margin: 30px 0;
+    margin: 150px 0;
 }
 
 .signUpBoxbtn Input {
@@ -418,7 +423,7 @@ footer {
 	color: red;
 }
 
-/* -- 체크박스 젤리효과 -- */
+/* -- 체크박스 젤리효과 -- */ 
 
 .checkbox input {
 	display: none;
@@ -713,9 +718,34 @@ label.right {
     border: 1px solid #ed4848;
 }
 
-.writebtn {
-	top: 550px; /* jellybtn 변경시 -50px 같이 변경 해야해서 여기로 배치 */
+.sidebtn1 {
+	top: 550px; /* jellybtn 변경시 -50px 같이 변경 해야 해서 여기로 배치 */
 }
+
+.sidebtn2 { /* Q&A게시판 center 버튼 내용 기재 부분. center에 마우스 hover시 에만 보이게 */
+	top: 440px; /* jellybtn 변경시 -50px 같이 변경 해야 해서 여기로 배치 */
+	right: 50px;
+    width: 180px;
+    border: 1px #ffffff33 solid;
+    background-color: #f5f5f500;
+    box-shadow: 0px 4px 5px -3px lightgrey;
+    display: none;
+}
+
+.centerbtn:hover .sidebtn2 { 
+	display: block;
+}
+
+.sidebtn2 p {
+	font-size: 10px;
+    line-height: 20px;
+    color: #551e1e;
+    text-align: center;
+}
+
+
+
+
 
 
 /* -- 메인 글 크기, 위치 셋팅 -- */
@@ -770,7 +800,8 @@ label.right {
 
 
 /* ========================= */
-/* index-5 board(lost,find) 셋팅 찾아주세요, 찾아가세요 리스트 페이지 공통 적용 사항 */
+/* index-5 board(lost,find) 
+	: 셋팅 찾아주세요, 찾아가세요 리스트 페이지 공통 적용 사항 */
 
 .wrapboardPage {
 /* 	background-color: #fdfaf624; 게시판페이지 배경색상 비활성*/
@@ -783,7 +814,6 @@ label.right {
 
 .wrapBoardlist {
 	width: 100%;
-/*     border-top: 1px solid whitesmoke;  */
 }
 
 .wrapBoardlist ul {
@@ -802,15 +832,14 @@ label.right {
 }
 
 .wrapBoardlist ul li:hover {
-    border: 1px solid yellow; /* 색상 고민중 #E4EFE7 #1abc9c #ed4848 yellow */
-    box-shadow: 1px 3px 1px 2px #f1e8e8;
+    box-shadow: 0px 10px 10px -5px #ffd5001a;
     cursor: pointer;
 }
 
-/* .wrapBoardlist ul li:hover .post-photo-top { 마우스 hover시 사진만 커지게 하기 비활성
+ .wrapBoardlist ul li:hover .post-photo-top { 
 	width: 205px;
 	height: 255px;
-} */
+} 
 
 .post-photo-top { 
 	box-shadow: 2px 2px 2px 2px #80808036;
@@ -832,6 +861,80 @@ label.right {
 	color: #ed4848;
 }
 
+/* ========================= */
+/* index-6 questionPage */
+
+.qaBx {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 150px 0;
+}
+
+.qaBx table tr { 
+    height: 80px;
+    box-shadow: 0px 10px 10px -5px whitesmoke;
+}
+
+.qaBx table tr:first-of-type { /* .aqBxListTitle */
+	height: 70px;
+	box-shadow: 0px 10px 10px -5px whitesmoke;
+}
+
+.qaBxListTitle th {
+    font-weight: 100;
+    font-size: 15px;
+    background: #064420;
+    color: white;
+    /* border: none; */
+}
+
+.qaBx table tr th, .qaBx table tr td {
+    padding: 0 70px;
+    border-bottom: 1px solid lightgrey;
+}
+
+.qacontents {
+	background-color: whitesmoke;
+	text-align: center;
+	font-size: 13px;
+}
+
+.upBtnQa {
+	display: none;
+}
+
+.qacontentsBx {
+	display: none;
+}
+
+.upBtnQa.active {
+	display: table-row;
+}
+
+.qacontentsBx.active {
+	display: table-row;
+}
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -839,7 +942,6 @@ label.right {
 
 /* ========================= */
 /* index-9 admin-include folder */
-
 .headerAdmin {
     width: 100%;
     background-color: white;
