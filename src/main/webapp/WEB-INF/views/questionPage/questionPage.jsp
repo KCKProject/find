@@ -30,7 +30,7 @@
 						<th>제목</th>
 						<th>작성자</th>
 						<th>작성일</th>
-						<th><i class="fas fa-check" style="color: white;"></i></th>
+						<th style="color: white;">상세보기</th>
 					</tr>
 					<c:forEach var="q" items="${questions}">
 						<tr>
@@ -40,9 +40,8 @@
 							<td><fmt:formatDate value="${q.writeDate}"
 									pattern="yyyy-MM-dd" /></td>
 							<td>
-								<a class="dnBtnQa"><i class="fas fa-chevron-down"></i></a>
-								<br>
-								<a class="upBtnQa"><i class="fas fa-chevron-up"></i></a>
+								<a class="dnBtnQa"><i class="fas fa-angle-double-down"></i></a>
+								<a class="upBtnQa"><i class="fas fa-angle-up"></i></a>
 							</td>
 						</tr>
 						<tr class="qacontentsBx">

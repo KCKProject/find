@@ -900,22 +900,34 @@ label.right {
 	font-size: 13px;
 }
 
-.upBtnQa {
-	display: none;
-}
-
 .qacontentsBx {
 	display: none;
 }
 
-.upBtnQa.active {
-	display: table-row;
+.upBtnQa {
+	display: none;
 }
 
 .qacontentsBx.active {
 	display: table-row;
 }
- 
+
+.upBtnQa.active {
+	display: block;
+}
+
+.dnBtnQa.active {
+	display: none;
+}
+
+.fa-angle-double-down, .fa-angle-up {
+	font-size: 20px;
+	padding-left: 25px;
+	cursor: pointer;
+}
+
+
+
 
 
 
