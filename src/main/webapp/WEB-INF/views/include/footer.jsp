@@ -13,21 +13,19 @@
 			<div class="footerMenu">
 				<!-- 살릴 메뉴 정하기 -ok-->
 				<ul>
-					<li>서비스소개</li>
-					<li>제휴문의</li>
-					<li>공지사항</li>
-					<li>고객센터</li>
-					<li>
-						<a href="<spring:url value='/admin'/>">관리자페이지</a>
-					</li>
+					<li><a href="<spring:url value='/servicePage/servicePage'/>">서비스소개</a></li>
+					<li><a href="<spring:url value='/servicePage/servicePage'/>">제휴문의</a></li>
+					<li><a href="<spring:url value='/servicePage/servicePage'/>">공지사항</a></li>
+					<li><a href="<spring:url value='/servicePage/servicePage'/>">고객센터</a></li>
+					<li><a href="<spring:url value='/admin'/>">관리자페이지</a></li>
 				</ul>
 			</div>
 			<div class="footerLink">
 				<ul>
 					<!-- 아이콘 변경 가능 -ok -->
-					<li><img src="<spring:url value='/resources/img/img-include/phone-call.png'/>" alt="전화번호"></li>
-					<li><img src="<spring:url value='/resources/img/img-include/mail.png'/>" alt="메일주소"></li>
-					<li><img src="<spring:url value='/resources/img/img-include/map.png'/>" alt="주소"></li>
+					<li><img src="<c:url value='/resources/img/img-include/phone-call.png'/>" alt="전화번호"></li>
+					<li><img src="<c:url value='/resources/img/img-include/mail.png'/>" alt="메일주소"></li>
+					<li><img src="<c:url value='/resources/img/img-include/map.png'/>" alt="주소"></li>
 				</ul>
 			</div>
 		</div>

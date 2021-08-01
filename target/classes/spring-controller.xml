@@ -76,6 +76,7 @@
 		<property name="dao" ref="findDao"/>
 	</bean>
 	
+	<bean id="ServicePageController" class="com.green.KCK_find.controller.ServicePageController"/>	
 	
 	
 </beans>

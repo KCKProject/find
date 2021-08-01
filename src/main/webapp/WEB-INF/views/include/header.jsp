@@ -27,7 +27,7 @@
 			</form>
 		</div>
 	</div>
-	<div class="headerInner">
+	<div class="headerbottom">
 		<div class="mainTitle">
 			<i class="fab fa-accusoft"></i>	
 			<p><a href="<c:url value='/'/>">수원시 분실동물 찾기 서비스</a></p>

@@ -9,7 +9,8 @@
 5 board(lost,find) 셋팅
 6 questionPage folder
 	questionPage
-7
+7 servicePage folder
+	servicePage
 8
 ======================
 9 admin-include folder
@@ -33,7 +34,7 @@
     box-sizing: border-box;
     font-family: 'Sunflower', sans-serif;
     font-size: 13px;
-    color: #293B25;
+    color: #4a4949;
     letter-spacing: 1px;
     transition: all .35s;
 }
@@ -56,17 +57,15 @@ ul, li {list-style: none;}
 	display: flex;
 	justify-content: flex-end;
 	padding: 0 10px 0 0;
-	font-size: 13px;
 }
 
 header {
     width: 100%;
-    background-color: white;
 /*     position: fixed; */
     box-shadow: 1px 1px 10px 1px #80808036;
 }
 
-.headerInner {
+.headerbottom {
     display: flex;
     justify-content: center;
 }
@@ -91,7 +90,6 @@ header {
 }
 
 .enter p {
-    font-size: 13px;
     padding: 10px;
 }
 
@@ -230,10 +228,9 @@ footer {
 
 .footerMenu ul li {
     padding: 20px;
-    font-size: 13px;
 }
 
-.footerMenu ul li:hover {
+.footerMenu ul li a:hover {
     cursor: pointer;
     color: #ed4848;
     text-decoration: underline;
@@ -701,6 +698,7 @@ label.right {
 
 .jellybutton {
 	width: 80px;
+	height: 41px;
 	color: #ed4848;
     font-size: 15px;
     cursor: pointer;
@@ -742,11 +740,6 @@ label.right {
     color: #551e1e;
     text-align: center;
 }
-
-
-
-
-
 
 /* -- 메인 글 크기, 위치 셋팅 -- */
 
@@ -897,7 +890,6 @@ label.right {
 .qacontents {
 	background-color: whitesmoke;
 	text-align: center;
-	font-size: 13px;
 }
 
 .qacontentsBx {
@@ -927,13 +919,88 @@ label.right {
 }
 
 
+/* ========================= */
+/* index-7 servicePage folder */
 
+#bodyServicePate {
+	background-color: #2e2e2e;
+}
 
+.wrapServicePage .fa-accusoft {
+    font-size: 20px;
+    color: #a7a7a7;
+}
 
+.wrapServicePage .enter p a {
+	color: #a7a7a7;
+}
 
+.wrapServicePage .enter p a:hover {
+	background-color: black;
+	color: snow;
+}
 
+.wrapServicePage .mainTitle p a {
+	color: #a7a7a7;
+}
 
+.btnServicePage [class*='sidebtn'] {
+    width: 100px;
+    height: 40px;
+    cursor: pointer;
+    position: fixed;
+    right: 100px;
+    padding: 10px;
+    background: none;
+    color: grey;
+    text-align: center;
+    border: none;
+}
 
+.btnServicePage [class*='sidebtn']:hover {
+	border-bottom: 2px double snow;
+    color: snow;
+    transition: all 0.8s;
+    margin: -5px 0;
+}
+
+.sidebtn0 {
+	top: 600px; /* 변경시 jellybtn -50px 같이 변경 해야 함 */
+}
+
+.sidebtn3 {
+	top: 550px; /* 변경시 jellybtn -50px 같이 변경 해야 함 */
+}
+
+.sidebtn4 {
+	top: 500px; /* 변경시 jellybtn -50px 같이 변경 해야 함 */
+}
+
+.sidebtn5 {
+	top: 450px; /* 변경시 jellybtn -50px 같이 변경 해야 함 */
+}
+
+.sidebtn6 {
+	top: 400px; /* 변경시 jellybtn -50px 같이 변경 해야 함 */
+}
+
+.sectionServicePage div h3, .sectionServicePage div p {
+	color: snow;
+    text-align: center;
+    padding: 10px 300px;
+    letter-spacing: 5px;
+    line-height: 30px;
+}
+
+.sectionServicePage div {
+    padding: 300px 0;
+    border-bottom: 1px double dimgray;
+    /* box-shadow: 0px 10px 10px -5px #ffffff1a; */
+}
+
+.sectionServicePage .fa-accusoft {
+    font-size: 40px;
+}
 
 
 
@@ -976,7 +1043,6 @@ label.right {
 
 .adminNav ul li {
     padding: 15px 100px;
-    font-size: 13px;
     background-color: white;
 }
 
