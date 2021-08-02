@@ -4,8 +4,8 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <nav class="adminNav">
 	<ul>
-		<li> <a href="<c:url value='/admin/adminBoard'/>">게시판 관리</a></li>
-		<li> <a href="<c:url value='/admin/adminMember'/>">회원관리</a></li>
-		<li> <a href="<c:url value='/admin/adminQuestionPage'/>">QnA관리</a></li>
+		<a href="<c:url value='/admin/adminBoard'/>"><li>게시판 관리</li></a>
+		<a href="<c:url value='/admin/adminMember'/>"><li>회원관리</li></a>
+		<a href="<c:url value='/admin/adminQuestionPage'/>"><li>QnA관리</li></a>
 	</ul>
 </nav>

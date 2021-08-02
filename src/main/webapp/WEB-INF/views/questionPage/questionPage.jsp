@@ -59,7 +59,7 @@
 		<!-- Service Center 버튼 -->
 		<!-- 내용 미정 -->
 	<div class="centerbtn">		
-		<div class="jellybutton sidebtn2" name="centerHidden" id="centerHidden"><p>Service Center<br>! 아이디와 비밀번호 분실 시<br>! 작성자와 직접 컨택 원할 시<br> ! 사이트 이용 안내 필요 시</p></div>
+		<div class="jellybutton centerHiddenContents" name="centerHidden" id="centerHidden"><p>Service Center<br>! 아이디와 비밀번호 분실 시<br>! 작성자와 직접 컨택 원할 시<br> ! 사이트 이용 안내 필요 시</p></div>
 		<button class="jellybutton sidebtn1" name="center" id="center" onclick="location='<c:url value="주소"/>'">CENTER</button>
 	</div>
 </body>

@@ -40,9 +40,9 @@
 			<div class="mainMenu">
 				<ul>
 					<!-- <li style="background-color: white;"> </li> -->
-					<li><a href="<c:url value='/lostPage/lostPageList'/>">찾아주세요</a></li>
-                	<li><a href="<c:url value='/findPage/findPageList'/>">찾아가세요</a></li>
-					<li><a href="<c:url value='/questionPage/questionPage'/>">Q&A</a></li>
+					<a href="<c:url value='/lostPage/lostPageList'/>"><li>찾아주세요</li></a>
+                	<a href="<c:url value='/findPage/findPageList'/>"><li>찾아가세요</li></a>
+					<a href="<c:url value='/questionPage/questionPage'/>"><li>Q&A</li></a>
 				</ul>
 			</div>
 			<a href="#" class="navToggleBtn"> <i class="fas fa-bars"></i></a>

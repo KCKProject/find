@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <footer>
 	<div class="site">
 		<a href="https://www.animal.go.kr/front/awtis/protection/protectionList.do?menuNo=1000000060">동물보호관리시스템 (전국 보호 중 동물 보러가기)</a>
@@ -13,10 +14,10 @@
 			<div class="footerMenu">
 				<!-- 살릴 메뉴 정하기 -ok-->
 				<ul>
-					<li><a href="<spring:url value='/servicePage/servicePage'/>">서비스소개</a></li>
-					<li><a href="<spring:url value='/servicePage/servicePage'/>">제휴문의</a></li>
-					<li><a href="<spring:url value='/servicePage/servicePage'/>">공지사항</a></li>
-					<li><a href="<spring:url value='/servicePage/servicePage'/>">고객센터</a></li>
+					<li><a href="<spring:url value='/servicePage/servicePage'/>" target='_blank'>서비스소개</a></li>
+					<li><a href="<spring:url value='/servicePage/servicePage'/>" target='_blank'>제휴문의</a></li>
+					<li><a href="<spring:url value='/servicePage/servicePage'/>" target='_blank'>관련사이트</a></li>
+					<li><a href="<spring:url value='/servicePage/servicePage'/>" target='_blank'>미정미정</a></li>
 					<li><a href="<spring:url value='/admin'/>">관리자페이지</a></li>
 				</ul>
 			</div>
