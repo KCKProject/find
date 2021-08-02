@@ -66,7 +66,7 @@
 	</bean>
 	
 	<bean id="lostBoardWriteController" class="com.green.KCK_find.controller.LostBoardWriteController">
-		<property name="dao" ref="findDao"/>
+		<property name="lostBoardWriteService" ref="lostBoardWriteSvc"/>
 	</bean>
 	
 	<bean id="findBoardController" class="com.green.KCK_find.controller.FindBoardList"/>

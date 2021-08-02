@@ -42,4 +42,9 @@
 	<bean id="signUpSvc" class="find.service.SignUpService">
 		<constructor-arg ref="findDao"/>
 	</bean>
+	
+	<!-- 게시글 등록 서비스 -->	
+ 	<bean id="lostBoardWriteSvc" class="find.service.LostBoardWriteService">
+		<constructor-arg ref="findDao" />
+	</bean>
 </beans>

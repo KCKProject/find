@@ -18,7 +18,9 @@ import org.springframework.stereotype.Component;
 
 import find.vo.Admin;
 import find.vo.LostBoard;
+import find.vo.LostBoardWriteCommand;
 import find.vo.Member;
+import find.vo.MemberAuthInfo;
 import find.vo.QnABoard;
 
 @Component
@@ -231,6 +233,38 @@ public class FindDao {
 			sql = "UPDATE lostBoard SET meet=0 WHERE boardNum=?";
 		}
 		jdbcTemplate.update(sql,boardNum);
+	}
+
+	//찾아주세요 게시글 등록 - 에러나면 주석처리
+	public void writeLostBoard(MemberAuthInfo member, LostBoardWriteCommand lC) {
+		LostBoard lostBoard = null;
+		System.out.println(lC.getCharacter());
+		KeyHolder key = new GeneratedKeyHolder();
+		jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con)throws SQLException{
+				PreparedStatement psmt = con.prepareStatement(
+						"INSERT INTO lostBoard VALUES(lostBoard_seq.nextval,?,?,sysdate,?,?,?,?,?,?,?,?,?,?,0)",
+						new String[] {"boardNum"});
+						
+				psmt.setString(1,lC.getTitle());
+				psmt.setString(2,member.getUserId());
+				psmt.setString(3,lC.getLocation());
+				psmt.setString(4,lC.getCharacter());
+				psmt.setString(5,lC.getAnimal());
+				psmt.setString(6,lC.getKind());
+				psmt.setString(7,lC.getGender());
+				psmt.setString(8,null);
+				psmt.setString(9,member.getEmail());
+				psmt.setString(10,member.getPhone());
+				psmt.setDate(11,lC.getLostDate());
+				psmt.setString(12,lC.getMemo());
+				
+				return psmt;
+			}
+		},key);
+		Number keyValue = key.getKey();
+		lostBoard.setBoardNum(keyValue.longValue());
 	}
 
 }
