@@ -54,8 +54,8 @@
 						</div>
 					</div>
 					<div class="signUpTerms">
-					
-						<div class="checkbox">
+			
+ 						<div class="checkbox">
 							<input type="checkbox" name="term" id="ageAgree" value="ageAgree"> 
 							<span class="icon"></span>
 							<span class="text"><label for="ageAgree">만 14세 이상입니다.(필수)</label></span>
@@ -69,15 +69,8 @@
 							<input type="checkbox" name="term" id="term" value="addAgree" required oninvalid="this.setCustomValidity('필수 체크사항')" oninput="setCustomValidity('')"> 
 							<span class="icon"></span>
 							<span class="text"><label for="term">추가추가</label></span>
-						</div>
+						</div> 
 						
-						<!--
-						<label>
-							<input type="checkbox" name="term" id="term" value="addAgree" required oninvalid="this.setCustomValidity('필수 체크사항')" oninput="setCustomValidity('')">추가추가
-						</label>
-						<input type="checkbox" name="term" id="term" value="ageAgree" required oninvalid="this.setCustomValidity('필수 체크사항입니다')" oninput="setCustomValidity('')"> 만 14세 이상입니다.(필수)<br>
-						 <input type="checkbox" name="term" id="term" value="serviceAgree" required> 수원시 분실동물 찾기 서비스 이용약관 동의 (필수)<br> 
-						<input type="checkbox" name="term" id="term" value="infoAgree" required oninvalid="this.setCustomValidity('필수 체크사항입니다')" oninput="setCustomValidity('')"> 개인정보 수집 이용 동의 (필수)<br> -->
 					</div>
 					<div class="signUpBoxbtn">
 						<input type="submit" value="회원가입" onclick="signUpChk()">

@@ -6,55 +6,61 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>lostPage</title>
+<link rel="stylesheet" href="../resources/css/style.css">
+<script src="https://kit.fontawesome.com/2d323a629b.js"
+	crossorigin="anonymous"></script>
+<script src="../resources/script/script.js" defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<title>lostPage</title>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
-	<jsp:include page="../include/nav.jsp" />
 
-	<div class="wrap-all-lostPageWirte">
+	<div class="wrapboardPage">
 
-		<div class="title-lostPageWrite"> <!-- 상단 찾아주세요 문구 -->
-			<h2>찾아주세요</h2>
+		<div id="contentsTitle">
+			<h3 class="contentsTitle">찾아주세요</h3>
+			<div class="titleLine"></div>
 		</div>
-		<div class="input-lostPageWrite"> 
+		
+		<div class="wrapWritePage"> 
 		<%--  enctype="multipart/form-data" 필요 --%>
 			<form:form commandName="lostBoardWriteCommand" name="input-lostPageWrite">
 				<table id="input-lostPageWrite"> <!-- 입력칸 부분 -->
 					<tr>
-						<td>* 글제목</td>
+						<td><span>*</span>글제목</td>
 						<td><form:input path="title" placeholder="글제목"/></td>
 					</tr>
 					<tr>
-						<td>  동물이름</td>
+						<td><span style="color: white;">*</span>동물이름</td>
 						<td><form:input path="animal" placeholder="동물이름 ex.마루, 초코..."/></td>
 					</tr>
 					<tr>
-						<td>  품종</td>
+						<td><span style="color: white;">*</span>품종</td>
 						<td><form:input path="kind" placeholder="품종"/></td>
 					</tr>
 					<tr>
-						<td>* 성별</td>
+						<td><span>*</span>성별</td>
 						<td><form:input path="gender" placeholder="남아/여아(중성화수술 여부 까지 적어주세요)"/></td>
 					</tr>
 					<tr>
-						<td>* 실종위치</td>
+						<td><span>*</span>실종위치</td>
 						<td><form:input path="location" placeholder="실종위치"/></td>
 					</tr>
 					<tr>
-						<td>* 실종시각</td>
+						<td><span>*</span>실종시각</td>
 						<td><form:input path="lostDate" placeholder="실종시각"/></td>
 					</tr>
 					<tr>  
 					
-						<td>* 특징</td>
+						<td><span>*</span>특징</td>
 						<td><form:input path="character" placeholder="특징(30자 이내)"/></td>
 					</tr>
 					<tr>
-						<td>* 상세내용</td>
-						<td><form:input path="memo" rows="10" cols="100" placeholder="상세내용"/></td>
-				
+						<td><span>*</span>상세내용</td>
+						<td><form:input path="memo" rows="10" cols="100" placeholder="상세내용"/>
+<!-- 							<textarea rows="100px" cols="30px"/> -->
+						</td>
 					</tr>
 					<%-- <tr>
 						<td>  사진첨부</td>
@@ -67,21 +73,29 @@
 				</div> -->
 				<div> <!-- 약관 -->
 					<div class="writeTerms">
-						<input type="checkbox" name="term" id="term" value="agree" class="AllOkay"> 전체동의<br> 
-						<input type="checkbox" name="term" id="term" value="phoneAgree" class="okay"> 연락처 노출 동의<br>
-									(회원가입 시 등록 한 연락처를 연락받을 번호로 기재 합니다. 미체크시 별도의 연락수단 상세내용에 기재 요망)<br> 
-						<input type="checkbox" name="term" id="term" value="emailAgree" class="okay"> 이메일 노출 동의<br>
-									(회원가입 시 등록 한 이메일을 연락받을 메일로 기재 합니다.)<br>
+						<label class="checkbox"><input type="checkbox" name="term" id="term" value="agree" class="AllOkay"><span class="icon"></span><span class="text">전체동의</span></label> 
+						<label class="checkbox"><input type="checkbox" name="term" id="term" value="phoneAgree" class="okay"><span class="icon"></span><span class="text">연락처 노출 동의 
+									<br>(회원가입 시 등록 한 연락처를 연락받을 번호로 기재 합니다. <span style="color: red; font-size: 20px;">*</span>미체크시 별도의 연락수단 상세내용에 기재 요망)<br> </span></label> 
+						<label class="checkbox"><input type="checkbox" name="term" id="term" value="emailAgree" class="okay"><span class="icon"></span><span class="text">이메일 노출 동의 
+									<br>(회원가입 시 등록 한 이메일을 연락받을 메일로 기재 합니다.)</span></label> 
 					</div>
 				</div>
-				<div> <!-- 작성완료 버튼 -->
-					<input type="submit" value="작성완료">
+				<div > <!-- 작성완료 버튼 -->
+					<input type="submit" value="작성완료" class="completeBtn">
 				</div>
 			</form:form>
 		</div>
 	</div>
 	
 	<jsp:include page="../include/footer.jsp" />
+	
+	<button class="jellybutton topbtn" type="button" onclick="goTop()">TOP</button>
+		<!-- Service Center 버튼 -->
+		<!-- 내용 미정 -->
+	<div class="centerbtn">		
+		<div class="jellybutton centerHiddenContents guideHiddenContents" name="centerHidden" id="centerHidden"><p>GUIDE<BR>1. '*'는 필수 입력 사항 입니다.<br>2. 실종 위치 및 시각은 최대한 <BR>구체적으로 적어주세요.<br>ex) 15시 20분경 경기대 후문<br>3. 내용은 자유롭게 기재 하되, <BR>최대한 많은 내용을 기재 해 주셔야 발견 될 확률이 높습니다.</p></div>
+		<button class="jellybutton sidebtn1" name="center" id="center" onclick="location='<c:url value="주소"/>'">GUIDE</button>
+	</div>
 	
 	<script>
 		$(function(){

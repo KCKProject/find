@@ -38,7 +38,7 @@
 					<li>
 						<button class="copy-address">
 							<i class="fas fa-map-marked-alt"></i>
-							<span><br>ADDRESS. <br>경기도 수원시 팔달구 매산동 매산로 12-1</span>
+							<span><br>ADDRESS. 경기도 수원시 팔달구 매산동 매산로 12-1</span>
 						</button>
 					</li>
 				</ul>

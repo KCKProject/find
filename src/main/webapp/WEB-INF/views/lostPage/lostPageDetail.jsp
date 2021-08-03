@@ -6,13 +6,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="stylesheet" href="../resources/css/style.css">
+<script src="https://kit.fontawesome.com/2d323a629b.js"
+	crossorigin="anonymous"></script>
+<script src="../resources/script/script.js" defer></script>
 <title>lostPage</title>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
-	<jsp:include page="../include/nav.jsp" />
 
-	<div class="wrap-all-lostPage">
+	<div class="wrapboardPage">
 
 		<div class="title-lostPageDetail"> <!-- 상단 제목 문구 -->
 			<h2>(실종) ${detail.title}</h2>

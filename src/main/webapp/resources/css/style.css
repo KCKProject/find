@@ -1,31 +1,30 @@
 /* css index 
 
-1 �쟾泥� �꽕�젙
+1 전체 설정
 2 include folder
    header - nav - footer
 3 enter folder
    login - signUp
 4 main
-5 board(lost,find) �뀑�똿
-6 questionPage folder
+5 board(lost,find) list page 셋팅
+6 board(lost,find) write page 셋팅
+7 board(lost,find) detail page 셋팅
+8 questionPage folder
 	questionPage
-7 servicePage folder
+9 servicePage folder
 	servicePage
-8
 ======================
-9 admin-include folder
+10 admin-include folder
 	header - nav
-10 admin folder
+11 admin folder
 	login - main - board - member - q&a 
-11 admin folder detail pages setting	
-	board - member - question // 吏꾪뻾以�
+12 admin folder detail pages setting	
+	board - member - question // 진행중
 ======================
-12 �궗�씠利� 議곗젙   
+13 사이즈 조정   
 */
 
-/* index-1 �쟾泥댁꽕�젙 */
-
-@import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@300&display=swap');
+/* index-1 전체설정 */
 @import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@500&display=swap');
 
 * {
@@ -41,13 +40,13 @@
 
 input::placeholder { font-size: 80%; text-align: center;}
 
-a { text-decoration:none } /*紐⑤뱺 a�깭洹몄쓽 text-decoration �뾾�븷湲�*/
+a { text-decoration:none } /*모든 a태그의 text-decoration 없애기*/
 
-[id*='errors'] { color: #f7c180;} /*�뿉�윭硫붿꽭吏� 二쇳솴�깋 �몴湲�*/
+[id*='errors'] { color: #f7c180;} /*에러메세지 주황색 표기*/
 
 ul, li {list-style: none;}
 
-/* .section { padding-top: 120px;} header�뿉 媛��젮吏�吏� �븡寃� �븯湲� �쐞�빐-媛� �럹�씠吏�留덈떎 �떎瑜� �닔 �엳�쓬 main 湲곗��엫 - header fixed �꽕�젙 �빐�젣濡� �빐�떦 湲곕뒫 �븘�슂 �뾾�쓬 */
+/* .section { padding-top: 120px;} header에 가려지지 않게 하기 위해-각 페이지마다 다를 수 있음 main 기준임 - header fixed 설정 해제로 해당 기능 필요 없음 */
 
 
 /* ========================= */
@@ -84,7 +83,7 @@ header {
     letter-spacing: 2px;
 }
 
-.fa-accusoft { /* 濡쒓퀬 �겕湲�/�깋�긽 議곗젙 */
+.fa-accusoft { /* 로고 크기/색상 조정 */
 	font-size: 25px;
     color: #fed400;
 }
@@ -189,7 +188,7 @@ footer {
     bottom: 0;
     width: 100%;
     background-color: white;
-    border-top: 1px solid gray; /* border�� �궘�젣 �븷吏� 誘몄젙 */
+    border-top: 1px solid gray; /* border은 삭제 할지 미정 */
 }
 
 .site {
@@ -234,6 +233,7 @@ footer {
     cursor: pointer;
     color: #ed4848;
     text-decoration: underline;
+    transition: all .15s;
 }    
 
 
@@ -271,11 +271,6 @@ footer {
 	display: flex;
 }
 
-
-
-
-
-
 .footerlower {
     text-align: center;
     letter-spacing: 2px;
@@ -289,8 +284,7 @@ footer {
 }
 
 .sectionLogin {
-   padding-top: 140px;
-   padding-bottom: 140px;
+   padding: 80px 0 150px 0;
    width: 100%
 }
 
@@ -302,7 +296,7 @@ footer {
 }
 
 .loginBox {
-   height: 300px;
+   height: 270px;
    width: 500px;
    border: 1px solid gray;
    border-radius: 10px;
@@ -369,7 +363,7 @@ footer {
 }
 
 .signUpBox {
-   height: 550px;
+   height: 580px;
     width: 580px;
     border: 1px solid gray;
     border-radius: 10px;
@@ -405,20 +399,20 @@ footer {
 }
 
 .signUpTerms {
-	display: flex;    
-	flex-direction: column;
-	text-align: center;
-	padding: 20px 0px;
+	display: flex;
+    flex-direction: column;
+    padding: 20px 0px;
+    align-content: center;
+    flex-wrap: wrap;
 }
 
 .checkbox {
-	margin-bottom: 10px;
+	margin-bottom: 20px;
 }
 
 .signUpBoxbtn {
     display: flex;
     justify-content: center;
-    margin: 150px 0;
 }
 
 .signUpBoxbtn Input {
@@ -441,7 +435,7 @@ footer {
 	color: red;
 }
 
-/* -- 泥댄겕諛뺤뒪 �젮由ы슚怨� -- */ 
+/* -- 체크박스 젤리효과 -- */ 
 
 .checkbox input {
 	display: none;
@@ -450,6 +444,10 @@ footer {
 .checkbox span {
 	display: inline-block;
 	vertical-align: middle;
+	cursor: pointer;
+}
+
+.checkbox label {
 	cursor: pointer;
 }
 
@@ -502,7 +500,7 @@ footer {
 	to {transform: scale(1, 1);}
 }
 
-/* -- 泥댄겕諛뺤뒪 �젮由ы슚怨� -- */
+/* -- 체크박스 젤리효과 -- */ 
 
 
 /* ========================= */
@@ -555,8 +553,8 @@ footer {
 }
 
 
-/* -- 踰좊꼫 �뒳�씪�씠�뱶 �슚怨� -- */
-[name="slide"] {display: none;} /* �씤�뭼 �븞蹂댁씠寃� */
+/* -- 베너 슬라이드 효과 -- */
+[name="slide"] {display: none;} /* 인풋 안보이게 */
 
 .slidebox {
     max-width: 2000px;
@@ -662,9 +660,9 @@ label.right {
     98% {left: 100%;}
     100% {left: 0%;}
 } 
-/* -- 踰좊꼫 �뒳�씪�씠�뱶 �슚怨� -- */
+/* -- 베너 슬라이드 효과 -- */
 
-/* -- 硫붿씤 湲� �겕湲�, �쐞移� �뀑�똿 -- */
+/* -- 메인 글 크기, 위치 셋팅 -- */
 .mainContentsWrap ul li {
 	width: 200px;
     height: 250px;
@@ -706,7 +704,7 @@ label.right {
 .mainContentsWrap ul li button span p {
 	padding: 20px;
     opacity: 0;
-    line-height: 25px; /* 留덉슦�뒪 �삱�졇�쓣�븣 蹂댁씠�뒗 �궡�슜 湲��뵪 �긽�븯 媛꾧꺽 - �궡�슜 留롮쓣 �떆 �떎�떆 議곗젙 �븯湲�*/
+    line-height: 25px; /* 마우스 올렸을때 보이는 내용 글씨 상하 간격 - 내용 많을 시 다시 조정 하기*/
 }
 
 .mainContentsWrap ul li button:hover p{
@@ -738,11 +736,11 @@ label.right {
 }
 
 .sidebtn1 {
-	top: 550px; /* jellybtn 蹂�寃쎌떆 -50px 媛숈씠 蹂�寃� �빐�빞 �빐�꽌 �뿬湲곕줈 諛곗튂 */
+	top: 550px; /* jellybtn 변경시 -50px 같이 변경 해야 해서 여기로 배치 */
 }
 
-.centerHiddenContents { /* Q&A寃뚯떆�뙋 center 踰꾪듉 �궡�슜 湲곗옱 遺�遺�. center�뿉 留덉슦�뒪 hover�떆 �뿉留� 蹂댁씠寃� */
-	top: 440px; /* jellybtn 蹂�寃쎌떆 -50px 媛숈씠 蹂�寃� �빐�빞 �빐�꽌 �뿬湲곕줈 諛곗튂 */
+.centerHiddenContents { /* Q&A게시판 center 버튼 내용 기재 부분. center에 마우스 hover시 에만 보이게 */
+	top: 440px; /* jellybtn 변경시 -50px 같이 변경 해야 해서 여기로 배치 */
 	right: 50px;
     width: 180px;
     height: 100px;
@@ -750,6 +748,13 @@ label.right {
     background-color: #f5f5f500;
     box-shadow: 0px 4px 5px -3px lightgrey;
     display: none;
+}
+
+.guideHiddenContents {
+	top: 360px;
+	width: 180px;
+    height: 180px;
+    
 }
 
 .centerbtn:hover .centerHiddenContents { 
@@ -763,10 +768,10 @@ label.right {
     text-align: center;
 }
 
-/* -- 硫붿씤 湲� �겕湲�, �쐞移� �뀑�똿 -- */
+/* -- 메인 글 크기, 위치 셋팅 -- */
 
 
-/* -- more 踰꾪듉 �슚怨� �꽕�젙 -- */
+/* -- more 버튼 효과 설정 -- */
 .btn {
     background: none;
     border: none;
@@ -811,16 +816,17 @@ label.right {
 
 }
 
-/* -- more 踰꾪듉 �슚怨� �꽕�젙 -- */
+/* -- more 버튼 효과 설정 -- */
 
 
 /* ========================= */
-/* index-5 board(lost,find) 
-	: �뀑�똿 李얠븘二쇱꽭�슂, 李얠븘媛��꽭�슂 由ъ뒪�듃 �럹�씠吏� 怨듯넻 �쟻�슜 �궗�빆 */
+/* index-5 board(lost,find) list page
+	: 셋팅 찾아주세요, 찾아가세요 리스트 페이지 공통 적용 사항 */
 
 .wrapboardPage {
-/* 	background-color: #fdfaf624; 寃뚯떆�뙋�럹�씠吏� 諛곌꼍�깋�긽 鍮꾪솢�꽦*/
+/* 	background-color: #fdfaf624; 게시판페이지 배경색상 비활성*/
 }
+
 
 #contentsTitle {
 	text-align: -webkit-center;
@@ -877,7 +883,95 @@ label.right {
 }
 
 /* ========================= */
-/* index-6 questionPage */
+/* index-6 board(lost,find) write page
+	: 셋팅 찾아주세요, 찾아가세요 글작성 페이지 공통 적용 사항 */
+	
+.wrapWritePage {
+	padding: 0 300px;
+}	
+
+.wrapWritePage table {
+    display: flex;
+    justify-content: center;
+    padding: 20px 0 80px 0;
+}
+
+.wrapWritePage table tr td {
+    padding: 15px 30px;
+}
+
+.wrapWritePage table tr td span {
+	font-size: 18px;
+    color: red;
+}
+
+.wrapWritePage table tr td input {
+    width: 400px;
+    height: 30px;
+    border: 1px solid gray;
+    border-radius: 8px;
+}
+
+.wrapWritePage table tr td input:hover {
+    border: 1px solid #f7c180;
+    border-radius: 12px;
+}
+
+.wrapWritePage form > div {
+    display: flex;
+    justify-content: center;
+    padding: 0 0 80px 0px;
+}
+
+.wrapWritePage form {
+    margin-bottom: 30px;
+    border: 1px double white;
+}
+
+.wrapWritePage form:hover {
+	border-top: 1px double silver;
+    transition: all 5.5s;   
+}
+
+.writeTerms {
+    display: grid;
+}
+
+.completeBtn {
+    width: 300px;
+    height: 40px;
+    border-radius: 8px;
+    color: white;
+    background-color: #1ABC9C;
+    cursor: pointer;
+    border: 1px solid #dcdcdc;
+    box-shadow: 2px 3px 5px 0px #cccccc;
+}
+
+.completeBtn:hover {
+	border: 1px solid gray;
+	transition: all.3s;
+}
+	
+/* ========================= */
+/* index-7 board(lost,find) detail page
+	: 셋팅 찾아주세요, 찾아가세요 상세 페이지 공통 적용 사항 */	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+/* ========================= */
+/* index-8 questionPage */
 
 .qaBx {
 	display: flex;
@@ -942,7 +1036,7 @@ label.right {
 
 
 /* ========================= */
-/* index-7 servicePage folder */
+/* index-9 servicePage folder */
 
 #bodyServicePate {
 	background-color: #2e2e2e;
@@ -982,23 +1076,23 @@ label.right {
 }
 
 .sidebtn0 {
-	top: 600px; /* 蹂�寃쎌떆 jellybtn -50px 媛숈씠 蹂�寃� �빐�빞 �븿 */
+	top: 600px; /* 변경시 jellybtn -50px 같이 변경 해야 함 */
 }
 
 .sidebtn3 {
-	top: 550px; /* 蹂�寃쎌떆 jellybtn -50px 媛숈씠 蹂�寃� �빐�빞 �븿 */
+	top: 550px; /* 변경시 jellybtn -50px 같이 변경 해야 함 */
 }
 
 .sidebtn4 {
-	top: 500px; /* 蹂�寃쎌떆 jellybtn -50px 媛숈씠 蹂�寃� �빐�빞 �븿 */
+	top: 500px; /* 변경시 jellybtn -50px 같이 변경 해야 함 */
 }
 
 .sidebtn5 {
-	top: 450px; /* 蹂�寃쎌떆 jellybtn -50px 媛숈씠 蹂�寃� �빐�빞 �븿 */
+	top: 450px; /* 변경시 jellybtn -50px 같이 변경 해야 함 */
 }
 
 .sidebtn6 {
-	top: 400px; /* 蹂�寃쎌떆 jellybtn -50px 媛숈씠 蹂�寃� �빐�빞 �븿 */
+	top: 400px; /* 변경시 jellybtn -50px 같이 변경 해야 함 */
 }
 
 .sectionServicePage div h2 {
@@ -1048,7 +1142,7 @@ label.right {
 
 
 /* ========================= */
-/* index-9 admin-include folder */
+/* index-10 admin-include folder */
 .headerAdmin {
     width: 100%;
     background-color: white;
@@ -1082,7 +1176,7 @@ label.right {
 }
 
 /* ========================= */
-/* index-10 admin folder : login - main - board - member - q&a */
+/* index-11 admin folder : login - main - board - member - q&a */
 
 .adminLoginTitle {
     padding: 5% 0% 3% 0%;
@@ -1124,9 +1218,9 @@ label.right {
 	cursor: pointer;
 }
 
-/* �뼱�뱶誘� 濡쒓렇�씤 �썑 硫붿씤 �럹�씠吏� */
+/* 어드민 로그인 후 메인 페이지 */
 
-.adminMainWrap { /*怨듭��궗�빆*/
+.adminMainWrap { /*공지사항*/
    padding: 20px 0px;
    width: 100%;
    text-align: center;
@@ -1208,7 +1302,7 @@ label.right {
     padding-left: 20px;
 }
 
-.right div:not(.right div:first-child) {/*�궇吏�, �꽑�깮�� 遺�遺�*/
+.right div:not(.right div:first-child) { /*날짜, 선택란 부분*/
     padding: 10px;
 }
 
@@ -1241,7 +1335,7 @@ label.right {
 }
 
 /* ========================= */
-/* index-11 admin folder : detail pages setting */
+/* index-12 admin folder : detail pages setting */
 
 .wrapContents {
 	padding-top: 10px;
@@ -1250,10 +1344,9 @@ label.right {
 
 
 /* ========================= */
-/* index-12 �궗�씠利� 議곗젙 */
+/* index-13 사이즈 조정 */
 
 @media screen and (max-width: 1120px) {
-    /* nav �궗�씠利� 議곗젙 �꽕�젙 */
     .navInner {
         display: flex;
         flex-direction: column;
@@ -1280,7 +1373,7 @@ label.right {
         z-index: 1;
     }
    
-    .mainMenu li {
+    .mainMenu a {
         width: 100%;
         text-align: center;
     }
@@ -1289,19 +1382,23 @@ label.right {
         display: flex;
     }
     
-    .fa-bars { /*�뻹踰꾧굅 �겕湲곗“�젙*/
-    font-size: 25px;
-}
+    .fa-bars { /*햄버거 크기조정*/
+    font-size: 25px;   
+	}
+	
+	.wrapWritePage table tr td:first-of-type {  /* 글작성 페이지 사이즈 축소 시 입력창 옆 내용 안보이기 */
+		display: none
+	}
     
 
 }
 
 @media screen and (max-width: 1600px) {
-	.signUpCommandTitle { /* �쉶�썝媛��엯 �럹�씠吏� �궗�씠利� 異뺤냼 �떆 �엯�젰李� �쁿 �궡�슜 �븞蹂댁씠湲� */
+	.signUpCommandTitle {  /* 회원가입 페이지 사이즈 축소 시 입력창 옆 내용 안보이기 */
 		display: none
 	}
 	
-	
+
 }	
 
 @media screen and (max-width: 599px) {
@@ -1318,4 +1415,4 @@ label.right {
     }
 }
 
-/* ~~ �궗�씠利� 議곗젙 */
+/* ~~ 사이즈 조정 */

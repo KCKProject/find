@@ -8,7 +8,7 @@
 	<jsp:include page="../include/header.jsp" />
 	<jsp:include page="../include/nav.jsp" />
 
-	<div class="wrap-all-findPage">
+	<div class="wrapboardPage">
 
 		<div class="title-findPageDetail"> <!-- 상단 제목 문구 -->
 			<h2>(실종) 포메 5살 남아 수원시청 부근</h2>
