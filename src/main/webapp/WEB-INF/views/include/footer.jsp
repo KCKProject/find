@@ -21,12 +21,26 @@
 					<li><a href="<spring:url value='/admin'/>">관리자페이지</a></li>
 				</ul>
 			</div>
-			<div class="footerLink">
+			<div class="footerIcon">
 				<ul>
-					<!-- 아이콘 변경 가능 -ok -->
-					<li><img src="<c:url value='/resources/img/img-include/phone-call.png'/>" alt="전화번호"></li>
-					<li><img src="<c:url value='/resources/img/img-include/mail.png'/>" alt="메일주소"></li>
-					<li><img src="<c:url value='/resources/img/img-include/map.png'/>" alt="주소"></li>
+					<li>
+						<button class="copy-Phone">
+							<i class="fas fa-phone-volume"></i>
+							<span><BR>Phone. 010-3214-5324</span>
+						</button>
+					</li>
+					<li>
+						<button class="copy-email">
+							<i class="fas fa-envelope"></i>
+							<span><br>EMAIL. KCK0827@gmail.com</span>
+						</button>
+					</li>
+					<li>
+						<button class="copy-address">
+							<i class="fas fa-map-marked-alt"></i>
+							<span><br>ADDRESS. <br>경기도 수원시 팔달구 매산동 매산로 12-1</span>
+						</button>
+					</li>
 				</ul>
 			</div>
 		</div>

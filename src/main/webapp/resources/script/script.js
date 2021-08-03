@@ -47,6 +47,40 @@ upBtnQa.forEach(el => {
 })
 
 
+document.querySelector(".copy-Phone").addEventListener("click", function(){
+  var tempElem = document.createElement('textarea');
+  tempElem.value = '010-3214-5324';  
+  document.body.appendChild(tempElem);
+
+  tempElem.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempElem);
+  alert("coopied");
+});
+
+document.querySelector(".copy-email").addEventListener("click", function(){
+  var tempElem = document.createElement('textarea');
+  tempElem.value = 'KCK0827@gmail.com';  
+  document.body.appendChild(tempElem);
+
+  tempElem.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempElem);
+  alert("coopied");
+});
+
+document.querySelector(".copy-address").addEventListener("click", function(){
+  var tempElem = document.createElement('textarea');
+  tempElem.value = '경기도 수원시 팔달구 매산동 매산로 12-1';  
+  document.body.appendChild(tempElem);
+
+  tempElem.select();
+  document.execCommand("copy");
+  document.body.removeChild(tempElem);
+  alert("coopied");
+});
+
+
 
 
 

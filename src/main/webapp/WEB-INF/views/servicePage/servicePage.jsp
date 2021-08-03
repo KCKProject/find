@@ -43,12 +43,12 @@
 	</div>
 	<section class="sectionServicePage">
 		<div>
-			<h3>K C K</h3>
+			<h2>K C K</h2>
 			<P><i class="fab fa-accusoft"></i><P>
 			<P>KOREA CODING KING</P>
 		</div>
 		<div class="serviceIntroduce">
-			<h3>서비스 소개</h3>
+			<h2>서비스 소개</h2>
 			<p>
 			최근 애견·애묘 등 반려동물과 함께하는 인구가 증가하고 있다. <BR>
 			국내 반려인구는 2015년에 이미 1,000만 시대에 진입했고 올해는 1500만 명을 넘어섰다. <BR>
@@ -56,11 +56,11 @@
 			이러한 흐름에 발맞춰 최근에는 반려동물 관련 서비스 산업 또한 고급화와 다양화 되고 있다. <BR>
 			최근에는 수가 늘어난 반려인들은 연결해 반려동물 분실 시 정보를 공유해 도움을 요청할 수 있는 여러 앱, 웹 서비스들이 등장 하였다.<BR>
 			하지만 사이트 별 상이한 카테고리와 광범위한 지역 설정으로 인해 상용화에 어려움을 겪고 있다. <BR>
-			이에 해당 서비스를 진행하는 바, 수원 내 분실동물만을 다루어 사용자 접근성은 높이고 ui는 직관적으로 하여 사용성을 높임.
+			이에 해당 서비스를 진행하는 바, 수원 내 분실동물만을 다루어 사용자 접근성은 높이고 ui는 직관적으로 배치 하여 사용성을 높임.
 			</p>
 		</div>
 		<div class="alliance">
-			<h3>제휴문의</h3>
+			<h2>제휴문의</h2>
 			<p>
 			The Lorm alphabet is a method of tactile signing named after Hieronymus Lorm, <BR>
 			who developed it in the late 19th century. Letters are spelled by tapping or stroking <BR>
@@ -69,7 +69,7 @@
 			</p>
 		</div>
 		<div class="serviceCenter">
-			<h3>고객센터</h3>
+			<h2>고객센터</h2>
 			<p>
 			The Lorm alphabet is a method of tactile signing named after Hieronymus Lorm, <BR>
 			who developed it in the late 19th century. Letters are spelled by tapping or stroking <BR>
@@ -78,7 +78,7 @@
 			</p>
 		</div>
 		<div class="notice">
-			<h3>공지사항</h3>
+			<h2>공지사항</h2>
 			<p>
 			The Lorm alphabet is a method of tactile signing named after Hieronymus Lorm, <BR>
 			who developed it in the late 19th century. Letters are spelled by tapping or stroking <BR>
