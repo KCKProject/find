@@ -17,6 +17,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import find.vo.Admin;
+import find.vo.Criteria;
 import find.vo.LostBoard;
 import find.vo.LostBoardWriteCommand;
 import find.vo.Member;
@@ -101,11 +102,32 @@ public class FindDao {
 	};
 	
 	
-	public List<Member> selectAll() {
+			/*
+			 * public List<Member> selectAll() { List<Member> results = jdbcTemplate.query(
+			 * "SELECT * FROM member order by membernumber ASC",rowMapper); return results;
+			 * }
+			 */
+	
+	public List<Member> selectAll(Criteria cri) {
 		List<Member> results = jdbcTemplate.query(
-				"SELECT * FROM member order by membernumber ASC",rowMapper);
+				"SELECT memberNumber, userId, userPassword, UserName, phone, email " + 
+				"    FROM(" + 
+				"    SELECT memberNumber, userId, userPassword, UserName, phone, email, " + 
+				"    row_number() over(order by memberNumber ASC) as rNum " + 
+				"    from member" + 
+				"    ) mb" + 
+				"    where rNum between ? and ? " + 
+				"    order by memberNumber ASC",
+				rowMapper,cri.getRowStart() ,cri.getRowEnd());
 		return results;
 	}
+	
+	public int memberCount() {
+		Integer cnt = jdbcTemplate.queryForObject(
+				"SELECT count(memberNumber) FROM Member where memberNumber > 0",Integer.class);
+		return cnt;
+	}
+	
 	
 	public List<LostBoard> selectAllLostBoard() {
 		List<LostBoard> results = jdbcTemplate.query(
