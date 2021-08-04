@@ -138,17 +138,13 @@
 
                 <div class="mainMore">
 					<!-- 연결링크 재설정필요 -->
-                    <button class="btn btn-swap" name="more" id="more" onclick="location='lostPage'">
+                    <button class="btn btn-swap" name="more" id="more" onclick="location='<c:url value="/lostPage/lostPageList"/>'">
                         more <span>찾아주세요 >></span>
                     </button>
                 </div>
-
-				<!-- <div class="mainLostMore">
-					<input type="button" name="more" id="more"
-						onclick="location='lostPage'" value="더보기 >>">
-				</div> -->
 			</div>
 		</div>
+		
 		<div class="mainReview">
 			<h3 class="contentsTitle">찾았어요! 후기</h3>
 			<div class="titleLine"></div>

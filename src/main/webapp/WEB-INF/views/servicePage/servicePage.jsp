@@ -16,9 +16,9 @@
 <body id="bodyServicePate">
 
 	<div class="wrapServicePage">
-		<header>
+<%-- 		<header>
 			<div class="headerTop servicePageHeaderTop">
-<%-- 			<div class="enter">
+			<div class="enter">
 					<p>
 						<!-- 로그인 시 로그아웃으로 변경되도록 기능 설정시 수정 -->
 						<c:if test="${memberAuthInfo == null }">
@@ -31,7 +31,7 @@
 							<a href="<c:url value='/enter/logout'/>">로그아웃</a>
 						</c:if>
 					</p>
-				</div>  --%>
+				</div> 
 			</div>
 			<div class="headerbottom">
 				<div class="mainTitle">
@@ -39,7 +39,7 @@
 					<p><a href="<c:url value='/'/>" target='_blank'>수원시 분실동물 찾기 서비스</a></p>
 				</div>
 			</div>
-		</header>
+		</header> --%>
 	</div>
 	<section class="sectionServicePage">
 		<div>

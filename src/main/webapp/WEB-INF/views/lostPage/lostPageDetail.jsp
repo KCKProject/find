@@ -6,28 +6,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../resources/css/style.css">
+<link rel="stylesheet" href="../../resources/css/style.css?">
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
-<script src="../resources/script/script.js" defer></script>
+<script src="../../resources/script/script.js" defer></script>
 <title>lostPage</title>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
 
 	<div class="wrapboardPage">
-
-		<div class="title-lostPageDetail"> <!-- 상단 제목 문구 -->
-			<h2>(실종) ${detail.title}</h2>
+	
+		<div id="contentsTitle">
+			<h3 class="contentsTitle">(실종) ${detail.title}</h3>
+			<div class="boardDetailPageLine"></div>
 		</div>
 
 		<div class="wrap-lostPage"> 
 			
-			<div class="lostPage-contents">
-				<ul class="post-photo-top"> <!-- 게시글 사진 나오는 부분 -->
-					<li>사진</li>
-					<li>사진</li>
-					<li>사진</li>
+			<div class="boardPage-contents">
+				<ul>
+					<li class="post-photo-top"></li>
+					<li class="post-photo-top"></li>
+					<li class="post-photo-top"></li>
 				</ul>
 				<div class="post-contents-bottom"> <!-- 게시글 내용 나오는 부분 -->
 					<div class="userid-writetime-anumber-view">
@@ -62,25 +63,27 @@
 			
 			<div class="wrap-btns"> <!-- 버튼들 모음 -->
 				  <!-- 로그인한 사람이 본인 글에 들어왔을때만 보이는 버튼들 추가 -->
-				<input type="button" name="toList" id="toList" onclick="location='<c:url value="/lostPage/lostPageList"/>'" value="목록으로">
+				<button class="btn btn-swap" name="toList" id="toList" onclick="location='<c:url value="/lostPage/lostPageList"/>'" >목록으로<span>목록으로 >></span></button>
 				<c:if test="${memberAuthInfo.userName eq detail.writer}">
-					<input type="button" name="delete" id="delete" onclick="del(${detail.boardNum})" value="글 삭제">
+					<button class="btn btn-swap" name="delete" id="delete" onclick="del(${detail.boardNum})">글삭제<span>글삭제 >></span></button>
 					<!-- 발견완료 체크유무에 따른(=meet 컬럼 값에 따른) 버튼 종류의 차이 -->
 					<c:choose>
 						<c:when test="${detail.meet eq 0}">
-							<input type="button" name="meet" id="meet" onclick="location='<c:url value="/lostPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'" value="발견완료로 변경">
+							<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/lostPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">발견완료<span>변경 >></span></button>
 						</c:when>
 						<c:when test="${detail.meet eq 1}">
-							<input type="button" name="meet" id="meet" onclick="location='<c:url value="/lostPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'" value="미발견으로 변경">
+							<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/lostPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">미발견<span>변경 >></span></button>
 						</c:when>
 					</c:choose>
 				</c:if>
 			</div>
 			
 			<div class="wrap-lostPage-comment">
-				<h4>댓글을 남겨주세요 !</h4>
-				<p>*댓글을 남겨주세요! 여러분의 작은 관심이 희망의 끈이 됩니다. 욕설/명예훼손의 글은 동의 없이 삭제됩니다.</p>
-				<div class="lostPage-comment">
+				<div class="lostPage-comment-top">
+					<h4>댓글을 남겨주세요 !</h4>
+					<p>*댓글을 남겨주세요! 여러분의 작은 관심이 희망의 끈이 됩니다. 욕설/명예훼손의 글은 동의 없이 삭제됩니다.</p>
+				</div>
+				<div class="lostPage-comment-bottom">
 					<ul>
 						<li>
 							<p>털이 하얘서 금방 찾을 수 있을거에요 !! 힘내세요 ㅠㅠ</p>
@@ -103,15 +106,30 @@
 							<p>프젝님 | 2021-05-21</p>
 						</li>
 					</ul>
+					<div>
+						<textarea rows="10" cols="10"></textarea>
+					</div>
+					<div class="mainMore">
+						<!-- 댓글등록 버튼 -->
+	                    <button class="btn btn-swap" name="uploadComment" id="uploadComment" onclick="uploadComment()">
+	                        upload <span>댓글등록 >></span>
+	                    </button>
+                	</div>
+					
+					
 				</div>
-				<div> <!-- 댓글등록 버튼 -->
-				<input type="button" name="uploadComment" id="uploadComment" onclick="uploadComment()" value="댓글등록">
-			</div>
+
+
+                
 			</div>
 		</div>
 	</div>
 
 	<jsp:include page="../include/footer.jsp" />
+	<button class="jellybutton topbtn" type="button" onclick="goTop()">TOP</button>
+		<!-- 글쓰기 버튼 -->
+		<!-- 예정) 로그인안한 회원은 로그인 페이지로 연결되도록 수정할 예정 -->
+	<button class="jellybutton sidebtn1" name="write" id="write" onclick="location='<c:url value="/lostPage/lostPageWrite"/>'">WRITE</button>
 	<script>
 
 	function del(boardNum) {

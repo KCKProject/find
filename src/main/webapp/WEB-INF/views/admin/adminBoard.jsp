@@ -49,7 +49,7 @@
 				<label class="checkbox"><input type="checkbox" name="proceeding" id="proceeding"><span class="icon"></span><span class="text">진행중</span></label> 
 				<label class="checkbox"><input type="checkbox" name="done" id="done"><span class="icon"></span><span class="text">완료</span></label> 
 			</div>
-			<div>
+			<div> <!-- 찾아주세요 -->
 				<table class="adminContents">
 					<c:if test="${!empty losts}">
 							<tr class="adminContentsListTitle">
@@ -88,7 +88,47 @@
 						</c:forEach>
 					</span> <span onclick="alert('다음 페이지가 없습니다.');">다음</span>
 				</div>
-			</div>
+			</div> <!-- 찾아주세요 -->
+			<div> <!-- 찾아가세요 -->
+				<table class="adminContents">
+					<c:if test="${!empty losts}">
+							<tr class="adminContentsListTitle">
+								<td>번호</td>
+								<td>완료</td>
+								<td>글제목</td>
+								<td>작성자</td>
+								<td>날짜</td>
+							</tr>
+
+							<c:forEach var="m" items="${losts}">
+								<tr>
+									<td>${m.boardNum}</td>
+									<c:if test="${m.meet ==1}">
+										<td>완료</td>
+									</c:if>
+									<c:if test="${m.meet ==0}">
+										<td>미완료</td>
+									</c:if>
+									<td>
+									<a href="<c:url value="/admin/boardDetail/${m.boardNum}"/>">${m.title}</a>
+									</td>
+									<td>${m.writer}</td>
+									<td><fmt:formatDate value="${m.writeDate}" pattern="yyyy-MM-dd"/></td>
+								</tr>
+							</c:forEach>
+
+					</c:if>
+				</table>
+				<div class="paging">
+					<span onclick="alert('이전 페이지가 없습니다.');">이전</span>
+					<c:set var="page" value="${(param.p==null)? 1: param.p}" />
+					<c:set var="startNum" value="${page-(page-1)%5}" />
+					<span> <c:forEach var="i" begin="0" end="4">
+							<a href="?p=${startNum+i}&t=&q=">${startNum+i}</a>
+						</c:forEach>
+					</span> <span onclick="alert('다음 페이지가 없습니다.');">다음</span>
+				</div>
+			</div> <!-- 찾아주세요 -->
 		</div>
 	</div>
 </body>
