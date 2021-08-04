@@ -32,4 +32,23 @@ public class AdminQuestionPageDetailController {
 		return "admin/adminQuestionDetail";
 	}
 	
+	@RequestMapping("/admin/questionDelete/{boardNum}")
+	public String delete(@PathVariable("boardNum") long boardNum) {
+
+			dao.deleteByQnABoardNum(boardNum);
+		return "redirect:/findPage/findPageDetail";
+		}
+	
+	@RequestMapping("/admin/changeOpen/{boardNum}&{open}")
+	public String changeMeet(@PathVariable("boardNum") long boardNum,
+							 @PathVariable("open") int open,
+							 Model model){
+		String board = "QnABoard";
+		dao.updateOpen(boardNum, open, board);
+		QnABoard detail = dao.selectByQuestionBoardNum(boardNum);
+		model.addAttribute("detail", detail);
+		
+		return "redirect:/admin/adminQuestionPage";
+	}
+	
 }

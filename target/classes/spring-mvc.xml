@@ -13,7 +13,14 @@
 		<mvc:jsp prefix="/WEB-INF/views/"/>
 	</mvc:view-resolvers>
 	
+	<!-- 업로드 패스 설정 -->
+	<bean class="java.lang.String" id="uploadPath">
+ 		<constructor-arg value="C:\documents\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\CKC\resources\uploadimg" />
+	</bean>
 	
+	
+	<!--  일반 파일 업로드 경로 -->
+	<!-- id 유무 체크 -->
 	<bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" id="multipartResolver">
 		<property name="maxUploadSize" value="10485760"/>
 	</bean>

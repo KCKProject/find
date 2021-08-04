@@ -33,6 +33,7 @@
 						<th style="color: white;">상세보기</th>
 					</tr>
 					<c:forEach var="q" items="${questions}">
+<<<<<<< HEAD
 						<c:if test="${q.open==1}">
 							<tr>
 								<td>${q.boardNum}</td>
@@ -49,6 +50,23 @@
 								<td colspan="5" class="qacontents">${q.contents}</td>
 							</tr>
 						</c:if>
+=======
+						<tr>
+							<td>${q.boardNum}</td>
+							<td>${q.title}</td>
+							<td>${q.writer}</td>
+							<td><fmt:formatDate value="${q.writeDate}"
+									pattern="yyyy-MM-dd" /></td>
+							<td>
+								<a class="dnBtnQa"><i class="fas fa-angle-double-down"></i></a>
+								<a class="upBtnQa"><i class="fas fa-angle-up"></i></a>
+							</td>
+						</tr>
+						<tr class="qacontentsBx">
+							<td colspan="5" class="qacontents" style="padding: 20px 220px; text-align: left">${q.contents}</td>
+						</tr>
+
+>>>>>>> 78ccc525b7e7166e0ff2b0df613613c234fb7ad4
 					</c:forEach>
 				</table>
 			</c:if>
