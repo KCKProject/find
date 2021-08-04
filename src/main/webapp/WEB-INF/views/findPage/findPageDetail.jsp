@@ -5,11 +5,10 @@
 <html>
 <head>
 <title>찾아가세요</title>
-<link rel="stylesheet" href="../../resources/css/style.css?">
+<link rel="stylesheet" href="../../resources/css/style.css">
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <script src="../../resources/script/script.js" defer></script>
-<title>찾아가세요</title>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
@@ -17,8 +16,8 @@
 	<div class="wrapboardPage">
 
 		<div id="contentsTitle">
-			<h3 class="contentsTitle">(발견) ${detail.title}</h3>
-			<div class="boardDetailPageLine"></div>
+        	<h3 class="contentsTitle">(발견) ${detail.title}</h3>
+        	<div class="boardDetailPageLine"></div>
 		</div>
 
 		<div class="wrap-findPage"> 
@@ -122,7 +121,7 @@
 		<!-- 글쓰기 버튼 -->
 		<!-- 예정) 로그인안한 회원은 로그인 페이지로 연결되도록 수정할 예정 -->
 	<button class="jellybutton sidebtn1" name="write" id="write" onclick="location='<c:url value="/findPage/findPageWrite"/>'">WRITE</button>
-	
+
 	<script>
 		function del(boardNum) {
 			var chk = confirm("정말 삭제하시겠습니까?");
