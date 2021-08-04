@@ -26,7 +26,7 @@
 
 		<div class="wrap-findPage"> 
 			
-			<div class="findPage-contents">
+			<div class="boardPage-contents">
 				<ul>
 					<li class="post-photo-top"></li>
 					<li class="post-photo-top"></li>
@@ -63,17 +63,16 @@
 
 			<div class="wrap-btns"> <!-- 버튼들 모음 -->
 				  <!-- 로그인한 사람이 본인 글에 들어왔을때만 보이는 버튼들 추가 -->
-				<input type="button" name="toList" id="toList" onclick="location='<c:url value="/findPage/findPageList"/>'" value="목록으로">
+				<button class="btn btn-swap" name="toList" id="toList" onclick="location='<c:url value="/lostPage/lostPageList"/>'" >목록으로<span>목록으로 >></span></button>
 				<c:if test="${memberAuthInfo.userName eq detail.writer}">
-					<input type="button" name="delete" id="delete" onclick="del(${detail.boardNum})" value="글 삭제">
+					<button class="btn btn-swap" name="delete" id="delete" onclick="del(${detail.boardNum})">글삭제<span>글삭제 >></span></button>
 					<!-- 발견완료 체크유무에 따른(=meet 컬럼 값에 따른) 버튼 종류의 차이 -->
 					<c:choose>
 						<c:when test="${detail.meet eq 0}">
-							<input type="button" name="meet" id="meet" onclick="location='<c:url value="/findPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'" value="발견완료로 변경">
+							<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/lostPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">발견완료<span>변경 >></span></button>
 						</c:when>
 						<c:when test="${detail.meet eq 1}">
-							<input type="button" name="meet" id="meet" onclick="location='<c:url value="/findPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'" value="미발견으로 변경">
-
+							<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/lostPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">미발견<span>변경 >></span></button>
 						</c:when>
 					</c:choose>
 				</c:if>

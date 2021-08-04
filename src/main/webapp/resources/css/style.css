@@ -968,12 +968,12 @@ label.right {
     border-bottom: 1px double #fed400;
 }	
 
-.lostPage-contents ul {
+.boardPage-contents ul {
 	display: flex;
     justify-content: center;
 }
 
-.lostPage-contents ul li {
+.boardPage-contents ul li {
     margin: 0 20px;
 }
 
