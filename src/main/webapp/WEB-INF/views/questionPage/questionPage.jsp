@@ -45,7 +45,7 @@
 							</td>
 						</tr>
 						<tr class="qacontentsBx">
-							<td colspan="5" class="qacontents">${q.contents}</td>
+							<td colspan="5" class="qacontents" style="padding: 20px 220px; text-align: left">${q.contents}</td>
 						</tr>
 
 					</c:forEach>

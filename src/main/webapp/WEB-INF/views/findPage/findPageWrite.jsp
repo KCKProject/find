@@ -84,6 +84,14 @@
 	
 	<jsp:include page="../include/footer.jsp" />
 	
+	<button class="jellybutton topbtn" type="button" onclick="goTop()">TOP</button>
+		<!-- Service Center 버튼 -->
+		<!-- 내용 미정 -->
+	<div class="centerbtn">		
+		<div class="jellybutton centerHiddenContents guideHiddenContents" name="centerHidden" id="centerHidden"><p>GUIDE<BR>1. '*'는 필수 입력 사항 입니다.<br>2. 실종 위치 및 시각은 최대한 <BR>구체적으로 적어주세요.<br>ex) 15시 20분경 경기대 후문<br>3. 내용은 자유롭게 기재 하되, <BR>최대한 많은 내용을 기재 해 주셔야 발견 될 확률이 높습니다.</p></div>
+		<button class="jellybutton sidebtn1" name="center" id="center">GUIDE</button>
+	</div>
+	
 	<script>
 		$(function(){
 		    $("[type=checkbox][name=term]").on("change", function(){

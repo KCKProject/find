@@ -533,7 +533,7 @@ footer {
 }
 
 .mainMore {
-    padding: 20px 0;
+    padding: 40px 0;
 }
 
 .mainReview {
@@ -829,7 +829,7 @@ label.right {
 
 
 #contentsTitle {
-	text-align: -webkit-center;
+	text-align: center;
 	padding: 40px 0 30px 0;
 }
 
@@ -1046,6 +1046,10 @@ label.right {
     padding: 150px 0;
 }
 
+.qaBx table {
+	width: 1250px;
+}
+
 .qaBx table tr { 
     height: 80px;
     box-shadow: 0px 10px 10px -5px whitesmoke;
@@ -1065,13 +1069,14 @@ label.right {
 }
 
 .qaBx table tr th, .qaBx table tr td {
+	text-align: center;
     padding: 0 70px;
     border-bottom: 1px solid lightgrey;
 }
 
 .qacontents {
-	background-color: whitesmoke;
-	text-align: center;
+	background-color: #fdfaf67d;
+    line-height: 30px;
 }
 
 .qacontentsBx {
@@ -1096,7 +1101,6 @@ label.right {
 
 .fa-angle-double-down, .fa-angle-up {
 	font-size: 20px;
-	padding-left: 25px;
 	cursor: pointer;
 }
 
