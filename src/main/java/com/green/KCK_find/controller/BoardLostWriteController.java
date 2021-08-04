@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import find.dao.FindDao;
 import find.service.LostBoardWriteService;
@@ -34,11 +35,11 @@ public class BoardLostWriteController {
 	
 	@RequestMapping(method=RequestMethod.POST)
 		public String regist(@ModelAttribute("lostBoardWriteCommand") LostBoardWriteCommand lostBoardWriteCommand,
-					          HttpSession session) {
-//			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-//			System.out.println("session id의 값 : "+member.getUserId());
+					          HttpSession session, MultipartHttpServletRequest request) {
+			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
+			System.out.println("session id의 값 : "+member.getUserId());
 		
-			lostBoardWriteService.boardRegist(lostBoardWriteCommand, session);			
+			lostBoardWriteService.boardRegist(lostBoardWriteCommand, session, request);			
 			return "redirect:/lostPage/lostPageList";
 		}
 }

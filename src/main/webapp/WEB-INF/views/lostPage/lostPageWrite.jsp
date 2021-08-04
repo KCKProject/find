@@ -25,7 +25,7 @@
 		
 		<div class="wrapWritePage"> 
 		<%--  enctype="multipart/form-data" 필요 --%>
-			<form:form commandName="lostBoardWriteCommand" name="input-lostPageWrite">
+			<form:form commandName="lostBoardWriteCommand" enctype="multipart/form-data" method="POST">
 				<table id="input-lostPageWrite"> <!-- 입력칸 부분 -->
 					<tr>
 						<td><span>*</span>글제목</td>
@@ -52,7 +52,6 @@
 						<td><form:input path="lostDate" placeholder="실종시각"/></td>
 					</tr>
 					<tr>  
-					
 						<td><span>*</span>특징</td>
 						<td><form:input path="character" placeholder="특징(30자 이내)"/></td>
 					</tr>
@@ -60,15 +59,15 @@
 						<td><span>*</span>상세내용</td>
 						<td><form:textarea path="memo" rows="10" cols="65"/></td>
 					</tr>
-<%-- 				<tr>
+					<tr>
 						<td>  사진첨부</td>
-						<td><form:file path="photo"/></td>
-					</tr>  --%>
+						<td><input type="text" name="img" id="img"/></td>
+					</tr>
 				</table>
 
-			<!-- 	<div> 첨부파일
+			 	<div> 첨부파일
 					<div class="photofile-btn"></div>
-				</div> -->
+				</div>
 				<div> <!-- 약관 -->
 					<div class="writeTerms">
 						<label class="checkbox"><input type="checkbox" name="term" id="term" value="agree" class="AllOkay"><span class="icon"></span><span class="text">전체동의</span></label> 
@@ -79,7 +78,7 @@
 					</div>
 				</div>
 				<div > <!-- 작성완료 버튼 -->
-					<input type="submit" value="작성완료" class="completeBtn">
+					<input type="submit" value="작성완료" ><!-- class="completeBtn"> -->
 				</div>
 			</form:form>
 		</div>

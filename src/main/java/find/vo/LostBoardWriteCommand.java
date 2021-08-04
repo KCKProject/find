@@ -10,9 +10,9 @@ public class LostBoardWriteCommand { // Lost 작성시 받아올 내용
 	private String kind;
 	private String gender;
 	private String img;
-	private Date lostDate;
+	private String lostDate;
 	private String memo;
-	private String term;
+	private String[] term;
 	
 	public String getTitle() {
 		return title;
@@ -56,10 +56,10 @@ public class LostBoardWriteCommand { // Lost 작성시 받아올 내용
 	public void setImg(String img) {
 		this.img = img;
 	}
-	public Date getLostDate() {
+	public String getLostDate() {
 		return lostDate;
 	}
-	public void setLostDate(Date lostDate) {
+	public void setLostDate(String lostDate) {
 		this.lostDate = lostDate;
 	}
 	public String getMemo() {
@@ -68,10 +68,10 @@ public class LostBoardWriteCommand { // Lost 작성시 받아올 내용
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
-	public String getTerm() {
+	public String[] getTerm() {
 		return term;
 	}
-	public void setTerm(String term) {
+	public void setTerm(String[] term) {
 		this.term = term;
 	}
 }

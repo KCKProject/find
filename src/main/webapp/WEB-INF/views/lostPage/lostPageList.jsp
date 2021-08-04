@@ -46,7 +46,7 @@
 				<li>
 					<a href="<c:url value="/lostPage/lostPageDetail/${l.boardNum}"/>">
 						<div class="post-photo-top"> <!-- 게시글 사진 나오는 부분 -->
-							<div>사진</div>
+							<div><img src="KCK_find/resources/img/board/${l.img}" width="300"/></div>
 						</div>
 						<div class="post-contents-bottom"> <!-- 게시글 내용 나오는 부분 -->
 							<!-- 작성자가 본인 글에서 발견 버튼 클릭 시에만 생성 -->

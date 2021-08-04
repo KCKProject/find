@@ -33,21 +33,22 @@
 						<th style="color: white;">상세보기</th>
 					</tr>
 					<c:forEach var="q" items="${questions}">
-						<tr>
-							<td>${q.boardNum}</td>
-							<td>${q.title}</td>
-							<td>${q.writer}</td>
-							<td><fmt:formatDate value="${q.writeDate}"
-									pattern="yyyy-MM-dd" /></td>
-							<td>
-								<a class="dnBtnQa"><i class="fas fa-angle-double-down"></i></a>
-								<a class="upBtnQa"><i class="fas fa-angle-up"></i></a>
-							</td>
-						</tr>
-						<tr class="qacontentsBx">
-							<td colspan="5" class="qacontents">${q.contents}</td>
-						</tr>
-
+						<c:if test="${q.open==1}">
+							<tr>
+								<td>${q.boardNum}</td>
+								<td>${q.title}</td>
+								<td>${q.writer}</td>
+								<td><fmt:formatDate value="${q.writeDate}"
+										pattern="yyyy-MM-dd" /></td>
+								<td>
+									<a class="dnBtnQa"><i class="fas fa-angle-double-down"></i></a>
+									<a class="upBtnQa"><i class="fas fa-angle-up"></i></a>
+								</td>
+							</tr>
+							<tr class="qacontentsBx">
+								<td colspan="5" class="qacontents">${q.contents}</td>
+							</tr>
+						</c:if>
 					</c:forEach>
 				</table>
 			</c:if>
