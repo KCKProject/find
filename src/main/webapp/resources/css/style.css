@@ -42,7 +42,7 @@ input::placeholder { font-size: 80%; text-align: center;}
 
 a { text-decoration:none } /*모든 a태그의 text-decoration 없애기*/
 
-[id*='errors'] { color: #f7c180;} /*에러메세지 주황색 표기*/
+[id*='errors'] { color: #f7c180; font-size: 10px;} /*에러메세지 주황색 표기*/
 
 ul, li {list-style: none;}
 
@@ -917,6 +917,11 @@ label.right {
     border-radius: 12px;
 }
 
+.wrapWritePage table tr td textarea {
+	border-radius: 8px;
+	border: 1px gray solid;
+}
+
 .wrapWritePage form > div {
     display: flex;
     justify-content: center;
@@ -957,9 +962,70 @@ label.right {
 /* index-7 board(lost,find) detail page
 	: 셋팅 찾아주세요, 찾아가세요 상세 페이지 공통 적용 사항 */	
 	
-	
-	
-	
+.boardDetailPageLine{
+	display: inline-flex;
+	width: 200px;
+    border-bottom: 1px double #fed400;
+}	
+
+.lostPage-contents ul {
+	display: flex;
+    justify-content: center;
+}
+
+.lostPage-contents ul li {
+    margin: 0 20px;
+}
+
+.post-contents-bottom {
+	padding: 50px 0;
+}
+
+.post-contents-bottom div {
+    padding-top: 20px;
+    text-align: center;
+}
+
+.wrap-btns {
+    text-align: center;
+    padding: 0 0 20px 0;
+    border-bottom: 1px double silver;
+}
+
+.lostPage-comment-top {
+    padding: 50px;
+    text-align: center;
+}
+
+.lostPage-comment-top h4 {
+    padding-bottom: 30px;
+}
+
+.lostPage-comment-bottom {
+    margin: 0 0 20px 0;
+    padding: 10px 500px;
+    background-color: #fdfaf645;
+    text-align-last: center;
+}
+
+.lostPage-comment-bottom ul {
+	margin-bottom: 20px;
+}
+
+.lostPage-comment-bottom ul li {
+	display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid silver;
+}
+
+.lostPage-comment-bottom textarea {
+	width: 80%;
+	margin-top: 20px;
+	border-radius: 12px;
+	border: 1px silver solid;
+	box-shadow: 0px 10px 10px -5px whitesmoke;
+}
 	
 	
 	
@@ -1341,10 +1407,32 @@ label.right {
 	padding-top: 10px;
 }
 
+.adminBoardDetailBtn {
+    POSITION: RELATIVE;
+    TOP: 573PX;
+}
+
 
 
 /* ========================= */
 /* index-13 사이즈 조정 */
+
+@media screen and (max-width: 1600px) {
+	.signUpCommandTitle {  /* 회원가입 페이지 사이즈 축소 시 입력창 옆 내용 안보이기 */
+		display: none
+	}
+	
+
+}	
+
+@media screen and (max-width: 1500px) {
+	.lostPage-comment-bottom {
+    padding: 10px 300px;
+	
+
+}	
+
+
 
 @media screen and (max-width: 1120px) {
     .navInner {
@@ -1389,17 +1477,15 @@ label.right {
 	.wrapWritePage table tr td:first-of-type {  /* 글작성 페이지 사이즈 축소 시 입력창 옆 내용 안보이기 */
 		display: none
 	}
+	
+	.lostPage-comment-bottom ul li p:last-of-type {
+		display: none;
+	}
     
 
 }
 
-@media screen and (max-width: 1600px) {
-	.signUpCommandTitle {  /* 회원가입 페이지 사이즈 축소 시 입력창 옆 내용 안보이기 */
-		display: none
-	}
-	
 
-}	
 
 @media screen and (max-width: 599px) {
 

@@ -58,9 +58,7 @@
 					</tr>
 					<tr>
 						<td><span>*</span>상세내용</td>
-						<td><form:input path="memo" rows="10" cols="100" placeholder="상세내용"/>
-<!-- 							<textarea rows="100px" cols="30px"/> -->
-						</td>
+						<td><form:textarea path="memo" rows="10" cols="65"/></td>
 					</tr>
 					<%-- <tr>
 						<td>  사진첨부</td>
@@ -75,9 +73,10 @@
 					<div class="writeTerms">
 						<label class="checkbox"><input type="checkbox" name="term" id="term" value="agree" class="AllOkay"><span class="icon"></span><span class="text">전체동의</span></label> 
 						<label class="checkbox"><input type="checkbox" name="term" id="term" value="phoneAgree" class="okay"><span class="icon"></span><span class="text">연락처 노출 동의 
-									<br>(회원가입 시 등록 한 연락처를 연락받을 번호로 기재 합니다. <span style="color: red; font-size: 20px;">*</span>미체크시 별도의 연락수단 상세내용에 기재 요망)<br> </span></label> 
+									(회원가입 시 등록 한 연락처를 연락받을 번호로 기재 합니다. <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+									<span style="color: red; font-size: 20px;">*</span>해당 체크박스 미체크시 별도의 연락수단 상세내용에 기재 요망)<br> </span></label> 
 						<label class="checkbox"><input type="checkbox" name="term" id="term" value="emailAgree" class="okay"><span class="icon"></span><span class="text">이메일 노출 동의 
-									<br>(회원가입 시 등록 한 이메일을 연락받을 메일로 기재 합니다.)</span></label> 
+									(회원가입 시 등록 한 이메일을 연락받을 메일로 기재 합니다.)</span></label> 
 					</div>
 				</div>
 				<div > <!-- 작성완료 버튼 -->

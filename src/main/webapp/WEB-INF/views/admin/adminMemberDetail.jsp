@@ -44,9 +44,17 @@
 					이메일 : ${member.email}
 				</label>
 				<br>
-				<a href="<c:url value='/admin/adminMember'/>">
-					<button class="btn btn-swap"> more <span>전체 글 보기 >></span> </button>
-				</a>
+				<div class="adminBoardDetailBtn">
+					<a href="<c:url value='/admin/adminMember'/>">
+						<button class="btn btn-swap"> MORE <span>전체 글 보기 >></span> </button>
+					</a>
+					<a href="<c:url value='/admin/adminMember'/>">
+						<button class="btn btn-swap"> DELETE <span>글 삭제 >></span> </button>
+					</a>
+					<a href="<c:url value='/admin/adminMember'/>">
+						<button class="btn btn-swap"> EDIT <span>글 수정 >></span> </button>
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>

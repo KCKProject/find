@@ -11,38 +11,38 @@ import find.vo.SignUpCommand;
 
 public class SignUpCommandValidator implements Validator{
 
-	// ë¹„ë°€ë²ˆí˜¸ ì •ê·œì‹ (ì˜ë¬¸,ìˆ«ì,íŠ¹ìˆ˜ë¬¸ì í¬í•¨ 6~15ìë¦¬ìˆ˜)
-	private static final String PWD_EXP = 
-			"^.*(?=^.{6,15}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$";
-	private Pattern pattern;
-	
-	public SignUpCommandValidator() {
-		pattern = Pattern.compile(PWD_EXP);
-	}
-	
-	@Override
-	public boolean supports(Class<?> clazz) {
-		return SignUpCommand.class.isAssignableFrom(clazz);
-	}
+   // ºñ¹Ğ¹øÈ£ Á¤±Ô½Ä (¿µ¹®,¼ıÀÚ,Æ¯¼ö¹®ÀÚ Æ÷ÇÔ 6~15ÀÚ¸®¼ö)
+   private static final String PWD_EXP = 
+         "^.*(?=^.{6,15}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$";
+   private Pattern pattern;
+   
+   public SignUpCommandValidator() {
+      pattern = Pattern.compile(PWD_EXP);
+   }
+   
+   @Override
+   public boolean supports(Class<?> clazz) {
+      return SignUpCommand.class.isAssignableFrom(clazz);
+   }
 
-	@Override
-	public void validate(Object target, Errors errors) {
-		SignUpCommand command = (SignUpCommand)target;
-		
-		ValidationUtils.rejectIfEmpty(errors, "userPassword", "required", "í•„ìˆ˜ ì…ë ¥ì‚¬í•­ì…ë‹ˆë‹¤");
-		
-		if(!command.getUserPassword().isEmpty()) {
-			boolean matcher = Pattern.matches(PWD_EXP,command.getUserPassword());
-			if(matcher != true) {
-				errors.rejectValue("userPassword", "wrong", "ì˜ë¬¸,ìˆ«ì,íŠ¹ìˆ˜ë¬¸ì ì¡°í•© 6~15ìë¦¬ë¡œ ì‘ì„±í•´ì£¼ì„¸ìš”");
-			}else if(!command.isPasswordEqual()) {
-				errors.rejectValue("userPwdChk","nomatch","ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤");
-			}
-		}
+   @Override
+   public void validate(Object target, Errors errors) {
+      SignUpCommand command = (SignUpCommand)target;
+      
+      ValidationUtils.rejectIfEmpty(errors, "userPassword", "required", "ÇÊ¼ö ÀÔ·Â»çÇ×ÀÔ´Ï´Ù");
+      
+      if(!command.getUserPassword().isEmpty()) {
+         boolean matcher = Pattern.matches(PWD_EXP,command.getUserPassword());
+         if(matcher != true) {
+            errors.rejectValue("userPassword", "wrong", "¿µ¹®,¼ıÀÚ,Æ¯¼ö¹®ÀÚ Á¶ÇÕ 6~15ÀÚ¸®·Î ÀÛ¼ºÇØÁÖ¼¼¿ä");
+         }else if(!command.isPasswordEqual()) {
+            errors.rejectValue("userPwdChk","nomatch","ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù");
+         }
+      }
 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required", "í•„ìˆ˜ ì…ë ¥ì‚¬í•­ì…ë‹ˆë‹¤");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "required", "í•„ìˆ˜ ì…ë ¥ì‚¬í•­ì…ë‹ˆë‹¤");
-		ValidationUtils.rejectIfEmpty(errors, "phone", "required", "í•„ìˆ˜ ì…ë ¥ì‚¬í•­ì…ë‹ˆë‹¤");
-	}
+      ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required", "ÇÊ¼ö ÀÔ·Â»çÇ×ÀÔ´Ï´Ù");
+      ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "required", "ÇÊ¼ö ÀÔ·Â»çÇ×ÀÔ´Ï´Ù");
+      ValidationUtils.rejectIfEmpty(errors, "phone", "required", "ÇÊ¼ö ÀÔ·Â»çÇ×ÀÔ´Ï´Ù");
+   }
 
 }

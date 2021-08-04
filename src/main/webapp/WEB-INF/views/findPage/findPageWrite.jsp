@@ -54,7 +54,8 @@
 					</tr>
 					<tr>
 						<td><span>*</span>상세내용</td>
-						<td><form:textarea path="memo" rows="100px" cols="30px" placeholder="상세내용"/></td>
+						<td><form:textarea path="memo" rows="10" cols="65"/></td>
+
 					</tr>
 					<%-- <tr>
 						<td>  사진첨부</td>
