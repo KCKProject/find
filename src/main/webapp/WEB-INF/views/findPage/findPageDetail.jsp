@@ -2,8 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <title>찾아가세요</title>
 <link rel="stylesheet" href="../../resources/css/style.css">
 <script src="https://kit.fontawesome.com/2d323a629b.js"
@@ -15,10 +17,10 @@
 
 	<div class="wrapboardPage">
 
-		<div id="contentsTitle">
-        	<h3 class="contentsTitle">(발견) ${detail.title}</h3>
-        	<div class="boardDetailPageLine"></div>
-		</div>
+<div id="contentsTitle">
+<h3 class="contentsTitle">(발견) ${detail.title}</h3>
+<div class="boardDetailPageLine"></div>
+</div>
 
 		<div class="wrap-findPage"> 
 			

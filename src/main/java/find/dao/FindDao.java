@@ -76,7 +76,7 @@ public class FindDao {
 						rs.getString("animal"),
 						rs.getString("kind"),
 						rs.getString("gender"),
-						rs.getString("img"),
+						/* rs.getString("img"), */"",
 						rs.getString("email"),
 						rs.getString("phone"),
 						rs.getDate("lostDate"),
@@ -174,9 +174,9 @@ public class FindDao {
 	
 	public Admin selectByAdminId(String adminId) {
 		String sql = "SELECT * FROM ADMIN WHERE adminId=?";
-//		System.out.println("어드민 출력 확인");
+//		System.out.println("�뼱�뱶誘� 異쒕젰 �솗�씤");
 		List<Admin> results = jdbcTemplate.query(sql, adminRowMapper, adminId);
-//		System.out.println("어드민 출력 확인 2");
+//		System.out.println("�뼱�뱶誘� 異쒕젰 �솗�씤 2");
 		return results.isEmpty() ? null : results.get(0);
 	}
 	
@@ -296,11 +296,11 @@ public class FindDao {
 		String sql = "";
 		
 		if(meet==0) {
-			System.out.println("meet가 0");
+			System.out.println("meet媛� 0");
 			sql = "UPDATE "+board+" SET meet=1 WHERE boardNum=?"; 
 		}
 		if(meet==1) {
-			System.out.println("meet가 1");
+			System.out.println("meet媛� 1");
 			sql = "UPDATE "+board+" SET meet=0 WHERE boardNum=?";
 		}
 		jdbcTemplate.update(sql,boardNum);
@@ -323,39 +323,52 @@ public class FindDao {
 	public void writeLostBoard(MemberAuthInfo member, LostBoard lb) {
 		
 		System.out.println(lb.getCharacter());
-		KeyHolder key = new GeneratedKeyHolder();
-		jdbcTemplate.update(new PreparedStatementCreator() {
-			@Override
-			public PreparedStatement createPreparedStatement(Connection con)throws SQLException{
-				PreparedStatement psmt = con.prepareStatement(
-						"INSERT INTO lostBoard VALUES(lostBoard_seq.nextval,?,?,sysdate,?,?,?,?,?,?,?,?,?,?,0)",
-						new String[] {"boardNum"});
-						
-				psmt.setString(1,lb.getTitle());
-				psmt.setString(2,lb.getWriter());
-				psmt.setString(3,lb.getLocation());
-				psmt.setString(4,lb.getCharacter());
-				psmt.setString(5,lb.getAnimal());
-				psmt.setString(6,lb.getKind());
-				psmt.setString(7,lb.getGender());
-				psmt.setString(8,lb.getImg());
-				psmt.setString(9,lb.getEmail());
-				psmt.setString(10,lb.getPhone());
-				psmt.setDate(11,lb.getLostDate());
-				psmt.setString(12,lb.getMemo());
-				
-				return psmt;
-			}
-		},key);
-		Number keyValue = key.getKey();
-		lb.setBoardNum(keyValue.longValue());
+//		KeyHolder key = new GeneratedKeyHolder();
+		jdbcTemplate.update("INSERT INTO lostBoard (boardNum, title, writer, writeDate, kind,"
+				+ " location, character, animal, gender, email, phone, lostDate, memo) VALUES(lostBoard_seq.nextval,?,?,sysdate,?,?,?,?,?,?,?,?,?)",
+				lb.getTitle(),
+				lb.getWriter(),
+				lb.getKind(),
+				lb.getLocation(),
+				lb.getCharacter(),
+				lb.getAnimal(),
+				lb.getGender(),
+				lb.getEmail(),
+				lb.getPhone(),
+				lb.getLostDate(),
+				lb.getMemo());
+		
+//		jdbcTemplate.update(new PreparedStatementCreator() {
+//			@Override
+//			public PreparedStatement createPreparedStatement(Connection con)throws SQLException{
+//				PreparedStatement psmt = con.prepareStatement(
+//						"INSERT INTO lostBoard VALUES(lostBoard_seq.nextval,?,?,sysdate,?,?,?,?,?,?,?,?,?,?,0);");
+//						
+//				psmt.setString(1,lb.getTitle());
+//				psmt.setString(2,lb.getWriter());
+//				psmt.setString(3,lb.getLocation());
+//				psmt.setString(4,lb.getCharacter());
+//				psmt.setString(5,lb.getAnimal());
+//				psmt.setString(6,lb.getKind());
+//				psmt.setString(7,lb.getGender());
+//				psmt.setString(8,lb.getImg());
+//				psmt.setString(9,lb.getEmail());
+//				psmt.setString(10,lb.getPhone());
+//				psmt.setDate(11,lb.getLostDate());
+//				psmt.setString(12,lb.getMemo());
+//				
+//				return psmt;
+//			}
+//		},key);
+//		Number keyValue = key.getKey();
+//		lb.setBoardNum(keyValue.longValue());
 	}
 	
 	
 	
 	
-	//일단 보존
-//	//찾아주세요 게시글 등록 - 에러나면 주석처리
+	//�씪�떒 蹂댁〈
+//	//李얠븘二쇱꽭�슂 寃뚯떆湲� �벑濡� - �뿉�윭�굹硫� 二쇱꽍泥섎━
 //	public void writeLostBoard(MemberAuthInfo member, LostBoardWriteCommand lC) {
 //		LostBoard lostBoard = null;
 //		System.out.println(lC.getCharacter());

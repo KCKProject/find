@@ -3,6 +3,7 @@ package com.green.KCK_find.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import find.service.LostBoardWriteService;
 import find.vo.LostBoardWriteCommand;
+import find.vo.MemberAuthInfo;
 
 @Controller
 @RequestMapping("/lostPage/lostPageWrite")
@@ -28,11 +30,10 @@ public class BoardLostWriteController {
 		return "lostPage/lostPageWrite";
 	}
 	
-	@RequestMapping(method=RequestMethod.POST)
-		public String regist(@ModelAttribute("lostBoardWriteCommand") LostBoardWriteCommand lostBoardWriteCommand,
-					          HttpSession session, MultipartHttpServletRequest request) {
+	@RequestMapping(method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+		public String regist(LostBoardWriteCommand lostBoardWriteCommand, HttpSession session, MultipartHttpServletRequest request) {
 			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-			System.out.println("session id의 값 : "+member.getUserId());
+//			System.out.println("session id�쓽 媛� : "+member.getUserId());
 		
 			lostBoardWriteService.boardRegist(lostBoardWriteCommand, session, request);			
 			return "redirect:/lostPage/lostPageList";

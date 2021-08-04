@@ -17,10 +17,10 @@
 
 	<div class="wrapboardPage">
 	
-		<div id="contentsTitle">
-			<h3 class="contentsTitle">(실종) ${detail.title}</h3>
-			<div class="boardDetailPageLine"></div>
-		</div>
+<div id="contentsTitle">
+<h3 class="contentsTitle">(실종) ${detail.title}</h3>
+<div class="boardDetailPageLine"></div>
+</div>
 
 		<div class="wrap-lostPage"> 
 			
