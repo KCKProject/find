@@ -24,7 +24,7 @@
 
 		<div class="wrap-lostPage"> 
 			
-			<div class="lostPage-contents">
+			<div class="boardPage-contents">
 				<ul>
 					<li class="post-photo-top"></li>
 					<li class="post-photo-top"></li>
