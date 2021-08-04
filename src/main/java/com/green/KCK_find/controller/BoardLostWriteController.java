@@ -1,20 +1,15 @@
 package com.green.KCK_find.controller;
 
-import java.lang.reflect.Parameter;
-
+import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import find.dao.FindDao;
 import find.service.LostBoardWriteService;
-import find.vo.LostBoard;
 import find.vo.LostBoardWriteCommand;
-import find.vo.MemberAuthInfo;
 
 @Controller
 @RequestMapping("/lostPage/lostPageWrite")

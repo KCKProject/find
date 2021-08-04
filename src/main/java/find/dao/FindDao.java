@@ -282,6 +282,11 @@ public class FindDao {
 		jdbcTemplate.query(sql,lostBoardRowMapper,boardNum);
 	}
 	
+	public void deleteByQnABoardNum(long boardNum) {
+		String sql="DELETE FROM QnABoard WHERE boardNum=?";
+		jdbcTemplate.query(sql,qnABoardRowMapper,boardNum);
+	}
+	
 	public void updateMeet(long boardNum, int meet, String board) {
 		String sql = "";
 		
@@ -292,6 +297,19 @@ public class FindDao {
 		if(meet==1) {
 			System.out.println("meet가 1");
 			sql = "UPDATE "+board+" SET meet=0 WHERE boardNum=?";
+		}
+		jdbcTemplate.update(sql,boardNum);
+	}
+	
+	
+	public void updateOpen(long boardNum, int open, String board) {
+		String sql = "";
+		
+		if(open==0) {
+			sql = "UPDATE "+board+" SET open=1 WHERE boardNum=?"; 
+		}
+		if(open==1) {
+			sql = "UPDATE "+board+" SET open=0 WHERE boardNum=?";
 		}
 		jdbcTemplate.update(sql,boardNum);
 	}

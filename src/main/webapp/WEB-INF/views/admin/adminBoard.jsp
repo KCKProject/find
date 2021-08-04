@@ -76,9 +76,10 @@
 									<td><fmt:formatDate value="${m.writeDate}" pattern="yyyy-MM-dd"/></td>
 								</tr>
 							</c:forEach>
-
 					</c:if>
 				</table>
+				
+				
 				<div class="paging">
 					<span onclick="alert('이전 페이지가 없습니다.');">이전</span>
 					<c:set var="page" value="${(param.p==null)? 1: param.p}" />

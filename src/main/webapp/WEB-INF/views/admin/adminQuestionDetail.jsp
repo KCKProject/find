@@ -50,14 +50,33 @@
 							<button class="btn btn-swap"> MORE <span>전체 글 보기 >></span> </button>
 						</a>
 						<a href="<c:url value='/admin/adminQuestionPage'/>">
-							<button class="btn btn-swap"> DELETE <span>글 삭제 >></span> </button>
+							<button class="btn btn-swap" onclick="del(${qnABoard.boardNum})"> DELETE <span>글 삭제 >></span> </button>
 						</a>
 						<a href="<c:url value='/admin/adminQuestionPage'/>">
 							<button class="btn btn-swap"> EDIT <span>글 수정 >></span> </button>
 						</a>
+						<!-- 발견완료 체크유무에 따른(=meet 컬럼 값에 따른) 버튼 종류의 차이 -->
+						<c:if test="${qnABoard.open != null}">
+							<c:choose>
+								<c:when test="${qnABoard.open eq 0}">
+									<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/admin/changeOpen/${qnABoard.boardNum}&${qnABoard.open}"/>'">공개<span>변경 >></span></button>
+								</c:when>
+								<c:when test="${qnABoard.open eq 1}">
+									<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/admin/changeOpen/${qnABoard.boardNum}&${qnABoard.open}"/>'">비공개<span>변경 >></span></button>
+								</c:when>
+							</c:choose>
+						</c:if>
 					</div>
 				</div>
 			</div>
 		</div>
+		<script>
+	function del(boardNum) {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href="<c:url value='/admin/questionDelete/'/>"+boardNum;
+		}
+	}	
+	</script>
 </body>
 </html>
