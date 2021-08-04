@@ -57,13 +57,13 @@
 						<td><form:textarea path="memo" rows="10" cols="65"/></td>
 
 					</tr>
-					<%-- <tr>
+					<!-- <tr>
 						<td>  사진첨부</td>
-						<td><form:file path="photo"/></td>
-					</tr> --%>
+						<td><input type="file" name="photo" id="photo"/></td>
+					</tr> -->
 				</table>
 
-			<!-- 	<div> 첨부파일
+				<!-- <div> 첨부파일
 					<div class="photofile-btn"></div>
 				</div> -->
 				<div> <!-- 약관 -->
@@ -93,7 +93,7 @@
 		            $("[type=checkbox][name=term]").prop("checked", check);
 	
 		        //단일 체크
-		        }else{ //3
+		        }else{
 		            var all = $("[type=checkbox][name=term].AllOkay");
 		            var allcheck = all.prop("checked")
 		            if(check != allcheck){ 

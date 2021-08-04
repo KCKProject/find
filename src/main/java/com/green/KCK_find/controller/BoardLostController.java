@@ -46,7 +46,7 @@ public class BoardLostController {
 	@RequestMapping("/lostPage/delete/{boardNum}")
 	public String delete(@PathVariable("boardNum") long boardNum) {
 
-		dao.deleteByBoardNum(boardNum);
+		dao.deleteByLostBoardNum(boardNum);
 		return "redirect:/lostPage/lostPageList";
 	}
 	

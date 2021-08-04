@@ -44,6 +44,7 @@ public class BoardFindController {
 	@RequestMapping("/findPage/delete/{boardNum}")
 	public String delete(@PathVariable("boardNum") long boardNum) {
 
+		dao.deleteByFindBoardNum(boardNum);
 		return "redirect:/findPage/findPageDetail";
 		}
 		

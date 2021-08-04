@@ -277,9 +277,14 @@ public class FindDao {
 		return results.isEmpty() ? null : results.get(0);
 	}
 	
-	public void deleteByBoardNum(long boardNum) {
+	public void deleteByLostBoardNum(long boardNum) {
 		String sql="DELETE FROM lostBoard WHERE boardNum=?";
 		jdbcTemplate.query(sql,lostBoardRowMapper,boardNum);
+	}
+	
+	public void deleteByFindBoardNum(long boardNum) {
+		String sql="DELETE FROM findBoard WHERE boardNum=?";
+		jdbcTemplate.query(sql,findBoardRowMapper,boardNum);
 	}
 	
 	public void updateMeet(long boardNum, int meet, String board) {
