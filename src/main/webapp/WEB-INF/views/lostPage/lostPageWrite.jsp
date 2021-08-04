@@ -60,10 +60,10 @@
 						<td><span>*</span>상세내용</td>
 						<td><form:textarea path="memo" rows="10" cols="65"/></td>
 					</tr>
-					 <tr>
+<%-- 				<tr>
 						<td>  사진첨부</td>
 						<td><form:file path="photo"/></td>
-					</tr> 
+					</tr>  --%>
 				</table>
 
 			<!-- 	<div> 첨부파일
