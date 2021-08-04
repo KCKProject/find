@@ -11,7 +11,7 @@
 	crossorigin="anonymous"></script>
 <script src="../resources/script/script.js" defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<title>findPage</title>
+<title>찾아가세요 글쓰기</title>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
@@ -19,7 +19,7 @@
 	<div class="wrap-all-findPageWirte">
 
 		<div id="contentsTitle">
-			<h3 class="contentsTitle">찾아주세요</h3>
+			<h3 class="contentsTitle">찾아가세요</h3>
 			<div class="titleLine"></div>
 		</div>
 		
@@ -32,10 +32,6 @@
 						<td><form:input path="title" placeholder="글제목"/></td>
 					</tr>
 					<tr>
-						<td><span style="color: white;">*</span>동물이름</td>
-						<td><form:input path="animal" placeholder="동물이름 ex.마루, 초코..."/></td>
-					</tr>
-					<tr>
 						<td><span style="color: white;">*</span>품종</td>
 						<td><form:input path="kind" placeholder="품종"/></td>
 					</tr>
@@ -44,12 +40,12 @@
 						<td><form:input path="gender" placeholder="남아/여아(중성화수술 여부 까지 적어주세요)"/></td>
 					</tr>
 					<tr>
-						<td><span>*</span>실종위치</td>
-						<td><form:input path="location" placeholder="실종위치"/></td>
+						<td><span>*</span>발견위치</td>
+						<td><form:input path="location" placeholder="발견위치"/></td>
 					</tr>
 					<tr>
-						<td><span>*</span>실종시각</td>
-						<td><form:input path="lostDate" placeholder="실종시각"/></td>
+						<td><span>*</span>발견시각</td>
+						<td><form:input path="findDate" placeholder="발견시각"/></td>
 					</tr>
 					<tr>  
 					
@@ -58,9 +54,7 @@
 					</tr>
 					<tr>
 						<td><span>*</span>상세내용</td>
-						<td><form:input path="memo" rows="10" cols="100" placeholder="상세내용"/>
-<!-- 							<textarea rows="100px" cols="30px"/> -->
-						</td>
+						<td><form:textarea path="memo" rows="100px" cols="30px" placeholder="상세내용"/></td>
 					</tr>
 					<%-- <tr>
 						<td>  사진첨부</td>

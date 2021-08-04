@@ -57,26 +57,22 @@
 	
 	
 	<!-- board -->
-	<bean id="lostBoardController" class="com.green.KCK_find.controller.LostBoardList">
+	<bean id="boardLostController" class="com.green.KCK_find.controller.BoardLostController">
 		<property name="dao" ref="findDao"/>
 	</bean>
 	
-	<bean id="lostBoardDetailController" class="com.green.KCK_find.controller.LostBoardDetailController">
+	<bean id="boardFindController" class="com.green.KCK_find.controller.BoardFindController">
 		<property name="dao" ref="findDao"/>
 	</bean>
 	
-	<bean id="lostBoardWriteController" class="com.green.KCK_find.controller.LostBoardWriteController">
+	<bean id="boardQnAController" class="com.green.KCK_find.controller.BoardQnAController">
+		<property name="dao" ref="findDao"/>
+	</bean>
+	
+	<bean id="boardLostWriteController" class="com.green.KCK_find.controller.BoardLostWriteController">
 		<property name="lostBoardWriteService" ref="lostBoardWriteSvc"/>
 	</bean>
 	
-	<bean id="findBoardController" class="com.green.KCK_find.controller.FindBoardList"/>
-	
-	
-	<bean id="QuestionPageController" class="com.green.KCK_find.controller.QuestionPageController">
-		<property name="dao" ref="findDao"/>
-	</bean>
-	
 	<bean id="ServicePageController" class="com.green.KCK_find.controller.ServicePageController"/>	
-	
-	
+
 </beans>

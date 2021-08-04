@@ -9,7 +9,7 @@
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <script src="../resources/script/script.js" defer></script>
-<title>findPage</title>
+<title>찾아가세요</title>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
@@ -30,7 +30,7 @@
 
 		<div class="wrapBoardlist"> 
 		<!-- 게시글이 존재하지 않을 때 -->
-		<c:if test="${empty losts}">
+		<c:if test="${empty find}">
 			<ul>
 				<li>발견된 동물이 없습니다!</li>
 			</ul>
@@ -39,26 +39,32 @@
 		<!-- 게시글이 1개 이상 존재할 때 -->
 		<ul>
 			 <!-- 게시물 li로 나열  -->
-			<c:forEach var="l" items="${losts}">
-				<li>
+			<c:forEach var="f" items="${find}">
+				<li><a href="<c:url value="/findPage/findPageDetail/${f.boardNum}"/>">
 					<div class="post-photo-top"> <!-- 게시글 사진 나오는 부분 --> 
-						<div><a href="<c:url value="/findPage/findPageDetail/${l.boardNum}"/>">사진</a></div>
+						<div>사진</div>
 					</div>
 					<div class="post-contents-bottom"> <!-- 게시글 내용 나오는 부분 -->
+						<!-- 작성자가 본인 글에서 발견 버튼 클릭 시에만 생성 -->
+						<c:if test="${f.meet==1}">
+							<div>
+								<p class="finishText">발견완료</p>
+							</div>
+						</c:if>
 						<div>
-							<p>이름 : 마루 | 성별 : 남</P>
+							<p>동물 종류 : ${f.kind} | 성별 : ${f.gender}</P>
 						</div>
 						<div>
-							<p>발견 위치 : 경기대학교 후문 사거리</p>
+							<p>발견 위치 : ${f.location}</p>
 						</div>
 						<div>
-							<p>발견 시각 : 07-19 15:30</p>
+							<p>발견 시각 : ${f.findDate}</p>
 						</div>
 						<div>
-							<p>특징 : 어쩌구 저쩌구</p>
+							<p>특징 : ${f.character}</p>
 						</div>
 					</div> 
-				</li>
+				</a></li>
 			</c:forEach>
 		</ul>
 		</div>
@@ -71,7 +77,7 @@
 	<button class="jellybutton topbtn" type="button" onclick="goTop()">TOP</button>
 		<!-- 글쓰기 버튼 -->
 		<!-- 예정) 로그인안한 회원은 로그인 페이지로 연결되도록 수정할 예정 -->
-	<button class="jellybutton sidebtn1" name="write" id="write" onclick="location='<c:url value="/findPage/findPageWrite"/>'">WIRTE</button>
+		<button class="jellybutton writebtn" name="write" id="write" onclick="location='<c:url value="/findPage/findPageWrite"/>'">WRITE</button>
 	
 </body>
 </html>

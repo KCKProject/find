@@ -10,7 +10,7 @@
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <script src="../resources/script/script.js" defer></script>
-<title>questionPage</title>
+<title>Q&A 게시판</title>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />

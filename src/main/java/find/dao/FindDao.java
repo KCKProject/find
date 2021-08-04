@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import find.vo.Admin;
 import find.vo.Criteria;
+import find.vo.FindBoard;
 import find.vo.LostBoard;
 import find.vo.LostBoardWriteCommand;
 import find.vo.Member;
@@ -34,73 +35,97 @@ public class FindDao {
 		this.jdbcTemplate = new JdbcTemplate(dataSource);
 	}
 	
-	private RowMapper<Member> rowMapper = new RowMapper<Member>() {
-		
-		@Override
-		public Member mapRow(ResultSet rs, int rowNum) throws SQLException{
-			Member m = new Member(
-						rs.getString("userId"),
-						rs.getString("userPassword"),
-						rs.getString("userName"),
-						rs.getString("phone"),
-						rs.getString("email")
-					);
-			m.setMemberNumber(rs.getLong("membernumber"));
-			return m;
-		}
-	};
-	
-	private RowMapper<Admin> adminRowMapper = new RowMapper<Admin>() {
+	// RowMapper
+		private RowMapper<Member> rowMapper = new RowMapper<Member>() {
 			
-			public Admin mapRow(ResultSet rs, int rowNum) throws SQLException{
-				Admin m = new Admin(
-							rs.getString("adminId"),
-							rs.getString("adminPassword"),
-							rs.getString("adminName")
+			@Override
+			public Member mapRow(ResultSet rs, int rowNum) throws SQLException{
+				Member m = new Member(
+							rs.getString("userId"),
+							rs.getString("userPassword"),
+							rs.getString("userName"),
+							rs.getString("phone"),
+							rs.getString("email")
 						);
+				m.setMemberNumber(rs.getLong("membernumber"));
 				return m;
 			}
 		};
-	
-	private RowMapper<LostBoard> lostBoardRowMapper = new RowMapper<LostBoard>() {
 		
-		public LostBoard mapRow(ResultSet rs, int rowNum) throws SQLException{
-			LostBoard lb = new LostBoard(
-					rs.getString("title"),
-					rs.getString("writer"),
-					rs.getDate("writeDate"),
-					rs.getString("location"),
-					rs.getString("character"),
-					rs.getString("animal"),
-					rs.getString("kind"),
-					rs.getString("gender"),
-					rs.getString("img"),
-					rs.getString("email"),
-					rs.getString("phone"),
-					rs.getDate("lostDate"),
-					rs.getString("memo"),
-					rs.getInt("meet")
-					);
-			lb.setBoardNum(rs.getLong("boardNum"));
-			return lb;		
-		}
-	};
-	
-	private RowMapper<QnABoard> qnABoardRowMapper = new RowMapper<QnABoard>() {
+		private RowMapper<Admin> adminRowMapper = new RowMapper<Admin>() {
+				
+				public Admin mapRow(ResultSet rs, int rowNum) throws SQLException{
+					Admin m = new Admin(
+								rs.getString("adminId"),
+								rs.getString("adminPassword"),
+								rs.getString("adminName")
+							);
+					return m;
+				}
+			};
 		
-		public QnABoard mapRow(ResultSet rs, int rowNum) throws SQLException{
-			QnABoard m = new QnABoard(
+		private RowMapper<LostBoard> lostBoardRowMapper = new RowMapper<LostBoard>() {
+			
+			public LostBoard mapRow(ResultSet rs, int rowNum) throws SQLException{
+				LostBoard lb = new LostBoard(
 						rs.getString("title"),
 						rs.getString("writer"),
 						rs.getDate("writeDate"),
-						rs.getString("contents"),
-						rs.getInt("open")
-					);
-			m.setBoardNum(rs.getLong("boardNum"));
-			return m;
-		}
-	};
+						rs.getString("location"),
+						rs.getString("character"),
+						rs.getString("animal"),
+						rs.getString("kind"),
+						rs.getString("gender"),
+						rs.getString("img"),
+						rs.getString("email"),
+						rs.getString("phone"),
+						rs.getDate("lostDate"),
+						rs.getString("memo"),
+						rs.getInt("meet")
+						);
+				lb.setBoardNum(rs.getLong("boardNum"));
+				return lb;		
+			}
+		};
+		
+		private RowMapper<FindBoard> findBoardRowMapper = new RowMapper<FindBoard>() {
+
+			public FindBoard mapRow(ResultSet rs, int rowNum) throws SQLException{
+				FindBoard f = new FindBoard(
+						rs.getString("title"),
+						rs.getString("writer"),
+						rs.getDate("writeDate"),
+						rs.getString("kind"),
+						rs.getString("gender"),
+						rs.getString("location"),
+						rs.getString("character"),
+						rs.getString("img"),
+						rs.getString("email"),
+						rs.getString("phone"),
+						rs.getDate("findDate"),
+						rs.getString("memo"),
+						rs.getInt("meet")
+						);
+				f.setBoardNum(rs.getLong("boardNum"));
+				return f;
+			}
+		};
 	
+		private RowMapper<QnABoard> qnABoardRowMapper = new RowMapper<QnABoard>() {
+			
+			public QnABoard mapRow(ResultSet rs, int rowNum) throws SQLException{
+				QnABoard m = new QnABoard(
+							rs.getString("title"),
+							rs.getString("writer"),
+							rs.getDate("writeDate"),
+							rs.getString("contents"),
+							rs.getInt("open")
+						);
+				m.setBoardNum(rs.getLong("boardNum"));
+				return m;
+			}
+		};
+		
 	
 			/*
 			 * public List<Member> selectAll() { List<Member> results = jdbcTemplate.query(
@@ -132,6 +157,12 @@ public class FindDao {
 	public List<LostBoard> selectAllLostBoard() {
 		List<LostBoard> results = jdbcTemplate.query(
 				"SELECT * FROM lostBoard order by boardNum ASC",lostBoardRowMapper);
+		return results;
+	}
+	
+	public List<FindBoard> selectAllFindBoard() {
+		List<FindBoard> results = jdbcTemplate.query(
+				"SELECT * FROM findBoard order by boardNum ASC",findBoardRowMapper);
 		return results;
 	}
 	
@@ -232,6 +263,13 @@ public class FindDao {
 		return results.isEmpty() ? null : results.get(0);
 	}
 	
+	public FindBoard selectByFindBoardNum(long boardNum) {
+		String sql="SELECT * FROM findBoard WHERE boardNum=?";
+		List<FindBoard> results = jdbcTemplate.query(sql, findBoardRowMapper, boardNum);
+		
+		return results.isEmpty() ? null : results.get(0);
+	}
+	
 	public QnABoard selectByQuestionBoardNum(long boardNum) {
 		String sql="SELECT * FROM QnABoard WHERE boardNum=?";
 		List<QnABoard> results = jdbcTemplate.query(sql, qnABoardRowMapper, boardNum);
@@ -244,15 +282,16 @@ public class FindDao {
 		jdbcTemplate.query(sql,lostBoardRowMapper,boardNum);
 	}
 	
-	public void updateMeet(long boardNum, int meet) {
+	public void updateMeet(long boardNum, int meet, String board) {
 		String sql = "";
+		
 		if(meet==0) {
 			System.out.println("meet가 0");
-			sql = "UPDATE lostBoard SET meet=1 WHERE boardNum=?"; 
+			sql = "UPDATE "+board+" SET meet=1 WHERE boardNum=?"; 
 		}
 		if(meet==1) {
 			System.out.println("meet가 1");
-			sql = "UPDATE lostBoard SET meet=0 WHERE boardNum=?";
+			sql = "UPDATE "+board+" SET meet=0 WHERE boardNum=?";
 		}
 		jdbcTemplate.update(sql,boardNum);
 	}
@@ -288,5 +327,7 @@ public class FindDao {
 		Number keyValue = key.getKey();
 		lostBoard.setBoardNum(keyValue.longValue());
 	}
+
+
 
 }
