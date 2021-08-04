@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
-		
-	<tx:annotation-driven transaction-manager="transactionManager"/>
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:tx="http://www.springframework.org/schema/tx"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.1.xsd">
+      
+   <tx:annotation-driven transaction-manager="transactionManager"/>
 
-	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
- 		<property name="driverClass" value="oracle.jdbc.OracleDriver"/>
- 		<property name="jdbcUrl" value="jdbc:oracle:thin:@db.interstander.com:41521:XE"/>
- 		<property name="user" value="king"/>
- 		<property name="password" value="king"/>
- 		<property name="maxPoolSize" value="30"/>
- 	</bean>
+   <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+       <property name="driverClass" value="oracle.jdbc.OracleDriver"/>
+       <property name="jdbcUrl" value="jdbc:oracle:thin:@db.interstander.com:41521:XE"/>
+       <property name="user" value="king"/>
+       <property name="password" value="king"/>
+       <property name="maxPoolSize" value="30"/>
+    </bean>
 
-	<!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
- 		<property name="driverClass" value="oracle.jdbc.OracleDriver"/>
- 		<property name="test.jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"/>
- 		<property name="test.user" value="greenJSP2"/>
- 		<property name="test.password" value="jsp1234"/>
- 	</bean>
- 	 -->
- 	<bean id="transactionManager" 
-	class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
- 	
- 	<bean id="findDao" class="find.dao.FindDao">
-		<property name="dataSource" ref="dataSource"/>
-	</bean>
-	
- 	<bean id="adminAuthSvc" class="find.service.AdminAuthService">
-		<property name="dao" ref="findDao"/>
-	</bean>
-	
-	<bean id="memberAuthSvc" class="find.service.MemberAuthService">
-		<property name="dao" ref="findDao"/>
-	</bean>
-	
-	<bean id="signUpSvc" class="find.service.SignUpService">
-		<constructor-arg ref="findDao"/>
-	</bean>
-	
-	<!-- 게시글 등록 서비스 -->	
- 	<bean id="lostBoardWriteSvc" class="find.service.LostBoardWriteService">
-		<constructor-arg ref="findDao" />
-	</bean>
+   <!-- <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+       <property name="driverClass" value="oracle.jdbc.OracleDriver"/>
+       <property name="test.jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+       <property name="test.user" value="greenJSP2"/>
+       <property name="test.password" value="jsp1234"/>
+    </bean>
+     -->
+    <bean id="transactionManager" 
+   class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref="dataSource"/>
+   </bean>
+    
+    <bean id="findDao" class="find.dao.FindDao">
+      <property name="dataSource" ref="dataSource"/>
+   </bean>
+   
+    <bean id="adminAuthSvc" class="find.service.AdminAuthService">
+      <property name="dao" ref="findDao"/>
+   </bean>
+   
+   <bean id="memberAuthSvc" class="find.service.MemberAuthService">
+      <property name="dao" ref="findDao"/>
+   </bean>
+   
+   <bean id="signUpSvc" class="find.service.SignUpService">
+      <constructor-arg ref="findDao"/>
+   </bean>
+   
+   <!-- 게시글 등록 서비스 -->   
+    <bean id="lostBoardWriteSvc" class="find.service.LostBoardWriteService">
+    	<constructor-arg ref="findDao" />
+   </bean>
 </beans>

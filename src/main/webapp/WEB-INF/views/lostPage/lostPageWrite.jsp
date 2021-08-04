@@ -62,10 +62,10 @@
 <!-- 							<textarea rows="100px" cols="30px"/> -->
 						</td>
 					</tr>
-					<%-- <tr>
+					 <tr>
 						<td>  사진첨부</td>
 						<td><form:file path="photo"/></td>
-					</tr> --%>
+					</tr> 
 				</table>
 
 			<!-- 	<div> 첨부파일
