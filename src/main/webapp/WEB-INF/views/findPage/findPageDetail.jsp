@@ -4,14 +4,11 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <html>
 <head>
-<<<<<<< Updated upstream
-<title>찾아가세요</title>
-=======
 <link rel="stylesheet" href="../../resources/css/style.css">
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <script src="../../resources/script/script.js" defer></script>
-<title>찾아가세요</title>
+<title>findPage</title>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
@@ -19,9 +16,9 @@
 	<div class="wrapboardPage">
 
 		<div id="contentsTitle">
-			<h3 class="contentsTitle">포메 남아 5살</h3>
-			<div class="titleLine boardDetailPageLine"></div>
-		</div>
+         <h3 class="contentsTitle">(발견) ${detail.title}</h3>
+         <div class="boardDetailPageLine"></div>
+      </div>
 
 		<div class="wrap-findPage"> 
 			

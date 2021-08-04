@@ -73,8 +73,7 @@
 					<div class="writeTerms">
 						<label class="checkbox"><input type="checkbox" name="term" id="term" value="agree" class="AllOkay"><span class="icon"></span><span class="text">전체동의</span></label> 
 						<label class="checkbox"><input type="checkbox" name="term" id="term" value="phoneAgree" class="okay"><span class="icon"></span><span class="text">연락처 노출 동의 
-									(회원가입 시 등록 한 연락처를 연락받을 번호로 기재 합니다. <br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-									<span style="color: red; font-size: 20px;">*</span>해당 체크박스 미체크시 별도의 연락수단 상세내용에 기재 요망)<br> </span></label> 
+									(회원가입 시 등록 한 연락처를 연락받을 번호로 기재 합니다. <br><span style="color: red; font-size: 20px;">*</span>해당 체크박스 미체크시 별도의 연락수단 상세내용에 기재 요망)<br> </span></label> 
 						<label class="checkbox"><input type="checkbox" name="term" id="term" value="emailAgree" class="okay"><span class="icon"></span><span class="text">이메일 노출 동의 
 									(회원가입 시 등록 한 이메일을 연락받을 메일로 기재 합니다.)</span></label> 
 					</div>
@@ -93,7 +92,7 @@
 		<!-- 내용 미정 -->
 	<div class="centerbtn">		
 		<div class="jellybutton centerHiddenContents guideHiddenContents" name="centerHidden" id="centerHidden"><p>GUIDE<BR>1. '*'는 필수 입력 사항 입니다.<br>2. 실종 위치 및 시각은 최대한 <BR>구체적으로 적어주세요.<br>ex) 15시 20분경 경기대 후문<br>3. 내용은 자유롭게 기재 하되, <BR>최대한 많은 내용을 기재 해 주셔야 발견 될 확률이 높습니다.</p></div>
-		<button class="jellybutton sidebtn1" name="center" id="center" onclick="location='<c:url value="주소"/>'">GUIDE</button>
+		<button class="jellybutton sidebtn1" name="center" id="center">GUIDE</button>
 	</div>
 	
 	<script>
