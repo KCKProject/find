@@ -55,30 +55,47 @@
 					</div>
 					<div class="signUpTerms">
 			
- 						<div class="checkbox">
-							<input type="checkbox" name="term" id="ageAgree" value="ageAgree"> 
-							<span class="icon"></span>
-							<span class="text"><label for="ageAgree">만 14세 이상입니다.(필수)</label></span>
-						</div>
-						<div class="checkbox">
-							<input type="checkbox" name="term" id="infoAgree" value="infoAgree"> 
-							<span class="icon"></span>
-							<span class="text"><label for="infoAgree">개인정보 수집 이용 동의 (필수)</label></span>
-						</div>
-						<div class="checkbox">
-							<input type="checkbox" name="term" id="term" value="addAgree" required oninvalid="this.setCustomValidity('필수 체크사항')" oninput="setCustomValidity('')"> 
-							<span class="icon"></span>
-							<span class="text"><label for="term">추가추가</label></span>
-						</div> 
+ 					<div class="checkbox">
+                     	<input type="checkbox" name="term" id="ageAgree" value="ageAgree" >
+           				<span class="icon"></span>
+                     	<span class="text"><label for="ageAgree">만 14세 이상입니다.(필수)</label></span>
+                 	</div>
+                  	<div class="checkbox">
+                     	<input type="checkbox" name="term" id="infoAgree" value="infoAgree" > 
+                     	<span class="icon"></span>
+                     	<span class="text"><label for="infoAgree">개인정보 수집 이용 동의 (필수)</label></span>
+                  	</div>
+                  	<div class="checkbox">
+                     	<input type="checkbox" name="term" id="term" value="addAgree"> 
+                     	<span class="icon"></span>
+                     	<span class="text"><label for="term">추가추가</label></span>
+                  	</div>  
 						
 					</div>
 					<div class="signUpBoxbtn">
-						<input type="submit" value="회원가입" onclick="signUpChk()">
+						<!-- <input type="submit" value="회원가입" onclick="signUpChk()">	 -->
+						<input type="button" value="회원가입" onclick="signUpChk()">
 					</div>
 				</form:form>
 			</div>			
 		</div>
 	</section>
 	<jsp:include page="../include/footer.jsp"></jsp:include>
+	<script type="text/javascript">
+		function signUpChk(){
+			var ageAgree = document.getElementById("ageAgree");
+			var infoAgree = document.getElementById("infoAgree");
+			if(!ageAgree.checked){
+				alert("필수사항을 체크해주세요")
+				return false;
+			}
+			if(!infoAgree.checked){
+				alert("필수사항을 체크해주세요")
+				return false;
+			}
+			document.getElementById('signUpCommand').submit();
+			return false;
+		}
+	</script>
 </body>
 </html>

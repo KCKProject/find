@@ -38,7 +38,7 @@
 							${i.memberNumber}명
 						</c:if>
 					</c:forEach> --%>
-					${pageMaker.totalCount+1}명
+					${pageMaker.totalCount}명
 					<!-- 읽어서 받아올수 있게 만들기 -->
 					<input type="text" name="search" id="search"
 						placeholder="검색어를 입력해주세요"> <a href=""> <img
