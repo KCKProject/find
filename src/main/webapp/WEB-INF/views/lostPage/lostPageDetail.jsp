@@ -32,7 +32,7 @@
 				</ul>
 				<div class="post-contents-bottom"> <!-- 게시글 내용 나오는 부분 -->
 					<div class="userid-writetime-anumber-view">
-						<p>${detail.writer}님 | ${detail.writeDate} | 등록번호 ${detail.boardNum} | 조회 228</P>
+						<p>${detail.writer}님 | ${detail.writeDate} | 등록번호 ${detail.boardNum} | 조회 ${detail.hit}</P>
 					</div>
 					<div class="animalName">
 						<p>이름 | ${detail.animal}</p>

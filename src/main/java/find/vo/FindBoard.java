@@ -17,11 +17,12 @@ public class FindBoard {
 	private Date findDate;
 	private String memo;
 	private int meet;
+	private int hit;
  
  public FindBoard() {}
 
 	public FindBoard(String title, String writer, Date writeDate, String kind, String gender, String location,
-			String character, String img, String email, String phone, Date findDate, String memo, int meet) {
+			String character, String img, String email, String phone, Date findDate, String memo, int meet, int hit) {
 		this.title = title;
 		this.writer = writer;
 		this.writeDate = writeDate;
@@ -35,6 +36,7 @@ public class FindBoard {
 		this.findDate = findDate;
 		this.memo = memo;
 		this.meet = meet;
+		this.hit = hit;
 	}
 	
 	public Long getBoardNum() {
@@ -147,5 +149,13 @@ public class FindBoard {
 	
 	public void setMeet(int meet) {
 		this.meet = meet;
+	}
+
+	public int getHit() {
+		return hit;
+	}
+
+	public void setHit(int hit) {
+		this.hit = hit;
 	} 
 }

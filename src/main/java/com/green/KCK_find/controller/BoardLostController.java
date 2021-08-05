@@ -44,6 +44,9 @@ public class BoardLostController {
 	// 글 클릭시 상세보기 메서드
 	@RequestMapping("/lostPage/lostPageDetail/{boardNum}")
 	public String detail(@PathVariable("boardNum") long boardNum, Model model) {
+		System.out.println("도착");
+		dao.updateLostHit(boardNum);
+		System.out.println("완성");
 		LostBoard detail = dao.selectByBoardNum(boardNum);
 		
 		model.addAttribute("detail", detail);

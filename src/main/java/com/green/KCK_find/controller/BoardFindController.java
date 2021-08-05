@@ -44,8 +44,9 @@ public class BoardFindController {
 	// 글 클릭시 상세보기 메서드
 		@RequestMapping("/findPage/findPageDetail/{boardNum}")
 		public String detail(@PathVariable("boardNum") long boardNum, Model model) {
+			dao.updateFindHit(boardNum);
 			FindBoard detail = dao.selectByFindBoardNum(boardNum);
-			
+
 			model.addAttribute("detail", detail);
 			
 			return "findPage/findPageDetail";

@@ -20,13 +20,14 @@ public class LostBoard {
 	private int meet;
 	private String originalFile;
 	private String originalFileExtension;
-	private String storedFileName;	
+	private String storedFileName;
+	private int hit;
 	
 	public LostBoard() {}
 
 	public LostBoard(String title, String writer, Date writeDate, String location, String character, String animal,
 			String kind, String gender, String email, String phone, Date lostDate, int meet, String memo,
-			String originalFile, String originalFileExtension, String storedFileName) {
+			String originalFile, String originalFileExtension, String storedFileName, int hit) {
 		this.title = title;
 		this.writer = writer;
 		this.writeDate = writeDate;
@@ -43,6 +44,7 @@ public class LostBoard {
 		this.lostDate = lostDate;
 		this.memo = memo;
 		this.meet = meet;
+		this.hit = hit;
 	}
 	public long getBoardNum() {
 		return boardNum;
@@ -154,5 +156,13 @@ public class LostBoard {
 
 	public void setOriginalFile(String originalFile) {
 		this.originalFile = originalFile;
+	}
+	
+	public int getHit() {
+		return hit;
+	}
+
+	public void setHit(int hit) {
+		this.hit = hit;
 	}
 }

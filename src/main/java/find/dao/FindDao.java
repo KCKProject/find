@@ -84,7 +84,8 @@ public class FindDao {
 						rs.getString("memo"),
 						rs.getString("originalFile"),
 						rs.getString("originalFileExtension"),
-						rs.getString("storedFileName")
+						rs.getString("storedFileName"),
+						rs.getInt("hit")
 						);
 				lb.setBoardNum(rs.getLong("boardNum"));
 				return lb;		
@@ -107,7 +108,8 @@ public class FindDao {
 						rs.getString("phone"),
 						rs.getDate("findDate"),
 						rs.getString("memo"),
-						rs.getInt("meet")
+						rs.getInt("meet"),
+						rs.getInt("hit")
 						);
 				f.setBoardNum(rs.getLong("boardNum"));
 				return f;
@@ -177,13 +179,13 @@ public class FindDao {
 		return cnt;
 	}
 	
-	
+
 	public List<LostBoard> selectAllLostBoard(Criteria cri) {
 		List<LostBoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
-				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME " + 
+				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT " + 
 						"from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
-						+ "PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, row_number() " + 
+						+ "PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, row_number() " + 
 						"over(order by boardnum desc) as rNum " + 
 						"from lostBoard) mb where rNum between ? and ? order by boardnum desc"
 						,lostBoardRowMapper,cri.getRowStart(), cri.getRowEnd());
@@ -193,9 +195,9 @@ public class FindDao {
 	public List<LostBoard> selectAllLostBoard(CriteriaMainBoard cri) {
 		List<LostBoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
-				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME " + 
+				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT " + 
 						"from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
-						+ "PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, row_number() " + 
+						+ "PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, row_number() " + 
 						"over(order by boardnum desc) as rNum " + 
 						"from lostBoard) mb where rNum between ? and ? order by boardnum desc"
 						,lostBoardRowMapper,cri.getRowStart(), cri.getRowEnd());
@@ -205,9 +207,9 @@ public class FindDao {
 	public List<FindBoard> selectAllFindBoard(Criteria cri) {
 		List<FindBoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, IMG, EMAIL, "
-						+ " FINDDATE, MEET, MEMO, PHONE " 
+						+ " FINDDATE, MEET, MEMO, PHONE, HIT " 
 						+ "from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, IMG, EMAIL, "
-						+ "FINDDATE, MEET, MEMO, PHONE, row_number() " 
+						+ "FINDDATE, MEET, MEMO, PHONE, HIT, row_number() " 
 						+ "over(order by boardnum desc) as rNum " 
 						+ "from FindBoard) mb where rNum between ? and ? order by boardnum desc",
 						findBoardRowMapper,cri.getRowStart(), cri.getRowEnd());
@@ -218,9 +220,9 @@ public class FindDao {
 	public List<FindBoard> selectAllFindBoard(CriteriaMainBoard cri) {
 		List<FindBoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, IMG, EMAIL, "
-						+ " FINDDATE, MEET, MEMO, PHONE " 
+						+ " FINDDATE, MEET, MEMO, PHONE, HIT " 
 						+ "from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, IMG, EMAIL, "
-						+ "FINDDATE, MEET, MEMO, PHONE, row_number() " 
+						+ "FINDDATE, MEET, MEMO, PHONE, HIT, row_number() " 
 						+ "over(order by boardnum desc) as rNum " 
 						+ "from FindBoard) mb where rNum between ? and ? order by boardnum desc",
 						findBoardRowMapper,cri.getRowStart(), cri.getRowEnd());
@@ -248,9 +250,7 @@ public class FindDao {
 
 	public Admin selectByAdminId(String adminId) {
 		String sql = "SELECT * FROM ADMIN WHERE adminId=?";
-//		System.out.println("�뼱�뱶誘� 異쒕젰 �솗�씤");
 		List<Admin> results = jdbcTemplate.query(sql, adminRowMapper, adminId);
-//		System.out.println("�뼱�뱶誘� 異쒕젰 �솗�씤 2");
 		return results.isEmpty() ? null : results.get(0);
 	}
 	
@@ -344,12 +344,31 @@ public class FindDao {
 		
 		return results.isEmpty() ? null : results.get(0);
 	}
-	
+
 	public QnABoard selectByQuestionBoardNum(long boardNum) {
 		String sql="SELECT * FROM QnABoard WHERE boardNum=?";
 		List<QnABoard> results = jdbcTemplate.query(sql, qnABoardRowMapper, boardNum);
 		
-		return results.isEmpty() ? null : results.get(0);
+		return results.isEmpty() ? null : results.get(0);	
+	}
+	
+	public void updateLostHit(long boardNum) {
+		jdbcTemplate.update(
+				new PreparedStatementCreator() {
+			
+				@Override
+				public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+					PreparedStatement psmt = con.prepareStatement(
+							"UPDATE lostBoard SET HIT=HIT+1 WHERE boardNum=?");
+					psmt.setLong(1,boardNum);
+					return psmt;
+					}
+				});
+	}
+	
+	public void updateFindHit(long boardNum) {
+		jdbcTemplate.update("UPDATE findBoard SET HIT=HIT+1 WHERE boardNum=?",
+				boardNum);
 	}
 	
 	public void deleteByLostBoardNum(long boardNum) {
@@ -398,7 +417,7 @@ public class FindDao {
 		System.out.println(lb.getCharacter());
 //		KeyHolder key = new GeneratedKeyHolder();
 		jdbcTemplate.update("INSERT INTO lostBoard (boardNum, title, writer, writeDate, kind, location, character, animal,"
-				+ " gender, email, phone, lostDate, meet, memo, originalFile, originalFileExtension, storedFileName) VALUES(lostBoard_seq.nextval,?,?,sysdate,?,?,?,?,?,?,?,?,0,?,?,?,?)",
+				+ " gender, email, phone, lostDate, meet, memo, originalFile, originalFileExtension, storedFileName, hit) VALUES(lostBoard_seq.nextval,?,?,sysdate,?,?,?,?,?,?,?,?,0,?,?,?,?,0)",
 				lb.getTitle(),
 				lb.getWriter(),
 				lb.getKind(),
@@ -444,43 +463,5 @@ public class FindDao {
 		// find 게시판 업로드
 		System.out.println("dao까지 넘어옴");
 	}
-	
-	
-	
-	
-	//�씪�떒 蹂댁〈
-//	//李얠븘二쇱꽭�슂 寃뚯떆湲� �벑濡� - �뿉�윭�굹硫� 二쇱꽍泥섎━
-//	public void writeLostBoard(MemberAuthInfo member, LostBoardWriteCommand lC) {
-//		LostBoard lostBoard = null;
-//		System.out.println(lC.getCharacter());
-//		KeyHolder key = new GeneratedKeyHolder();
-//		jdbcTemplate.update(new PreparedStatementCreator() {
-//			@Override
-//			public PreparedStatement createPreparedStatement(Connection con)throws SQLException{
-//				PreparedStatement psmt = con.prepareStatement(
-//						"INSERT INTO lostBoard VALUES(lostBoard_seq.nextval,?,?,sysdate,?,?,?,?,?,?,?,?,?,?,0)",
-//						new String[] {"boardNum"});
-//						
-//				psmt.setString(1,lC.getTitle());
-//				psmt.setString(2,member.getUserId());
-//				psmt.setString(3,lC.getLocation());
-//				psmt.setString(4,lC.getCharacter());
-//				psmt.setString(5,lC.getAnimal());
-//				psmt.setString(6,lC.getKind());
-//				psmt.setString(7,lC.getGender());
-//				psmt.setString(8,null);
-//				psmt.setString(9,member.getEmail());
-//				psmt.setString(10,member.getPhone());
-//				psmt.setDate(11,lC.getLostDate());
-//				psmt.setString(12,lC.getMemo());
-//				
-//				return psmt;
-//			}
-//		},key);
-//		Number keyValue = key.getKey();
-//		lostBoard.setBoardNum(keyValue.longValue());
-//	}
-
-
 
 }
