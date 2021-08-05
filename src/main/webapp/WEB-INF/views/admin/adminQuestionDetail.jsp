@@ -21,7 +21,7 @@
 				<p class="adminTitle">Q&A 관리</p>
 			</div>
 			<div>
-				<p>Q&A 관리</p>
+				<a href="<c:url value='/admin/adminQuestionPage'/>"><p>Q&A 관리</p></a>
 			</div>
 		</div>
 
@@ -50,7 +50,7 @@
 							<button class="btn btn-swap"> MORE <span>전체 글 보기 >></span> </button>
 						</a>
 						<a href="<c:url value='/admin/adminQuestionPage'/>">
-							<button class="btn btn-swap" onclick="del(${qnABoard.boardNum})"> DELETE <span>글 삭제 >></span> </button>
+							<button class="btn btn-swap" onclick="delQnA(${qnABoard.boardNum})"> DELETE <span>글 삭제 >></span> </button>
 						</a>
 						<a href="<c:url value='/admin/adminQuestionPage'/>">
 							<button class="btn btn-swap"> EDIT <span>글 수정 >></span> </button>
@@ -70,13 +70,6 @@
 				</div>
 			</div>
 		</div>
-		<script>
-	function del(boardNum) {
-		var chk = confirm("정말 삭제하시겠습니까?");
-		if (chk) {
-			location.href="<c:url value='/admin/questionDelete/'/>"+boardNum;
-		}
-	}	
-	</script>
+	
 </body>
 </html>

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import find.dao.FindDao;
 import find.exception.MemberNotFoundException;
+import find.vo.FindBoard;
 import find.vo.LostBoard;
 
 @Controller
@@ -29,5 +30,18 @@ public class AdminBoardDetailController {
 		model.addAttribute("lostBoard",lostBoard);
 		
 		return "admin/adminLostBoardDetail";
+	}
+	
+	@RequestMapping("/admin/findBoardDetail/{boardNum}")
+	public String detail2(@PathVariable("boardNum") long boardNum, Model model) {
+		
+		FindBoard findBoard = dao.selectByFindBoardNum(boardNum);
+		
+		if(findBoard == null) {
+			throw new MemberNotFoundException();
+		}
+		model.addAttribute("findBoard",findBoard);
+		
+		return "admin/adminFindBoardDetail";
 	}
 }

@@ -22,10 +22,10 @@
 				<p class="adminTitle">게시판 관리</p>
 			</div>
 			<div>
-				<p>찾아주세요</p>
+				<a href="<c:url value='/admin/adminBoard'/>"><p>찾아주세요</p></a>
 			</div>
 			<div>
-				<p>찾아가세요</p>
+				<a href="<c:url value='/admin/adminFindBoard'/>"><p>찾아가세요</p></a>
 			</div>
 		</div>
 

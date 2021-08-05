@@ -329,6 +329,7 @@ public class FindDao {
 		return results.isEmpty() ? null : results.get(0);
 	}
 	
+
 	public FindBoard selectByFindBoardNum(long boardNum) {
 		String sql="SELECT * FROM findBoard WHERE boardNum=?";
 		List<FindBoard> results = jdbcTemplate.query(sql, findBoardRowMapper, boardNum);
