@@ -27,6 +27,7 @@
 			</div>
 			<div class="loginBoxLower">
 				<p>
+					<a href="<spring:url value='/enter/memberInformationFind'/>" class="loginBoxLowerText">아이디, 비밀번호 찾기 | </a>
 					<a href="<c:url value='/enter/signUp'/>" class="loginBoxLowerText">아직 회원이 아니신가요?</a>
 				</p>
 			</div>

@@ -289,7 +289,7 @@ footer {
 }
 
 .loginTitle {
-    padding: 5% 0% 2% 0%;
+    padding: 2% 0%;
     font-size: 25px;
     margin-left: 40%;
     width: 100px;
@@ -348,6 +348,26 @@ footer {
 	background-color: lightgoldenrodyellow;
 }
 
+/* ========================= */
+/*  index-3 enter-memberInformationFind  */
+
+.memberInformationFindBox{
+   height: 330px;
+}
+
+.loginBox select {
+    border-radius: 8px;
+    width: 80%;
+    height: 40px;
+    margin: 2% 0%;
+    justify-content: center;
+    border: #cecece 1px solid;
+}
+
+.loginBox select:hover {
+	border: 1px solid gray;
+	transition: all.3s;
+}
 
 /* ========================= */
 /*  index-3 enter-signup  */

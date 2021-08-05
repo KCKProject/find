@@ -47,7 +47,7 @@
 								</td>
 							</tr>
 							<tr class="qacontentsBx">
-								<td colspan="5" class="qacontents">${q.contents}</td>
+								<td colspan="5" class="qacontents" style="text-align: left; padding: 20px 150px;'">${q.contents}</td>
 							</tr>
 						</c:if>
 
