@@ -1,15 +1,15 @@
 package find.vo;
 
-public class Criteria {
+public class CriteriaMainBoard {
 	
 	private int page;
 	private int perPageNum;
 	private int rowStart;
 	private int rowEnd;
 	
-	public Criteria() {
+	public CriteriaMainBoard() {
 		this.page = 1;
-		this.perPageNum = 10;
+		this.perPageNum = 20;
 		
 	}
 	

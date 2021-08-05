@@ -32,12 +32,12 @@
 		<div class="right">
 			<div>
 				<p> Q&A 
-				<c:forEach items="${questions}" var="i" varStatus="status">
+				<%-- <c:forEach items="${questions}" var="i" varStatus="status">
 					<c:if test="${status.last}">
 							${i.boardNum}
 					</c:if>
-				</c:forEach>
-				 개 <!-- 읽어서 받아올수 있게 만들기 -->
+				</c:forEach> --%>
+				${pageMaker.totalCount}개 <!-- 읽어서 받아올수 있게 만들기 -->
 				<!-- 검색창 필요 시 살릴 것 
 				<input type="text" name="search" id="search" placeholder="검색어를 입력해주세요"> 
 				<a href=""><img src="../resources/img/search.png" alt="검색" width="15px" height="15px"></a> -->
@@ -81,13 +81,17 @@
 					</c:if>
 				</table>
 				<div class="paging">
-					<span onclick="alert('이전 페이지가 없습니다.');"><<</span>
-					<c:set var="page" value="${(param.p==null)? 1: param.p}" />
-					<c:set var="startNum" value="${page-(page-1)%5}" />
-					<span> <c:forEach var="i" begin="0" end="4">
-							<a href="?p=${startNum+i}&t=&q=">${startNum+i}</a>
-						</c:forEach>
-					</span> <span onclick="alert('다음 페이지가 없습니다.');">>></span>
+					<ul>
+  						<c:if test="${pageMaker.prev}">
+					   		<li><a href="${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+					  	</c:if>
+					  	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+					   		<li><a href="${pageMaker.makeQuery(idx)}">${idx}</a></li>
+					  	</c:forEach>
+					  	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					   		<li><a href="${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+					  	</c:if> 
+					 </ul>
 				</div>
 			</div>
 		</div>
