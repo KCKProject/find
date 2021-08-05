@@ -27,20 +27,20 @@
 				<!-- q&a 데이터 많지 않아서 jsp 에서 애초에 저 데이터까지 받아와놓고 css로 안보이게해놧다가 보여주게 해도 될듯 합니당 -->
 					<tr class="qaBxListTitle">
 						<!-- <th>번호</th> -->
-						<th>제목</th>
-						<th>작성자</th>
-						<th>작성일</th>
-						<th style="color: white;">상세보기</th>
+						<th class="qaBxContentsTitle">제목</th>
+						<th class="qaBxContentsWriter">작성자</th>
+						<th class="qaBxContentsWriteDate">작성일</th>
+						<th class="qaBxContentsMoreBtn" style="color: white;">상세보기</th>
 					</tr>
 					<c:forEach var="q" items="${questions}">
 						<c:if test="${q.open==1}">
 							<tr>
 								<%-- <td>${q.boardNum}</td> --%>
-								<td>${q.title}</td>
-								<td>${q.writer}</td>
-								<td><fmt:formatDate value="${q.writeDate}"
+								<td class="qaBxContentsTitle">${q.title}</td>
+								<td class="qaBxContentsWriter">${q.writer}</td>
+								<td class="qaBxContentsWriteDate"><fmt:formatDate value="${q.writeDate}"
 										pattern="yyyy-MM-dd" /></td>
-								<td>
+								<td class="qaBxContentsMoreBtn">
 									<a class="dnBtnQa"><i class="fas fa-angle-double-down"></i></a>
 									<a class="upBtnQa"><i class="fas fa-angle-up"></i></a>
 								</td>
