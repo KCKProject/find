@@ -89,12 +89,7 @@ function del(boardNum) {
 	}
 }
 
-function delQnA(boardNum) {
-		var chk = confirm("정말 삭제하시겠습니까?");
-		if (chk) {
-			location.href="<c:url value='/admin/questionDelete/'/>"+boardNum;
-		}
-	}	
+	
 
 
 
