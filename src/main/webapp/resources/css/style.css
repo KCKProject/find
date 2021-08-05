@@ -1,6 +1,6 @@
 /* css index 
 
-1 전체 설정
+1 전체 설정 + 페이징
 2 include folder
    header - nav - footer
 3 enter folder
@@ -24,7 +24,7 @@
 13 사이즈 조정   
 */
 
-/* index-1 전체설정 */
+/* index-1 전체설정 + 페이징 */
 @import url('https://fonts.googleapis.com/css2?family=Sunflower:wght@500&display=swap');
 
 * {
@@ -45,6 +45,33 @@ a { text-decoration:none } /*모든 a태그의 text-decoration 없애기*/
 [id*='errors'] { color: #f7c180; font-size: 10px;} /*에러메세지 주황색 표기*/
 
 ul, li {list-style: none;}
+
+.paging {
+	text-align: center;
+	margin: 40px 0;
+}
+
+.paging ul {
+    display: inline-flex;
+}
+
+.paging ul li {
+    margin: 0 15px;
+    cursor: pointer;
+}
+
+.paging ul li a {
+	font-size: 15px
+}
+
+.paging ul li a:hover {
+	color: #f7c180;
+	text-decoration: underline;
+	font-size: 17px
+}
+
+
+
 
 /* .section { padding-top: 120px;} header에 가려지지 않게 하기 위해-각 페이지마다 다를 수 있음 main 기준임 - header fixed 설정 해제로 해당 기능 필요 없음 */
 
@@ -1062,12 +1089,13 @@ label.right {
 .qaBx {
 	display: flex;
     justify-content: center;
+    flex-direction: column; /* 페이징 아래로 내리기 */
     align-items: center;
     padding: 150px 0;
 }
 
 .qaBx table {
-	width: 1250px;
+	width: 60%;
 }
 
 .qaBx table tr { 
@@ -1414,10 +1442,6 @@ label.right {
  	border-bottom: 1px solid gray;
 }
 
-.paging {
-	text-align: center;
-}
-
 .adminContents tbody tr td {
 	padding: 15px 0;
 }
@@ -1439,8 +1463,6 @@ label.right {
     TOP: 573PX;
 }
 
-
-
 /* ========================= */
 /* index-13 사이즈 조정 */
 
@@ -1454,13 +1476,14 @@ label.right {
 
 @media screen and (max-width: 1500px) {
 	.lostPage-comment-bottom {
-    padding: 10px 300px;
+    	padding: 10px 300px;
+	}	
 	
+	.qaBxContentsWriter, .qaBxContentsWriteDate  {
+		display: none;
+	}
 
-}	
-
-
-
+}
 @media screen and (max-width: 1120px) {
     .navInner {
         display: flex;
