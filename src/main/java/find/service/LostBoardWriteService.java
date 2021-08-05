@@ -48,20 +48,19 @@ public class LostBoardWriteService {
 		// 이미지파일업로드
 		LostBoard lb = new LostBoard();
 		
-		MultipartFile report = lc.getImg();
-		String originalFile = report.getOriginalFilename();
+		MultipartFile img = lc.getImg();
+		String originalFile = img.getOriginalFilename();
 		String originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
 		String storedFileName = UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
 		String filePath = request.getSession().getServletContext().getRealPath("resources/img/upload");
 		File file = new File(filePath+storedFileName);
-		report.transferTo(file);
+		img.transferTo(file);
 		
 		System.out.println("업로드한 파일은 "+originalFile);
 		System.out.println("이고, "+storedFileName+"으로 업로드됐다.");
 		System.out.println(filePath+" 경로에 저장됐으니 확인.");
-		System.out.println("파일 사이즈는 : "+report.getSize());
+		System.out.println("파일 사이즈는 : "+img.getSize());
 
-		
 		lb.setTitle(lc.getTitle());
 		lb.setWriter(member.getUserId());
 		lb.setLocation(lc.getLocation());
@@ -76,8 +75,6 @@ public class LostBoardWriteService {
 		lb.setOriginalFile(originalFile);
 		lb.setOriginalFileExtension(originalFileExtension);
 		lb.setStoredFileName(storedFileName);
-		
-		
 		
 	dao.writeLostBoard(lb);
 	}

@@ -326,11 +326,9 @@ public class FindDao {
 		String sql = "";
 		
 		if(meet==0) {
-			System.out.println("meet媛� 0");
 			sql = "UPDATE "+board+" SET meet=1 WHERE boardNum=?"; 
 		}
 		if(meet==1) {
-			System.out.println("meet媛� 1");
 			sql = "UPDATE "+board+" SET meet=0 WHERE boardNum=?";
 		}
 		jdbcTemplate.update(sql,boardNum);
@@ -395,6 +393,11 @@ public class FindDao {
 //		},key);
 //		Number keyValue = key.getKey();
 //		lb.setBoardNum(keyValue.longValue());
+	}
+
+	public void writeFindBoard() {
+		// find 게시판 업로드
+		System.out.println("dao까지 넘어옴");
 	}
 	
 	

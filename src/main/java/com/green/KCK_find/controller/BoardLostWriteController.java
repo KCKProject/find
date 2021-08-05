@@ -22,7 +22,7 @@ public class BoardLostWriteController {
 
 	private LostBoardWriteService lostBoardWriteService;
 	
-	public void setlostBoardWriteService(LostBoardWriteService lostBoardWriteService) {
+	public void setLostBoardWriteService(LostBoardWriteService lostBoardWriteService) {
 		this.lostBoardWriteService = lostBoardWriteService;
 	}
 	

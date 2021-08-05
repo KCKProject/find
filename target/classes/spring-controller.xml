@@ -73,6 +73,11 @@
       <property name="lostBoardWriteService" ref="lostBoardWriteSvc"/>
    </bean>
    
+   <bean id="boardFindWriteController" class="com.green.KCK_find.controller.BoardFindWriteController">
+      <property name="findBoardWriteService" ref="findBoardWriteSvc"/>
+   </bean>
+   
+   
    <!-- servicePage -->
    <bean id="ServicePageController" class="com.green.KCK_find.controller.ServicePageController"/>   
    

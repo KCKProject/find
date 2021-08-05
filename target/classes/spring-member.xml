@@ -44,7 +44,11 @@
    </bean>
    
    <!-- 게시글 등록 서비스 -->   
-    <bean id="lostBoardWriteSvc" class="find.service.LostBoardWriteService">
+   <bean id="lostBoardWriteSvc" class="find.service.LostBoardWriteService">
+    	<constructor-arg ref="findDao" />
+   </bean>
+   
+   <bean id="findBoardWriteSvc" class="find.service.FindBoardWriteService">
     	<constructor-arg ref="findDao" />
    </bean>
 </beans>
