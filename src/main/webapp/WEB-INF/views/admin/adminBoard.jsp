@@ -21,10 +21,10 @@
 				<p class="adminTitle">게시판 관리</p>
 			</div>
 			<div>
-				<p>찾아주세요</p>
+				<a href="<c:url value='/admin/adminBoard'/>"><p>찾아주세요</p></a>
 			</div>
 			<div>
-				<p>찾아가세요</p>
+				<a href="<c:url value='/admin/adminFindBoard'/>"><p>찾아가세요</p></a>
 			</div>
 		</div>
 
@@ -33,11 +33,7 @@
 		<div class="right">
 			<div>
 				<p>진행중 개 | 완료 개 | 
-				전체 <c:forEach items="${losts}" var="i" varStatus="status">
-						<c:if test="${status.last}">
-							${i.boardNum}
-						</c:if>
-					</c:forEach> 개 
+				전체${pageMaker.totalCount}개 
 				<input type="text" name="search" id="search" placeholder="검색어를 입력해주세요"> 
 				<a href=""><img src="../resources/img/search.png" alt="검색" width="15px" height="15px"></a></p>
 				<!-- 읽어서 받아올수 있게 만들기 -->
@@ -50,8 +46,8 @@
 				<label class="checkbox"><input type="checkbox" name="done" id="done"><span class="icon"></span><span class="text">완료</span></label> 
 			</div>
 			<div> <!-- 찾아주세요 -->
-				<table class="adminContents">
-					<c:if test="${!empty losts}">
+				<c:if test="${!empty losts}">
+					<table class="adminContents">
 							<tr class="adminContentsListTitle">
 								<td>번호</td>
 								<td>완료</td>
@@ -59,7 +55,6 @@
 								<td>작성자</td>
 								<td>날짜</td>
 							</tr>
-
 							<c:forEach var="m" items="${losts}">
 								<tr>
 									<td>${m.boardNum}</td>
@@ -70,65 +65,70 @@
 										<td>미완료</td>
 									</c:if>
 									<td>
-									<a href="<c:url value="/admin/boardDetail/${m.boardNum}"/>">${m.title}</a>
+									<a href="<c:url value="/admin/lostBoardDetail/${m.boardNum}"/>">${m.title}</a>
 									</td>
 									<td>${m.writer}</td>
 									<td><fmt:formatDate value="${m.writeDate}" pattern="yyyy-MM-dd"/></td>
 								</tr>
 							</c:forEach>
-					</c:if>
-				</table>
-				
-				
-				<div class="paging">
-					<span onclick="alert('이전 페이지가 없습니다.');">이전</span>
-					<c:set var="page" value="${(param.p==null)? 1: param.p}" />
-					<c:set var="startNum" value="${page-(page-1)%5}" />
-					<span> <c:forEach var="i" begin="0" end="4">
-							<a href="?p=${startNum+i}&t=&q=">${startNum+i}</a>
-						</c:forEach>
-					</span> <span onclick="alert('다음 페이지가 없습니다.');">다음</span>
-				</div>
+					</table>
+					<div class="paging">
+						<ul>
+	  						<c:if test="${pageMaker.prev}">
+						   		<li><a href="${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+						  	</c:if>
+						  	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+						   		<li><a href="${pageMaker.makeQuery(idx)}">${idx}</a></li>
+						  	</c:forEach>
+						  	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+						   		<li><a href="${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+						  	</c:if> 
+						 </ul>
+					</div>
+				</c:if>
 			</div> <!-- 찾아주세요 -->
 			<div> <!-- 찾아가세요 -->
-				<table class="adminContents">
-					<c:if test="${!empty losts}">
-							<tr class="adminContentsListTitle">
-								<td>번호</td>
-								<td>완료</td>
-								<td>글제목</td>
-								<td>작성자</td>
-								<td>날짜</td>
+				<c:if test="${!empty finds}">
+					<table class="adminContents">
+						<tr class="adminContentsListTitle">
+							<td>번호</td>
+							<td>완료</td>
+							<td>글제목</td>
+							<td>작성자</td>
+							<td>날짜</td>
+						</tr>
+
+						<c:forEach var="f" items="${finds}">
+							<tr>
+								<td>${f.boardNum}</td>
+								<c:if test="${f.meet ==1}">
+									<td>완료</td>
+								</c:if>
+								<c:if test="${f.meet ==0}">
+									<td>미완료</td>
+								</c:if>
+								<td>
+								<a href="<c:url value="/admin/findBoardDetail/${f.boardNum}"/>">${f.title}</a>
+								</td>
+								<td>${f.writer}</td>
+								<td><fmt:formatDate value="${f.writeDate}" pattern="yyyy-MM-dd"/></td>
 							</tr>
-
-							<c:forEach var="m" items="${losts}">
-								<tr>
-									<td>${m.boardNum}</td>
-									<c:if test="${m.meet ==1}">
-										<td>완료</td>
-									</c:if>
-									<c:if test="${m.meet ==0}">
-										<td>미완료</td>
-									</c:if>
-									<td>
-									<a href="<c:url value="/admin/boardDetail/${m.boardNum}"/>">${m.title}</a>
-									</td>
-									<td>${m.writer}</td>
-									<td><fmt:formatDate value="${m.writeDate}" pattern="yyyy-MM-dd"/></td>
-								</tr>
-							</c:forEach>
-
-					</c:if>
-				</table>
-				<div class="paging">
-					<span onclick="alert('이전 페이지가 없습니다.');">이전</span>
-					<c:set var="page" value="${(param.p==null)? 1: param.p}" />
-					<c:set var="startNum" value="${page-(page-1)%5}" />
-					<span> <c:forEach var="i" begin="0" end="4">
-							<a href="?p=${startNum+i}&t=&q=">${startNum+i}</a>
 						</c:forEach>
-					</span> <span onclick="alert('다음 페이지가 없습니다.');">다음</span>
+					</table>
+				<div class="paging">
+					<ul>
+  						<c:if test="${pageMaker.prev}">
+					   		<li><a href="${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+					  	</c:if>
+					  	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
+					   		<li><a href="${pageMaker.makeQuery(idx)}">${idx}</a></li>
+					  	</c:forEach>
+					  	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
+					   		<li><a href="${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+					  	</c:if> 
+					 </ul>
 				</div>
+				</c:if>
 			</div> <!-- 찾아주세요 -->
 		</div>
 	</div>

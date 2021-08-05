@@ -26,7 +26,7 @@
 				<table>
 				<!-- q&a 데이터 많지 않아서 jsp 에서 애초에 저 데이터까지 받아와놓고 css로 안보이게해놧다가 보여주게 해도 될듯 합니당 -->
 					<tr class="qaBxListTitle">
-						<th>번호</th>
+						<!-- <th>번호</th> -->
 						<th>제목</th>
 						<th>작성자</th>
 						<th>작성일</th>
@@ -35,7 +35,7 @@
 					<c:forEach var="q" items="${questions}">
 						<c:if test="${q.open==1}">
 							<tr>
-								<td>${q.boardNum}</td>
+								<%-- <td>${q.boardNum}</td> --%>
 								<td>${q.title}</td>
 								<td>${q.writer}</td>
 								<td><fmt:formatDate value="${q.writeDate}"

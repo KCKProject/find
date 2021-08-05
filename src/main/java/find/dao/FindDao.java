@@ -18,6 +18,7 @@ import org.springframework.stereotype.Component;
 
 import find.vo.Admin;
 import find.vo.Criteria;
+import find.vo.CriteriaMainBoard;
 import find.vo.CriteriaQnABoard;
 import find.vo.FindBoard;
 import find.vo.LostBoard;
@@ -159,25 +160,62 @@ public class FindDao {
 	}
 	public int lostCount() {
 		Integer cnt = jdbcTemplate.queryForObject(
-				"SELECT count(boardnum) FROM qnaboard where boardnum > 0",Integer.class);
+				"SELECT count(boardnum) FROM lostboard where boardnum > 0",Integer.class);
 		return cnt;
 	}
 	public int findCount() {
 		Integer cnt = jdbcTemplate.queryForObject(
-				"SELECT count(boardnum) FROM qnaboard where boardnum > 0",Integer.class);
+				"SELECT count(boardnum) FROM findboard where boardnum > 0",Integer.class);
 		return cnt;
 	}
 	
 	
-	public List<LostBoard> selectAllLostBoard() {
+	public List<LostBoard> selectAllLostBoard(Criteria cri) {
 		List<LostBoard> results = jdbcTemplate.query(
-				"SELECT * FROM lostBoard order by boardNum ASC",lostBoardRowMapper);
+				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
+				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME " + 
+						"from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
+						+ "PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, row_number() " + 
+						"over(order by boardnum desc) as rNum " + 
+						"from lostBoard) mb where rNum between ? and ? order by boardnum desc"
+						,lostBoardRowMapper,cri.getRowStart(), cri.getRowEnd());
 		return results;
 	}
 	
-	public List<FindBoard> selectAllFindBoard() {
+	public List<LostBoard> selectAllLostBoard(CriteriaMainBoard cri) {
+		List<LostBoard> results = jdbcTemplate.query(
+				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
+				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME " + 
+						"from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
+						+ "PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, row_number() " + 
+						"over(order by boardnum desc) as rNum " + 
+						"from lostBoard) mb where rNum between ? and ? order by boardnum desc"
+						,lostBoardRowMapper,cri.getRowStart(), cri.getRowEnd());
+		return results;
+	}
+	
+	public List<FindBoard> selectAllFindBoard(Criteria cri) {
 		List<FindBoard> results = jdbcTemplate.query(
-				"SELECT * FROM findBoard order by boardNum ASC",findBoardRowMapper);
+				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, IMG, EMAIL, "
+						+ " FINDDATE, MEET, MEMO, PHONE " 
+						+ "from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, IMG, EMAIL, "
+						+ "FINDDATE, MEET, MEMO, PHONE, row_number() " 
+						+ "over(order by boardnum desc) as rNum " 
+						+ "from FindBoard) mb where rNum between ? and ? order by boardnum desc",
+						findBoardRowMapper,cri.getRowStart(), cri.getRowEnd());
+		return results;
+	}
+	
+	
+	public List<FindBoard> selectAllFindBoard(CriteriaMainBoard cri) {
+		List<FindBoard> results = jdbcTemplate.query(
+				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, IMG, EMAIL, "
+						+ " FINDDATE, MEET, MEMO, PHONE " 
+						+ "from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, IMG, EMAIL, "
+						+ "FINDDATE, MEET, MEMO, PHONE, row_number() " 
+						+ "over(order by boardnum desc) as rNum " 
+						+ "from FindBoard) mb where rNum between ? and ? order by boardnum desc",
+						findBoardRowMapper,cri.getRowStart(), cri.getRowEnd());
 		return results;
 	}
 	

@@ -18,7 +18,7 @@ public class AdminBoardDetailController {
 		this.dao = dao;
 	}
 	
-	@RequestMapping("/admin/boardDetail/{boardNum}")
+	@RequestMapping("/admin/lostBoardDetail/{boardNum}")
 	public String detail(@PathVariable("boardNum") long boardNum, Model model) {
 		
 		LostBoard lostBoard = dao.selectByBoardNum(boardNum);
@@ -28,6 +28,6 @@ public class AdminBoardDetailController {
 		}
 		model.addAttribute("lostBoard",lostBoard);
 		
-		return "admin/adminBoardDetail";
+		return "admin/adminLostBoardDetail";
 	}
 }

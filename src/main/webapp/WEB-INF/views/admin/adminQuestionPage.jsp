@@ -23,7 +23,7 @@
 				<p class="adminTitle">Q&A 관리</p>
 			</div>
 			<div>
-				<p>Q&A 관리</p>
+				<a href="<c:url value='/admin/adminQuestionPage'/>"><p>Q&A 관리</p></a>
 			</div>
 		</div>
 

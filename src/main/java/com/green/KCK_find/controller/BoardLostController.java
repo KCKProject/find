@@ -4,14 +4,14 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import find.dao.FindDao;
-import find.service.LostBoardWriteService;
-import find.vo.FindBoard;
+import find.vo.CriteriaMainBoard;
 import find.vo.LostBoard;
-import find.vo.QnABoard;
+import find.vo.PageMakerMainBoard;
 
 @Controller
 public class BoardLostController {
@@ -22,12 +22,21 @@ public class BoardLostController {
 		this.dao = dao;
 	}
 	
+	public int lostCount() {
+		return dao.lostCount();
+	}
+	
 	// 게시글 목록 불러오기
 	@RequestMapping("/lostPage/lostPageList")
-	public String lost(Model model) {
+	public String lost(@ModelAttribute("cri") CriteriaMainBoard cri, Model model) {
 		
-		List<LostBoard> losts = dao.selectAllLostBoard();
+		List<LostBoard> losts = dao.selectAllLostBoard(cri);
 		model.addAttribute("losts",losts);
+		
+		PageMakerMainBoard pageMaker = new PageMakerMainBoard();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(lostCount());
+		model.addAttribute("pageMaker",pageMaker);
 		
 		return "lostPage/lostPageList";
 	}
