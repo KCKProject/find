@@ -89,6 +89,8 @@ function del(boardNum) {
 	}
 }
 
+	
+
 
 
 

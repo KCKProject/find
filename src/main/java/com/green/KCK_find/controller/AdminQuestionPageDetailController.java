@@ -31,14 +31,13 @@ public class AdminQuestionPageDetailController {
 		
 		return "admin/adminQuestionDetail";
 	}
-	
+	// 글삭제
 	@RequestMapping("/admin/questionDelete/{boardNum}")
 	public String delete(@PathVariable("boardNum") long boardNum) {
-
 			dao.deleteByQnABoardNum(boardNum);
-		return "redirect:/findPage/findPageDetail";
+		return "redirect:/admin/adminQuestionPage";
 		}
-	
+	// 공개 비공개
 	@RequestMapping("/admin/changeOpen/{boardNum}&{open}")
 	public String changeMeet(@PathVariable("boardNum") long boardNum,
 							 @PathVariable("open") int open,

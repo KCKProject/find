@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,18 +10,22 @@
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <script src="../../resources/script/script.js" defer></script>
-<title>회원 정보 상세 보기</title>
+<title>찾아가세요 글 상세 보기</title>
 </head>
 <body>
 	<jsp:include page="../admin-include/adminHeader.jsp"></jsp:include>
 	<jsp:include page="../admin-include/adminNav.jsp"></jsp:include>
+	
 	<div class="adminWrap">
 		<div class="left">
 			<div>
-				<p class="adminTitle">회원 관리</p>
+				<p class="adminTitle">게시판 관리</p>
 			</div>
 			<div>
-				<a href="<c:url value='/admin/adminMember'/>"><p>회원관리</p></a>
+				<a href="<c:url value='/admin/adminBoard'/>"><p>찾아주세요</p></a>
+			</div>
+			<div>
+				<a href="<c:url value='/admin/adminFindBoard'/>"><p>찾아가세요</p></a>
 			</div>
 		</div>
 
@@ -29,35 +34,32 @@
 		<div class="right">
 			<div class="wrapContents">
 				<label>
-					아이디 : ${member.userId}
+					글제목 : ${findBoard.title}
 				</label>
 				<br>
 				<label>
-					이름 : ${member.userName}
+					작성자 : ${findBoard.writer}
 				</label>
 				<br>
 				<label>
-					전화번호 : ${member.phone}
-				</label>
-				<br>
-				<label>
-					이메일 : ${member.email}
+					작성일 : <fmt:formatDate value="${findBoard.writeDate}" pattern="yyyy-MM-dd"/>
 				</label>
 				<br>
 				<div class="adminBoardDetailBtn">
-					<a href="<c:url value='/admin/adminMember'/>">
-						<button class="btn btn-swap"> MORE <span>전체 화원 보기 >></span> </button>
+					<a href="<c:url value='/admin/adminBoard'/>">
+						<button class="btn btn-swap"> MORE <span>전체 글 보기 >></span> </button>
 					</a>
-				<%-- 	<a href="<c:url value='/admin/adminMember'/>">
+					<a href="<c:url value='/admin/adminBoard'/>">
 						<button class="btn btn-swap"> DELETE <span>글 삭제 >></span> </button>
 					</a>
-					 --%>
-					<a href="<c:url value='/admin/adminMember'/>">
-						<button class="btn btn-swap"> EDIT <span>정보 변경 >></span> </button>
+					<a href="<c:url value='/admin/adminBoard'/>">
+						<button class="btn btn-swap"> EDIT <span>글 수정 >></span> </button>
 					</a>
 				</div>
 			</div>
 		</div>
 	</div>
+		
+
 </body>
 </html>

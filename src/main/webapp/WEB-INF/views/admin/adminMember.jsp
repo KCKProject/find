@@ -23,7 +23,9 @@
 				<p class="adminTitle">회원 관리</p>
 			</div>
 			<div>
-				<p>회원관리</p>
+				<ul>
+					<a href="<c:url value='/admin/adminMember'/>"><li>회원관리</li></a>
+				</ul>
 			</div>
 		</div>
 

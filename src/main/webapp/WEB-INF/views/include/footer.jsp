@@ -12,12 +12,9 @@
 	<div class="footerInner">
 		<div class="footerUpper">
 			<div class="footerMenu">
-				<!-- 살릴 메뉴 정하기 -ok-->
 				<ul>
 					<li><a href="<spring:url value='/servicePage/servicePage'/>" target='_blank'>서비스소개</a></li>
 					<li><a href="<spring:url value='/servicePage/servicePage'/>" target='_blank'>제휴문의</a></li>
-					<li><a href="<spring:url value='/servicePage/servicePage'/>" target='_blank'>관련사이트</a></li>
-					<li><a href="<spring:url value='/servicePage/servicePage'/>" target='_blank'>미정미정</a></li>
 					<li><a href="<spring:url value='/admin'/>">관리자페이지</a></li>
 				</ul>
 			</div>
@@ -50,7 +47,7 @@
 				<i class="fab fa-accusoft"></i>		
 				Always be<br> 
 				with you
-				<br><br> COPYRIGHT ©2021 KCK All Rights Reserved.©
+				<br><br> COPYRIGHT ©2021 KCK All Rights Reserved.
 			</p>
 		</div>
 	</div>

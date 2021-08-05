@@ -4,12 +4,15 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import find.dao.FindDao;
+import find.vo.CriteriaMainBoard;
 import find.vo.FindBoard;
 import find.vo.LostBoard;
+import find.vo.PageMakerMainBoard;
 
 @Controller
 public class BoardFindController {
@@ -19,13 +22,21 @@ public class BoardFindController {
 	public void setDao(FindDao dao) {
 		this.dao = dao;
 	}
+	public int findCount() {
+		return dao.findCount();
+	}
 
 	// 글 목록 불러오기
 	@RequestMapping("/findPage/findPageList")
-	public String find(Model model) {
+	public String find(@ModelAttribute("cri") CriteriaMainBoard cri, Model model) {
 		
-		List<FindBoard> find = dao.selectAllFindBoard();
+		List<FindBoard> find = dao.selectAllFindBoard(cri);
 		model.addAttribute("find",find);
+		
+		PageMakerMainBoard pageMaker = new PageMakerMainBoard();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(findCount());
+		model.addAttribute("pageMaker",pageMaker);
 		
 		return "findPage/findPageList";
 	}

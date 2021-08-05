@@ -23,7 +23,9 @@
 				<p class="adminTitle">Q&A 관리</p>
 			</div>
 			<div>
-				<p>Q&A 관리</p>
+				<ul>
+					<a href="<c:url value='/admin/adminQuestionPage'/>"><li>Q&A 관리</li></a>
+				</ul>
 			</div>
 		</div>
 
