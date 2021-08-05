@@ -4,9 +4,12 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import find.dao.FindDao;
+import find.vo.Criteria;
+import find.vo.PageMaker;
 import find.vo.QnABoard;
 
 @Controller
@@ -17,12 +20,20 @@ public class AdminQuestionPageController {
 	public void setDao(FindDao dao) {
 		this.dao = dao;
 	}
+	public int memberCount() {
+		return dao.qnaCount();
+	}
 
 	@RequestMapping("/admin/adminQuestionPage")
-	public String list(Model model) {
+	public String list(@ModelAttribute("cri") Criteria cri, Model model) {
 		
-		List<QnABoard> questions= dao.selectAllQnABoard();
+		List<QnABoard> questions= dao.selectAllQnABoard(cri);
 		model.addAttribute("questions",questions);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(memberCount());
+		model.addAttribute("pageMaker",pageMaker);
 		
 		return "admin/adminQuestionPage";
 	}

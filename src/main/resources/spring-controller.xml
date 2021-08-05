@@ -73,6 +73,10 @@
       <property name="lostBoardWriteService" ref="lostBoardWriteSvc"/>
    </bean>
    
+   <!-- servicePage -->
    <bean id="ServicePageController" class="com.green.KCK_find.controller.ServicePageController"/>   
+   
+   <!-- find id/pw -->
+   <bean id="memberInformationFindController" class="com.green.KCK_find.controller.memberInformationFindController"/>   
 
 </beans>

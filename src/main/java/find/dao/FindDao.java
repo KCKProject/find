@@ -18,9 +18,9 @@ import org.springframework.stereotype.Component;
 
 import find.vo.Admin;
 import find.vo.Criteria;
+import find.vo.CriteriaQnABoard;
 import find.vo.FindBoard;
 import find.vo.LostBoard;
-import find.vo.LostBoardWriteCommand;
 import find.vo.Member;
 import find.vo.MemberAuthInfo;
 import find.vo.QnABoard;
@@ -154,6 +154,21 @@ public class FindDao {
 				"SELECT count(memberNumber) FROM Member where memberNumber > 0",Integer.class);
 		return cnt;
 	}
+	public int qnaCount() {
+		Integer cnt = jdbcTemplate.queryForObject(
+				"SELECT count(boardnum) FROM qnaboard where boardnum > 0",Integer.class);
+		return cnt;
+	}
+	public int lostCount() {
+		Integer cnt = jdbcTemplate.queryForObject(
+				"SELECT count(boardnum) FROM qnaboard where boardnum > 0",Integer.class);
+		return cnt;
+	}
+	public int findCount() {
+		Integer cnt = jdbcTemplate.queryForObject(
+				"SELECT count(boardnum) FROM qnaboard where boardnum > 0",Integer.class);
+		return cnt;
+	}
 	
 	
 	public List<LostBoard> selectAllLostBoard() {
@@ -168,12 +183,25 @@ public class FindDao {
 		return results;
 	}
 	
-	public List<QnABoard> selectAllQnABoard() {
+	public List<QnABoard> selectAllQnABoard(Criteria cri) {
 		List<QnABoard> results = jdbcTemplate.query(
-				"SELECT * FROM QnABoard order by boardNum ASC",qnABoardRowMapper);
+				"select BOARDNUM, TITLE, WRITER, WRITEDATE, CONTENTS, OPEN " + 
+				"from(select BOARDNUM, TITLE, WRITER, WRITEDATE, CONTENTS, OPEN, row_number() " + 
+				"over(order by boardnum desc) as rNum " + 
+				"from qnaboard) mb where rNum between ? and ? order by boardnum asc"
+				,qnABoardRowMapper,cri.getRowStart(), cri.getRowEnd());
 		return results;
 	}
-	
+	public List<QnABoard> selectAllQnABoard(CriteriaQnABoard cri) {
+		List<QnABoard> results = jdbcTemplate.query(
+				"select BOARDNUM, TITLE, WRITER, WRITEDATE, CONTENTS, OPEN " + 
+				"from(select BOARDNUM, TITLE, WRITER, WRITEDATE, CONTENTS, OPEN, row_number() " + 
+				"over(order by boardnum asc) as rNum " + 
+				"from qnaboard) mb where rNum between ? and ? and open='1' order by boardnum asc"
+				,qnABoardRowMapper,cri.getRowStart(), cri.getRowEnd());
+		return results;
+	}
+
 	public Admin selectByAdminId(String adminId) {
 		String sql = "SELECT * FROM ADMIN WHERE adminId=?";
 //		System.out.println("�뼱�뱶誘� 異쒕젰 �솗�씤");
