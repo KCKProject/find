@@ -61,7 +61,7 @@
 					</tr>
 					<tr>
 						<td>  사진첨부</td>
-						<td><input type="text" name="img" id="img"/></td>
+						<td><input type="file" name="img" id="img"/></td>
 					</tr>
 				</table>
 

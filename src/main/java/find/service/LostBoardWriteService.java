@@ -2,6 +2,7 @@ package find.service;
  
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 
@@ -27,13 +28,13 @@ public class LostBoardWriteService {
 	}
 	
 	public void boardRegist(LostBoardWriteCommand lc, 
-			HttpSession session, MultipartHttpServletRequest request) {
+			HttpSession session, MultipartHttpServletRequest request) throws IOException {
 		MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
 		System.out.println("session id의 값 : "+member.getUserId());
 		String userName = member.getUserName();
 		
-		String[] term = lc.getTerm();
-		System.out.println("넘어온 term 의 값 : "+term[1]);
+		String term = lc.getTerm();
+		System.out.println("넘어온 term 의 값 : "+term);
 		
 		String email = member.getEmail();
 		String phone = member.getPhone();
@@ -47,6 +48,20 @@ public class LostBoardWriteService {
 		// 이미지파일업로드
 		LostBoard lb = new LostBoard();
 		
+		MultipartFile report = lc.getImg();
+		String originalFile = report.getOriginalFilename();
+		String originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+		String storedFileName = UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
+		String filePath = request.getSession().getServletContext().getRealPath("resources/img/upload");
+		File file = new File(filePath+storedFileName);
+		report.transferTo(file);
+		
+		System.out.println("업로드한 파일은 "+originalFile);
+		System.out.println("이고, "+storedFileName+"으로 업로드됐다.");
+		System.out.println(filePath+" 경로에 저장됐으니 확인.");
+		System.out.println("파일 사이즈는 : "+report.getSize());
+
+		
 		lb.setTitle(lc.getTitle());
 		lb.setWriter(member.getUserId());
 		lb.setLocation(lc.getLocation());
@@ -58,21 +73,12 @@ public class LostBoardWriteService {
 		lb.setPhone(member.getPhone());
 		//lb.setLostDate(lc.getLostDate());
 		lb.setMemo(lc.getMemo());
+		lb.setOriginalFile(originalFile);
+		lb.setOriginalFileExtension(originalFileExtension);
+		lb.setStoredFileName(storedFileName);
 		
-//		MultipartFile mf = request.getFile("img");
-//		String path = request.getSession().getServletContext().getRealPath("resources/img/board");
-//		String fileName = mf.getOriginalFilename();
-//		File uploadFile = new File(path+"//"+fileName);
-//		try {
-//			mf.transferTo(uploadFile);
-//		}
-//		catch(IllegalStateException e) {
-//			e.printStackTrace();
-//		}catch(IOException e) {
-//			e.printStackTrace();
-//		}
-//		lb.setImg(fileName);
-//		
-		dao.writeLostBoard(member,lb);
+		
+		
+	dao.writeLostBoard(lb);
 	}
 }

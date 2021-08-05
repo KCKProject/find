@@ -55,8 +55,11 @@
 					<div class="phone">
 						<p>연락처 | ${detail.phone}</p>
 					</div>
+					<div class="email">
+						<p>이메일 | ${detail.email}</p>
+					</div>
 					<div class="memo">
-						<p>${detail.memo}</p>
+						<p>상세내용 | ${detail.memo}</p>
 					</div>
 				</div>
 			</div>

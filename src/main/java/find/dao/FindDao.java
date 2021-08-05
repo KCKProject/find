@@ -76,12 +76,14 @@ public class FindDao {
 						rs.getString("animal"),
 						rs.getString("kind"),
 						rs.getString("gender"),
-						/* rs.getString("img"), */"",
 						rs.getString("email"),
 						rs.getString("phone"),
 						rs.getDate("lostDate"),
+						rs.getInt("meet"),
 						rs.getString("memo"),
-						rs.getInt("meet")
+						rs.getString("originalFile"),
+						rs.getString("originalFileExtension"),
+						rs.getString("storedFileName")
 						);
 				lb.setBoardNum(rs.getLong("boardNum"));
 				return lb;		
@@ -320,12 +322,12 @@ public class FindDao {
 	}
 
 	
-	public void writeLostBoard(MemberAuthInfo member, LostBoard lb) {
+	public void writeLostBoard(LostBoard lb) {
 		
 		System.out.println(lb.getCharacter());
 //		KeyHolder key = new GeneratedKeyHolder();
-		jdbcTemplate.update("INSERT INTO lostBoard (boardNum, title, writer, writeDate, kind,"
-				+ " location, character, animal, gender, email, phone, lostDate, memo) VALUES(lostBoard_seq.nextval,?,?,sysdate,?,?,?,?,?,?,?,?,?)",
+		jdbcTemplate.update("INSERT INTO lostBoard (boardNum, title, writer, writeDate, kind, location, character, animal,"
+				+ " gender, email, phone, lostDate, meet, memo, originalFile, originalFileExtension, storedFileName) VALUES(lostBoard_seq.nextval,?,?,sysdate,?,?,?,?,?,?,?,?,0,?,?,?,?)",
 				lb.getTitle(),
 				lb.getWriter(),
 				lb.getKind(),
@@ -336,7 +338,10 @@ public class FindDao {
 				lb.getEmail(),
 				lb.getPhone(),
 				lb.getLostDate(),
-				lb.getMemo());
+				lb.getMemo(),
+				lb.getOriginalFile(),
+				lb.getOriginalFileExtension(),
+				lb.getStoredFileName());
 		
 //		jdbcTemplate.update(new PreparedStatementCreator() {
 //			@Override

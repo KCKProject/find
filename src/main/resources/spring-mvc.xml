@@ -13,10 +13,10 @@
 		<mvc:jsp prefix="/WEB-INF/views/"/>
 	</mvc:view-resolvers>
 	
-	<!-- 업로드 패스 설정 -->
+	<!-- 업로드 패스 설정 
 	<bean class="java.lang.String" id="uploadPath">
  		<constructor-arg value="C:\documents\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\CKC\resources\uploadimg" />
-	</bean>
+	</bean> -->
 	
 	
 	<!--  일반 파일 업로드 경로 -->

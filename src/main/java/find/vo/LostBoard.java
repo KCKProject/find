@@ -8,23 +8,25 @@ public class LostBoard {
 	private String title;
 	private String writer;
 	private Date writeDate;
+	private String kind;
 	private String location;
 	private String character;
 	private String animal;
-	private String kind;
 	private String gender;
-	private String img;
 	private String email;
 	private String phone;
 	private Date lostDate;
 	private String memo;
 	private int meet;
-	
+	private String originalFile;
+	private String originalFileExtension;
+	private String storedFileName;	
 	
 	public LostBoard() {}
 
 	public LostBoard(String title, String writer, Date writeDate, String location, String character, String animal,
-			String kind, String gender, String img, String email, String phone, Date lostDate, String memo, int meet) {
+			String kind, String gender, String email, String phone, Date lostDate, int meet, String memo,
+			String originalFile, String originalFileExtension, String storedFileName) {
 		this.title = title;
 		this.writer = writer;
 		this.writeDate = writeDate;
@@ -33,7 +35,9 @@ public class LostBoard {
 		this.animal = animal;
 		this.kind = kind;
 		this.gender = gender;
-		this.img = img;
+		this.originalFile = originalFile;
+		this.originalFileExtension = originalFileExtension;
+		this.storedFileName = storedFileName;
 		this.email = email;
 		this.phone = phone;
 		this.lostDate = lostDate;
@@ -96,12 +100,6 @@ public class LostBoard {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getImg() {
-		return img;
-	}
-	public void setImg(String img) {
-		this.img = img;
-	}
 	public String getEmail() {
 		return email;
 	}
@@ -131,5 +129,30 @@ public class LostBoard {
 	}
 	public void setMeet(int meet) {
 		this.meet = meet;
+	}
+
+	// 이미지 파일 경로를 위해 컬럼 3개 추가
+	public String getOriginalFileExtension() {
+		return originalFileExtension;
+	}
+
+	public void setOriginalFileExtension(String originalFileExtension) {
+		this.originalFileExtension = originalFileExtension;
+	}
+
+	public String getStoredFileName() {
+		return storedFileName;
+	}
+
+	public void setStoredFileName(String storedFileName) {
+		this.storedFileName = storedFileName;
+	}
+
+	public String getOriginalFile() {
+		return originalFile;
+	}
+
+	public void setOriginalFile(String originalFile) {
+		this.originalFile = originalFile;
 	}
 }

@@ -11,7 +11,7 @@
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <script src="../resources/script/script.js" defer></script>
-<title>lostPage</title>
+<title>찾아주세요</title>
 
 </head>
 <body>
@@ -46,7 +46,7 @@
 				<li>
 					<a href="<c:url value="/lostPage/lostPageDetail/${l.boardNum}"/>">
 						<div class="post-photo-top"> <!-- 게시글 사진 나오는 부분 -->
-							<div><img src="KCK_find/resources/img/board/${l.img}" width="300"/></div>
+							<div><img src="KCK_find/resources/img/board/${l.storedFileName}" width="300"/></div>
 						</div>
 						<div class="post-contents-bottom"> <!-- 게시글 내용 나오는 부분 -->
 							<!-- 작성자가 본인 글에서 발견 버튼 클릭 시에만 생성 -->

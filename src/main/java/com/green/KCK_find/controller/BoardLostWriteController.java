@@ -1,5 +1,7 @@
 package com.green.KCK_find.controller;
 
+import java.io.IOException;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
 
@@ -31,9 +33,9 @@ public class BoardLostWriteController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-		public String regist(LostBoardWriteCommand lostBoardWriteCommand, HttpSession session, MultipartHttpServletRequest request) {
+		public String regist(LostBoardWriteCommand lostBoardWriteCommand, HttpSession session, MultipartHttpServletRequest request) throws IOException {
 			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-//			System.out.println("session id�쓽 媛� : "+member.getUserId());
+			System.out.println("넘어온 session id : "+member.getUserId());
 		
 			lostBoardWriteService.boardRegist(lostBoardWriteCommand, session, request);			
 			return "redirect:/lostPage/lostPageList";

@@ -2,6 +2,8 @@ package find.vo;
 
 import java.sql.Date;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class LostBoardWriteCommand { // Lost 작성시 받아올 내용
 	private String title;
 	private String location;
@@ -9,10 +11,10 @@ public class LostBoardWriteCommand { // Lost 작성시 받아올 내용
 	private String animal;
 	private String kind;
 	private String gender;
-	private String img;
+	private MultipartFile img;
 	private String lostDate;
 	private String memo;
-	private String[] term;
+	private String term;
 	
 	public String getTitle() {
 		return title;
@@ -50,10 +52,10 @@ public class LostBoardWriteCommand { // Lost 작성시 받아올 내용
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getImg() {
+	public MultipartFile getImg() {
 		return img;
 	}
-	public void setImg(String img) {
+	public void setImg(MultipartFile img) {
 		this.img = img;
 	}
 	public String getLostDate() {
@@ -68,10 +70,10 @@ public class LostBoardWriteCommand { // Lost 작성시 받아올 내용
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
-	public String[] getTerm() {
+	public String getTerm() {
 		return term;
 	}
-	public void setTerm(String[] term) {
+	public void setTerm(String term) {
 		this.term = term;
 	}
 }
