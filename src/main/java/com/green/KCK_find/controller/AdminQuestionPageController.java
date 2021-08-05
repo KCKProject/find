@@ -38,4 +38,12 @@ public class AdminQuestionPageController {
 		return "admin/adminQuestionPage";
 	}
 	
+	// 글작성
+	@RequestMapping("/admin/questionPageWrite")
+	public String qnaWrite(QnABoard qnaboard) {
+	
+		
+		return "asd";
+	}
+	
 }
