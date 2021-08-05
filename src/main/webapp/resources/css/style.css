@@ -11,7 +11,7 @@
 7 board(lost,find) detail page 셋팅
 8 questionPage folder
 	questionPage
-9 servicePage folder
+9 servicePage folder - 사용x
 	servicePage
 ======================
 10 admin-include folder
@@ -1355,12 +1355,15 @@ label.right {
     font-size: 20px;
 }
 
-.left div:not(.left div:first-child) {
-    margin: 20px 0;
-    padding: 20px 0;
+.left div:not(.left div:first-child) ul {
+	margin: 20px 0;
 }
 
-.left div:not(.left div:first-child):hover {
+.left div:not(.left div:first-child) ul li {
+	padding: 20px 0;
+}
+
+.left div:not(.left div:first-child) ul li:hover {
 	cursor: pointer;
 	background-color: yellow;
 	border-radius: 10px;
