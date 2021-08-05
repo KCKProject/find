@@ -93,4 +93,3 @@ function del(boardNum) {
 
 
 
-

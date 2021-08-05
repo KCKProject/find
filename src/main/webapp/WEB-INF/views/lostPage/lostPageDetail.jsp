@@ -129,7 +129,15 @@
 	<button class="jellybutton topbtn" type="button" onclick="goTop()">TOP</button>
 		<!-- 글쓰기 버튼 -->
 		<!-- 예정) 로그인안한 회원은 로그인 페이지로 연결되도록 수정할 예정 -->
-	<button class="jellybutton sidebtn1" name="write" id="write" onclick="location='<c:url value="/lostPage/lostPageWrite"/>'">WRITE</button>
+	<c:if test="${memberAuthInfo == null }">
+		<div class="centerbtn">		
+			<div class="jellybutton centerHiddenContents" name="centerHidden" id="centerHidden"><p>INFO<br>! 로그인 후 글쓰기 가능 합니다.<br>! 아이디 | 비밀번호 분실 시 로그인<br>페이지 하단의 찾기 버튼 클릭</p></div>
+			<button class="jellybutton sidebtn1" name="write" id="write" >WRITE</button>
+		</div>
+	</c:if>
+	<c:if test="${memberAuthInfo != null }">
+		<button class="jellybutton sidebtn1" name="write" id="write" onclick="location='<c:url value="/lostPage/lostPageWrite"/>'">WRITE</button>
+	</c:if>
 	<script>
 
 	function del(boardNum) {
