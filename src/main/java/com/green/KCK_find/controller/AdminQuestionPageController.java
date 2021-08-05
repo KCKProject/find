@@ -21,7 +21,7 @@ public class AdminQuestionPageController {
 		this.dao = dao;
 	}
 	public int memberCount() {
-		return dao.qnaCount();
+		return dao.qnaAllCount();
 	}
 
 	@RequestMapping("/admin/adminQuestionPage")

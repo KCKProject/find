@@ -20,7 +20,7 @@ private FindDao dao;
 		this.dao = dao;
 	}	
 	
-	public int memberCount() {
+	public int qnaCount() {
 		return dao.qnaCount();
 	}
 	
@@ -33,7 +33,7 @@ private FindDao dao;
 	      
 	      PageMakerQnABoard pageMaker = new PageMakerQnABoard();
 	      pageMaker.setCri(cri);
-	      pageMaker.setTotalCount(memberCount());
+	      pageMaker.setTotalCount(qnaCount());
 	      model.addAttribute("pageMaker",pageMaker);
 	      
 	      return "questionPage/questionPage";

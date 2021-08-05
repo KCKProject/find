@@ -157,6 +157,12 @@ public class FindDao {
 	}
 	public int qnaCount() {
 		Integer cnt = jdbcTemplate.queryForObject(
+				"SELECT count(boardnum) FROM qnaboard where open = 1 and boardnum > 0",Integer.class);
+		return cnt;
+	}
+	
+	public int qnaAllCount() {
+		Integer cnt = jdbcTemplate.queryForObject(
 				"SELECT count(boardnum) FROM qnaboard where boardnum > 0",Integer.class);
 		return cnt;
 	}
