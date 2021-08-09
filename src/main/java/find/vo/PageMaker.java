@@ -21,10 +21,6 @@ public class PageMaker {
 		this.cri = cri;
 	}
 
-	public void setTotalCount(int totalCount) {
-		 this.totalCount = totalCount;
-		 calcData();
-	}
 	public void setIncompleteCount(int incompleteCount) {
 		 this.incompleteCount = incompleteCount;
 		 incompleteCalcData();
@@ -33,7 +29,11 @@ public class PageMaker {
 		 this.completeCount = completeCount;
 		 completeCalcData();
 	}
-	
+
+	public void setTotalCount(int totalCount) {
+		 this.totalCount = totalCount;
+		 calcData();
+	}
 	
 
 	public int getIncompleteCount() {
@@ -72,17 +72,6 @@ public class PageMaker {
 		return cri;
 	}
 	 
-	private void calcData() {
-		endPage = (int) (Math.ceil(cri.getPage() / (double)displayPageNum) * displayPageNum);
-		startPage = (endPage - displayPageNum) + 1;
-	  
-		int tempEndPage = (int) (Math.ceil(totalCount / (double)cri.getPerPageNum()));
-		if (endPage > tempEndPage){
-			endPage = tempEndPage;
-		}
-		prev = startPage == 1 ? false : true;
-		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
-	}
 	private void incompleteCalcData() {
 		endPage = (int) (Math.ceil(cri.getPage() / (double)displayPageNum) * displayPageNum);
 		startPage = (endPage - displayPageNum) + 1;
@@ -104,6 +93,17 @@ public class PageMaker {
 		}
 		prev = startPage == 1 ? false : true;
 		next = endPage * cri.getPerPageNum() >= completeCount ? false : true;
+	}
+	private void calcData() {
+		endPage = (int) (Math.ceil(cri.getPage() / (double)displayPageNum) * displayPageNum);
+		startPage = (endPage - displayPageNum) + 1;
+	  
+		int tempEndPage = (int) (Math.ceil(totalCount / (double)cri.getPerPageNum()));
+		if (endPage > tempEndPage){
+			endPage = tempEndPage;
+		}
+		prev = startPage == 1 ? false : true;
+		next = endPage * cri.getPerPageNum() >= totalCount ? false : true;
 	}
 	
 	public String makeQuery(int page){

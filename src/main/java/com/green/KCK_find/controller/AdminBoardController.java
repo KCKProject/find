@@ -53,9 +53,9 @@ public class AdminBoardController {
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(lostCount());
 		pageMaker.setIncompleteCount(lostIncompleteCount());
 		pageMaker.setCompleteCount(lostCompleteCount());
+		pageMaker.setTotalCount(lostCount());
 		model.addAttribute("pageMaker",pageMaker);
 		
 		
@@ -71,9 +71,9 @@ public class AdminBoardController {
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(findCount());
 		pageMaker.setIncompleteCount(findIncompleteCount());
 		pageMaker.setCompleteCount(findCompleteCount());
+		pageMaker.setTotalCount(findCount());
 		model.addAttribute("pageMaker",pageMaker);
 		
 		return "admin/adminBoard";
