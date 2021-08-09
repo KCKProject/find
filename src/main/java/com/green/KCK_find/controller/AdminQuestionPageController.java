@@ -12,6 +12,7 @@ import find.vo.Criteria;
 import find.vo.PageMaker;
 import find.vo.QnABoard;
 
+
 @Controller
 public class AdminQuestionPageController {
 	
@@ -23,6 +24,8 @@ public class AdminQuestionPageController {
 	public int memberCount() {
 		return dao.qnaAllCount();
 	}
+	
+	
 
 	@RequestMapping("/admin/adminQuestionPage")
 	public String list(@ModelAttribute("cri") Criteria cri, Model model) {
@@ -38,12 +41,6 @@ public class AdminQuestionPageController {
 		return "admin/adminQuestionPage";
 	}
 	
-	// 글작성
-	@RequestMapping("/admin/questionPageWrite")
-	public String qnaWrite(QnABoard qnaboard) {
 	
-		
-		return "asd";
-	}
 	
 }

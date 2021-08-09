@@ -59,10 +59,10 @@
 						<c:if test="${qnABoard.open != null}">
 							<c:choose>
 								<c:when test="${qnABoard.open eq 0}">
-									<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/admin/changeOpen/${qnABoard.boardNum}&${qnABoard.open}"/>'">공개<span>변경 >></span></button>
+									<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/admin/changeOpen/${qnABoard.boardNum}&${qnABoard.open}"/>'">PUBLIC<span>공개 >></span></button>
 								</c:when>
 								<c:when test="${qnABoard.open eq 1}">
-									<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/admin/changeOpen/${qnABoard.boardNum}&${qnABoard.open}"/>'">비공개<span>변경 >></span></button>
+									<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/admin/changeOpen/${qnABoard.boardNum}&${qnABoard.open}"/>'">CLOSED<span>비공개 >></span></button>
 								</c:when>
 							</c:choose>
 						</c:if>

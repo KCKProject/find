@@ -152,6 +152,8 @@ public class FindDao {
 		return results;
 	}
 	
+	// 카운터
+	
 	public int memberCount() {
 		Integer cnt = jdbcTemplate.queryForObject(
 				"SELECT count(memberNumber) FROM Member where memberNumber > 0",Integer.class);
@@ -178,8 +180,30 @@ public class FindDao {
 				"SELECT count(boardnum) FROM findboard where boardnum > 0",Integer.class);
 		return cnt;
 	}
-	
+	public int findCompleteCount() {
+		Integer cnt = jdbcTemplate.queryForObject(
+				"SELECT count(boardnum) FROM findboard where boardnum > 0 and meet= 1",Integer.class);
+		return cnt;
+	}
+	public int findIncompleteCount() {
+		Integer cnt = jdbcTemplate.queryForObject(
+				"SELECT count(boardnum) FROM findboard where boardnum > 0 and meet= 0",Integer.class);
+		return cnt;
+	}
+	public int lostCompleteCount() {
+		Integer cnt = jdbcTemplate.queryForObject(
+				"SELECT count(boardnum) FROM lostboard where boardnum > 0 and meet= 1",Integer.class);
+		return cnt;
+	}
+	public int lostIncompleteCount() {
+		Integer cnt = jdbcTemplate.queryForObject(
+				"SELECT count(boardnum) FROM lostboard where boardnum > 0 and meet= 0",Integer.class);
+		return cnt;
+	}
+	// 카운터 끝
 
+	
+	
 	public List<LostBoard> selectAllLostBoard(Criteria cri) {
 		List<LostBoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
@@ -265,6 +289,7 @@ public class FindDao {
 		List<Member> results = jdbcTemplate.query(sql, rowMapper, userId);
 		return results.isEmpty() ? null : results.get(0);		
 	}
+	
 
 	public void insertMember(Member member) {
 		KeyHolder key = new GeneratedKeyHolder();
@@ -291,6 +316,9 @@ public class FindDao {
 	}
 	
 	
+
+	
+	
 	public void insertQnA(QnABoard qnABoard) {
 		KeyHolder key = new GeneratedKeyHolder();
 		jdbcTemplate.update(
@@ -299,14 +327,13 @@ public class FindDao {
 					@Override
 					public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
 						PreparedStatement psmt = con.prepareStatement(
-								"INSERT INTO QnABoard VALUES(QNABoard_seq.nextval,?,?,?,?,?)",
+								"INSERT INTO QnABoard VALUES(QNABoard_seq.nextval,?,?,sysdate,?,?)",
 								new String[] {"boardNum"});
 						
 						psmt.setString(1,qnABoard.getTitle());
 						psmt.setString(2,qnABoard.getWriter());
-						psmt.setDate(3,qnABoard.getWriteDate());
-						psmt.setString(4,qnABoard.getContents());
-						psmt.setInt(5, qnABoard.getOpen());
+						psmt.setString(3,qnABoard.getContents());
+						psmt.setInt(4, qnABoard.getOpen());
 						
 						return psmt;
 					}

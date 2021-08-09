@@ -24,6 +24,11 @@
    
    <bean id="AdminQuestionPageController" class="com.green.KCK_find.controller.AdminQuestionPageController">
       <property name="dao" ref="findDao"/>
+      
+   </bean>
+   
+   <bean id="AdminQnAWriteController" class="com.green.KCK_find.controller.AdminQnAWriteController">
+      <property name="qnAWriteService" ref="qnAWriteSvc"/>
    </bean>
    
    <bean id="AdminMemberDetailController" class="com.green.KCK_find.controller.AdminMemberDetailController">

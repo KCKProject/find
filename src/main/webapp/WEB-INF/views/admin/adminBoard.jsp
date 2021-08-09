@@ -32,7 +32,7 @@
 
 		<div class="right">
 			<div>
-				<p>진행중 개 | 완료 개 | 
+				<p>미완료 ${pageMaker.incompleteCount}개 | 완료 ${pageMaker.completeCount}개 | 
 				전체${pageMaker.totalCount}개 
 				<input type="text" name="search" id="search" placeholder="검색어를 입력해주세요"> 
 				<a href=""><img src="../resources/img/search.png" alt="검색" width="15px" height="15px"></a></p>

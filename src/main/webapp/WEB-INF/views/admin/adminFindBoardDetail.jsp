@@ -50,16 +50,33 @@
 						<button class="btn btn-swap"> MORE <span>전체 글 보기 >></span> </button>
 					</a>
 					<a href="<c:url value='/admin/adminBoard'/>">
-						<button class="btn btn-swap"> DELETE <span>글 삭제 >></span> </button>
+						<button class="btn btn-swap" onclick="delFind(${findBoard.boardNum})"> DELETE <span>글 삭제 >></span> </button>
 					</a>
 					<a href="<c:url value='/admin/adminBoard'/>">
 						<button class="btn btn-swap"> EDIT <span>글 수정 >></span> </button>
 					</a>
+					<c:if test="${findBoard.meet != null}">
+						<c:choose>
+							<c:when test="${findBoard.meet eq 0}">
+								<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/admin/changeFindMeet/${findBoard.boardNum}&${findBoard.meet}"/>'">CONFIRM<span>완료 >></span></button>
+							</c:when>
+							<c:when test="${findBoard.meet eq 1}">
+								<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/admin/changeFindMeet/${findBoard.boardNum}&${findBoard.meet}"/>'">CONFIRM<span>미완료 >></span></button>
+							</c:when>
+						</c:choose>
+					</c:if>
 				</div>
 			</div>
 		</div>
 	</div>
-		
+<script type="text/javascript">
+	function delFind(boardNum) {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href="<c:url value='/admin/findBoardDelete/'/>"+boardNum;
+		}
+	}
+</script>	
 
 </body>
 </html>

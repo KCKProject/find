@@ -44,4 +44,41 @@ public class AdminBoardDetailController {
 		
 		return "admin/adminFindBoardDetail";
 	}
+	
+	// 공개 비공개
+	@RequestMapping("/admin/changeFindMeet/{boardNum}&{meet}")
+	public String changeFindMeet(@PathVariable("boardNum") long boardNum,
+							 @PathVariable("meet") int meet,
+							 Model model){
+		String board = "findBoard";
+		dao.updateMeet(boardNum, meet, board);
+		FindBoard detail = dao.selectByFindBoardNum(boardNum);
+		model.addAttribute("detail", detail);
+		
+		return "redirect:/admin/adminFindBoard";
+	}
+	
+	@RequestMapping("/admin/changeLostMeet/{boardNum}&{meet}")
+	public String changeLostMeet(@PathVariable("boardNum") long boardNum,
+							 @PathVariable("meet") int meet,
+							 Model model){
+		String board = "lostBoard";
+		dao.updateMeet(boardNum, meet, board);
+		FindBoard detail = dao.selectByFindBoardNum(boardNum);
+		model.addAttribute("detail", detail);
+		
+		return "redirect:/admin/adminBoard";
+	}
+	
+	@RequestMapping("/admin/lostBoardDelete/{boardNum}")
+	public String deleteLost(@PathVariable("boardNum") long boardNum) {
+			dao.deleteByLostBoardNum(boardNum);
+		return "redirect:/admin/adminBoard";
+	}
+	
+	@RequestMapping("/admin/findBoardDelete/{boardNum}")
+	public String deleteFind(@PathVariable("boardNum") long boardNum) {
+			dao.deleteByFindBoardNum(boardNum);
+		return "redirect:/admin/adminFindBoard";
+	}
 }

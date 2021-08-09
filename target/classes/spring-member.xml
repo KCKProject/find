@@ -51,4 +51,8 @@
    <bean id="findBoardWriteSvc" class="find.service.FindBoardWriteService">
     	<constructor-arg ref="findDao" />
    </bean>
+   
+   <bean id="qnAWriteSvc" class="find.service.QnAWriteService">
+    	<property name="dao" ref="findDao"/>
+   </bean>
 </beans>

@@ -10,7 +10,6 @@
 <link rel="stylesheet" href="../resources/css/style.css">
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
-<script src="../resources/script/script.js" defer></script>
 <title>찾아주세요</title>
 
 </head>

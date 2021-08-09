@@ -30,6 +30,20 @@ public class AdminBoardController {
 	public int findCount() {
 		return dao.findCount();
 	}
+	public int lostCompleteCount() {
+		return dao.lostCompleteCount();
+	}
+	
+	public int lostIncompleteCount() {
+		return dao.lostIncompleteCount();
+	}
+	public int findCompleteCount() {
+		return dao.findCompleteCount();
+	}
+	
+	public int findIncompleteCount() {
+		return dao.findIncompleteCount();
+	}
 
 	@RequestMapping(value = "/admin/adminBoard", method = RequestMethod.GET)
 	public String lostlist(@ModelAttribute("cri") Criteria cri, Model model) {
@@ -40,7 +54,10 @@ public class AdminBoardController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(lostCount());
+		pageMaker.setIncompleteCount(lostIncompleteCount());
+		pageMaker.setCompleteCount(lostCompleteCount());
 		model.addAttribute("pageMaker",pageMaker);
+		
 		
 		return "admin/adminBoard";
 	}
@@ -55,6 +72,8 @@ public class AdminBoardController {
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(findCount());
+		pageMaker.setIncompleteCount(findIncompleteCount());
+		pageMaker.setCompleteCount(findCompleteCount());
 		model.addAttribute("pageMaker",pageMaker);
 		
 		return "admin/adminBoard";

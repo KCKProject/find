@@ -9,9 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../resources/css/style.css">
-<script src="https://kit.fontawesome.com/2d323a629b.js"
-	crossorigin="anonymous"></script>
-<script src="resources/script/script.js" defer></script>
+<script src="https://kit.fontawesome.com/2d323a629b.js" crossorigin="anonymous"></script>
 <title>관리자 페이지_QnA관리</title>
 </head>
 <body>
@@ -98,7 +96,10 @@
 			</div>
 		</div>
 		<div>
-			<input type="button" name="insertQnA" id="insertQnA" value="QnA 등록" onclick="<c:url value="/admin/questionPageWrite/"/>">
+			<%-- <input type="button" name="insertQnA" id="insertQnA" value="QnA 등록" onclick="location.href='/admin/questionPageWrite'"> --%>
+			<a href="<c:url value='questionPageWrite'/>"><button>QnA등록</button></a>
+			<%-- <input type="button" value="QnA등록" onclick="<c:url value='/admin/questionPageWrite'/>"/> --%>
+			
 		</div>
 	</div>
 <%-- 			<div class="wrap">

@@ -34,7 +34,7 @@
 		<div class="right">
 			<div>
 				<p>
-					회원 :
+					회원 
 					<%-- <c:forEach items="${members}" var="i" varStatus="status">
 						<c:if test="${status.last}">
 							${i.memberNumber}명
@@ -48,13 +48,13 @@
 						height="15px"></a>
 				</p>
 			</div>
-			<div>
-			<!-- 	<input type="date" name="startDate" id="startDate"> ~ <input type="date" name="endDate" id="endDate">  -->
+			<!-- <div>
+				<input type="date" name="startDate" id="startDate"> ~ <input type="date" name="endDate" id="endDate"> 
 				<label class="checkbox"><input type="checkbox" name="all" id="all"><span class="icon"></span><span class="text">전체</span></label>
-				<!-- <label class="checkbox"><input type="checkbox" name="userDate" id="userDate"><span class="icon"></span><span class="text">기간</span></label> --> 
+				<label class="checkbox"><input type="checkbox" name="userDate" id="userDate"><span class="icon"></span><span class="text">기간</span></label> 
 				<label class="checkbox"><input type="checkbox" name="done" id="done"><span class="icon"></span><span class="text">이름</span></label> 
 
-			</div>
+			</div> -->
 			<div>
 				<table class="adminContents">
 					<!-- <td></td> -->

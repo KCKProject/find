@@ -21,6 +21,13 @@ public class QnABoard {
 		this.contents = contents;
 		this.open = open;
 	}
+	
+	public QnABoard(String title, String writer, String contents, int open) {
+		this.title = title;
+		this.writer = writer;
+		this.contents = contents;
+		this.open = open;
+	}
 
 
 	public int getOpen() {
