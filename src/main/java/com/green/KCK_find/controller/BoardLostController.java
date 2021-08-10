@@ -2,6 +2,8 @@ package com.green.KCK_find.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -16,6 +18,8 @@ import find.vo.PageMakerMainBoard;
 @Controller
 public class BoardLostController {
 
+	
+	
 	private FindDao dao;
 	
 	public void setDao(FindDao dao) {
@@ -28,7 +32,12 @@ public class BoardLostController {
 	
 	// 게시글 목록 불러오기
 	@RequestMapping("/lostPage/lostPageList")
-	public String lost(@ModelAttribute("cri") CriteriaMainBoard cri, Model model) {
+	public String lost(@ModelAttribute("cri") CriteriaMainBoard cri, Model model/* HttpServletRequest request */) {
+		
+		//test code
+//	    String uploadPath=request.getSession().getServletContext().getRealPath("/resources/img/");
+//	    System.out.println(uploadPath +"현 경로");
+//		
 		
 		List<LostBoard> losts = dao.selectAllLostBoard(cri);
 		model.addAttribute("losts",losts);
@@ -76,4 +85,6 @@ public class BoardLostController {
 		
 		return "lostPage/lostPageDetail";
 	}
+	
+	
 }

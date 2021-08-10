@@ -2,6 +2,8 @@ package com.green.KCK_find.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -65,6 +67,9 @@ public class AdminBoardController {
 	
 	@RequestMapping(value = "/admin/adminFindBoard", method = RequestMethod.GET)
 	public String findlist(@ModelAttribute("cri") Criteria cri, Model model) {
+		
+
+		
 		
 		List<FindBoard> finds = dao.selectAllFindBoard(cri);
 		model.addAttribute("finds",finds);
