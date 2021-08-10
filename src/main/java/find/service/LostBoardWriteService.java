@@ -1,11 +1,14 @@
 package find.service;
  
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 
+import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import
 org.springframework.stereotype.Service;
@@ -28,20 +31,20 @@ public class LostBoardWriteService {
 	}
 	
 	public void boardRegist(LostBoardWriteCommand lc, 
-			HttpSession session, MultipartHttpServletRequest request) throws IOException {
+			HttpSession session,
+			MultipartHttpServletRequest request) throws IOException {
 		MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-		System.out.println("session id의 값 : "+member.getUserId());
-		String userName = member.getUserName();
+		System.out.println("[service]session id의 값 : "+member.getUserId());
 		
 		String term = lc.getTerm();
 		System.out.println("넘어온 term 의 값 : "+term);
 		
-		String email = member.getEmail();
-		String phone = member.getPhone();
-		if(lc.getTerm().equals("phoneAgree")) {
+		if(term==null) {
 			member.setEmail("비공개");
-		}
-		if(lc.getTerm().equals("emailAgree")) {
+			member.setPhone("비공개");
+		}else if(term.equals("phoneAgree")) {
+			member.setEmail("비공개");
+		}else if(term.equals("emailAgree")) {
 			member.setPhone("비공개");
 		}
 		
@@ -52,8 +55,8 @@ public class LostBoardWriteService {
 		String originalFile = img.getOriginalFilename();
 		String originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
 		String storedFileName = UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
-		String filePath = request.getSession().getServletContext().getRealPath("resources/img/upload");
-		File file = new File(filePath+storedFileName);
+		String filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+		File file = new File(filePath,storedFileName);
 		img.transferTo(file);
 		
 		System.out.println("업로드한 파일은 "+originalFile);
@@ -61,6 +64,23 @@ public class LostBoardWriteService {
 		System.out.println(filePath+" 경로에 저장됐으니 확인.");
 		System.out.println("파일 사이즈는 : "+img.getSize());
 
+		
+		// 썸네일(게시판 목록에서 보여질 사진) 생성
+		BufferedImage sourceImg = ImageIO.read(new File(filePath,storedFileName));
+		
+		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);
+		
+		String thumbnailName = filePath+File.separator+"s_"+storedFileName;
+		
+		File newFile = new File(thumbnailName);
+		String formatName = storedFileName.substring(storedFileName.lastIndexOf(".")+1);
+		
+		ImageIO.write(destImg, formatName.toUpperCase(), newFile);
+		thumbnailName.substring(filePath.length()).replace(File.separatorChar, '/');
+		
+		System.out.println("formatName : "+formatName);
+		System.out.println("thumbnailName : "+thumbnailName);
+	      
 		lb.setTitle(lc.getTitle());
 		lb.setWriter(member.getUserId());
 		lb.setLocation(lc.getLocation());
