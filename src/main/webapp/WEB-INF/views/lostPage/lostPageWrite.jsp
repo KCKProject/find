@@ -64,10 +64,7 @@
 						<td><input type="file" name="img" id="img"/></td>
 					</tr>
 				</table>
-
-			 	<div> 첨부파일
-					<div class="photofile-btn"></div>
-				</div>
+				
 				<div> <!-- 약관 -->
 					<div class="writeTerms">
 						<label class="checkbox"><input type="checkbox" name="term" id="term" value="agree" class="AllOkay"><span class="icon"></span><span class="text">전체동의</span></label> 
@@ -78,7 +75,7 @@
 					</div>
 				</div>
 				<div > <!-- 작성완료 버튼 -->
-					<input type="submit" value="작성완료" ><!-- class="completeBtn"> -->
+					<input type="submit" value="작성완료" class="completeBtn">ㄴ
 				</div>
 			</form:form>
 		</div>

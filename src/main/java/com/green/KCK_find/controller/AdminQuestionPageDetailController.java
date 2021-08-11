@@ -4,10 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import find.dao.FindDao;
 import find.exception.MemberNotFoundException;
 import find.vo.QnABoard;
+import find.vo.QnAWriteCommand;
 
 
 @Controller
@@ -47,6 +49,26 @@ public class AdminQuestionPageDetailController {
 		QnABoard detail = dao.selectByQuestionBoardNum(boardNum);
 		model.addAttribute("detail", detail);
 		
+		return "redirect:/admin/adminQuestionPage";
+	}
+	
+	// 글 수정 
+	@RequestMapping(value="/admin/qnaModify/{boardNum}", method=RequestMethod.GET)
+	public String modify(@PathVariable("boardNum") long boardNum, Model model, QnAWriteCommand qnAWriteCommand) {
+		
+		QnABoard qnABoard = dao.selectByQuestionBoardNum(boardNum);
+		model.addAttribute("qnABoard",qnABoard);
+		
+		return "admin/adminQuestionUpdate";
+	}
+	@RequestMapping(value="/admin/qnaModify/{boardNum}", method=RequestMethod.POST)
+	public String qnAUpdate(@PathVariable("boardNum") long boardNum, QnAWriteCommand qnAWriteCommand) {
+				
+		QnABoard updateQnA = new QnABoard(
+				qnAWriteCommand.getTitle(),qnAWriteCommand.getWriter(),qnAWriteCommand.getContents(),
+				qnAWriteCommand.getOpen());
+		
+		dao.updateByQnABoardNum(boardNum, updateQnA);
 		return "redirect:/admin/adminQuestionPage";
 	}
 	

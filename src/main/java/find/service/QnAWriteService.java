@@ -17,8 +17,6 @@ public class QnAWriteService {
 		this.dao = dao;
 	}
 
-
-
 	public void qnAWrite(QnAWriteCommand qnAWriteCommand) {
 		QnABoard newQnA = new QnABoard(
 				qnAWriteCommand.getTitle(),qnAWriteCommand.getWriter(),qnAWriteCommand.getContents(),

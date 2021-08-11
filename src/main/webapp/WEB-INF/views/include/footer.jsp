@@ -14,6 +14,8 @@
 			<div class="footerMenu">
 				<ul>
 					<li><a href="<spring:url value='/servicePage/servicePage'/>" target='_blank'>서비스소개</a></li>
+					<li><a href="<spring:url value='/servicePage/servicePage'/>" target='_blank'>관련사이트</a></li>
+					<li><a href="<spring:url value='/servicePage/servicePage'/>" target='_blank'>사이트의견</a></li>
 					<li><a href="<spring:url value='/servicePage/servicePage'/>" target='_blank'>제휴문의</a></li>
 					<li><a href="<spring:url value='/admin'/>">관리자페이지</a></li>
 				</ul>

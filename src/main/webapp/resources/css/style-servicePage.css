@@ -187,6 +187,10 @@ small, .small {
   font-size: 0.875em;
 }
 
+smaller {
+  font-size: 0.575em;
+}
+
 mark, .mark {
   padding: 0.2em;
   background-color: #fcf8e3;
@@ -1454,11 +1458,6 @@ progress {
   .col-lg-8 {
     flex: 0 0 auto;
     width: 66.66666667%;
-  }
-  
-  .col-lg-8 h2, .col-lg-8 p {
-  	font-family: 'Sunflower', sans-serif;
-  	line-height: 50px;
   }
 
   .col-lg-9 {
@@ -7196,15 +7195,31 @@ textarea.form-control-lg {
   margin-bottom: 2rem !important;
 }
 
-.site a {
-    color: snow;
-    text-decoration: underline;
-    font-family: 'Sunflower', sans-serif;
+.fontSetting {
+  font-family: 'Sunflower', sans-serif;
+  line-height: 30px;
 }
 
-.site {
-    padding-bottom: 20px;
+.site li {
+    list-style: none;
+    text-align: left;
+    padding-left: 20%;
+    line-height: 50px;
 }
+
+.site a {
+    color: rgba(255, 255, 255, 0.5) !important;
+    text-decoration: none;
+}
+
+.site a:hover {
+	text-decoration: underline; 
+}
+
+.fa-caret-right {
+	margin-right: 15px;
+}
+
 
 .mb-auto {
   margin-bottom: auto !important;

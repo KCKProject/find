@@ -22,10 +22,10 @@
 				<p class="adminTitle">게시판 관리</p>
 			</div>
 			<div>
-				<ul>
-					<a href="<c:url value='/admin/adminBoard'/>"><li>찾아주세요</li></a>
-					<a href="<c:url value='/admin/adminFindBoard'/>"><li>찾아가세요</li></a>
-				</ul>
+				<p>찾아주세요</p>
+			</div>
+			<div>
+				<p>찾아가세요</p>
 			</div>
 		</div>
 
@@ -50,33 +50,16 @@
 						<button class="btn btn-swap"> MORE <span>전체 글 보기 >></span> </button>
 					</a>
 					<a href="<c:url value='/admin/adminBoard'/>">
-						<button class="btn btn-swap" onclick="delLost(${lostBoard.boardNum})"> DELETE <span>글 삭제 >></span> </button>
+						<button class="btn btn-swap"> DELETE <span>글 삭제 >></span> </button>
 					</a>
-					<%-- <a href="<c:url value='/admin/adminBoard'/>">
+					<a href="<c:url value='/admin/adminBoard'/>">
 						<button class="btn btn-swap"> EDIT <span>글 수정 >></span> </button>
-					</a> --%>
-					<c:if test="${lostBoard.meet != null}">
-						<c:choose>
-							<c:when test="${lostBoard.meet eq 0}">
-								<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/admin/changeLostMeet/${lostBoard.boardNum}&${lostBoard.meet}"/>'">CONFIRM<span>완료 >></span></button>
-							</c:when>
-							<c:when test="${lostBoard.meet eq 1}">
-								<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/admin/changeLostMeet/${lostBoard.boardNum}&${lostBoard.meet}"/>'">CONFIRM<span>미완료 >></span></button>
-							</c:when>
-						</c:choose>
-					</c:if>
+					</a>
 				</div>
 			</div>
 		</div>
 	</div>
-<script type="text/javascript">
-	function delLost(boardNum) {
-		var chk = confirm("정말 삭제하시겠습니까?");
-		if (chk) {
-			location.href="<c:url value='/admin/lostBoardDelete/'/>"+boardNum;
-		}
-	}
-</script>
+		
 
 </body>
 </html>

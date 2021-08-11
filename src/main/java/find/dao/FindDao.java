@@ -30,7 +30,6 @@ import find.vo.CriteriaQnABoard;
 import find.vo.FindBoard;
 import find.vo.LostBoard;
 import find.vo.Member;
-import find.vo.MemberAuthInfo;
 import find.vo.QnABoard;
 
 @Component
@@ -445,6 +444,16 @@ public class FindDao {
 		jdbcTemplate.update(sql,boardNum);
 	}
 
+	public void updateByQnABoardNum(long boardNum, QnABoard qnABoard) {
+		String sql="update QnABoard set title=?, writer=?, writedate=sysdate, contents=?, open=? where boardNum=?";
+		jdbcTemplate.update(sql,qnABoard.getTitle(),qnABoard.getWriter(),qnABoard.getContents(),qnABoard.getOpen(),boardNum);
+	}
+	
+	public void updateByMember(long memeberNumber, Member member) {
+		String sql="update member set USERNAME=?, phone=?, email=? where memberNumber=?";
+		jdbcTemplate.update(sql,member.getUserName(), member.getPhone(),member.getEmail(),memeberNumber);
+	}
+	
 	
 	public void writeLostBoard(LostBoard lb) {
 		
