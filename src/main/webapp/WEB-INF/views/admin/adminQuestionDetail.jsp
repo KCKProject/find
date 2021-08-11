@@ -52,8 +52,8 @@
 						<a href="<c:url value='/admin/adminQuestionPage'/>">
 							<button class="btn btn-swap" onclick="delQnA(${qnABoard.boardNum})"> DELETE <span>글 삭제 >></span> </button>
 						</a>
-						<a href="<c:url value='/admin/adminQuestionPage'/>">
-							<button class="btn btn-swap"> EDIT <span>글 수정 >></span> </button>
+						<a href="<c:url value='/admin/qnaModify/${qnABoard.boardNum}'/>">
+							<button class="btn btn-swap"> EDIT <span>글 수정 >></span></button>
 						</a>
 						<!-- 발견완료 체크유무에 따른(=meet 컬럼 값에 따른) 버튼 종류의 차이 -->
 						<c:if test="${qnABoard.open != null}">
@@ -75,8 +75,8 @@
 				var chk = confirm("정말 삭제하시겠습니까?");
 				if (chk) {
 					location.href="<c:url value='/admin/questionDelete/'/>"+boardNum;
+					}
 				}
-			}
 		</script>
 	
 </body>

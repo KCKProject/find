@@ -18,6 +18,13 @@ public class Member {
 		this.phone = phone;
 		this.email = email;
 	}
+	
+	public Member(String userName, String phone, String email) {
+		this.userName = userName;
+		this.phone = phone;
+		this.email = email;
+	}
+	
 	public long getMemberNumber() {
 		return memberNumber;
 	}

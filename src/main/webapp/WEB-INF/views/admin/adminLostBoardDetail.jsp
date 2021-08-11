@@ -52,9 +52,9 @@
 					<a href="<c:url value='/admin/adminBoard'/>">
 						<button class="btn btn-swap" onclick="delLost(${lostBoard.boardNum})"> DELETE <span>글 삭제 >></span> </button>
 					</a>
-					<a href="<c:url value='/admin/adminBoard'/>">
+					<%-- <a href="<c:url value='/admin/adminBoard'/>">
 						<button class="btn btn-swap"> EDIT <span>글 수정 >></span> </button>
-					</a>
+					</a> --%>
 					<c:if test="${lostBoard.meet != null}">
 						<c:choose>
 							<c:when test="${lostBoard.meet eq 0}">

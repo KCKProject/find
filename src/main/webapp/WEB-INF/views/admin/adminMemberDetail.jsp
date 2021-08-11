@@ -29,6 +29,9 @@
 		<span class="line"></span>
 
 		<div class="right">
+			<div>
+				<p>회원 정보</p>
+			</div>
 			<div class="wrapContents">
 				<label>
 					아이디 : ${member.userId}
@@ -54,7 +57,7 @@
 						<button class="btn btn-swap"> DELETE <span>글 삭제 >></span> </button>
 					</a>
 					 --%>
-					<a href="<c:url value='/admin/adminMember'/>">
+					<a href="<c:url value='/admin/memberUpdate/${member.memberNumber}'/>">
 						<button class="btn btn-swap"> EDIT <span>정보 변경 >></span> </button>
 					</a>
 				</div>

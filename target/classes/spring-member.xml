@@ -55,4 +55,5 @@
    <bean id="qnAWriteSvc" class="find.service.QnAWriteService">
     	<property name="dao" ref="findDao"/>
    </bean>
+   
 </beans>
