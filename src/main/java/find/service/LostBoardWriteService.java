@@ -1,15 +1,23 @@
 package find.service;
  
+import java.awt.PageAttributes.MediaType;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.io.IOUtils;
 import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import
 org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -66,6 +74,8 @@ public class LostBoardWriteService {
 
 		
 		// 썸네일(게시판 목록에서 보여질 사진) 생성
+		// List에서 보여질때 축소본인  썸네일 이미지를 나타내면, 서버에 최소한의 데이터 전송 가능
+		// 상세보기페이지에서는 원본이미지 출력
 		BufferedImage sourceImg = ImageIO.read(new File(filePath,storedFileName));
 		
 		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);

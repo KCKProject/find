@@ -2,6 +2,9 @@ package com.green.KCK_find.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -36,6 +39,9 @@ public class BoardLostController {
 		PageMakerMainBoard pageMaker = new PageMakerMainBoard();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(lostCount());
+		ResponseEntity<byte[]> imgUrl = dao.disPlay(detail, request);
+		
+		model.addAttribute("imgUrl", imgUrl);
 		model.addAttribute("pageMaker",pageMaker);
 		
 		return "lostPage/lostPageList";
@@ -66,14 +72,20 @@ public class BoardLostController {
 	@RequestMapping("/lostPage/changeMeet/{boardNum}&{meet}")
 	public String changeMeet(@PathVariable("boardNum") long boardNum,
 							 @PathVariable("meet") int meet,
-							 Model model){
+							 Model model) throws Exception{
 		
 		String board = "lostBoard";
 		dao.updateMeet(boardNum, meet, board);
 		LostBoard detail = dao.selectByBoardNum(boardNum);
 		
 		model.addAttribute("detail", detail);
-		
 		return "lostPage/lostPageDetail";
 	}
+	
+//	@RequestMapping("/lostPage/lostPagePhotoList/{boardNum}")
+//	public ResponseEntity<byte[]> displayFile(long boardNum, HttpServletRequest request) throws Exception{
+//		
+//		System.out.println("boardNum : "+boardNum);
+//	    return lostBoardWriteService.disPlay(boardNum, request);
+//	}
 }
