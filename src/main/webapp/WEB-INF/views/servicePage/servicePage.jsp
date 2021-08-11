@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html>
@@ -133,31 +135,20 @@
                     <div class="col-md-10 col-lg-8 mx-auto text-center">
                         <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
                         <h2 class="text-white mb-5">Send us your comments!</h2>
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- * * SB Forms Contact Form * *-->
-                        <!-- * * * * * * * * * * * * * * *-->
-                        <!-- This form is pre-integrated with SB Forms.-->
-                        <!-- To make this form functional, sign up at-->
-                        <!-- https://startbootstrap.com/solution/contact-forms-->
-                        <!-- to get an API token!-->
+ 
+ 						
                         <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
                             <!-- Email address input-->
                             <div class="row input-group-newsletter">
-                                <div class="col"><input class="form-control" id="emailAddress" type="email" placeholder="Please write your comments..." aria-label="Send us your comments"  /></div>
+                                <div class="col"><input class="form-control" id="emailAddress" type="email" placeholder="Please write your comments..." aria-label="Send us your comments" /></div>
                                 <div class="col-auto"><button class="btn btn-primary disabled" id="submitButton" type="submit">Send!</button></div>
+                                <div><p style="font-family: 'Sunflower', sans-serif; font-size: 12px; color: lightgray; padding-top: 20px;">* 사이트 개선사항에 대한 코멘트를 자유롭게 보내주세요!</p></div>
                             </div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:required">An email is required.</div>
-                            <div class="invalid-feedback mt-2" data-sb-feedback="emailAddress:email">Email is not valid.</div>
-                            <!-- Submit success message-->
-                            <!---->
-                            <!-- This is what your users will see when the form-->
-                            <!-- has successfully submitted-->
+                            
                             <div class="d-none" id="submitSuccessMessage">
                                 <div class="text-center mb-3 mt-2 text-white">
-                                    <div class="fw-bolder">Form submission successful!</div>
-                                    To activate this form, sign up at
-                                    <br />
-                                    <a href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                    <div class="fw-bolder">Your comment has been sent successful!</div>
+                                    Thank you for your valuable comments
                                 </div>
                             </div>
                             <!-- Submit error message-->
@@ -165,7 +156,9 @@
                             <!-- This is what your users will see when there is-->
                             <!-- an error submitting the form-->
                             <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3 mt-2">Error sending message!</div></div>
+                            
                         </form>
+                        
                     </div>
                 </div>
             </div>

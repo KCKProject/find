@@ -1,6 +1,10 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/green/KCK_find/controller/BoardFindController.java=UTF-8
+encoding//src/main/java/com/green/KCK_find/controller/BoardFindWriteController.java=UTF-8
 encoding//src/main/java/com/green/KCK_find/controller/BoardLostWriteController.java=UTF-8
 encoding//src/main/java/find/dao/FindDao.java=UTF-8
+encoding//src/main/java/find/service/FindBoardWriteService.java=UTF-8
+encoding//src/main/java/find/vo/FindBoardWriteCommand.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/findPage/findPageDetail.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/findPage/findPageList.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/findPage/findPageWrite.jsp=UTF-8

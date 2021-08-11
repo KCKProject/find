@@ -2,7 +2,7 @@ package find.vo;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class FindBoardWriteCommand { // Find 작성시 받아올 내용
+public class FindBoardWriteCommand { // Find �옉�꽦�떆 諛쏆븘�삱 �궡�슜
 	private String title;
 	private String kind;
 	private String gender;
@@ -12,6 +12,8 @@ public class FindBoardWriteCommand { // Find 작성시 받아올 내용
 	private String findDate;
 	private String memo;
 	private String term;
+	private String review;
+	
 	public String getTitle() {
 		return title;
 	}
@@ -65,5 +67,11 @@ public class FindBoardWriteCommand { // Find 작성시 받아올 내용
 	}
 	public void setTerm(String term) {
 		this.term = term;
+	}
+	public String getReview() {
+		return review;
+	}
+	public void setReview(String review) {
+		this.review = review;
 	}
 }

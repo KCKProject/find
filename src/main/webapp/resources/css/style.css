@@ -569,6 +569,10 @@ footer {
     width: 100%;
 }
 
+.mainBoard {
+	padding: 80px 0;
+}
+
 .mainLost {
 	padding: 10px 0 0 0;
 	background-color: #fdfaf624;
@@ -594,7 +598,7 @@ footer {
 }
 
 .contentsTitle {
-	padding: 10px 0 0 0;
+	padding: 30px 0 0 0;
     text-align: center;
     letter-spacing: 3px;
 }

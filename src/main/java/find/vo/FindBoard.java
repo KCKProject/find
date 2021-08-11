@@ -18,11 +18,12 @@ public class FindBoard {
 	private String memo;
 	private int meet;
 	private int hit;
- 
- public FindBoard() {}
+	private String review;
+	
+	public FindBoard() {}
 
 	public FindBoard(String title, String writer, Date writeDate, String kind, String gender, String location,
-			String character, String img, String email, String phone, Date findDate, String memo, int meet, int hit) {
+			String character, String img, String email, String phone, Date findDate, String memo, int meet, int hit, String review) {
 		this.title = title;
 		this.writer = writer;
 		this.writeDate = writeDate;
@@ -37,6 +38,7 @@ public class FindBoard {
 		this.memo = memo;
 		this.meet = meet;
 		this.hit = hit;
+		this.review = review;
 	}
 	
 	public Long getBoardNum() {
@@ -157,5 +159,13 @@ public class FindBoard {
 
 	public void setHit(int hit) {
 		this.hit = hit;
-	} 
+	}
+	
+	 public String getReview() {
+		return review;
+	}
+
+	public void setReview(String review) {
+		this.review = review;
+	}
 }
