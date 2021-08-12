@@ -103,7 +103,9 @@ public class LostBoardWriteService {
 	dao.writeLostBoard(lb);
 	}
 
-	public void writeReview2(String review, long boardNum) {
-		dao.writeReview2(review, boardNum);		
+
+	public void writeReview(String review, long boardNum) {
+		dao.writeReview2(review, boardNum);	
+		
 	}
 }

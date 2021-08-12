@@ -50,7 +50,7 @@
 							<td><span>*</span>내용</td>
 							<td><form:input path="contents" placeholder="내용"/></td>
 						</tr>
-						<tr>
+						<tr  class="qnaOpen">
 							<td><span>*</span>공개여부</td>
 							<td>
 								<form:select path="open">
@@ -61,7 +61,7 @@
 						</tr>
 					</table>
 					<div>
-						<input type="submit" value="작성완료">
+						<input type="submit" value="작성완료" class="completeBtn">
 					</div>
 				</form:form>
 			</div>

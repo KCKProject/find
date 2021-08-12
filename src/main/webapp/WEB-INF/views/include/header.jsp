@@ -13,7 +13,7 @@
 					<a href="<c:url value='/enter/signUp'/>">회원가입</a>
 				</c:if>
 				<c:if test="${memberAuthInfo != null }">
-					${memberAuthInfo.getUserName()}님 환영합니다.
+					${memberAuthInfo.getUserId()}님 환영합니다.
 					<a href="<c:url value='/enter/logout'/>">로그아웃</a>
 				</c:if>
 			</p>

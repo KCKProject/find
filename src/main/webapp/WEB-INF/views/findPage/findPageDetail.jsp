@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -37,9 +37,9 @@
 							<p class="finishText">발견완료</p>
 						</div>
 					</c:if>
-					
+
 					<div class="userid-writetime-anumber-view">
-						<p>${detail.writer}님|${detail.writeDate}| 등록번호
+						<p>${detail.writer}님|${detail.writeDate}|등록번호
 							${detail.boardNum} | 조회 ${detail.hit}</P>
 					</div>
 					<div class="kind">
@@ -64,18 +64,20 @@
 					<div class="memo">
 						<p>${detail.memo}</p>
 					</div>
-					
+
 					<c:if test="${detail.meet==1}">
 						<c:if test="${not empty detail.review }">
-			 				<div class="reviewContents">
-								<p><i class="fas fa-quote-left"></i>${detail.review}<i class="fas fa-quote-right"></i></p>
-							</div> 
+							<div class="reviewContents">
+								<p>
+									<i class="fas fa-quote-left"></i>${detail.review}<i
+										class="fas fa-quote-right"></i>
+								</p>
+							</div>
 						</c:if>
-					</c:if>	
-					
+					</c:if>
+
 				</div>
 			</div>
-
 
 			<div class="wrap-btns">
 				<!-- 버튼들 모음 -->
@@ -84,7 +86,7 @@
 					onclick="location='<c:url value="/findPage/findPageList"/>'">
 					목록으로<span>목록으로 >></span>
 				</button>
-				<c:if test="${memberAuthInfo.userName eq detail.writer}">
+				<c:if test="${memberAuthInfo.userId eq detail.writer}">
 					<button class="btn btn-swap" name="delete" id="delete"
 						onclick="del(${detail.boardNum})">
 						글삭제<span>글삭제 >></span>
@@ -111,12 +113,14 @@
 					</c:choose>
 				</c:if>
 			</div>
+			
 			<div class="review">
 				<form method="POST" action="/KCK_find/findPage/findPageWrite/review">
-					<h2>후기를 남겨주세요! 찾은 장소나 위치, 그리고 찾게 된 경로 등을 상세히 적어 주시면 많은 도움이 됩니다.</h2>
+					<h2>후기를 남겨주세요! 찾은 장소나 위치, 그리고 찾게 된 경로 등을 상세히 적어 주시면 많은 도움이
+						됩니다.</h2>
 					<input type="hidden" name="boardNum" value="${detail.boardNum}" />
 					<textarea name="review" rows="10" cols="30">${detail.review}</textarea>
-					<input type="submit" value="작성완료" class="completeBtn"> 
+					<input type="submit" value="작성완료" class="completeBtn">
 				</form>
 			</div>
 
@@ -182,19 +186,23 @@
 		</div>
 	</c:if>
 	<c:if test="${memberAuthInfo != null }">
-		<button class="jellybutton sidebtn1" name="write" id="write" onclick="location='<c:url value="/findPage/findPageWrite"/>'">WRITE</button>
+		<button class="jellybutton sidebtn1" name="write" id="write"
+			onclick="location='<c:url value="/findPage/findPageWrite"/>'">WRITE</button>
 	</c:if>
-	
+
 	<!-- 리뷰버튼 -->
-	<c:if test="${memberAuthInfo.userName eq detail.writer}">
+	<c:if test="${memberAuthInfo.userId eq detail.writer}">
 		<c:if test="${detail.meet eq 1}">
 			<div class="centerbtn">
-				<div class="jellybutton centerHiddenContents reviewHiddenContents" name="centerHiddenContents" id="centerHiddenContents">
+				<div class="jellybutton centerHiddenContents reviewHiddenContents"
+					name="centerHiddenContents" id="centerHiddenContents">
 					<p>
-						INFO<br>! 리뷰를 작성해주세요 <br>! 리뷰 버튼 클릭 시 리뷰 작성  혹은 수정 가능 합니다.
+						INFO<br>! 리뷰를 작성해주세요 <br>! 리뷰 버튼 클릭 시 리뷰 작성 혹은 수정 가능
+						합니다.
 					</p>
 				</div>
-				<button class="jellybutton sidebtn7" name="review" id="review" onclick="window.scrollTo(800,800)">REVIEW</button>
+				<button class="jellybutton sidebtn7" name="review" id="review"
+					onclick="window.scrollTo(800,800)">REVIEW</button>
 			</div>
 		</c:if>
 	</c:if>

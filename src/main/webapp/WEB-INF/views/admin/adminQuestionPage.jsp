@@ -43,12 +43,19 @@
 				<a href=""><img src="../resources/img/search.png" alt="검색" width="15px" height="15px"></a> -->
 				</p>
 			</div>
+			
 			<div>
 				<input type="date" name="startDate" id="startDate"> ~ 
 				<input type="date" name="endDate" id="endDate"> 
 				<label class="checkbox"><input type="checkbox" name="all" id="all"><span class="icon"></span><span class="text">전체</span></label>
 				<label class="checkbox"><input type="checkbox" name="open" id="open"><span class="icon"></span><span class="text">공개</span></label> 
 				<label class="checkbox"><input type="checkbox" name="close" id="close"><span class="icon"></span><span class="text">비공개</span></label> 
+				
+				<div>
+				<%-- <input type="button" name="insertQnA" id="insertQnA" value="QnA 등록" onclick="location.href='/admin/questionPageWrite'"> --%>
+				<a href="<c:url value='questionPageWrite'/>"><button class="completeBtn qnaBtn">QnA등록</button></a>
+				<%-- <input type="button" value="QnA등록" onclick="<c:url value='/admin/questionPageWrite'/>"/> --%>
+				</div>
 			</div>
 			<div>
 				<table class="adminContents">
@@ -95,12 +102,7 @@
 				</div>
 			</div>
 		</div>
-		<div>
-			<%-- <input type="button" name="insertQnA" id="insertQnA" value="QnA 등록" onclick="location.href='/admin/questionPageWrite'"> --%>
-			<a href="<c:url value='questionPageWrite'/>"><button>QnA등록</button></a>
-			<%-- <input type="button" value="QnA등록" onclick="<c:url value='/admin/questionPageWrite'/>"/> --%>
-			
-		</div>
+
 	</div>
 <%-- 			<div class="wrap">
 				<table border="1">
