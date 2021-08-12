@@ -10,6 +10,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -44,9 +45,16 @@ public class BoardLostWriteController {
 		return "redirect:/lostPage/lostPageList";
 	}
 	
-	@RequestMapping(value="lostPage/lostPageModify")
-	public String modify() {
-		
-		return "lostPage/lostPageList";
+	// 글 수정
+	@RequestMapping(value="/lostPage/lostPageModify", method=RequestMethod.POST)
+	public String regist(LostBoard lostBoard, HttpSession session) {
+		MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
+		System.out.println("넘어온 lostBoard : "+lostBoard.getAnimal());
+		System.out.println("넘어온 session id : "+member.getUserId());
+	
+		return "redirect:/lostPage/lostPageList";
 	}
+	
+	
+	
 }

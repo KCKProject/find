@@ -11,7 +11,7 @@
 	crossorigin="anonymous"></script>
 <script src="../resources/script/script.js" defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<title>lostPage</title>
+<title>찾아주세요 글쓰기</title>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
@@ -57,7 +57,7 @@
 					</tr>
 					<tr>
 						<td><span>*</span>상세내용</td>
-						<td><form:textarea path="memo" rows="10" cols="65"/></td>
+						<td><form:textarea path="memo" rows="10" cols="65"></form:textarea></td>
 					</tr>
 					<tr>
 						<td>  사진첨부</td>

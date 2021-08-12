@@ -59,6 +59,17 @@ public class BoardLostController {
 		return "lostPage/lostPageDetail";
 	}
 	
+	// 글 수정 메서드
+	@RequestMapping(value="lostPage/lostPageModify/{boardNum}")
+	public String modify(@PathVariable("boardNum") long boardNum, Model model, LostBoard lostBoard) {
+		dao.updateLostHit(boardNum);
+		LostBoard detail = dao.selectByBoardNum(boardNum);
+		System.out.println("본문 내용 : "+detail.getMemo());
+		model.addAttribute("detail", detail);
+		
+		return "lostPage/lostPageModify";
+	}
+	
 	// 글 삭제 메서드
 	@RequestMapping("/lostPage/delete/{boardNum}")
 	public String delete(@PathVariable("boardNum") long boardNum) {

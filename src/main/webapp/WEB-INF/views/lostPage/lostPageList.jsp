@@ -45,7 +45,7 @@
 				<li>
 					<a href="<c:url value="/lostPage/lostPageDetail/${l.boardNum}"/>">
 						<div class="post-photo-top"> <!-- 게시글 사진 나오는 부분 -->
-							<div><img src="../resources/imgUpload/s_${l.storedFileName}" width="300"/></div>
+							<div><img src="../resources/imgUpload/s_${l.storedFileName}" width="200" height="250"/></div>
 						</div>
 						<div class="post-contents-bottom"> <!-- 게시글 내용 나오는 부분 -->
 							<!-- 작성자가 본인 글에서 발견 버튼 클릭 시에만 생성 -->
@@ -63,9 +63,6 @@
 							<div>
 								<p>특징 : ${l.character}</p>
 							</div>
-							<div>
-								<p class="gratuity">사례금 100만원</p>
-							</div>
 						</div>
 					</a>
 				</li>
@@ -74,7 +71,7 @@
 		</div>
 		<div class="paging">
 			 <ul>
-						<c:if test="${pageMaker.prev}">
+				<c:if test="${pageMaker.prev}">
 			   		<li><a href="${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
 			  	</c:if>
 			  	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
