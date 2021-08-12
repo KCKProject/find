@@ -408,17 +408,17 @@ public class FindDao {
 	
 	public void deleteByLostBoardNum(long boardNum) {
 		String sql="DELETE FROM lostBoard WHERE boardNum=?";
-		jdbcTemplate.query(sql,lostBoardRowMapper,boardNum);
+		jdbcTemplate.update(sql,boardNum);
 	}
 	
 	public void deleteByFindBoardNum(long boardNum) {
 		String sql="DELETE FROM findBoard WHERE boardNum=?";
-		jdbcTemplate.query(sql,findBoardRowMapper,boardNum);
+		jdbcTemplate.update(sql,boardNum);
 	}
 
 	public void deleteByQnABoardNum(long boardNum) {
 		String sql="DELETE FROM QnABoard WHERE boardNum=?";
-		jdbcTemplate.query(sql,qnABoardRowMapper,boardNum);
+		jdbcTemplate.update(sql,boardNum);
 	}
 	
 	public void updateMeet(long boardNum, int meet, String board) {

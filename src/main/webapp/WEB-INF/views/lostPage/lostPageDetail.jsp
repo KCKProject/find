@@ -89,19 +89,19 @@
 				  <!-- 로그인한 사람이 본인 글에 들어왔을때만 보이는 버튼들 추가 -->
 				<button class="btn btn-swap" name="toList" id="toList" onclick="location='<c:url value="/lostPage/lostPageList"/>'" >목록으로<span>목록으로 >></span></button>
 				<c:if test="${memberAuthInfo.userId eq detail.writer}">
-					<button class="btn btn-swap" name="delete" id="delete" onclick="del(${detail.boardNum})">글삭제<span>글삭제 >></span></button>
+					<button class="btn btn-swap" name="delete" id="delete" onclick="del()">글삭제<span>글삭제 >></span></button>
 					<button class="btn btn-swap" name="modify" id="modify" onclick="location='<c:url value="/lostPage/lostPageModify/${detail.boardNum}"/>'">글수정<span>글수정 >></span></button>
 					<!-- 발견완료 체크유무에 따른(=meet 컬럼 값에 따른) 버튼 종류의 차이 -->
 					<c:choose>
 						<c:when test="${detail.meet eq 0}">
 							<button class="btn btn-swap" name="meet" id="meet"
-								onclick="location='<c:url value="/findPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">
+								onclick="location='<c:url value="/lostPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">
 								발견완료<span>변경 >></span>
 							</button>
 						</c:when>
 						<c:when test="${detail.meet eq 1}">
 							<button class="btn btn-swap" name="meet" id="meet"
-								onclick="location='<c:url value="/findPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">
+								onclick="location='<c:url value="/lostPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">
 								미발견<span>변경 >></span>
 							</button>
 						</c:when>
@@ -188,13 +188,25 @@
 		</c:if>
 	</c:if>
 	
-	<script>
-	function del(boardNum) {
-		var chk = confirm("정말 삭제하시겠습니까?");
+	<script type="text/javascript">
+	function del() {
+		var chk = confirm("정말정말정말정말 삭제하시겠습니까?");
 		if (chk) {
-			location.href="<c:url value='/lostPage/delete/'/>"+boardNum;
+			location.href="<c:url value='/lostPage/delete/'/>"+${detail};
+			alert("게시글이 삭제되었습니다.");
 		}
-	}	
-</script>
+	}
+	
+	<%--  $(function(){
+		$("[type=button][name=delete]").on("click", function(){
+			alert('하이하이');
+			var boardNum = ${detail.boardNum};
+			location.href="<c:url value='lostPage/delete'/>"+boardNum;
+			form.attr("action","/lostPage/delete"+boardNum);
+			form.attr("method","POST");
+			form.submit();
+		})
+	})  --%>
+	</script>
 </body>
 </html>

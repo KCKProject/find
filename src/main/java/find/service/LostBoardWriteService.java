@@ -42,18 +42,17 @@ public class LostBoardWriteService {
 			HttpSession session,
 			MultipartHttpServletRequest request) throws IOException {
 		MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-		System.out.println("[service]session id�쓽 媛� : "+member.getUserId());
 		
 		String term = lc.getTerm();
-		System.out.println("�꽆�뼱�삩 term �쓽 媛� : "+term);
+		System.out.println("받아온 term : "+term);
 		
 		if(term==null) {
-			member.setEmail("鍮꾧났媛�");
-			member.setPhone("鍮꾧났媛�");
+			member.setEmail("비공개");
+			member.setPhone("비공개");
 		}else if(term.equals("phoneAgree")) {
-			member.setEmail("鍮꾧났媛�");
+			member.setEmail("비공개");
 		}else if(term.equals("emailAgree")) {
-			member.setPhone("鍮꾧났媛�");
+			member.setPhone("비공개");
 		}
 		
 		// �씠誘몄��뙆�씪�뾽濡쒕뱶
@@ -66,16 +65,11 @@ public class LostBoardWriteService {
 		String filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
 		File file = new File(filePath,storedFileName);
 		img.transferTo(file);
-		
-		System.out.println("�뾽濡쒕뱶�븳 �뙆�씪�� "+originalFile);
-		System.out.println("�씠怨�, "+storedFileName+"�쑝濡� �뾽濡쒕뱶�릱�떎.");
-		System.out.println(filePath+" 寃쎈줈�뿉 ���옣�릱�쑝�땲 �솗�씤.");
-		System.out.println("�뙆�씪 �궗�씠利덈뒗 : "+img.getSize());
 
-		
-		// �뜽�꽕�씪(寃뚯떆�뙋 紐⑸줉�뿉�꽌 蹂댁뿬吏� �궗吏�) �깮�꽦
-		// List�뿉�꽌 蹂댁뿬吏덈븣 異뺤냼蹂몄씤  �뜽�꽕�씪 �씠誘몄�瑜� �굹���궡硫�, �꽌踰꾩뿉 理쒖냼�븳�쓽 �뜲�씠�꽣 �쟾�넚 媛��뒫
-		// �긽�꽭蹂닿린�럹�씠吏��뿉�꽌�뒗 �썝蹂몄씠誘몄� 異쒕젰
+		System.out.println(filePath+" : 저장된 경로");
+
+		// 썸네일 만들기 → 서버 구동 최적화를 위하여
+		// 기존 파일의 축소판인 썸네일을 생성하여 게시글 목록에서 보여지도록 구현
 		BufferedImage sourceImg = ImageIO.read(new File(filePath,storedFileName));
 		
 		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);

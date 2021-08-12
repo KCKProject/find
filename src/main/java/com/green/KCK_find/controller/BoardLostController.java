@@ -1,10 +1,10 @@
 package com.green.KCK_find.controller;
 
+import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -60,7 +60,7 @@ public class BoardLostController {
 	}
 	
 	// 글 수정 메서드
-	@RequestMapping(value="lostPage/lostPageModify/{boardNum}")
+	@RequestMapping(value="/lostPage/lostPageModify/{boardNum}")
 	public String modify(@PathVariable("boardNum") long boardNum, Model model, LostBoard lostBoard) {
 		dao.updateLostHit(boardNum);
 		LostBoard detail = dao.selectByBoardNum(boardNum);
@@ -71,23 +71,38 @@ public class BoardLostController {
 	}
 	
 	// 글 삭제 메서드
-	@RequestMapping("/lostPage/delete/{boardNum}")
-	public String delete(@PathVariable("boardNum") long boardNum) {
-
+	@RequestMapping("/lostPage/delete/{detail}")
+	public String delete(@PathVariable("detail") LostBoard lostBoard,
+						 HttpServletRequest request) {
+		System.out.println("삭제 도전");
+		// 첨부파일 삭제
+		// image = storedFileName = 저장된 이미지 이름
+		String image = lostBoard.getStoredFileName();
+		String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+		File file = new File(path+image);
+			if(file.exists()==true) {
+				file.delete();
+			}
+		System.out.println("첨부파일 삭제완료 or 첨부파일 X");
+		// 첨부파일 삭제 성공시 , 썸네일 삭제 연습
+		
+		// 게시글 DB 삭제
+		long boardNum = lostBoard.getBoardNum();
 		dao.deleteByLostBoardNum(boardNum);
+
 		return "redirect:/lostPage/lostPageList";
 	}
-	
+
 	// 발견완료/미발견 체크박스 변경 메서드
 	@RequestMapping("/lostPage/changeMeet/{boardNum}&{meet}")
 	public String changeMeet(@PathVariable("boardNum") long boardNum,
 							 @PathVariable("meet") int meet,
 							 Model model) throws Exception{
-		
+
 		String board = "lostBoard";
 		dao.updateMeet(boardNum, meet, board);
 		LostBoard detail = dao.selectByBoardNum(boardNum);
-		
+
 		model.addAttribute("detail", detail);
 		return "lostPage/lostPageDetail";
 	}
