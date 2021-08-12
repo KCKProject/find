@@ -72,8 +72,8 @@
 		<!-- Service Center 버튼 -->
 		<!-- 내용 미정 -->
 	<div class="centerbtn">		
-		<div class="jellybutton centerHiddenContents" name="centerHidden" id="centerHidden"><p>Service Center<br>! 아이디와 비밀번호 분실 시<br>! 작성자와 직접 컨택 원할 시<br> ! 사이트 이용 안내 필요 시</p></div>
-		<button class="jellybutton sidebtn1" name="center" id="center" onclick="location='<c:url value="주소"/>'">CENTER</button>
+		<div class="jellybutton centerHiddenContents" name="centerHidden" id="centerHidden"><p>Service Center<br>하단의 서비스소개 클릭 후 서비스페이지 상단 메뉴바 Contact 클릭 시 관리자 연락처 확인 가능 </p></div>
+		<button class="jellybutton sidebtn1" name="center" id="center">CENTER</button>
 	</div>
 </body>
 </html>

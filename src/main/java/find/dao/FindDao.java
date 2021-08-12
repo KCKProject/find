@@ -115,7 +115,8 @@ public class FindDao {
 						rs.getDate("findDate"),
 						rs.getString("memo"),
 						rs.getInt("meet"),
-						rs.getInt("hit")
+						rs.getInt("hit"),
+						rs.getString("review")
 						);
 				f.setBoardNum(rs.getLong("boardNum"));
 				return f;
@@ -237,12 +238,12 @@ public class FindDao {
 	public List<FindBoard> selectAllFindBoard(Criteria cri) {
 		List<FindBoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, IMG, EMAIL, "
-						+ " FINDDATE, MEET, MEMO, PHONE, HIT " 
+						+ " FINDDATE, MEET, MEMO, PHONE, HIT, REVIEW " 
 						+ "from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, IMG, EMAIL, "
-						+ "FINDDATE, MEET, MEMO, PHONE, HIT, row_number() " 
+						+ "FINDDATE, MEET, MEMO, PHONE, HIT, REVIEW, row_number() " 
 						+ "over(order by boardnum desc) as rNum " 
 						+ "from FindBoard) mb where rNum between ? and ? order by boardnum desc",
-						findBoardRowMapper,cri.getRowStart(), cri.getRowEnd());
+						findBoardRowMapper, cri.getRowStart(), cri.getRowEnd());
 		return results;
 	}
 	
@@ -250,12 +251,12 @@ public class FindDao {
 	public List<FindBoard> selectAllFindBoard(CriteriaMainBoard cri) {
 		List<FindBoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, IMG, EMAIL, "
-						+ " FINDDATE, MEET, MEMO, PHONE, HIT " 
+						+ " FINDDATE, MEET, MEMO, PHONE, HIT, REVIEW " 
 						+ "from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, IMG, EMAIL, "
-						+ "FINDDATE, MEET, MEMO, PHONE, HIT, row_number() " 
+						+ "FINDDATE, MEET, MEMO, PHONE, HIT, REVIEW, row_number() " 
 						+ "over(order by boardnum desc) as rNum " 
 						+ "from FindBoard) mb where rNum between ? and ? order by boardnum desc",
-						findBoardRowMapper,cri.getRowStart(), cri.getRowEnd());
+						findBoardRowMapper, cri.getRowStart(), cri.getRowEnd());
 		return results;
 	}
 	
@@ -507,6 +508,7 @@ public class FindDao {
 		System.out.println("dao까지 넘어옴");
 	}
 
+
 //	public ResponseEntity<byte[]> disPlay(HttpServletRequest request) throws Exception{
 //        //fileName 은 /년/월/일/파일명의 형태로 입력을 받는다.
 //        System.out.println("서비스까지 이동");
@@ -543,4 +545,8 @@ public class FindDao {
 //        System.out.println("entity : "+entity);
 //        return entity;
 //    }
+	public void writeReview(String review, long boardNum) {
+		System.out.println("나도도착 리뷰ㅜ");
+		jdbcTemplate.update("UPDATE findBoard SET REVIEW=? WHERE boardNum=?", review, boardNum);
+	}
 }

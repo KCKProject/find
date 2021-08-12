@@ -75,7 +75,7 @@
 					</div>
 				</div>
 				<div > <!-- 작성완료 버튼 -->
-					<input type="submit" value="작성완료" class="completeBtn">ㄴ
+					<input type="submit" value="작성완료" class="completeBtn">
 				</div>
 			</form:form>
 		</div>

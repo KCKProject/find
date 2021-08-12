@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,28 +17,37 @@
 
 	<div class="wrapboardPage">
 
-<div id="contentsTitle">
-<h3 class="contentsTitle">(발견) ${detail.title}</h3>
-<div class="boardDetailPageLine"></div>
-</div>
+		<div id="contentsTitle">
+			<h3 class="contentsTitle">(발견) ${detail.title}</h3>
+			<div class="boardDetailPageLine"></div>
+		</div>
 
-		<div class="wrap-findPage"> 
-			
+		<div class="wrap-findPage">
+
 			<div class="boardPage-contents">
 				<ul>
 					<li class="post-photo-top"></li>
 					<li class="post-photo-top"></li>
 					<li class="post-photo-top"></li>
 				</ul>
-				<div class="post-contents-bottom"> <!-- 게시글 내용 나오는 부분 -->
+				<div class="post-contents-bottom">
+					<!-- 게시글 내용 나오는 부분 -->
+					<c:if test="${detail.meet==1}">
+						<div>
+							<p class="finishText">발견완료</p>
+							<a>후기 작성하러 가기!!!</a>
+						</div>
+					</c:if>
 					<div class="userid-writetime-anumber-view">
-						<p>${detail.writer}님 | ${detail.writeDate} | 등록번호 ${detail.boardNum} | 조회 ${detail.hit}</P>
+						<p>${detail.writer}님|${detail.writeDate}| 등록번호
+							${detail.boardNum} | 조회 ${detail.hit}</P>
 					</div>
 					<div class="kind">
 						<p>품종 | ${detail.kind}</p>
 					</div>
 					<div class="gender">
-						<p>성별 | ${detail.gender}</p> <!-- ex)남아 중성화수술 함 -->
+						<p>성별 | ${detail.gender}</p>
+						<!-- ex)남아 중성화수술 함 -->
 					</div>
 					<div class="location">
 						<p>실종 위치 | ${detail.location}</p>
@@ -55,27 +64,64 @@
 					<div class="memo">
 						<p>${detail.memo}</p>
 					</div>
+					<c:if test="${not empty detail.review }">
+		 				<div class="review">
+							<p>${detail.review}</p>
+						</div> 
+					</c:if>
 				</div>
 			</div>
-			
 
-			<div class="wrap-btns"> <!-- 버튼들 모음 -->
-				  <!-- 로그인한 사람이 본인 글에 들어왔을때만 보이는 버튼들 추가 -->
-				<button class="btn btn-swap" name="toList" id="toList" onclick="location='<c:url value="/findPage/findPageList"/>'" >목록으로<span>목록으로 >></span></button>
+
+			<div class="wrap-btns">
+				<!-- 버튼들 모음 -->
+				<!-- 로그인한 사람이 본인 글에 들어왔을때만 보이는 버튼들 추가 -->
+				<button class="btn btn-swap" name="toList" id="toList"
+					onclick="location='<c:url value="/findPage/findPageList"/>'">
+					목록으로<span>목록으로 >></span>
+				</button>
 				<c:if test="${memberAuthInfo.userName eq detail.writer}">
-					<button class="btn btn-swap" name="delete" id="delete" onclick="del(${detail.boardNum})">글삭제<span>글삭제 >></span></button>
+					<button class="btn btn-swap" name="delete" id="delete"
+						onclick="del(${detail.boardNum})">
+						글삭제<span>글삭제 >></span>
+					</button>
+
+					<%-- <button class="btn btn-swap" name="meet" id="meet" onclick="onClickHandler('<c:url value="/findPage/changeMeet/${detail.boardNum}&${detail.meet}"/>')">
+						<c:choose>
+							<c:when test="${detail.meet eq 0}">발견완료</c:when>
+							<c:when test="${detail.meet eq 1}">미발견</c:when>
+						</c:choose>
+						<span>변경</span>
+					</button> --%>
+
 					<!-- 발견완료 체크유무에 따른(=meet 컬럼 값에 따른) 버튼 종류의 차이 -->
 					<c:choose>
 						<c:when test="${detail.meet eq 0}">
-							<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/findPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">발견완료<span>변경 >></span></button>
+							<button class="btn btn-swap" name="meet" id="meet"
+								onclick="location='<c:url value="/findPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">
+								발견완료<span>변경 >></span>
+							</button>
 						</c:when>
 						<c:when test="${detail.meet eq 1}">
-							<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/findPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">미발견<span>변경 >></span></button>
+							<button class="btn btn-swap" name="meet" id="meet"
+								onclick="location='<c:url value="/findPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">
+								미발견<span>변경 >></span>
+							</button>
 						</c:when>
 					</c:choose>
 				</c:if>
 			</div>
-			
+			<div>
+				<form method="POST" action="/KCK_find/findPage/findPageWrite/review">
+					<a>후기</a>
+					<input type="hidden" name="boardNum" value="${detail.boardNum}" />
+					<textarea name="review" rows="10" cols="30">${detail.review}</textarea>
+					<input type="submit" value="작성완료"> <!--  class="completeBtn" -->
+				</form>
+			</div>
+
+
+
 			<div class="wrap-lostPage-comment">
 				<div class="lostPage-comment-top">
 					<h4>댓글을 남겨주세요 !</h4>
@@ -109,36 +155,47 @@
 					</div>
 					<div class="mainMore">
 						<!-- 댓글등록 버튼 -->
-	                    <button class="btn btn-swap" name="uploadComment" id="uploadComment" onclick="uploadComment()">
-	                        upload <span>댓글등록 >></span>
-	                    </button>
-                	</div>
-				</div>    
+						<button class="btn btn-swap" name="uploadComment"
+							id="uploadComment" onclick="uploadComment()">
+							upload <span>댓글등록 >></span>
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
 
 	<jsp:include page="../include/footer.jsp" />
 	<button class="jellybutton topbtn" type="button" onclick="goTop()">TOP</button>
-		<!-- 글쓰기 버튼 -->
-		<!-- 예정) 로그인안한 회원은 로그인 페이지로 연결되도록 수정할 예정 -->
+	<!-- 글쓰기 버튼 -->
+	<!-- 예정) 로그인안한 회원은 로그인 페이지로 연결되도록 수정할 예정 -->
 	<c:if test="${memberAuthInfo == null }">
-		<div class="centerbtn">		
-			<div class="jellybutton centerHiddenContents" name="centerHidden" id="centerHidden"><p>INFO<br>! 로그인 후 글쓰기 가능 합니다.<br>! 아이디 | 비밀번호 분실 시 로그인<br>페이지 하단의 찾기 버튼 클릭</p></div>
-			<button class="jellybutton sidebtn1" name="write" id="write" >WRITE</button>
+		<div class="centerbtn">
+			<div class="jellybutton centerHiddenContents" name="centerHidden"
+				id="centerHidden">
+				<p>
+					INFO<br>! 로그인 후 글쓰기 가능 합니다.<br>! 아이디 | 비밀번호 분실 시 로그인<br>페이지
+					하단의 찾기 버튼 클릭
+				</p>
+			</div>
+			<button class="jellybutton sidebtn1" name="write" id="write">WRITE</button>
 		</div>
 	</c:if>
-	<c:if test="${memberAuthInfo != null }">	
+	<c:if test="${memberAuthInfo != null }">
 		<button class="jellybutton sidebtn1" name="write" id="write" onclick="location='<c:url value="/findPage/findPageWrite"/>'">WRITE</button>
 	</c:if>
-	
+
 	<script>
 		function del(boardNum) {
 			var chk = confirm("정말 삭제하시겠습니까?");
 			if (chk) {
 				location.href="<c:url value='/findPage/delete/'/>"+boardNum;
 			}
-		}	
+		}
+		
+		function onClickHandler(meet) {
+			alert(meet)
+		}
 	</script>
 </body>
 </html>

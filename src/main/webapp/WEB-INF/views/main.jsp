@@ -69,73 +69,73 @@
 			<div class="titleLine"></div>
 			<div class="mainLostImg">
 				<!-- 게시판 글 끌어오기 -->
-				<ul>
-                    <li>
-						<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-							<img src="./resources/img/eximg/ex01.png" alt="ex01">
-							<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-						</button>
-					</li>
-                    <li>
-						<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-							<img src="./resources/img/eximg/ex02.png" alt="ex02">
-							<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-						</button>
-					</li>
-                    <li>
-						<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-							<img src="./resources/img/eximg/ex03.png" alt="ex03">
-							<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-						</button>
-					</li>
-                    <li>
-						<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-							<img src="./resources/img/eximg/ex04.png" alt="ex04">
-							<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-						</button>
-					</li>
-                    <li>
-						<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-							<img src="./resources/img/eximg/ex05.png" alt="ex05">
-							<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-						</button>
-					</li>
-
-                </ul>
-                <ul>
-					<li>
-						<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-							<img src="./resources/img/eximg/ex06.png" alt="ex06">
-							<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-						</button>
-					</li>
-					<li>
-						<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-							<img src="./resources/img/eximg/ex07.png" alt="ex07">
-							<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-						</button>
-					</li>
-					<li>
-						<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-							<img src="./resources/img/eximg/ex08.png" alt="ex08">
-							<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-						</button>
-					</li>
-					<li>
-						<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-							<img src="./resources/img/eximg/ex09.png" alt="ex09">
-							<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-						</button>
-					</li>
-					<li>
-						<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-							<img src="./resources/img/eximg/ex10.png" alt="ex10">
-							<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-						</button>
-					</li>
-
-				</ul>
-
+				<div class="mainBoard">
+					<ul>
+	                    <li>
+							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
+								<img src="./resources/img/eximg/ex01.png" alt="ex01">
+								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
+							</button>
+						</li>
+	                    <li>
+							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
+								<img src="./resources/img/eximg/ex02.png" alt="ex02">
+								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
+							</button>
+						</li>
+	                    <li>
+							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
+								<img src="./resources/img/eximg/ex03.png" alt="ex03">
+								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
+							</button>
+						</li>
+	                    <li>
+							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
+								<img src="./resources/img/eximg/ex04.png" alt="ex04">
+								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
+							</button>
+						</li>
+	                    <li>
+							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
+								<img src="./resources/img/eximg/ex05.png" alt="ex05">
+								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
+							</button>
+						</li>
+	                </ul>
+	                <ul>
+						<li>
+							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
+								<img src="./resources/img/eximg/ex06.png" alt="ex06">
+								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
+							</button>
+						</li>
+						<li>
+							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
+								<img src="./resources/img/eximg/ex07.png" alt="ex07">
+								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
+							</button>
+						</li>
+						<li>
+							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
+								<img src="./resources/img/eximg/ex08.png" alt="ex08">
+								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
+							</button>
+						</li>
+						<li>
+							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
+								<img src="./resources/img/eximg/ex09.png" alt="ex09">
+								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
+							</button>
+						</li>
+						<li>
+							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
+								<img src="./resources/img/eximg/ex10.png" alt="ex10">
+								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
+							</button>
+						</li>
+	
+					</ul>
+				</div>
                 <div class="mainMore">
 					<!-- 연결링크 재설정필요 -->
                     <button class="btn btn-swap" name="more" id="more" onclick="location='<c:url value="/lostPage/lostPageList"/>'">
@@ -149,38 +149,40 @@
 			<h3 class="contentsTitle">찾았어요! 후기</h3>
 			<div class="titleLine"></div>
 			<div class="mainReviewImg">
-				<ul>
-                    <li>
-						<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-							<img src="./resources/img/eximg/ex01.png" alt="ex01">
-							<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-						</button>
-					</li>
-                    <li>
-						<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-							<img src="./resources/img/eximg/ex02.png" alt="ex02">
-							<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-						</button>
-					</li>
-                    <li>
-						<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-							<img src="./resources/img/eximg/ex03.png" alt="ex03">
-							<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-						</button>
-					</li>
-                    <li>
-						<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-							<img src="./resources/img/eximg/ex04.png" alt="ex04">
-							<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-						</button>
-					</li>
-                    <li>
-						<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-							<img src="./resources/img/eximg/ex05.png" alt="ex05">
-							<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-						</button>
-					</li>
-				</ul>
+				<div class="mainBoard">
+					<ul>
+	                    <li>
+							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
+								<img src="./resources/img/eximg/ex01.png" alt="ex01">
+								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
+							</button>
+						</li>
+	                    <li>
+							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
+								<img src="./resources/img/eximg/ex02.png" alt="ex02">
+								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
+							</button>
+						</li>
+	                    <li>
+							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
+								<img src="./resources/img/eximg/ex03.png" alt="ex03">
+								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
+							</button>
+						</li>
+	                    <li>
+							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
+								<img src="./resources/img/eximg/ex04.png" alt="ex04">
+								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
+							</button>
+						</li>
+	                    <li>
+							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
+								<img src="./resources/img/eximg/ex05.png" alt="ex05">
+								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
+							</button>
+						</li>
+					</ul>
+				</div>
 
 				<div class="mainMore">
 					<!-- 연결링크 재설정필요 -->

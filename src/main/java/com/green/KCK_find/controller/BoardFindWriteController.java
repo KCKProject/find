@@ -15,6 +15,7 @@ import find.service.LostBoardWriteService;
 import find.vo.FindBoardWriteCommand;
 import find.vo.LostBoardWriteCommand;
 import find.vo.MemberAuthInfo;
+import find.vo.WriteReviewDto;
 
 @Controller
 @RequestMapping("/findPage/findPageWrite")
@@ -35,9 +36,18 @@ public class BoardFindWriteController {
 	@RequestMapping(method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String regist(LostBoardWriteCommand lostBoardWriteCommand, HttpSession session, MultipartHttpServletRequest request) throws IOException {
 		MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-		System.out.println("넘어온 session id : "+member.getUserId());
+		System.out.println("�꽆�뼱�삩 session id : "+member.getUserId());
 	
 		findBoardWriterservice.boardRegist();			
 		return "redirect:/lostPage/lostPageList";
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value = "/review")
+	public String writeReview(WriteReviewDto dto, HttpSession session) throws IOException {
+		MemberAuthInfo member = (MemberAuthInfo) session.getAttribute("memberAuthInfo");
+		System.out.println(dto.getReview());
+		findBoardWriterservice.writeReview(dto.getReview(), dto.getBoardNum());
+		
+		return "redirect:/findPage/findPageDetail/" + dto.getBoardNum();
 	}
 }
