@@ -84,7 +84,7 @@
 					onclick="location='<c:url value="/findPage/findPageList"/>'">
 					목록으로<span>목록으로 >></span>
 				</button>
-				<c:if test="${memberAuthInfo.userName eq detail.writer}">
+				<c:if test="${memberAuthInfo.userId eq detail.writer}">
 					<button class="btn btn-swap" name="delete" id="delete"
 						onclick="del(${detail.boardNum})">
 						글삭제<span>글삭제 >></span>
@@ -186,7 +186,7 @@
 	</c:if>
 	
 	<!-- 리뷰버튼 -->
-	<c:if test="${memberAuthInfo.userName eq detail.writer}">
+	<c:if test="${memberAuthInfo.userId eq detail.writer}">
 		<c:if test="${detail.meet eq 1}">
 			<div class="centerbtn">
 				<div class="jellybutton centerHiddenContents reviewHiddenContents" name="centerHiddenContents" id="centerHiddenContents">
