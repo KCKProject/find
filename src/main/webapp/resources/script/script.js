@@ -89,13 +89,6 @@ document.querySelector(".copy-address").addEventListener("click", function(){
 });
 
 
-// 글 삭제 기능
-function del(boardNum) {
-	var chk = confirm("정말 삭제하시겠습니까?");
-	if (chk) {
-		location.href="<c:url value='/lostPage/delete/'/>"+boardNum;
-	}
-}
 
 	
 

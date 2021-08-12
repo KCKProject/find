@@ -199,6 +199,9 @@
 		}
 	}
 	
+	function onClickHandler(meet) {
+		alert(meet)
+	}
 	<%--  $(function(){
 		$("[type=button][name=delete]").on("click", function(){
 			alert('하이하이');
