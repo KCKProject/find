@@ -20,7 +20,6 @@ import find.vo.LostBoardWriteCommand;
 import find.vo.MemberAuthInfo;
 
 @Controller
-@RequestMapping("/lostPage/lostPageWrite")
 public class BoardLostWriteController {
 
 	private LostBoardWriteService lostBoardWriteService;
@@ -29,18 +28,25 @@ public class BoardLostWriteController {
 		this.lostBoardWriteService = lostBoardWriteService;
 	}
 	
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value="/lostPage/lostPageWrite", method=RequestMethod.GET)
 	public String write(LostBoardWriteCommand lostBoardWriteCommand) {
 		
 		return "lostPage/lostPageWrite";
 	}
 	
-	@RequestMapping(method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-		public String regist(LostBoardWriteCommand lostBoardWriteCommand, HttpSession session, MultipartHttpServletRequest request) throws IOException {
-			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-			System.out.println("넘어온 session id : "+member.getUserId());
+//	@RequestMapping(method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+	@RequestMapping(value="/lostPage/lostPageWrite", method=RequestMethod.POST)
+	public String regist(LostBoardWriteCommand lostBoardWriteCommand, HttpSession session, MultipartHttpServletRequest request) throws IOException {
+		MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
+		System.out.println("넘어온 session id : "+member.getUserId());
+	
+		lostBoardWriteService.boardRegist(lostBoardWriteCommand, session, request);			
+		return "redirect:/lostPage/lostPageList";
+	}
+	
+	@RequestMapping(value="lostPage/lostPageModify")
+	public String modify() {
 		
-			lostBoardWriteService.boardRegist(lostBoardWriteCommand, session, request);			
-			return "redirect:/lostPage/lostPageList";
-		}
+		return "lostPage/lostPageList";
+	}
 }

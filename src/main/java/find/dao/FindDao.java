@@ -507,40 +507,40 @@ public class FindDao {
 		System.out.println("dao까지 넘어옴");
 	}
 
-	public ResponseEntity<byte[]> disPlay(LostBoard detail, HttpServletRequest request) throws Exception{
-        //fileName 은 /년/월/일/파일명의 형태로 입력을 받는다.
-        System.out.println("서비스까지 이동");
-		String uploadPath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
-		System.out.println("uploadPath : "+uploadPath);
-		
-        InputStream in=null;
-        //ResponseEntity<byte[]> 로 결과는 실제로 파일의 데이터가 된다.
-        //컨트롤에서 @ResponseBody 를 이용해야 하며 
-        //byte[] 데이터가 그대로 전송될 것임을 명시한다.
-        ResponseEntity<byte[]> entity=null;
-         
-        try{
-//        	String formatName =fileName.substring(fileName.lastIndexOf(".")+1);
+//	public ResponseEntity<byte[]> disPlay(HttpServletRequest request) throws Exception{
+//        //fileName 은 /년/월/일/파일명의 형태로 입력을 받는다.
+//        System.out.println("서비스까지 이동");
+//		String uploadPath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+//		System.out.println("uploadPath : "+uploadPath);
+//		
+//        InputStream in=null;
+//        //ResponseEntity<byte[]> 로 결과는 실제로 파일의 데이터가 된다.
+//        //컨트롤에서 @ResponseBody 를 이용해야 하며 
+//        //byte[] 데이터가 그대로 전송될 것임을 명시한다.
+//        ResponseEntity<byte[]> entity=null;
+//         
+//        try{
+////        	String formatName =fileName.substring(fileName.lastIndexOf(".")+1);
+////            
+////           MediaType mType =MediaUtils.getMediaType(formatName);
+//        	String fileName = detail.getStoredFileName();
+//    		String mType = detail.getOriginalFileExtension();
+//            System.out.println("fileName : "+fileName);
+//            HttpHeaders headers =new HttpHeaders();
+//            //   경로 +/년/월/일 /파일이름
+//            in =new FileInputStream(uploadPath+fileName);
 //            
-//           MediaType mType =MediaUtils.getMediaType(formatName);
-        	String fileName = detail.getStoredFileName();
-    		String mType = detail.getOriginalFileExtension();
-            System.out.println("fileName : "+fileName);
-            HttpHeaders headers =new HttpHeaders();
-            //   경로 +/년/월/일 /파일이름
-            in =new FileInputStream(uploadPath+fileName);
-            
-            //실제로 데이터를 읽는 부분은 commons 라이브러리의 기능을 활용해서 대상
-            // 파일에서 데이터를 읽어내는 IOUtils.toByteArray() 이다.
-            entity=new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
-             
-        }catch(Exception e){
-            e.printStackTrace();
-            entity=new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
-        }finally{
-            in.close();
-        }
-        System.out.println("entity : "+entity);
-        return entity;
-    }
+//            //실제로 데이터를 읽는 부분은 commons 라이브러리의 기능을 활용해서 대상
+//            // 파일에서 데이터를 읽어내는 IOUtils.toByteArray() 이다.
+//            entity=new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
+//             
+//        }catch(Exception e){
+//            e.printStackTrace();
+//            entity=new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
+//        }finally{
+//            in.close();
+//        }
+//        System.out.println("entity : "+entity);
+//        return entity;
+//    }
 }

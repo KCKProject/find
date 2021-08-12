@@ -26,7 +26,9 @@
 			
 			<div class="boardPage-contents">
 				<ul>
-					<li class="post-photo-top"></li>
+					<li class="post-photo-top">
+						<img src="../../resources/imgUpload/${detail.storedFileName}"/>
+					</li>
 					<li class="post-photo-top"></li>
 					<li class="post-photo-top"></li>
 				</ul>
@@ -69,6 +71,7 @@
 				<button class="btn btn-swap" name="toList" id="toList" onclick="location='<c:url value="/lostPage/lostPageList"/>'" >목록으로<span>목록으로 >></span></button>
 				<c:if test="${memberAuthInfo.userName eq detail.writer}">
 					<button class="btn btn-swap" name="delete" id="delete" onclick="del(${detail.boardNum})">글삭제<span>글삭제 >></span></button>
+					<button class="btn btn-swap" name="modify" id="modify" onclick="location='<c:url value="lostPage/lostPageModify/${detail.boardNum}"/>'">글수정<span>글수정 >></span></button>
 					<!-- 발견완료 체크유무에 따른(=meet 컬럼 값에 따른) 버튼 종류의 차이 -->
 					<c:choose>
 						<c:when test="${detail.meet eq 0}">
@@ -117,13 +120,8 @@
 	                    <button class="btn btn-swap" name="uploadComment" id="uploadComment" onclick="uploadComment()">
 	                        upload <span>댓글등록 >></span>
 	                    </button>
-                	</div>
-					
-					
-				</div>
-
-
-                
+                	</div>	
+				</div> 
 			</div>
 		</div>
 	</div>

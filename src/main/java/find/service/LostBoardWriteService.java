@@ -88,8 +88,8 @@ public class LostBoardWriteService {
 		ImageIO.write(destImg, formatName.toUpperCase(), newFile);
 		thumbnailName.substring(filePath.length()).replace(File.separatorChar, '/');
 		
-		System.out.println("formatName : "+formatName);
-		System.out.println("thumbnailName : "+thumbnailName);
+		// System.out.println("formatName : "+formatName);
+		// System.out.println("thumbnailName : "+thumbnailName);
 	      
 		lb.setTitle(lc.getTitle());
 		lb.setWriter(member.getUserId());
