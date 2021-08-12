@@ -186,7 +186,7 @@
 	</c:if>
 	
 	<!-- 리뷰버튼 -->
-	<c:if test="${memberAuthInfo != null}">
+	<c:if test="${memberAuthInfo.userName eq detail.writer}">
 		<c:if test="${detail.meet eq 1}">
 			<div class="centerbtn">
 				<div class="jellybutton centerHiddenContents reviewHiddenContents" name="centerHiddenContents" id="centerHiddenContents">
