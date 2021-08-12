@@ -15,6 +15,7 @@ import find.dao.FindDao;
 import find.vo.CriteriaMainBoard;
 import find.vo.LostBoard;
 import find.vo.PageMakerMainBoard;
+import find.vo.WriteReviewDtoLost;
 
 @Controller
 public class BoardLostController {

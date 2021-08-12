@@ -21,9 +21,11 @@
 			<div>
 				<p class="adminTitle">회원 관리</p>
 			</div>
-			<ul>
-				<a href="<c:url value='/admin/adminMember'/>"><li>회원관리</li></a>
-			</ul>
+			<div>
+				<ul>
+					<a href="<c:url value='/admin/adminMember'/>"><li>회원관리</li></a>
+				</ul>
+			</div>
 		</div>
 
 		<span class="line"></span>
@@ -32,21 +34,21 @@
 			<div>
 				<p>회원 정보 수정</p>
 			</div>
-				<div class="wrapWritePage">
+				<div class="wrapEditMemberPage"><!-- clsaa="wrapwritepage" -->
 					<table>
 						<div>
-						<p>수정 전 정보</p>
+							<p>수정 전 정보</p>
 						</div>
 						<tr>
-							<td>회원 이름</td>
+							<td><span>*</span>회원 이름</td>
 							<td><input type="text" placeholder="${member.userName}" readonly></td>
 						</tr>
 						<tr>
-							<td>전화번호</td>
+							<td><span>*</span>전화번호</td>
 							<td><input type="text" placeholder="${member.phone}" readonly></td>
 						</tr>
 						<tr>
-							<td>이메일</td>
+							<td><span>*</span>이메일</td>
 							<td><input type="text" placeholder="${member.email}" readonly></td>
 						</tr>
 					</table>
@@ -57,7 +59,7 @@
 					<form:form commandName="memberUpdateCommand" enctype="multipart/form=data" method="POST">
 						<table>
 							<div>
-							<p>수정할 내용</p>
+								<p>수정할 내용</p>
 							</div>
 							<tr>
 								<td><span>*</span>회원 이름</td>

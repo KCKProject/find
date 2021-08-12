@@ -95,13 +95,13 @@
 					<c:choose>
 						<c:when test="${detail.meet eq 0}">
 							<button class="btn btn-swap" name="meet" id="meet"
-								onclick="location='<c:url value="/findPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">
+								onclick="location='<c:url value="/lostPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">
 								발견완료<span>변경 >></span>
 							</button>
 						</c:when>
 						<c:when test="${detail.meet eq 1}">
 							<button class="btn btn-swap" name="meet" id="meet"
-								onclick="location='<c:url value="/findPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">
+								onclick="location='<c:url value="/lostPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">
 								미발견<span>변경 >></span>
 							</button>
 						</c:when>
@@ -176,7 +176,7 @@
 	
 	<!-- 리뷰버튼 -->
 	<c:if test="${memberAuthInfo.userId eq detail.writer}">
-		<c:if test="${detail.meet eq 0}">
+		<c:if test="${detail.meet eq 1}">
 			<div class="centerbtn">
 				<div class="jellybutton centerHiddenContents reviewHiddenContents" name="centerHiddenContents" id="centerHiddenContents">
 					<p>
