@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class LostBoardWriteCommand { // Lost 작성시 받아올 내용
+public class LostBoardWriteCommand { // Lost �옉�꽦�떆 諛쏆븘�삱 �궡�슜
 	private String title;
 	private String location;
 	private String character;
@@ -15,6 +15,7 @@ public class LostBoardWriteCommand { // Lost 작성시 받아올 내용
 	private String lostDate;
 	private String memo;
 	private String term;
+	private String review;
 	
 	public String getTitle() {
 		return title;
@@ -75,5 +76,12 @@ public class LostBoardWriteCommand { // Lost 작성시 받아올 내용
 	}
 	public void setTerm(String term) {
 		this.term = term;
+	}
+	
+	public String getReview() {
+		return review;
+	}
+	public void setReview(String review) {
+		this.review = review;
 	}
 }

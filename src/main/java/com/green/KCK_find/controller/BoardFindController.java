@@ -37,7 +37,7 @@ public class BoardFindController {
 		return dao.findCount();
 	}
 
-	// 湲� 紐⑸줉 遺덈윭�삤湲�
+	// 글 목록 불러오기
 	@RequestMapping("/findPage/findPageList")
 	public String find(@ModelAttribute("cri") CriteriaMainBoard cri, Model model) {
 		
@@ -52,7 +52,7 @@ public class BoardFindController {
 		return "findPage/findPageList";
 	}
 	
-	// 湲� �겢由��떆 �긽�꽭蹂닿린 硫붿꽌�뱶
+	// 글 클릭시 상세보기 메서드
 	@RequestMapping("/findPage/findPageDetail/{boardNum}")
 	public String detail(@PathVariable("boardNum") long boardNum, Model model) {
 		dao.updateFindHit(boardNum);
@@ -63,7 +63,7 @@ public class BoardFindController {
 		return "findPage/findPageDetail";
 	}
 	
-	// 湲� �궘�젣 硫붿꽌�뱶
+	// 글 삭제 메서드
 	@RequestMapping("/findPage/delete/{boardNum}")
 	public String delete(@PathVariable("boardNum") long boardNum) {
 
@@ -71,7 +71,7 @@ public class BoardFindController {
 		return "redirect:/findPage/findPageDetail";
 		}
 		
-	// 諛쒓껄�셿猷�/誘몃컻寃� 泥댄겕諛뺤뒪 蹂�寃� 硫붿꽌�뱶
+	// 발견완료, 미발견 체크박스 변경 메서드
 	@RequestMapping("/findPage/changeMeet/{boardNum}&{meet}")
 	public String changeMeet(@PathVariable("boardNum") long boardNum,
 							 @PathVariable("meet") int meet,

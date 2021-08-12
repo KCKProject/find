@@ -18,6 +18,7 @@ import find.service.LostBoardWriteService;
 import find.vo.LostBoard;
 import find.vo.LostBoardWriteCommand;
 import find.vo.MemberAuthInfo;
+import find.vo.WriteReviewDto;
 
 @Controller
 public class BoardLostWriteController {
@@ -48,5 +49,14 @@ public class BoardLostWriteController {
 	public String modify() {
 		
 		return "lostPage/lostPageList";
+	}
+	
+	@RequestMapping(method=RequestMethod.POST, value = "/review")
+	public String writeReview(WriteReviewDto dto, HttpSession session) throws IOException {
+		MemberAuthInfo member = (MemberAuthInfo) session.getAttribute("memberAuthInfo");
+		System.out.println(dto.getReview());
+		lostBoardWriteService.writeReview2(dto.getReview(), dto.getBoardNum());
+		
+		return "redirect:/lostPage/lostPageDetail/" + dto.getBoardNum();
 	}
 }

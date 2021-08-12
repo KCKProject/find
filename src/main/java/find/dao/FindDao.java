@@ -91,7 +91,8 @@ public class FindDao {
 						rs.getString("originalFile"),
 						rs.getString("originalFileExtension"),
 						rs.getString("storedFileName"),
-						rs.getInt("hit")
+						rs.getInt("hit"),
+						rs.getString("review")
 						);
 				lb.setBoardNum(rs.getLong("boardNum"));
 				return lb;		
@@ -214,9 +215,9 @@ public class FindDao {
 	public List<LostBoard> selectAllLostBoard(Criteria cri) {
 		List<LostBoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
-				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT " + 
+				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW " + 
 						"from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
-						+ "PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, row_number() " + 
+						+ "PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " + 
 						"over(order by boardnum desc) as rNum " + 
 						"from lostBoard) mb where rNum between ? and ? order by boardnum desc"
 						,lostBoardRowMapper,cri.getRowStart(), cri.getRowEnd());
@@ -226,9 +227,9 @@ public class FindDao {
 	public List<LostBoard> selectAllLostBoard(CriteriaMainBoard cri) {
 		List<LostBoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
-				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT " + 
+				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW " + 
 						"from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
-						+ "PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, row_number() " + 
+						+ "PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " + 
 						"over(order by boardnum desc) as rNum " + 
 						"from lostBoard) mb where rNum between ? and ? order by boardnum desc"
 						,lostBoardRowMapper,cri.getRowStart(), cri.getRowEnd());
@@ -546,7 +547,12 @@ public class FindDao {
 //        return entity;
 //    }
 	public void writeReview(String review, long boardNum) {
-		System.out.println("나도도착 리뷰ㅜ");
+		System.out.println("나도도착 리뷰-find");
 		jdbcTemplate.update("UPDATE findBoard SET REVIEW=? WHERE boardNum=?", review, boardNum);
+	}
+	
+	public void writeReview2(String review, long boardNum) {
+		System.out.println("나도도착 리뷰-lost");
+		jdbcTemplate.update("UPDATE lostBoard SET REVIEW=? WHERE boardNum=?", review, boardNum);
 	}
 }
