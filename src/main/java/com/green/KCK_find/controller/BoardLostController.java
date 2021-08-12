@@ -15,7 +15,6 @@ import find.dao.FindDao;
 import find.vo.CriteriaMainBoard;
 import find.vo.LostBoard;
 import find.vo.PageMakerMainBoard;
-import find.vo.WriteReviewDtoLost;
 
 @Controller
 public class BoardLostController {
@@ -54,45 +53,34 @@ public class BoardLostController {
 	public String detail(@PathVariable("boardNum") long boardNum, Model model) {
 		dao.updateLostHit(boardNum);
 		LostBoard detail = dao.selectByBoardNum(boardNum);
-		
 		model.addAttribute("detail", detail);
 		
 		return "lostPage/lostPageDetail";
 	}
 	
-	// 글 수정 메서드
-	@RequestMapping(value="/lostPage/lostPageModify/{boardNum}")
-	public String modify(@PathVariable("boardNum") long boardNum, Model model, LostBoard lostBoard) {
-		dao.updateLostHit(boardNum);
-		LostBoard detail = dao.selectByBoardNum(boardNum);
-		System.out.println("본문 내용 : "+detail.getMemo());
-		model.addAttribute("detail", detail);
-		
-		return "lostPage/lostPageModify";
-	}
-	
 	// 글 삭제 메서드
-	@RequestMapping("/lostPage/delete/{detail}")
-	public String delete(@PathVariable("detail") LostBoard lostBoard,
-						 HttpServletRequest request) {
-		System.out.println("삭제 도전");
-		// 첨부파일 삭제
-		// image = storedFileName = 저장된 이미지 이름
-		String image = lostBoard.getStoredFileName();
-		String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
-		File file = new File(path+image);
-			if(file.exists()==true) {
-				file.delete();
-			}
-		System.out.println("첨부파일 삭제완료 or 첨부파일 X");
-		// 첨부파일 삭제 성공시 , 썸네일 삭제 연습
-		
-		// 게시글 DB 삭제
-		long boardNum = lostBoard.getBoardNum();
-		dao.deleteByLostBoardNum(boardNum);
-
-		return "redirect:/lostPage/lostPageList";
-	}
+		@RequestMapping("/lostPage/delete/{boardNum}")
+		public String delete(@PathVariable("boardNum") long boardNum,
+							 HttpServletRequest request) {
+			System.out.println("삭제 도전");
+			// 첨부파일 삭제
+			// image = storedFileName = 저장된 이미지 이름
+			LostBoard detail = dao.selectByBoardNum(boardNum);
+			String image = detail.getStoredFileName();
+			String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+			File file = new File(path+image);
+			File thumb = new File(path+"s_"+image);
+				if(file.exists()==true) {
+					file.delete();
+					thumb.delete();
+				}
+				
+			System.out.println("게시물도 잘 삭제됐는지 추후에 확인 필요");
+			
+			// 게시글 DB 삭제
+			dao.deleteByLostBoardNum(boardNum);
+			return "redirect:/lostPage/lostPageList";
+		}
 
 	// 발견완료/미발견 체크박스 변경 메서드
 	@RequestMapping("/lostPage/changeMeet/{boardNum}&{meet}")

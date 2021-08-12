@@ -4,7 +4,7 @@ import java.sql.Date;
 
 import org.springframework.web.multipart.MultipartFile;
 
-public class LostBoardWriteCommand { // Lost �옉�꽦�떆 諛쏆븘�삱 �궡�슜
+public class LostBoardWriteCommand { // Lost 글 등록시 넘겨줄 객체
 	private String title;
 	private String location;
 	private String character;

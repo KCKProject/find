@@ -323,10 +323,6 @@ public class FindDao {
 		member.setMemberNumber(keyValue.longValue());
 	}
 	
-	
-
-	
-	
 	public void insertQnA(QnABoard qnABoard) {
 		KeyHolder key = new GeneratedKeyHolder();
 		jdbcTemplate.update(
@@ -458,8 +454,6 @@ public class FindDao {
 	
 	
 	public void writeLostBoard(LostBoard lb) {
-		
-		System.out.println(lb.getCharacter());
 //		KeyHolder key = new GeneratedKeyHolder();
 		jdbcTemplate.update("INSERT INTO lostBoard (boardNum, title, writer, writeDate, kind, location, character, animal,"
 				+ " gender, email, phone, lostDate, meet, memo, originalFile, originalFileExtension, storedFileName, hit) VALUES(lostBoard_seq.nextval,?,?,sysdate,?,?,?,?,?,?,?,?,0,?,?,?,?,0)",
@@ -546,6 +540,24 @@ public class FindDao {
 //        System.out.println("entity : "+entity);
 //        return entity;
 //    }
+	
+	// LostBoard 수정
+	public void modifyLostBoard(LostBoard lb) {
+		jdbcTemplate.update("UPDATE lostBoard SET title=?, kind=?, location=?, character=?, animal=?, gender=?, email=?, phone=?, memo=? WHERE boardNum=?",
+							lb.getTitle(),
+							lb.getKind(),
+							lb.getLocation(),
+							lb.getCharacter(),
+							lb.getAnimal(),
+							lb.getGender(),
+							lb.getEmail(),
+							lb.getPhone(),
+							lb.getMemo(),
+							lb.getBoardNum());		
+	}
+	
+	
+	// 후기 추가
 	public void writeReview(String review, long boardNum) {
 		System.out.println("나도도착 리뷰-find");
 		jdbcTemplate.update("UPDATE findBoard SET REVIEW=? WHERE boardNum=?", review, boardNum);

@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../../resources/css/style.css">
+<link rel="stylesheet" href="../../../resources/css/style.css">
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <script src="../resources/script/script.js" defer></script>
@@ -26,7 +26,7 @@
 		
 		<div class="wrapWritePage"> 
 		<%--  enctype="multipart/form-data" 필요 --%>
-			<form:form action="/lostPage/lostPageWrite" commandName="lostBoard" enctype="multipart/form-data" method="POST">
+			<form:form commandName="lostBoard">
 				<table id="input-lostPageWrite"> <!-- 입력칸 부분 -->
 					<tr>
 						<td><span>*</span>글제목</td>
@@ -58,22 +58,21 @@
 					</tr>
 					<tr>
 						<td><span>*</span>연락처</td>
-						<td><form:input path="memo" value="${detail.phone}"/></td>
+						<td><form:input path="phone" value="${detail.phone}"/></td>
 					</tr>
 					<tr>
 						<td><span>*</span>이메일</td>
-						<td><form:input path="memo" value="${detail.email}"/></td>
+						<td><form:input path="email" value="${detail.email}"/></td>
 					</tr>
 					<tr>
 						<td><span>*</span>상세내용</td>
 						<td><textarea name="memo" rows="10" cols="65">${detail.memo}</textarea></td>
 					</tr>
-					<tr>
+					<!-- <tr>
 						<td>  사진첨부</td>
-						<td><input type="file" name="img" id="img" value="${detail.originalFile}"/></td>
-					</tr>
-				</table>
-				
+						<td><input type="file" name="img" id="img"/></td>
+					</tr> -->
+				</table>				
 				<div > <!-- 수정완료 버튼 -->
 					<input type="submit" value="수정완료" class="completeBtn">
 				</div>

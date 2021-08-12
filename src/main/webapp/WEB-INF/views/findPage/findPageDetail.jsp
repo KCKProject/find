@@ -26,7 +26,9 @@
 
 			<div class="boardPage-contents">
 				<ul>
-					<li class="post-photo-top"></li>
+					<li class="post-photo-top">
+						<%-- <img src="../../resources/imgUpload/${detail.storedFileName}"/> --%>
+					</li>
 					<li class="post-photo-top"></li>
 					<li class="post-photo-top"></li>
 				</ul>
@@ -62,7 +64,7 @@
 						<p>연락처 | ${detail.phone}</p>
 					</div>
 					<div class="memo">
-						<p>${detail.memo}</p>
+						<p>상세내용 | ${detail.memo}</p>
 					</div>
 
 					<c:if test="${detail.meet==1}">
@@ -92,7 +94,7 @@
 						글삭제<span>글삭제 >></span>
 					</button>
 					<button class="btn btn-swap" name="modify" id="modify"
-						onclick="location='<c:url value="findPage/findPageModify/${detail.boardNum}"/>'">
+						onclick="location='<c:url value="/findPage/findPageModify/${detail.boardNum}"/>'">
 						글수정<span>글수정 >></span>
 					</button>
 
@@ -115,7 +117,7 @@
 			</div>
 			
 			<div class="review">
-				<form method="POST" action="/KCK_find/findPage/findPageWrite/review">
+				<form method="POST" action="KCK_find/findPage/findPageWrite/review">
 					<h2>후기를 남겨주세요! 찾은 장소나 위치, 그리고 찾게 된 경로 등을 상세히 적어 주시면 많은 도움이
 						됩니다.</h2>
 					<input type="hidden" name="boardNum" value="${detail.boardNum}" />
@@ -209,7 +211,7 @@
 
 	<script>
 		function del(boardNum) {
-			var chk = confirm("정말 삭제하시겠습니까?");
+			var chk = confirm("정말정말정말 삭제하시겠습니까?");
 			if (chk) {
 				location.href="<c:url value='/findPage/delete/'/>"+boardNum;
 			}

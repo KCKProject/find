@@ -6,21 +6,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>찾아주세요</title>
 <link rel="stylesheet" href="../../resources/css/style.css">
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <script src="../../resources/script/script.js" defer></script>
-<title>찾아주세요</title>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
 
 	<div class="wrapboardPage">
 	
-<div id="contentsTitle">
-<h3 class="contentsTitle">(실종) ${detail.title}</h3>
-<div class="boardDetailPageLine"></div>
-</div>
+		<div id="contentsTitle">
+			<h3 class="contentsTitle">(실종) ${detail.title}</h3>
+			<div class="boardDetailPageLine"></div>
+		</div>
 
 		<div class="wrap-lostPage"> 
 			
@@ -39,7 +39,6 @@
 							<p class="finishText">발견완료</p>
 						</div>
 					</c:if>
-
 					<div class="userid-writetime-anumber-view">
 						<p>${detail.writer}님 | ${detail.writeDate} | 등록번호 ${detail.boardNum} | 조회 ${detail.hit}</P>
 					</div>
@@ -81,18 +80,17 @@
 							</div>
 						</c:if>
 					</c:if>
-					
 				</div>
 			</div>
 			
-			<div class="wrap-btns"> <!-- 버튼들 모음 -->
-				  <!-- 로그인한 사람이 본인 글에 들어왔을때만 보이는 버튼들 추가 -->
+			<div class="wrap-btns">
+				<!-- 버튼들 모음 -->
+				<!-- 로그인한 사람이 본인 글에 들어왔을때만 보이는 버튼들 추가 -->
 				<button class="btn btn-swap" name="toList" id="toList" onclick="location='<c:url value="/lostPage/lostPageList"/>'" >목록으로<span>목록으로 >></span></button>
 				<c:if test="${memberAuthInfo.userId eq detail.writer}">
-
-					<button class="btn btn-swap" name="delete" id="delete" onclick="del()">글삭제<span>글삭제 >></span></button>
-					<button class="btn btn-swap" name="modify" id="modify" onclick="location='<c:url value="/lostPage/lostPageModify/${detail.boardNum}"/>'">글수정<span>글수정 >></span></button>
-
+					<button class="btn btn-swap" name="delete" id="delete" onclick="del(${detail.boardNum})">글삭제<span>글삭제 >></span></button>
+					<button class="btn btn-swap" name="modify" id="modify" onclick="location='<c:url value="/lostPage/lostPageWrite/modify/${detail.boardNum}"/>'">글수정<span>글수정 >></span></button>
+					
 					<!-- 발견완료 체크유무에 따른(=meet 컬럼 값에 따른) 버튼 종류의 차이 -->
 					<c:choose>
 						<c:when test="${detail.meet eq 0}">
@@ -112,7 +110,7 @@
 			</div>
 			
 			<div class="review">
-				<form method="POST" action="/KCK_find/lostPage/lostPageWrite/review">
+				<form method="POST" action="/lostPage/lostPageWrite/review">
 					<h2>후기를 남겨주세요! 찾은 장소나 위치, 그리고 찾게 된 경로 등을 상세히 적어 주시면 많은 도움이 됩니다.</h2>
 					<input type="hidden" name="boardNum" value="${detail.boardNum}" />
 					<textarea name="review" rows="10" cols="30">${detail.review}</textarea>
@@ -164,11 +162,17 @@
 
 	<jsp:include page="../include/footer.jsp" />
 	<button class="jellybutton topbtn" type="button" onclick="goTop()">TOP</button>
-		<!-- 글쓰기 버튼 -->
-		<!-- 예정) 로그인안한 회원은 로그인 페이지로 연결되도록 수정할 예정 -->
+	<!-- 글쓰기 버튼 -->
+	<!-- 예정) 로그인안한 회원은 로그인 페이지로 연결되도록 수정할 예정 -->
 	<c:if test="${memberAuthInfo == null }">
 		<div class="centerbtn">		
-			<div class="jellybutton centerHiddenContents" name="centerHidden" id="centerHidden"><p>INFO<br>! 로그인 후 글쓰기 가능 합니다.<br>! 아이디 | 비밀번호 분실 시 로그인<br>페이지 하단의 찾기 버튼 클릭</p></div>
+			<div class="jellybutton centerHiddenContents" name="centerHidden" id="centerHidden">
+				<p>
+					INFO<br>! 로그인 후 글쓰기 가능 합니다.<br>
+					! 아이디 | 비밀번호 분실 시 로그인<br>
+					페이지 하단의 찾기 버튼 클릭
+				</p>
+			</div>
 			<button class="jellybutton sidebtn1" name="write" id="write" >WRITE</button>
 		</div>
 	</c:if>
@@ -182,7 +186,8 @@
 			<div class="centerbtn">
 				<div class="jellybutton centerHiddenContents reviewHiddenContents" name="centerHiddenContents" id="centerHiddenContents">
 					<p>
-						INFO<br>! 리뷰를 작성해주세요 <br>! 리뷰 버튼 클릭 시 리뷰 작성  혹은 수정 가능 합니다.
+						INFO<br>! 리뷰를 작성해주세요 <br>
+						! 리뷰 버튼 클릭 시 리뷰 작성  혹은 수정 가능 합니다.
 					</p>
 				</div>
 				<button class="jellybutton sidebtn7" name="review" id="review" onclick="window.scrollTo(800,800)">REVIEW</button>
@@ -190,11 +195,11 @@
 		</c:if>
 	</c:if>
 	
-	<script type="text/javascript">
-	function del() {
+	<script>
+	function del(boardNum) {
 		var chk = confirm("정말정말정말정말 삭제하시겠습니까?");
 		if (chk) {
-			location.href="<c:url value='/lostPage/delete/'/>"+${detail};
+			location.href="<c:url value='/lostPage/delete/'/>"+boardNum;
 			alert("게시글이 삭제되었습니다.");
 		}
 	}
@@ -202,16 +207,6 @@
 	function onClickHandler(meet) {
 		alert(meet)
 	}
-	<%--  $(function(){
-		$("[type=button][name=delete]").on("click", function(){
-			alert('하이하이');
-			var boardNum = ${detail.boardNum};
-			location.href="<c:url value='lostPage/delete'/>"+boardNum;
-			form.attr("action","/lostPage/delete"+boardNum);
-			form.attr("method","POST");
-			form.submit();
-		})
-	})  --%>
 	</script>
 </body>
 </html>

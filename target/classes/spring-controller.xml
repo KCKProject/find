@@ -76,10 +76,12 @@
    
    <bean id="boardLostWriteController" class="com.green.KCK_find.controller.BoardLostWriteController">
       <property name="lostBoardWriteService" ref="lostBoardWriteSvc"/>
+      <property name="dao" ref="findDao"/>
    </bean>
    
    <bean id="boardFindWriteController" class="com.green.KCK_find.controller.BoardFindWriteController">
       <property name="findBoardWriteService" ref="findBoardWriteSvc"/>
+      <!-- <property name="dao" ref="findDao"/> -->
    </bean>
    
    

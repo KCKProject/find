@@ -36,7 +36,7 @@ public class BoardFindWriteController {
 	@RequestMapping(method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String regist(LostBoardWriteCommand lostBoardWriteCommand, HttpSession session, MultipartHttpServletRequest request) throws IOException {
 		MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-		System.out.println("�꽆�뼱�삩 session id : "+member.getUserId());
+		System.out.println("넘어온 session id : "+member.getUserId());
 	
 		findBoardWriterservice.boardRegist();			
 		return "redirect:/lostPage/lostPageList";

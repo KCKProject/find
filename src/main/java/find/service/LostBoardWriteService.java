@@ -55,9 +55,9 @@ public class LostBoardWriteService {
 			member.setPhone("비공개");
 		}
 		
-		// �씠誘몄��뙆�씪�뾽濡쒕뱶
+		// 이미지 업로드
 		LostBoard lb = new LostBoard();
-		
+
 		MultipartFile img = lc.getImg();
 		String originalFile = img.getOriginalFilename();
 		String originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
@@ -71,20 +71,20 @@ public class LostBoardWriteService {
 		// 썸네일 만들기 → 서버 구동 최적화를 위하여
 		// 기존 파일의 축소판인 썸네일을 생성하여 게시글 목록에서 보여지도록 구현
 		BufferedImage sourceImg = ImageIO.read(new File(filePath,storedFileName));
-		
+
 		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);
-		
+
 		String thumbnailName = filePath+File.separator+"s_"+storedFileName;
-		
+
 		File newFile = new File(thumbnailName);
 		String formatName = storedFileName.substring(storedFileName.lastIndexOf(".")+1);
-		
+
 		ImageIO.write(destImg, formatName.toUpperCase(), newFile);
 		thumbnailName.substring(filePath.length()).replace(File.separatorChar, '/');
-		
+
 		// System.out.println("formatName : "+formatName);
 		// System.out.println("thumbnailName : "+thumbnailName);
-	      
+  
 		lb.setTitle(lc.getTitle());
 		lb.setWriter(member.getUserId());
 		lb.setLocation(lc.getLocation());
@@ -99,13 +99,34 @@ public class LostBoardWriteService {
 		lb.setOriginalFile(originalFile);
 		lb.setOriginalFileExtension(originalFileExtension);
 		lb.setStoredFileName(storedFileName);
-		
-	dao.writeLostBoard(lb);
+
+		dao.writeLostBoard(lb);
 	}
 
 
 	public void writeReview(String review, long boardNum) {
 		dao.writeReview2(review, boardNum);	
 		
+	}
+
+	public void modifyLost(LostBoard lb, MemberAuthInfo member) {		
+		LostBoard lostBoard = new LostBoard();
+		
+		lostBoard.setTitle(lb.getTitle());
+		lostBoard.setWriter(member.getUserId());
+		lostBoard.setLocation(lb.getLocation());
+		lostBoard.setCharacter(lb.getCharacter());
+		lostBoard.setAnimal(lb.getAnimal());
+		lostBoard.setKind(lb.getKind());
+		lostBoard.setGender(lb.getGender());
+		lostBoard.setEmail(member.getEmail());
+		lostBoard.setPhone(member.getPhone());
+		//lb.setLostDate(lc.getLostDate());
+//		lb.setMemo(lc.getMemo());
+//		lb.setOriginalFile(originalFile);
+//		lb.setOriginalFileExtension(originalFileExtension);
+//		lb.setStoredFileName(storedFileName);
+
+		dao.writeLostBoard(lb);
 	}
 }

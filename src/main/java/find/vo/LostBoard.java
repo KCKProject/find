@@ -46,23 +46,7 @@ public class LostBoard {
 		this.memo = memo;
 		this.meet = meet;
 		this.hit = hit;
-	}
-	
-	// 글 수정 시 사용할 생성자
-	public LostBoard(String title, String writer, Date writeDate, String kind, String location, String character,
-			String animal, String gender, String email, String phone, Date lostDate, String memo) {
-		this.title = title;
-		this.writer = writer;
-		this.writeDate = writeDate;
-		this.kind = kind;
-		this.location = location;
-		this.character = character;
-		this.animal = animal;
-		this.gender = gender;
-		this.email = email;
-		this.phone = phone;
-		this.lostDate = lostDate;
-		this.memo = memo;
+		this.review = review;
 	}
 
 	public long getBoardNum() {
@@ -152,7 +136,7 @@ public class LostBoard {
 		this.meet = meet;
 	}
 
-	// �씠誘몄� �뙆�씪 寃쎈줈瑜� �쐞�빐 而щ읆 3媛� 異붽�
+	// 이미지 업로드 컬럼
 	public String getOriginalFileExtension() {
 		return originalFileExtension;
 	}
