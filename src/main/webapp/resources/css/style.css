@@ -19,7 +19,7 @@
 11 admin folder
 	login - main - board - member - q&a 
 12 admin folder detail pages setting	
-	board - member - question // 진행중
+	board - member - question 
 ======================
 13 사이즈 조정   
 */
@@ -839,10 +839,10 @@ label.right {
     background: none;
     border: none;
     border-bottom: 2px solid whitesmoke;
-    font-size: 15px;
+    font-size: 13px;
     color: #ed4848;
     padding: 10px 20px;
-    width: 150px;
+    width: 120px;
     cursor: pointer;
     position: relative;
 }
@@ -1061,8 +1061,10 @@ label.right {
 
 .wrap-btns {
     text-align: center;
-    padding: 0 0 20px 0;
-    border-bottom: 1px double silver;
+    padding: 50px 0;
+    /* border-top: 1px solid ghostwhite;*/ 
+    border-bottom: 1px solid #ebebebd9; 
+    box-shadow: 1px 6px 8px 1px ghostwhite;
 }
 
 .lostPage-comment-top {
@@ -1100,6 +1102,7 @@ label.right {
 	box-shadow: 0px 10px 10px -5px whitesmoke;
 }
 
+
 .review {
 	display: none;
 }
@@ -1109,6 +1112,7 @@ label.right {
 }
 	
 .review form {
+    border-top: 1px solid silver;
     border-bottom: 1px solid silver;
     padding: 80px 0;
     display: flex;
@@ -1529,9 +1533,53 @@ label.right {
 	padding-top: 10px;
 }
 
-.adminBoardDetailBtn {
-    POSITION: RELATIVE;
-    TOP: 573PX;
+.adminBoardDetailBtn { /* 버튼 어드민페이지 공통 */
+    position: fixed;
+    top: 300px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.wrapEditMemberPage table {
+	margin: 20px;
+}
+
+.wrapEditMemberPage table tr td span {
+   font-size: 18px;
+    color: red;
+}
+
+.wrapEditMemberPage table tr td input {
+    width: 400px;
+    height: 30px;
+    border: 1px solid gray;
+    border-radius: 8px;
+    margin: 10px;
+}
+
+.qnaBtn {
+    width: 120px;
+    height: 30px;
+    border-radius: 8px;
+    color: white;
+    background-color: #1ABC9C;
+    cursor: pointer;
+    border: 1px solid #dcdcdc;
+    box-shadow: 2px 3px 5px 0px #cccccc;
+    position: absolute;
+    top: 205px;
+    right: 20px;
+}
+
+.qnaOpen select {
+    width: 400px;
+    height: 30px;
+    border: 1px solid gray;
+    border-radius: 8px;
+    margin: 0 20px;
+    text-align-last: center;
 }
 
 /* ========================= */

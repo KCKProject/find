@@ -2,23 +2,17 @@ package com.green.KCK_find.controller;
 
 import java.io.IOException;
 
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import find.service.LostBoardWriteService;
-import find.vo.LostBoard;
 import find.vo.LostBoardWriteCommand;
 import find.vo.MemberAuthInfo;
-import find.vo.WriteReviewDto;
+import find.vo.WriteReviewDtoLost;
 
 @Controller
 public class BoardLostWriteController {
@@ -52,10 +46,10 @@ public class BoardLostWriteController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST, value = "/review")
-	public String writeReview(WriteReviewDto dto, HttpSession session) throws IOException {
+	public String writeReview(WriteReviewDtoLost dto, HttpSession session) throws IOException {
 		MemberAuthInfo member = (MemberAuthInfo) session.getAttribute("memberAuthInfo");
 		System.out.println(dto.getReview());
-		lostBoardWriteService.writeReview2(dto.getReview(), dto.getBoardNum());
+		lostBoardWriteService.writeReview(dto.getReview(), dto.getBoardNum());
 		
 		return "redirect:/lostPage/lostPageDetail/" + dto.getBoardNum();
 	}
