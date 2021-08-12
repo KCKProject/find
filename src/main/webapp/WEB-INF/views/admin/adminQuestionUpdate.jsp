@@ -45,7 +45,7 @@
 						</tr>
 						<tr>
 							<td><span>*</span>내용</td>
-							<td><form:input path="contents" placeholder="수정할 내용"/></td>
+							<td><form:textarea path="contents" placeholder="수정할 내용" rows="20" cols="70"/></td>
 						</tr>
 						<tr>
 							<td><span>*</span>공개여부</td>

@@ -30,24 +30,48 @@
 
 		<div class="right">
 			<div>
-				<p> 회원 정보 수정</p>
+				<p>회원 정보 수정</p>
 			</div>
 				<div class="wrapWritePage">
-					<form:form commandName="memberUpdateCommand" enctype="multipart/form=data" method="POST">
 					<table>
+						<div>
+						<p>수정 전 정보</p>
+						</div>
 						<tr>
-							<td><span>*</span>회원 이름</td>
-							<td><form:input path="userName" placeholder="수정할 이름"/></td>
+							<td>회원 이름</td>
+							<td><input type="text" placeholder="${member.userName}" readonly></td>
 						</tr>
 						<tr>
-							<td><span>*</span>전화번호</td>
-							<td><form:input path="phone" placeholder="수정할 전화번호"/></td>
+							<td>전화번호</td>
+							<td><input type="text" placeholder="${member.phone}" readonly></td>
 						</tr>
 						<tr>
-							<td><span>*</span>이메일</td>
-							<td><form:input path="email" placeholder="수정할 이메일"/></td>
+							<td>이메일</td>
+							<td><input type="text" placeholder="${member.email}" readonly></td>
 						</tr>
 					</table>
+					<br>
+					<br>
+					<br>
+
+					<form:form commandName="memberUpdateCommand" enctype="multipart/form=data" method="POST">
+						<table>
+							<div>
+							<p>수정할 내용</p>
+							</div>
+							<tr>
+								<td><span>*</span>회원 이름</td>
+								<td><form:input path="userName" placeholder="수정할 이름"/></td>
+							</tr>
+							<tr>
+								<td><span>*</span>전화번호</td>
+								<td><form:input path="phone" placeholder="수정할 전화번호"/></td>
+							</tr>
+							<tr>
+								<td><span>*</span>이메일</td>
+								<td><form:input path="email" placeholder="수정할 이메일"/></td>
+							</tr>
+						</table>
 					<br>
 					<div class="adminBoardDetailBtn">
 						<a href="<c:url value='/admin/adminMember'/>">

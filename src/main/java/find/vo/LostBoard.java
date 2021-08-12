@@ -22,12 +22,13 @@ public class LostBoard {
 	private String originalFileExtension;
 	private String storedFileName;
 	private int hit;
+	private String review;
 	
 	public LostBoard() {}
 
 	public LostBoard(String title, String writer, Date writeDate, String location, String character, String animal,
 			String kind, String gender, String email, String phone, Date lostDate, int meet, String memo,
-			String originalFile, String originalFileExtension, String storedFileName, int hit) {
+			String originalFile, String originalFileExtension, String storedFileName, int hit, String review) {
 		this.title = title;
 		this.writer = writer;
 		this.writeDate = writeDate;
@@ -151,7 +152,7 @@ public class LostBoard {
 		this.meet = meet;
 	}
 
-	// 이미지 파일 경로를 위해 컬럼 3개 추가
+	// �씠誘몄� �뙆�씪 寃쎈줈瑜� �쐞�빐 而щ읆 3媛� 異붽�
 	public String getOriginalFileExtension() {
 		return originalFileExtension;
 	}
@@ -182,5 +183,13 @@ public class LostBoard {
 
 	public void setHit(int hit) {
 		this.hit = hit;
+	}
+	
+	 public String getReview() {
+		return review;
+	}
+
+	public void setReview(String review) {
+		this.review = review;
 	}
 }

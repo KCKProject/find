@@ -32,7 +32,14 @@
 					<li class="post-photo-top"></li>
 					<li class="post-photo-top"></li>
 				</ul>
-				<div class="post-contents-bottom"> <!-- 게시글 내용 나오는 부분 -->
+				<div class="post-contents-bottom"> 
+					<!-- 게시글 내용 나오는 부분 -->
+					<c:if test="${detail.meet==1}">
+						<div>
+							<p class="finishText">발견완료</p>
+						</div>
+					</c:if>
+
 					<div class="userid-writetime-anumber-view">
 						<p>${detail.writer}님 | ${detail.writeDate} | 등록번호 ${detail.boardNum} | 조회 ${detail.hit}</P>
 					</div>
@@ -63,6 +70,18 @@
 					<div class="memo">
 						<p>상세내용 | ${detail.memo}</p>
 					</div>
+
+					<c:if test="${detail.meet==1}">
+						<c:if test="${not empty detail.review}">
+							<div class="reviewContents">
+								<p>
+									<i class="fas fa-quote-left"></i>${detail.review}<i
+										class="fas fa-quote-right"></i>
+								</p>
+							</div>
+						</c:if>
+					</c:if>
+					
 				</div>
 			</div>
 			
@@ -75,13 +94,28 @@
 					<!-- 발견완료 체크유무에 따른(=meet 컬럼 값에 따른) 버튼 종류의 차이 -->
 					<c:choose>
 						<c:when test="${detail.meet eq 0}">
-							<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/lostPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">발견완료<span>변경 >></span></button>
+							<button class="btn btn-swap" name="meet" id="meet"
+								onclick="location='<c:url value="/findPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">
+								발견완료<span>변경 >></span>
+							</button>
 						</c:when>
 						<c:when test="${detail.meet eq 1}">
-							<button class="btn btn-swap" name="meet" id="meet" onclick="location='<c:url value="/lostPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">미발견<span>변경 >></span></button>
+							<button class="btn btn-swap" name="meet" id="meet"
+								onclick="location='<c:url value="/findPage/changeMeet/${detail.boardNum}&${detail.meet}"/>'">
+								미발견<span>변경 >></span>
+							</button>
 						</c:when>
 					</c:choose>
 				</c:if>
+			</div>
+			
+			<div class="review">
+				<form method="POST" action="/KCK_find/lostPage/lostPageWrite/review">
+					<h2>후기를 남겨주세요! 찾은 장소나 위치, 그리고 찾게 된 경로 등을 상세히 적어 주시면 많은 도움이 됩니다.</h2>
+					<input type="hidden" name="boardNum" value="${detail.boardNum}" />
+					<textarea name="review" rows="10" cols="30">${detail.review}</textarea>
+					<input type="submit" value="작성완료" class="completeBtn"> 
+				</form>
 			</div>
 			
 			<div class="wrap-lostPage-comment">
@@ -139,8 +173,22 @@
 	<c:if test="${memberAuthInfo != null }">
 		<button class="jellybutton sidebtn1" name="write" id="write" onclick="location='<c:url value="/lostPage/lostPageWrite"/>'">WRITE</button>
 	</c:if>
+	
+	<!-- 리뷰버튼 -->
+	<c:if test="${memberAuthInfo.userName eq detail.writer}">
+		<c:if test="${detail.meet eq 0}">
+			<div class="centerbtn">
+				<div class="jellybutton centerHiddenContents reviewHiddenContents" name="centerHiddenContents" id="centerHiddenContents">
+					<p>
+						INFO<br>! 리뷰를 작성해주세요 <br>! 리뷰 버튼 클릭 시 리뷰 작성  혹은 수정 가능 합니다.
+					</p>
+				</div>
+				<button class="jellybutton sidebtn7" name="review" id="review" onclick="window.scrollTo(800,800)">REVIEW</button>
+			</div>
+		</c:if>
+	</c:if>
+	
 	<script>
-
 	function del(boardNum) {
 		var chk = confirm("정말 삭제하시겠습니까?");
 		if (chk) {

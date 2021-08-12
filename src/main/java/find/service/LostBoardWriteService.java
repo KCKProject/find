@@ -42,21 +42,21 @@ public class LostBoardWriteService {
 			HttpSession session,
 			MultipartHttpServletRequest request) throws IOException {
 		MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-		System.out.println("[service]session id의 값 : "+member.getUserId());
+		System.out.println("[service]session id�쓽 媛� : "+member.getUserId());
 		
 		String term = lc.getTerm();
-		System.out.println("넘어온 term 의 값 : "+term);
+		System.out.println("�꽆�뼱�삩 term �쓽 媛� : "+term);
 		
 		if(term==null) {
-			member.setEmail("비공개");
-			member.setPhone("비공개");
+			member.setEmail("鍮꾧났媛�");
+			member.setPhone("鍮꾧났媛�");
 		}else if(term.equals("phoneAgree")) {
-			member.setEmail("비공개");
+			member.setEmail("鍮꾧났媛�");
 		}else if(term.equals("emailAgree")) {
-			member.setPhone("비공개");
+			member.setPhone("鍮꾧났媛�");
 		}
 		
-		// 이미지파일업로드
+		// �씠誘몄��뙆�씪�뾽濡쒕뱶
 		LostBoard lb = new LostBoard();
 		
 		MultipartFile img = lc.getImg();
@@ -67,15 +67,15 @@ public class LostBoardWriteService {
 		File file = new File(filePath,storedFileName);
 		img.transferTo(file);
 		
-		System.out.println("업로드한 파일은 "+originalFile);
-		System.out.println("이고, "+storedFileName+"으로 업로드됐다.");
-		System.out.println(filePath+" 경로에 저장됐으니 확인.");
-		System.out.println("파일 사이즈는 : "+img.getSize());
+		System.out.println("�뾽濡쒕뱶�븳 �뙆�씪�� "+originalFile);
+		System.out.println("�씠怨�, "+storedFileName+"�쑝濡� �뾽濡쒕뱶�릱�떎.");
+		System.out.println(filePath+" 寃쎈줈�뿉 ���옣�릱�쑝�땲 �솗�씤.");
+		System.out.println("�뙆�씪 �궗�씠利덈뒗 : "+img.getSize());
 
 		
-		// 썸네일(게시판 목록에서 보여질 사진) 생성
-		// List에서 보여질때 축소본인  썸네일 이미지를 나타내면, 서버에 최소한의 데이터 전송 가능
-		// 상세보기페이지에서는 원본이미지 출력
+		// �뜽�꽕�씪(寃뚯떆�뙋 紐⑸줉�뿉�꽌 蹂댁뿬吏� �궗吏�) �깮�꽦
+		// List�뿉�꽌 蹂댁뿬吏덈븣 異뺤냼蹂몄씤  �뜽�꽕�씪 �씠誘몄�瑜� �굹���궡硫�, �꽌踰꾩뿉 理쒖냼�븳�쓽 �뜲�씠�꽣 �쟾�넚 媛��뒫
+		// �긽�꽭蹂닿린�럹�씠吏��뿉�꽌�뒗 �썝蹂몄씠誘몄� 異쒕젰
 		BufferedImage sourceImg = ImageIO.read(new File(filePath,storedFileName));
 		
 		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);
@@ -107,5 +107,9 @@ public class LostBoardWriteService {
 		lb.setStoredFileName(storedFileName);
 		
 	dao.writeLostBoard(lb);
+	}
+
+	public void writeReview2(String review, long boardNum) {
+		dao.writeReview2(review, boardNum);		
 	}
 }

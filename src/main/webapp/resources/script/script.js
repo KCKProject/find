@@ -6,6 +6,14 @@ toggleBtn.addEventListener('click', () => {
 });
 
 
+var reviewToggleBtn = document.querySelector('.sidebtn7');
+var review = document.querySelector('.review');
+
+reviewToggleBtn.addEventListener('click', () => {
+    review.classList.toggle('active');
+});
+
+
 function goTop(){
 	document.documentElement.scrollTop = 0;
 };
