@@ -67,12 +67,12 @@
 						<p>이메일 | ${detail.email}</p>
 					</div>
 					<div class="memo">
-						<p>${detail.memo}</p>
+						<p style="white-space: pre-line;">${detail.memo}</p>
 					</div>
 
 					<c:if test="${detail.meet==1 and not empty detail.review}">
 						<div class="reviewContents">
-							<p>
+							<p style="white-space: pre-line;">
 								<br>
 								<i class="fas fa-quote-left"></i>${detail.review}
 								<i class="fas fa-quote-right"></i>

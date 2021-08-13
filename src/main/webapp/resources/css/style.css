@@ -1111,7 +1111,7 @@ label.right {
 .memo p {
     word-wrap: break-word;
     line-height: 30px;
-    width: 40%;
+    width: 30%;
     border-radius: 8px;
     border-top: 1px solid whitesmoke;
     border-bottom: 1px solid whitesmoke;
@@ -1149,7 +1149,7 @@ label.right {
 	font-size: 15px;
 	color: #f68100;
 	line-height: 30px;
-	width: 40%;
+	width: 30%;
 } 
 
 .fa-quote-left, .fa-quote-right {

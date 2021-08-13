@@ -55,7 +55,7 @@
 					<tr>
 						<td><span>*</span>상세내용</td>
 						<td>
-							<form:textarea path="memo" rows="10" cols="65" onkeyup="javascript:fnChkByte(this,'2000')"></form:textarea>
+							<form:textarea path="memo" rows="10" cols="65" onkeyup="javascript:fnChkByte(this,'2000')" style="white-space: pre-line;"></form:textarea>
 							<span id="byteInfo">0</span> / 2000bytes
 						</td>
 
