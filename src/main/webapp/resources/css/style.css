@@ -21,7 +21,8 @@
 12 admin folder detail pages setting	
 	board - member - question 
 ======================
-13 사이즈 조정   
+13 myPage
+14 사이즈 조정   
 */
 
 /* index-1 전체설정 + 페이징 */
@@ -1583,7 +1584,100 @@ label.right {
 }
 
 /* ========================= */
-/* index-13 사이즈 조정 */
+/* index-13 myPage */
+
+.myPage {
+    padding: 80px 0;
+}
+
+.wrapMyInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 0 0 50px 0;
+}
+
+.myPage h1 {
+	text-align: center;
+    font-weight: 100;
+    font-size: 20px;
+}
+
+.myPage h3 {
+    font-weight: 100;
+    font-size: 15px;
+    padding: 0 0 15px 26%;
+}
+
+.myInfo {
+    background-color: #fbfbfb;
+    width: 50%;
+    height: 250px;
+    margin: 50px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    line-height: 30px;
+}
+
+.fa-dove {
+    color: pink;
+    font-size: 30px;
+    padding: 20px;
+    margin: 0 20px 0 0;
+    border-radius: 50px;
+    border: 1px solid pink;
+}
+
+.myGrade {
+	display: flex;
+	align-items: center;
+}
+
+.myActivities {
+  	border-left: 1px solid #d0d0d0;
+    padding: 0 0 0 30px;
+}
+
+.myActivitiesTitle {
+    border-bottom: 1px solid black;
+}
+
+.wrapMyActivitiesContents {
+    display: flex;
+}
+
+.myActivitiesContents p:first-child {
+	border-bottom: 1px dotted #d0d0d0;	
+}
+
+.myActivitiesContents p {
+    padding: 10px;
+}
+
+.wrapMyPost {
+    display: flex;
+    justify-content: center;
+    margin: 0 0 50px 0;
+}
+
+.myPost {
+    border-top: 1px solid darkgray;
+    border-bottom: 1px solid lightgrey;
+    width: 50%;
+}
+
+.myPost div {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px 0;
+    border-bottom: 1px dotted whitesmoke;
+}
+
+
+/* ========================= */
+/* index-14 사이즈 조정 */
 
 @media screen and (max-width: 1600px) {
 	.signUpCommandTitle {  /* 회원가입 페이지 사이즈 축소 시 입력창 옆 내용 안보이기 */

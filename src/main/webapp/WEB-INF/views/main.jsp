@@ -14,7 +14,6 @@
 </head>
 <body>
 	<jsp:include page="include/header.jsp" />
-	<%-- 	<jsp:include page="include/nav.jsp" /> header에 병합 --%>
 	<section class="section mainSection">
 		
 	    <div class="slidebox">

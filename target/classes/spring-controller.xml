@@ -90,5 +90,8 @@
    
    <!-- find id/pw -->
    <bean id="memberInformationFindController" class="com.green.KCK_find.controller.memberInformationFindController"/>   
+   
+   <!-- myPage -->
+   <bean id="MyPageController" class="com.green.KCK_find.controller.MyPageController"/>   
 
 </beans>
