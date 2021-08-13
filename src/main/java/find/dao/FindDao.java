@@ -147,21 +147,7 @@ public class FindDao {
 			 * "SELECT * FROM member order by membernumber ASC",rowMapper); return results;
 			 * }
 			 */
-	
-	public List<Member> selectAll(Criteria cri) {
-		List<Member> results = jdbcTemplate.query(
-				"SELECT memberNumber, userId, userPassword, UserName, phone, email " + 
-				"    FROM(" + 
-				"    SELECT memberNumber, userId, userPassword, UserName, phone, email, " + 
-				"    row_number() over(order by memberNumber ASC) as rNum " + 
-				"    from member" + 
-				"    ) mb" + 
-				"    where rNum between ? and ? " + 
-				"    order by memberNumber ASC",
-				rowMapper,cri.getRowStart() ,cri.getRowEnd());
-		return results;
-	}
-	
+
 	// 카운터
 	
 	public int memberCount() {
@@ -213,6 +199,34 @@ public class FindDao {
 	// 카운터 끝
 
 	
+	// 메인 페이지 게시글
+	public List<LostBoard> selectMainLostBoard(){
+		String sql = "SELECT * FROM (SELECT * FROM lostBoard ORDER BY rowNum DESC) WHERE rowNum<=10 AND meet=0";
+		List<LostBoard> results = jdbcTemplate.query(sql, lostBoardRowMapper);
+		return results;
+	}
+	
+	public List<LostBoard> selectMainReviewBoard(){ // 랜덤 추출
+		String sql = "SELECT * FROM (SELECT * FROM lostBoard order by dbms_random.value) WHERE rowNum <=5 AND meet=1";
+		List<LostBoard> results = jdbcTemplate.query(sql, lostBoardRowMapper);
+		return results;
+	}
+	
+	
+	// 게시글 전체 불러오기(+cri)
+	public List<Member> selectAll(Criteria cri) {
+		List<Member> results = jdbcTemplate.query(
+				"SELECT memberNumber, userId, userPassword, UserName, phone, email " + 
+				"    FROM(" + 
+				"    SELECT memberNumber, userId, userPassword, UserName, phone, email, " + 
+				"    row_number() over(order by memberNumber ASC) as rNum " + 
+				"    from member" + 
+				"    ) mb" + 
+				"    where rNum between ? and ? " + 
+				"    order by memberNumber ASC",
+				rowMapper,cri.getRowStart() ,cri.getRowEnd());
+		return results;
+	}
 	
 	public List<LostBoard> selectAllLostBoard(Criteria cri) {
 		List<LostBoard> results = jdbcTemplate.query(
@@ -237,7 +251,7 @@ public class FindDao {
 						,lostBoardRowMapper,cri.getRowStart(), cri.getRowEnd());
 		return results;
 	}
-	
+
 	public List<FindBoard> selectAllFindBoard(Criteria cri) {
 		List<FindBoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, EMAIL, "
@@ -249,7 +263,6 @@ public class FindDao {
 						findBoardRowMapper, cri.getRowStart(), cri.getRowEnd());
 		return results;
 	}
-	
 	
 	public List<FindBoard> selectAllFindBoard(CriteriaMainBoard cri) {
 		List<FindBoard> results = jdbcTemplate.query(
@@ -272,6 +285,7 @@ public class FindDao {
 				,qnABoardRowMapper,cri.getRowStart(), cri.getRowEnd());
 		return results;
 	}
+	
 	public List<QnABoard> selectAllQnABoard(CriteriaQnABoard cri) {
 		List<QnABoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, CONTENTS, OPEN " + 

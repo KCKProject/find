@@ -70,73 +70,40 @@
 				<!-- 게시판 글 끌어오기 -->
 				<div class="mainBoard">
 					<ul>
-	                    <li>
-							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-								<img src="./resources/img/eximg/ex01.png" alt="ex01">
-								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-							</button>
-						</li>
-	                    <li>
-							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-								<img src="./resources/img/eximg/ex02.png" alt="ex02">
-								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-							</button>
-						</li>
-	                    <li>
-							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-								<img src="./resources/img/eximg/ex03.png" alt="ex03">
-								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-							</button>
-						</li>
-	                    <li>
-							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-								<img src="./resources/img/eximg/ex04.png" alt="ex04">
-								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-							</button>
-						</li>
-	                    <li>
-							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-								<img src="./resources/img/eximg/ex05.png" alt="ex05">
-								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-							</button>
-						</li>
-	                </ul>
-	                <ul>
-						<li>
-							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-								<img src="./resources/img/eximg/ex06.png" alt="ex06">
-								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-							</button>
-						</li>
-						<li>
-							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-								<img src="./resources/img/eximg/ex07.png" alt="ex07">
-								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-							</button>
-						</li>
-						<li>
-							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-								<img src="./resources/img/eximg/ex08.png" alt="ex08">
-								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-							</button>
-						</li>
-						<li>
-							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-								<img src="./resources/img/eximg/ex09.png" alt="ex09">
-								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-							</button>
-						</li>
-						<li>
-							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-								<img src="./resources/img/eximg/ex10.png" alt="ex10">
-								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-							</button>
-						</li>
-	
+						<c:forEach var="l" items="${losts}" begin="0" end="4" step="1">
+							<li>
+								<button class="mainLostImgLi" name="more" id="more" onclick="location='<c:url value="/lostPage/lostPageDetail/${l.boardNum}"/>'">
+									<img src="./resources/imgUpload/${l.storedFileName}" alt="사진">
+									<span class="mainLostImgLiContents">
+										<p>
+											<br>
+											품종 | ${l.kind} <br> 실종장소 | ${l.location}
+											<br> 실종시각 | ${l.lostDate}
+											<br><br> 특징 | ${l.character}
+										</p>
+									</span>
+								</button>
+							</li>
+						</c:forEach>
+					</ul>
+					<ul>
+						<c:forEach var="l" items="${losts}" begin="5" end="9" step="1">
+							<li>
+								<button class="mainLostImgLi" name="more" id="more" onclick="location='<c:url value="/lostPage/lostPageDetail/${l.boardNum}"/>'">
+									<img src="./resources/imgUpload/${l.storedFileName}" alt="사진">
+									<span class="mainLostImgLiContents">
+										<p>
+											<br>
+											품종 | ${l.kind} <br> 실종장소 | ${l.location}
+											<br> 실종시각 | ${l.lostDate}<br><br> 특징 | ${l.character}
+										</p>
+									</span>
+								</button>
+							</a></li>
+						</c:forEach>
 					</ul>
 				</div>
                 <div class="mainMore">
-					<!-- 연결링크 재설정필요 -->
                     <button class="btn btn-swap" name="more" id="more" onclick="location='<c:url value="/lostPage/lostPageList"/>'">
                         more <span>찾아주세요 >></span>
                     </button>
@@ -150,46 +117,29 @@
 			<div class="mainReviewImg">
 				<div class="mainBoard">
 					<ul>
-	                    <li>
-							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-								<img src="./resources/img/eximg/ex01.png" alt="ex01">
-								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-							</button>
-						</li>
-	                    <li>
-							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-								<img src="./resources/img/eximg/ex02.png" alt="ex02">
-								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-							</button>
-						</li>
-	                    <li>
-							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-								<img src="./resources/img/eximg/ex03.png" alt="ex03">
-								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-							</button>
-						</li>
-	                    <li>
-							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-								<img src="./resources/img/eximg/ex04.png" alt="ex04">
-								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-							</button>
-						</li>
-	                    <li>
-							<button class="mainLostImgLi" name="more" id="more" onclick="location='lostPage'">
-								<img src="./resources/img/eximg/ex05.png" alt="ex05">
-								<span class="mainLostImgLiContents"><p>이름 | 강아지 <br> 실종장소 | 경기대후문근처 <br> 실종시각 | 2021-07-29 15시 <br><br> 특징 | 잘 웃고 오른쪽 발 만지면 싫어해요. 사례금 있어요 꼭 좀 찾아주세요</p></span>
-							</button>
-						</li>
+						<c:forEach var="r" items="${reviews}">
+							<li>
+								<button class="mainLostImgLi" name="more" id="more" onclick="location='<c:url value="/lostPage/lostPageDetail/${r.boardNum}"/>'">
+									<img src="./resources/imgUpload/${r.storedFileName}" alt="사진">
+									<span class="mainLostImgLiContents">
+										<p>
+											<br>
+											이름 | ${r.animal} <br> 실종장소 | ${r.location}
+											<br> 실종시각 | ${r.lostDate}<br><br> 후기 | ${r.review}
+										</p>
+									</span>
+								</button>
+							</li>
+						</c:forEach>
 					</ul>
 				</div>
-
-				<div class="mainMore">
-					<!-- 연결링크 재설정필요 -->
-					<button class="btn btn-swap" name="more" id="more"
-						onclick="location='findPage'">
+				
+				<!-- 후기 게시판은 따로 없으니 버튼을 없앨까요? -->
+				<%-- <div class="mainMore">
+					<button class="btn btn-swap" name="more" id="more" onclick="location='<c:url value="/findPage/findPageList"/>'">
 						more <span>찾아가세요 >></span>
 					</button>
-				</div>
+				</div> --%>
 			</div>
 		</div>
 		</div>

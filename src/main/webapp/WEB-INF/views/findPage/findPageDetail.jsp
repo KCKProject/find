@@ -52,10 +52,10 @@
 						<!-- ex)남아 중성화수술 함 -->
 					</div>
 					<div class="location">
-						<p>실종 위치 | ${detail.location}</p>
+						<p>발견 위치 | ${detail.location}</p>
 					</div>
 					<div class="findDate">
-						<p>실종 시각 | ${detail.findDate}</p>
+						<p>발견 시각 | ${detail.findDate}</p>
 					</div>
 					<div class="character">
 						<p>특징 | ${detail.character}</p>
@@ -67,15 +67,14 @@
 						<p>상세내용 | ${detail.memo}</p>
 					</div>
 
-					<c:if test="${detail.meet==1}">
-						<c:if test="${not empty detail.review }">
-							<div class="reviewContents">
-								<p>
-									<i class="fas fa-quote-left"></i>${detail.review}<i
-										class="fas fa-quote-right"></i>
-								</p>
-							</div>
-						</c:if>
+					<c:if test="${detail.meet==1 and not empty detail.review}">
+						<div class="reviewContents">
+							<p>
+								<br>
+								<i class="fas fa-quote-left"></i>${detail.review}
+								<i class="fas fa-quote-right"></i>
+							</p>
+						</div>
 					</c:if>
 				</div>
 			</div>

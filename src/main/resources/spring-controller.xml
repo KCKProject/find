@@ -9,6 +9,11 @@
    
    <mvc:view-controller path="/" view-name="main"/>
    
+   <!-- main -->
+   <bean id="" class="com.green.KCK_find.controller.MainController">
+      <property name="dao" ref="findDao"/>
+   </bean>
+   
    <!-- admin -->
    <bean id="AdminLoginController" class="com.green.KCK_find.controller.AdminLoginController">
       <property name="adminAuthService" ref="adminAuthSvc" />
