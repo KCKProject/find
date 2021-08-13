@@ -6,12 +6,7 @@ toggleBtn.addEventListener('click', () => {
 });
 
 
-var reviewToggleBtn = document.querySelector('.sidebtn7');
-var review = document.querySelector('.review');
 
-reviewToggleBtn.addEventListener('click', () => {
-    review.classList.toggle('active');
-});
 
 
 function goTop(){
@@ -63,7 +58,7 @@ document.querySelector(".copy-Phone").addEventListener("click", function(){
   tempElem.select();
   document.execCommand("copy");
   document.body.removeChild(tempElem);
-  alert("coopied");
+  alert("copied");
 });
 
 document.querySelector(".copy-email").addEventListener("click", function(){
@@ -74,7 +69,7 @@ document.querySelector(".copy-email").addEventListener("click", function(){
   tempElem.select();
   document.execCommand("copy");
   document.body.removeChild(tempElem);
-  alert("coopied");
+  alert("copied");
 });
 
 document.querySelector(".copy-address").addEventListener("click", function(){
@@ -85,11 +80,20 @@ document.querySelector(".copy-address").addEventListener("click", function(){
   tempElem.select();
   document.execCommand("copy");
   document.body.removeChild(tempElem);
-  alert("coopied");
+  alert("copied");
 });
 
 
 
+
+
+
+var reviewToggleBtn = document.querySelector('.sidebtn7');
+var review = document.querySelector('.review');
+
+reviewToggleBtn.addEventListener('click', () => {
+    review.classList.toggle('active');
+});
 	
 
 
