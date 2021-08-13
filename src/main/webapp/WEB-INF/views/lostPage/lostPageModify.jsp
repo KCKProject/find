@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="../../../resources/css/style.css">
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
-<script src="../resources/script/script.js" defer></script>
+<script src="../../../resources/script/script.js" defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>찾아주세요 수정하기</title>
 </head>
@@ -66,7 +66,10 @@
 					</tr>
 					<tr>
 						<td><span>*</span>상세내용</td>
-						<td><textarea name="memo" rows="10" cols="65">${detail.memo}</textarea></td>
+						<td>
+							<textarea path="memo" rows="10" cols="65" onkeyup="javascript:fnChkByte(this,'2000')">${detail.memo}</textarea>
+							<span id="byteInfo">0</span> / 2000bytes
+						</td>
 					</tr>
 					<!-- <tr>
 						<td>  사진첨부</td>

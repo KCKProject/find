@@ -57,10 +57,13 @@
 					</tr>
 					<tr>
 						<td><span>*</span>상세내용</td>
-						<td><form:textarea path="memo" rows="10" cols="65"></form:textarea></td>
+						<td>
+							<form:textarea path="memo" rows="10" cols="65" onkeyup="javascript:fnChkByte(this,'2000')"/>
+							<span id="byteInfo">0</span> / 2000bytes
+						</td>
 					</tr>
 					<tr>
-						<td>  사진첨부</td>
+						<td><span>*</span>사진첨부</td>
 						<td><input type="file" name="img" id="img"/></td>
 					</tr>
 				</table>

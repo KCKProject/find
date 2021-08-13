@@ -67,7 +67,7 @@
 						<p>이메일 | ${detail.email}</p>
 					</div>
 					<div class="memo">
-						<p>상세내용 | ${detail.memo}</p>
+						<p>${detail.memo}</p>
 					</div>
 
 					<c:if test="${detail.meet==1 and not empty detail.review}">
@@ -112,7 +112,8 @@
 				<form method="POST" action="/KCK_find/lostPage/lostPageWrite/review">
 					<h2>후기를 남겨주세요! 찾은 장소나 위치, 그리고 찾게 된 경로 등을 상세히 적어 주시면 많은 도움이 됩니다.</h2>
 					<input type="hidden" name="boardNum" value="${detail.boardNum}" />
-					<textarea name="review" rows="10" cols="30">${detail.review}</textarea>
+					<textarea name="review" rows="10" cols="30" onkeyup="javascript:fnChkByte(this,'2000')">${detail.review}</textarea>
+<!-- 					<span id="byteInfo">0</span> / 2000bytes -->
 					<input type="submit" value="작성완료" class="completeBtn"> 
 				</form>
 			</div>
