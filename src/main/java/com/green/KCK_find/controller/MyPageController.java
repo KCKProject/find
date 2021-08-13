@@ -5,16 +5,19 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import find.vo.LostBoardWriteCommand;
 
 @Controller
 public class MyPageController {
 	
-	@RequestMapping("/myPage/myPage")
-	public String myPage(HttpSession session,HttpServletRequest req) {
-		session.invalidate();
-		
+	@RequestMapping(value = "/myPage/myPage", method=RequestMethod.GET)
+	public String myPage() {
+	
 		return "myPage/myPage";
 	}
 	
 	
 }
+

@@ -25,8 +25,8 @@
 						<i class="fas fa-dove"></i>
 					</div>
 					<div>
-						<p>"강아지"님의 회원등급은 NEW 입니다.</p>
-						<P>"강아지"님의 반려동물의 사진과 정보를 등록 해 주세요.</P>
+						<p>${memberAuthInfo.getUserId()}님의 회원등급은 NEW 입니다.</p>
+						<P>${memberAuthInfo.getUserId()}님의 반려동물의 사진과 정보를 등록 해 주세요.</P>
 						<a>등록 하러 가기 > </a>
 					</div>
 				</div>
