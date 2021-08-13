@@ -1,29 +1,21 @@
 package com.green.KCK_find.controller;
 
-import java.io.IOException;
+import java.io.File;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import find.dao.FindDao;
 import find.vo.CriteriaMainBoard;
 import find.vo.FindBoard;
 import find.vo.LostBoard;
-import find.vo.LostBoardWriteCommand;
-import find.vo.MemberAuthInfo;
 import find.vo.PageMakerMainBoard;
-import find.vo.WriteReviewDto;
 
 @Controller
 public class BoardFindController {
@@ -41,8 +33,8 @@ public class BoardFindController {
 	@RequestMapping("/findPage/findPageList")
 	public String find(@ModelAttribute("cri") CriteriaMainBoard cri, Model model) {
 		
-		List<FindBoard> find = dao.selectAllFindBoard(cri);
-		model.addAttribute("find",find);
+		List<FindBoard> finds = dao.selectAllFindBoard(cri);
+		model.addAttribute("finds",finds);
 		
 		PageMakerMainBoard pageMaker = new PageMakerMainBoard();
 		pageMaker.setCri(cri);
@@ -65,10 +57,23 @@ public class BoardFindController {
 	
 	// 글 삭제 메서드
 	@RequestMapping("/findPage/delete/{boardNum}")
-	public String delete(@PathVariable("boardNum") long boardNum) {
-
+	public String delete(@PathVariable("boardNum") long boardNum,
+						 HttpServletRequest request) {
+		// 첨부파일 삭제
+		// image = storedFileName = 저장된 이미지 이름
+		FindBoard detail = dao.selectByFindBoardNum(boardNum);
+		String image = detail.getStoredFileName();
+		String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+		File file = new File(path,image);
+		File thumb = new File(path,"s_"+image);
+			if(file.exists()) {
+				file.delete();
+				thumb.delete();
+			}
+		
+		// 게시글 DB 삭제
 		dao.deleteByFindBoardNum(boardNum);
-		return "redirect:/findPage/findPageDetail";
+		return "redirect:/findPage/findPageList";
 		}
 		
 	// 발견완료, 미발견 체크박스 변경 메서드

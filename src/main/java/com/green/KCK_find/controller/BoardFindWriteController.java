@@ -33,15 +33,17 @@ public class BoardFindWriteController {
 		return "findPage/findPageWrite";
 	}
 	
+	// 글 등록
 	@RequestMapping(method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public String regist(LostBoardWriteCommand lostBoardWriteCommand, HttpSession session, MultipartHttpServletRequest request) throws IOException {
+	public String regist(FindBoardWriteCommand findBoardWriteCommand, HttpSession session, MultipartHttpServletRequest request) throws IOException {
 		MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
 		System.out.println("넘어온 session id : "+member.getUserId());
 	
-		findBoardWriterservice.boardRegist();			
-		return "redirect:/lostPage/lostPageList";
+		findBoardWriterservice.boardRegist(findBoardWriteCommand, session, request);			
+		return "redirect:/findPage/findPageList";
 	}
 	
+	// 후기 추가
 	@RequestMapping(method=RequestMethod.POST, value = "/review")
 	public String writeReview(WriteReviewDto dto, HttpSession session) throws IOException {
 		MemberAuthInfo member = (MemberAuthInfo) session.getAttribute("memberAuthInfo");

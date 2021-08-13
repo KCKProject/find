@@ -18,13 +18,6 @@
 
 	<div class="wrapboardPage">
 
-		<%-- 
-		<div class="write-btn">
-			<!-- 글쓰기 버튼 -->
-			<!-- 예정) 로그인안한 회원은 로그인 페이지로 연결되도록 수정할 예정 -->
-			<input type="button" name="write" id="write"
-				onclick="location='<c:url value="/lostPage/lostPageWrite"/>'" value="글쓰기 >>"> --%>
-
 		<div id="contentsTitle">
 			<h3 class="contentsTitle">찾아주세요</h3>
 			<div class="titleLine"></div>
@@ -54,11 +47,17 @@
 									<p class="finishText">발견완료</p>
 								</div>
 							</c:if>
+							<c:if test="${l.meet!=1}">
+								<div><p><br><p></div>
+							</c:if>
 							<div>
 								<p>이름 : ${l.animal} | 성별 : ${l.gender}</P>
 							</div>
 							<div>
 								<p>잃어버린 위치 : ${l.location}</p>
+							</div>
+							<div>
+								<p>실종 시각 : ${l.lostDate}</p>
 							</div>
 							<div>
 								<p>특징 : ${l.character}</p>
@@ -84,6 +83,7 @@
 		</div>
 	</div>
 	<jsp:include page="../include/footer.jsp" />
+	
 	<button class="jellybutton topbtn" type="button" onclick="goTop()">TOP</button>
 		<!-- 글쓰기 버튼 -->
 		<!-- 예정) 로그인안한 회원은 로그인 페이지로 연결되도록 수정할 예정 -->

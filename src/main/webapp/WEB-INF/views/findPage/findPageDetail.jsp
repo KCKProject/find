@@ -27,7 +27,7 @@
 			<div class="boardPage-contents">
 				<ul>
 					<li class="post-photo-top">
-						<%-- <img src="../../resources/imgUpload/${detail.storedFileName}"/> --%>
+						<img src="../../resources/imgUpload/${detail.storedFileName}"/>
 					</li>
 					<li class="post-photo-top"></li>
 					<li class="post-photo-top"></li>
@@ -77,7 +77,6 @@
 							</div>
 						</c:if>
 					</c:if>
-
 				</div>
 			</div>
 
@@ -211,7 +210,7 @@
 
 	<script>
 		function del(boardNum) {
-			var chk = confirm("정말정말정말 삭제하시겠습니까?");
+			var chk = confirm("정말 삭제하시겠습니까?");
 			if (chk) {
 				location.href="<c:url value='/findPage/delete/'/>"+boardNum;
 			}

@@ -62,15 +62,14 @@ public class BoardLostController {
 		@RequestMapping("/lostPage/delete/{boardNum}")
 		public String delete(@PathVariable("boardNum") long boardNum,
 							 HttpServletRequest request) {
-			System.out.println("삭제 도전");
 			// 첨부파일 삭제
 			// image = storedFileName = 저장된 이미지 이름
 			LostBoard detail = dao.selectByBoardNum(boardNum);
 			String image = detail.getStoredFileName();
 			String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
-			File file = new File(path+image);
-			File thumb = new File(path+"s_"+image);
-				if(file.exists()==true) {
+			File file = new File(path,image);
+			File thumb = new File(path,"s_"+image);
+				if(file.exists()) {
 					file.delete();
 					thumb.delete();
 				}

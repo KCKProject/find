@@ -25,7 +25,7 @@
 		
 		<div class="wrapWritePage"> 
 		<%--  enctype="multipart/form-data" 필요 --%>
-			<form:form commandName="findBoardWriteCommand" name="input-findPageWrite">
+			<form:form commandName="findBoardWriteCommand" enctype="multipart/form-data" method="POST">
 				<table id="input-findPageWrite"> <!-- 입력칸 부분 -->
 					<tr>
 						<td><span>*</span>글제목</td>
@@ -57,22 +57,26 @@
 						<td><form:textarea path="memo" rows="10" cols="65"/></td>
 
 					</tr>
-					<!-- <tr>
+					<tr>
 						<td>  사진첨부</td>
-						<td><input type="file" name="photo" id="photo"/></td>
-					</tr> -->
+						<td><input type="file" name="img" id="img"/></td>
+					</tr>
 				</table>
 
-				<!-- <div> 첨부파일
-					<div class="photofile-btn"></div>
-				</div> -->
 				<div> <!-- 약관 -->
-					<div class="writeTerms">
+					<!-- <div class="writeTerms">
 						<label class="checkbox"><input type="checkbox" name="term" id="term" value="agree" class="AllOkay"><span class="icon"></span><span class="text">전체동의</span></label> 
 						<label class="checkbox"><input type="checkbox" name="term" id="term" value="phoneAgree" class="okay"><span class="icon"></span><span class="text">연락처 노출 동의 
 									<br>(회원가입 시 등록 한 연락처를 연락받을 번호로 기재 합니다. <span style="color: red; font-size: 20px;">*</span>미체크시 별도의 연락수단 상세내용에 기재 요망)<br> </span></label> 
 						<label class="checkbox"><input type="checkbox" name="term" id="term" value="emailAgree" class="okay"><span class="icon"></span><span class="text">이메일 노출 동의 
 									<br>(회원가입 시 등록 한 이메일을 연락받을 메일로 기재 합니다.)</span></label> 
+					</div> -->
+					<div class="writeTerms">
+						<label class="checkbox"><input type="checkbox" name="term" id="term" value="agree" class="AllOkay"><span class="icon"></span><span class="text">전체동의</span></label> 
+						<label class="checkbox"><input type="checkbox" name="term" id="term" value="phoneAgree" class="okay"><span class="icon"></span><span class="text">연락처 노출 동의 
+									(회원가입 시 등록 한 연락처를 연락받을 번호로 기재 합니다. <br><span style="color: red; font-size: 20px;">*</span>해당 체크박스 미체크시 별도의 연락수단 상세내용에 기재 요망)<br> </span></label> 
+						<label class="checkbox"><input type="checkbox" name="term" id="term" value="emailAgree" class="okay"><span class="icon"></span><span class="text">이메일 노출 동의 
+									(회원가입 시 등록 한 이메일을 연락받을 메일로 기재 합니다.)</span></label> 
 					</div>
 				</div>
 				<div > <!-- 작성완료 버튼 -->

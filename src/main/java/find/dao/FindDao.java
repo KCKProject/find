@@ -110,12 +110,14 @@ public class FindDao {
 						rs.getString("gender"),
 						rs.getString("location"),
 						rs.getString("character"),
-						rs.getString("img"),
 						rs.getString("email"),
 						rs.getString("phone"),
 						rs.getDate("findDate"),
 						rs.getString("memo"),
 						rs.getInt("meet"),
+						rs.getString("originalFile"),
+						rs.getString("originalFileExtension"),
+						rs.getString("storedFileName"),
 						rs.getInt("hit"),
 						rs.getString("review")
 						);
@@ -238,10 +240,10 @@ public class FindDao {
 	
 	public List<FindBoard> selectAllFindBoard(Criteria cri) {
 		List<FindBoard> results = jdbcTemplate.query(
-				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, IMG, EMAIL, "
-						+ " FINDDATE, MEET, MEMO, PHONE, HIT, REVIEW " 
-						+ "from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, IMG, EMAIL, "
-						+ "FINDDATE, MEET, MEMO, PHONE, HIT, REVIEW, row_number() " 
+				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, EMAIL, "
+						+ " FINDDATE, MEET, MEMO, PHONE,  ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW " 
+						+ "from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, EMAIL, "
+						+ "FINDDATE, MEET, MEMO, PHONE, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " 
 						+ "over(order by boardnum desc) as rNum " 
 						+ "from FindBoard) mb where rNum between ? and ? order by boardnum desc",
 						findBoardRowMapper, cri.getRowStart(), cri.getRowEnd());
@@ -251,10 +253,10 @@ public class FindDao {
 	
 	public List<FindBoard> selectAllFindBoard(CriteriaMainBoard cri) {
 		List<FindBoard> results = jdbcTemplate.query(
-				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, IMG, EMAIL, "
-						+ " FINDDATE, MEET, MEMO, PHONE, HIT, REVIEW " 
-						+ "from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, IMG, EMAIL, "
-						+ "FINDDATE, MEET, MEMO, PHONE, HIT, REVIEW, row_number() " 
+				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, EMAIL, "
+						+ " FINDDATE, MEET, MEMO, PHONE,  ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW " 
+						+ "from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, EMAIL, "
+						+ "FINDDATE, MEET, MEMO, PHONE, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " 
 						+ "over(order by boardnum desc) as rNum " 
 						+ "from FindBoard) mb where rNum between ? and ? order by boardnum desc",
 						findBoardRowMapper, cri.getRowStart(), cri.getRowEnd());
@@ -498,9 +500,24 @@ public class FindDao {
 //		lb.setBoardNum(keyValue.longValue());
 	}
 
-	public void writeFindBoard() {
+	public void writeFindBoard(FindBoard fb) {
 		// find 게시판 업로드
-		System.out.println("dao까지 넘어옴");
+		jdbcTemplate.update("INSERT INTO findBoard (BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, "
+				+ " EMAIL, FINDDATE, MEET, MEMO, PHONE, originalFile, ORIGINALFILEEXTENSION, STOREDFILENAME, HIT) "
+				+ " VALUES(findBoard_seq.nextval,?,?,sysdate,?,?,?,?,?,?,0,?,?,?,?,?,0)",
+				fb.getTitle(),
+				fb.getWriter(),
+				fb.getKind(),
+				fb.getGender(),
+				fb.getLocation(),
+				fb.getCharacter(),
+				fb.getEmail(),
+				fb.getFindDate(),
+				fb.getMemo(),
+				fb.getPhone(),
+				fb.getOriginalFile(),
+				fb.getOriginalFileExtension(),
+				fb.getStoredFileName());
 	}
 
 

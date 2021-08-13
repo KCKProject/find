@@ -11,19 +11,22 @@ public class FindBoard {
 	private String gender;
 	private String location;
 	private String character;
-	private String img;
 	private String email;
 	private String phone;
 	private Date findDate;
 	private String memo;
 	private int meet;
+	private String originalFile;
+	private String originalFileExtension;
+	private String storedFileName;
 	private int hit;
 	private String review;
 	
 	public FindBoard() {}
 
 	public FindBoard(String title, String writer, Date writeDate, String kind, String gender, String location,
-			String character, String img, String email, String phone, Date findDate, String memo, int meet, int hit, String review) {
+			String character, String email, String phone, Date findDate, String memo, int meet,
+			String originalFile, String originalFileExtension, String storedFileName, int hit, String review) {
 		this.title = title;
 		this.writer = writer;
 		this.writeDate = writeDate;
@@ -31,12 +34,14 @@ public class FindBoard {
 		this.gender = gender;
 		this.location = location;
 		this.character = character;
-		this.img = img;
 		this.email = email;
 		this.phone = phone;
 		this.findDate = findDate;
 		this.memo = memo;
 		this.meet = meet;
+		this.originalFile = originalFile;
+		this.originalFileExtension = originalFileExtension;
+		this.storedFileName = storedFileName;
 		this.hit = hit;
 		this.review = review;
 	}
@@ -105,14 +110,6 @@ public class FindBoard {
 		this.character = character;
 	}
 	
-	public String getImg() {
-		return img;
-	}
-	
-	public void setImg(String img) {
-		this.img = img;
-	}
-	
 	public String getEmail() {
 		return email;
 	}
@@ -151,6 +148,30 @@ public class FindBoard {
 	
 	public void setMeet(int meet) {
 		this.meet = meet;
+	}
+
+	public String getOriginalFile() {
+		return originalFile;
+	}
+
+	public void setOriginalFile(String originalFile) {
+		this.originalFile = originalFile;
+	}
+
+	public String getOriginalFileExtension() {
+		return originalFileExtension;
+	}
+
+	public void setOriginalFileExtension(String originalFileExtension) {
+		this.originalFileExtension = originalFileExtension;
+	}
+
+	public String getStoredFileName() {
+		return storedFileName;
+	}
+
+	public void setStoredFileName(String storedFileName) {
+		this.storedFileName = storedFileName;
 	}
 
 	public int getHit() {

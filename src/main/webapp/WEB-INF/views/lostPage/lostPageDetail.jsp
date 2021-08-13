@@ -197,7 +197,7 @@
 	
 	<script>
 	function del(boardNum) {
-		var chk = confirm("정말정말정말정말 삭제하시겠습니까?");
+		var chk = confirm("정말 삭제하시겠습니까?");
 		if (chk) {
 			location.href="<c:url value='/lostPage/delete/'/>"+boardNum;
 			alert("게시글이 삭제되었습니다.");

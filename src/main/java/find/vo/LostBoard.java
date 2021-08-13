@@ -37,14 +37,14 @@ public class LostBoard {
 		this.animal = animal;
 		this.kind = kind;
 		this.gender = gender;
-		this.originalFile = originalFile;
-		this.originalFileExtension = originalFileExtension;
-		this.storedFileName = storedFileName;
 		this.email = email;
 		this.phone = phone;
 		this.lostDate = lostDate;
 		this.memo = memo;
 		this.meet = meet;
+		this.originalFile = originalFile;
+		this.originalFileExtension = originalFileExtension;
+		this.storedFileName = storedFileName;
 		this.hit = hit;
 		this.review = review;
 	}

@@ -16,13 +16,6 @@
 
 	<div class="wrapboardPage">
 
-		<%-- 하단에 있음
-		<div class="write-btn">
-			<!-- 글쓰기 버튼 -->
-			<input type="button" name="write" id="write"
-				onclick="location='<c:url value="/findPage/findPageWrite"/>'" value="글쓰기>>">
-		</div> --%>
-
 		<div id="contentsTitle">
 			<h3 class="contentsTitle">찾아가세요</h3>
 			<div class="titleLine"></div>
@@ -30,7 +23,7 @@
 
 		<div class="wrapBoardlist"> 
 		<!-- 게시글이 존재하지 않을 때 -->
-		<c:if test="${empty find}">
+		<c:if test="${empty finds}">
 			<ul>
 				<li>발견된 동물이 없습니다!</li>
 			</ul>
@@ -39,17 +32,20 @@
 		<!-- 게시글이 1개 이상 존재할 때 -->
 		<ul>
 			 <!-- 게시물 li로 나열  -->
-			<c:forEach var="f" items="${find}">
+			<c:forEach var="f" items="${finds}">
 				<li><a href="<c:url value="/findPage/findPageDetail/${f.boardNum}"/>">
 					<div class="post-photo-top"> <!-- 게시글 사진 나오는 부분 --> 
-						<div>사진</div>
-					</div>
+						<div><img src="../resources/imgUpload/${f.storedFileName}" width="200" height="250"/></div>
+						</div>
 					<div class="post-contents-bottom"> <!-- 게시글 내용 나오는 부분 -->
 						<!-- 작성자가 본인 글에서 발견 버튼 클릭 시에만 생성 -->
 						<c:if test="${f.meet==1}">
 							<div>
 								<p class="finishText">발견완료</p>
 							</div>
+						</c:if>
+						<c:if test="${f.meet!=1}">
+							<div><p><br><p></div>
 						</c:if>
 						<div>
 							<p>동물 종류 : ${f.kind} | 성별 : ${f.gender}</P>
@@ -70,7 +66,7 @@
 		</div>
 		<div class="paging">
 			 <ul>
-						<c:if test="${pageMaker.prev}">
+				<c:if test="${pageMaker.prev}">
 			   		<li><a href="${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
 			  	</c:if>
 			  	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
@@ -81,10 +77,9 @@
 			  	</c:if> 
 			 </ul>
 		</div>
-
 	</div>
-
 	<jsp:include page="../include/footer.jsp" />
+	
 	<button class="jellybutton topbtn" type="button" onclick="goTop()">TOP</button>
 		<!-- 글쓰기 버튼 -->
 		<!-- 예정) 로그인안한 회원은 로그인 페이지로 연결되도록 수정할 예정 -->

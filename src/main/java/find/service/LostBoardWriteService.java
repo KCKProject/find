@@ -44,7 +44,6 @@ public class LostBoardWriteService {
 		MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
 		
 		String term = lc.getTerm();
-		System.out.println("받아온 term : "+term);
 		
 		if(term==null) {
 			member.setEmail("비공개");
