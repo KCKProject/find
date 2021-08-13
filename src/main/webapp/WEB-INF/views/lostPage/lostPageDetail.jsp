@@ -110,7 +110,7 @@
 			</div>
 			
 			<div class="review">
-				<form method="POST" action="/lostPage/lostPageWrite/review">
+				<form method="POST" action="/KCK_find/lostPage/lostPageWrite/review">
 					<h2>후기를 남겨주세요! 찾은 장소나 위치, 그리고 찾게 된 경로 등을 상세히 적어 주시면 많은 도움이 됩니다.</h2>
 					<input type="hidden" name="boardNum" value="${detail.boardNum}" />
 					<textarea name="review" rows="10" cols="30">${detail.review}</textarea>
