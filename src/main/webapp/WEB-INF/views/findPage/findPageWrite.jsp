@@ -58,7 +58,6 @@
 							<form:textarea path="memo" rows="10" cols="65" onkeyup="javascript:fnChkByte(this,'2000')" style="white-space: pre-line;"></form:textarea>
 							<span id="byteInfo">0</span> / 2000bytes
 						</td>
-
 					</tr>
 					<tr>
 						<td><span>*</span>사진첨부</td>

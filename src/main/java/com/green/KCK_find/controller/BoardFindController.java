@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import find.dao.FindDao;
 import find.vo.CriteriaMainBoard;
 import find.vo.FindBoard;
-import find.vo.LostBoard;
 import find.vo.PageMakerMainBoard;
 
 @Controller

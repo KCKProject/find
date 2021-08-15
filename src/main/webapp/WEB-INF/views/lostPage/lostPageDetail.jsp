@@ -27,7 +27,7 @@
 			<div class="boardPage-contents">
 				<ul>
 					<li class="post-photo-top">
-						<img src="../../resources/imgUpload/${detail.storedFileName}"/>
+						<img src="../../resources/imgUpload/${detail.storedFileName}" style="cursor:pointer"/>
 					</li>
 					<li class="post-photo-top"></li>
 					<li class="post-photo-top"></li>
@@ -73,7 +73,6 @@
 					<c:if test="${detail.meet==1 and not empty detail.review}">
 						<div class="reviewContents">
 							<p style="white-space: pre-line;">
-								<br>
 								<i class="fas fa-quote-left"></i>${detail.review}
 								<i class="fas fa-quote-right"></i>
 							</p>
@@ -207,6 +206,12 @@
 	function onClickHandler(meet) {
 		alert(meet)
 	}
+
+	// 이미지 클릭시 원본 크기로 팝업 보기
+	var img = document.getElementsByTagName("img");
+    for (var x = 0; x < img.length; x++) {
+      img.item(x).onclick=function() {window.open(this.src)}; 
+    }
 	</script>
 </body>
 </html>

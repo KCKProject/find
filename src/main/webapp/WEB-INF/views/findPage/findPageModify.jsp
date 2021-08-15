@@ -12,20 +12,20 @@
 	crossorigin="anonymous"></script>
 <script src="../../../resources/script/script.js" defer></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<title>찾아주세요 수정하기</title>
+<title>찾아가세요 수정하기</title>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
-
+	
 	<div class="wrapboardPage">
 
 		<div id="contentsTitle">
-			<h3 class="contentsTitle">찾아주세요</h3>
+			<h3 class="contentsTitle">찾아가세요</h3>
 			<div class="titleLine"></div>
 		</div>
 		
 		<div class="wrapWritePage"> 
-			<form:form commandName="lostBoardWriteCommand" enctype="multipart/form-data">
+			<form:form commandName="findBoardWriteCommand" enctype="multipart/form-data">
 				<table id="input-lostPageWrite">
 					<tr>
 						<td><span style="color: white;">*</span>작성자</td>
@@ -36,10 +36,6 @@
 						<td><form:input path="title" value="${detail.title}"/></td>
 					</tr>
 					<tr>
-						<td><span style="color: white;">*</span>동물이름</td>
-						<td><form:input path="animal" value="${detail.animal}"/></td>
-					</tr>
-					<tr>
 						<td><span style="color: white;">*</span>품종</td>
 						<td><form:input path="kind" value="${detail.kind}"/></td>
 					</tr>
@@ -48,12 +44,12 @@
 						<td><form:input path="gender" value="${detail.gender}"/></td>
 					</tr>
 					<tr>
-						<td><span>*</span>실종위치</td>
+						<td><span>*</span>발견위치</td>
 						<td><form:input path="location" value="${detail.location}"/></td>
 					</tr>
 					<tr>
-						<td><span>*</span>실종시각</td>
-						<td><form:input path="lostDate" value="${detail.lostDate}"/></td>
+						<td><span>*</span>발견시각</td>
+						<td><form:input path="findDate" value="${detail.findDate}"/></td>
 					</tr>
 					<tr>  
 						<td><span>*</span>특징</td>

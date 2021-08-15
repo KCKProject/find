@@ -1,23 +1,15 @@
 package find.service;
  
-import java.awt.PageAttributes.MediaType;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.io.IOUtils;
 import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import
 org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -38,6 +30,7 @@ public class LostBoardWriteService {
 		this.dao = dao; 
 	}
 	
+	// 글 등록
 	public void boardRegist(LostBoardWriteCommand lc, 
 			HttpSession session,
 			MultipartHttpServletRequest request) throws IOException {
@@ -69,6 +62,7 @@ public class LostBoardWriteService {
 
 		// 썸네일 만들기 → 서버 구동 최적화를 위하여
 		// 기존 파일의 축소판인 썸네일을 생성하여 게시글 목록에서 보여지도록 구현
+		// 화소를 높이지 못한다면 생략해야할듯
 		BufferedImage sourceImg = ImageIO.read(new File(filePath,storedFileName));
 
 		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);
@@ -80,9 +74,6 @@ public class LostBoardWriteService {
 
 		ImageIO.write(destImg, formatName.toUpperCase(), newFile);
 		thumbnailName.substring(filePath.length()).replace(File.separatorChar, '/');
-
-		// System.out.println("formatName : "+formatName);
-		// System.out.println("thumbnailName : "+thumbnailName);
   
 		lb.setTitle(lc.getTitle());
 		lb.setWriter(member.getUserId());
@@ -93,7 +84,7 @@ public class LostBoardWriteService {
 		lb.setGender(lc.getGender());
 		lb.setEmail(member.getEmail());
 		lb.setPhone(member.getPhone());
-		//lb.setLostDate(lc.getLostDate());
+		lb.setLostDate(lc.getLostDate());
 		lb.setMemo(lc.getMemo());
 		lb.setOriginalFile(originalFile);
 		lb.setOriginalFileExtension(originalFileExtension);
@@ -102,30 +93,94 @@ public class LostBoardWriteService {
 		dao.writeLostBoard(lb);
 	}
 
-
+	// 후기 등록
 	public void writeReview(String review, long boardNum) {
 		dao.writeReview2(review, boardNum);	
 		
 	}
 
-	public void modifyLost(LostBoard lb, MemberAuthInfo member) {		
-		LostBoard lostBoard = new LostBoard();
+	// 글 수정
+	public void modifyLost(LostBoardWriteCommand lc, LostBoard detail,
+				MemberAuthInfo member, MultipartHttpServletRequest request) throws IOException {		
+		String originalFile = null;
+		String originalFileExtension = null;
+		String storedFileName = null;
+		MultipartFile img = lc.getImg();
+		long boardNum = detail.getBoardNum();
 		
-		lostBoard.setTitle(lb.getTitle());
-		lostBoard.setWriter(member.getUserId());
-		lostBoard.setLocation(lb.getLocation());
-		lostBoard.setCharacter(lb.getCharacter());
-		lostBoard.setAnimal(lb.getAnimal());
-		lostBoard.setKind(lb.getKind());
-		lostBoard.setGender(lb.getGender());
-		lostBoard.setEmail(member.getEmail());
-		lostBoard.setPhone(member.getPhone());
-		//lb.setLostDate(lc.getLostDate());
-//		lb.setMemo(lc.getMemo());
-//		lb.setOriginalFile(originalFile);
-//		lb.setOriginalFileExtension(originalFileExtension);
-//		lb.setStoredFileName(storedFileName);
+		// 첨부파일 처리
+		String fileName = lc.getOriginalFile();
+		System.out.println("넘어온 fileName : "+fileName);
+		if(fileName!=null) {
+			// 기존파일 그대로 넘어온 경우
+			System.out.println("-----기존파일 그대로 넘어온 경우");
+			originalFile = detail.getOriginalFile();
+			originalFileExtension = detail.getOriginalFileExtension();
+			storedFileName = detail.getStoredFileName();
+		}
+		
+		if(fileName==null) {
+			if(detail.getOriginalFile()!=null) {
+				// 기존파일 넘어온 경우 제외하고 기존파일이 있는 경우, 무조건 삭제
+				System.out.println("-----기존파일 넘어온 경우 제외하고 기존파일이 있는 경우, 무조건 삭제");
+				System.out.println("원래 파일 이름 : "+detail.getOriginalFile());
+				String image = detail.getStoredFileName();
+				String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+				File file = new File(path,image);
+				File thumb = new File(path,"s_"+image);
+					if(file.exists()) {
+						file.delete();
+						thumb.delete();
+					}					
+				System.out.println("삭제 성공");
+			}
+			originalFile = img.getOriginalFilename();
+			System.out.println("파일 이름 : "+originalFile);
+			if(originalFile!="") {
+				// 추가 파일 등록
+				System.out.println("-----추가 파일 등록");
+				System.out.println("파일 이름 : "+originalFile);
+				originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+				storedFileName = UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
+				String filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+				File file = new File(filePath,storedFileName);
+				img.transferTo(file);
+				
+				// 기존 파일의 축소판인 썸네일을 생성하여 게시글 목록에서 보여지도록 구현
+				BufferedImage sourceImg = ImageIO.read(new File(filePath,storedFileName));
+	
+				BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);
+	
+				String thumbnailName = filePath+File.separator+"s_"+storedFileName;
+	
+				File newFile = new File(thumbnailName);
+				String formatName = storedFileName.substring(storedFileName.lastIndexOf(".")+1);
+	
+				ImageIO.write(destImg, formatName.toUpperCase(), newFile);
+				thumbnailName.substring(filePath.length()).replace(File.separatorChar, '/');
+	
+				System.out.println(filePath+" : 저장된 경로");
+			}
+		}
 
-		dao.writeLostBoard(lb);
+		LostBoard lb = new LostBoard();
+		
+		lb.setTitle(lc.getTitle());
+		lb.setWriter(member.getUserId());
+		lb.setLocation(lc.getLocation());
+		lb.setCharacter(lc.getCharacter());
+		lb.setAnimal(lc.getAnimal());
+		lb.setKind(lc.getKind());
+		lb.setGender(lc.getGender());
+		lb.setEmail(lc.getEmail());
+		lb.setPhone(lc.getPhone());
+		lb.setLostDate(lc.getLostDate());
+		lb.setMemo(lc.getMemo());
+		lb.setOriginalFile(originalFile);
+		lb.setOriginalFileExtension(originalFileExtension);
+		lb.setStoredFileName(storedFileName);
+
+		dao.modifyLostBoard(lb, boardNum);
 	}
+	
 }

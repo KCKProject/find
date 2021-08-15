@@ -15,7 +15,7 @@ public class LostBoard {
 	private String gender;
 	private String email;
 	private String phone;
-	private Date lostDate;
+	private String lostDate;
 	private String memo;
 	private int meet;
 	private String originalFile;
@@ -27,7 +27,7 @@ public class LostBoard {
 	public LostBoard() {}
 
 	public LostBoard(String title, String writer, Date writeDate, String location, String character, String animal,
-			String kind, String gender, String email, String phone, Date lostDate, int meet, String memo,
+			String kind, String gender, String email, String phone, String lostDate, int meet, String memo,
 			String originalFile, String originalFileExtension, String storedFileName, int hit, String review) {
 		this.title = title;
 		this.writer = writer;
@@ -117,10 +117,10 @@ public class LostBoard {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public Date getLostDate() {
+	public String getLostDate() {
 		return lostDate;
 	}
-	public void setLostDate(Date lostDate) {
+	public void setLostDate(String lostDate) {
 		this.lostDate = lostDate;
 	}
 	public String getMemo() {

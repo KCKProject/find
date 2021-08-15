@@ -1,7 +1,5 @@
 package find.vo;
 
-import java.sql.Date;
-
 import org.springframework.web.multipart.MultipartFile;
 
 public class LostBoardWriteCommand { // Lost 글 등록시 넘겨줄 객체
@@ -16,6 +14,9 @@ public class LostBoardWriteCommand { // Lost 글 등록시 넘겨줄 객체
 	private String memo;
 	private String term;
 	private String review;
+	private String email;
+	private String phone;
+	private String originalFile;
 	
 	public String getTitle() {
 		return title;
@@ -76,12 +77,29 @@ public class LostBoardWriteCommand { // Lost 글 등록시 넘겨줄 객체
 	}
 	public void setTerm(String term) {
 		this.term = term;
-	}
-	
+	}	
 	public String getReview() {
 		return review;
 	}
 	public void setReview(String review) {
 		this.review = review;
 	}
+	public String getEmail() {
+		return email;
+	}
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getPhone() {
+		return phone;
+	}
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+	public String getOriginalFile() {
+		return originalFile;
+	}
+	public void setOriginalFile(String originalFile) {
+		this.originalFile = originalFile;
+	}	
 }

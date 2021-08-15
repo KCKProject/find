@@ -984,6 +984,7 @@ label.right {
     height: 30px;
     border: 1px solid gray;
     border-radius: 8px;
+    padding-left: 3px;
 }
 
 .wrapWritePage table tr td input:hover {
@@ -994,6 +995,12 @@ label.right {
 .wrapWritePage table tr td textarea {
 	border-radius: 8px;
 	border: 1px gray solid;
+	padding-left: 3px;
+}
+
+.wrapWritePage table tr td textarea:hover {
+	border: 1px solid #f7c180;
+    border-radius: 12px;
 }
 
 .wrapWritePage form > div {

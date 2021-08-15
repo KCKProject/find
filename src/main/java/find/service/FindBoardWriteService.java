@@ -17,7 +17,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import find.dao.FindDao;
 import find.vo.FindBoard;
 import find.vo.FindBoardWriteCommand;
-import find.vo.LostBoard;
 import find.vo.MemberAuthInfo;
 
 @Service
@@ -30,6 +29,7 @@ public class FindBoardWriteService {
 		this.dao = dao; 
 	}
 	
+	// 글 등록
 	public void boardRegist(FindBoardWriteCommand fc, 
 			HttpSession session,
 			MultipartHttpServletRequest request) throws IOException {
@@ -91,7 +91,87 @@ public class FindBoardWriteService {
 		dao.writeFindBoard(fb);
 	}
 
+	// 후기 등록
 	public void writeReview(String review, long boardNum) {
 		dao.writeReview(review, boardNum);
+	}
+
+	// 글 수정
+	public void modifyFind(FindBoardWriteCommand fc, FindBoard detail, 
+			MemberAuthInfo member, MultipartHttpServletRequest request) throws IOException {
+		String originalFile = null;
+		String originalFileExtension = null;
+		String storedFileName = null;
+		MultipartFile img = fc.getImg();
+		long boardNum = detail.getBoardNum();
+		
+		// 첨부파일 처리
+		// 더 간결한 방법은 없을까...
+		String fileName = fc.getOriginalFile();
+		System.out.println("넘어온 fileName : "+fileName);
+		if(fileName!=null) {
+			// 기존파일 그대로 넘어온 경우
+			originalFile = detail.getOriginalFile();
+			originalFileExtension = detail.getOriginalFileExtension();
+			storedFileName = detail.getStoredFileName();
+		}		
+		if(fileName==null) {
+			if(detail.getOriginalFile()!=null) {
+				// 기존파일 넘어온 경우 제외하고 기존파일이 있는 경우, 무조건 삭제
+				String image = detail.getStoredFileName();
+				String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+				File file = new File(path,image);
+				File thumb = new File(path,"s_"+image);
+					if(file.exists()) {
+						file.delete();
+						thumb.delete();
+					}					
+				System.out.println("삭제 성공");
+			}
+			originalFile = img.getOriginalFilename();
+			if(originalFile!="") {
+				// 추가 파일 등록
+				System.out.println("파일 이름 : "+originalFile);
+				originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+				storedFileName = UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
+				String filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+				File file = new File(filePath,storedFileName);
+				img.transferTo(file);
+				
+				// 기존 파일의 축소판인 썸네일을 생성하여 게시글 목록에서 보여지도록 구현
+				BufferedImage sourceImg = ImageIO.read(new File(filePath,storedFileName));
+	
+				BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);
+	
+				String thumbnailName = filePath+File.separator+"s_"+storedFileName;
+	
+				File newFile = new File(thumbnailName);
+				String formatName = storedFileName.substring(storedFileName.lastIndexOf(".")+1);
+	
+				ImageIO.write(destImg, formatName.toUpperCase(), newFile);
+				thumbnailName.substring(filePath.length()).replace(File.separatorChar, '/');
+	
+				System.out.println(filePath+" : 저장된 경로");
+			}
+		}
+		
+		FindBoard fb = new FindBoard();
+		
+		fb.setTitle(fc.getTitle());
+		fb.setWriter(member.getUserId());
+		fb.setLocation(fc.getLocation());
+		fb.setCharacter(fc.getCharacter());
+		fb.setKind(fc.getKind());
+		fb.setGender(fc.getGender());
+		fb.setEmail(fc.getEmail());
+		fb.setPhone(fc.getPhone());
+		fb.setFindDate(fc.getFindDate());
+		fb.setMemo(fc.getMemo());
+		fb.setOriginalFile(originalFile);
+		fb.setOriginalFileExtension(originalFileExtension);
+		fb.setStoredFileName(storedFileName);
+
+		dao.modifyFindBoard(fb, boardNum);
+		
 	}
 }

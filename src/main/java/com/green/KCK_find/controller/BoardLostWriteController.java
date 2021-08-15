@@ -6,7 +6,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,42 +41,43 @@ public class BoardLostWriteController {
 
 	// 글 등록
 //	@RequestMapping(method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	@RequestMapping(value="/lostPage/lostPageWrite", method=RequestMethod.POST)
-	public String regist(LostBoardWriteCommand lostBoardWriteCommand, HttpSession session, MultipartHttpServletRequest request) throws IOException {
-		MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-	
-		lostBoardWriteService.boardRegist(lostBoardWriteCommand, session, request);			
-		return "redirect:/lostPage/lostPageList";
-	}
+		@RequestMapping(value="/lostPage/lostPageWrite", method=RequestMethod.POST)
+		public String regist(LostBoardWriteCommand lostBoardWriteCommand, HttpSession session, MultipartHttpServletRequest request) throws IOException {
+			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
+		
+			lostBoardWriteService.boardRegist(lostBoardWriteCommand, session, request);			
+			return "redirect:/lostPage/lostPageList";
+		}
 	
 	// 글 수정
-	@RequestMapping(value="/lostPage/lostPageWrite/modify/{boardNum}", method=RequestMethod.GET)
-	public String lostModify(@PathVariable("boardNum") long boardNum, Model model, LostBoard lostBoard) {
-		LostBoard detail = dao.selectByBoardNum(boardNum);
-		model.addAttribute("detail", detail);
-		
-		return "lostPage/lostPageModify";
-	}
-		
-	@RequestMapping(value="/lostPage/lostPageWrite/modify/{boardNum}", method=RequestMethod.POST)
-	public String lostModifyRegist(@PathVariable("boardNum") long boardNum,
-					     LostBoard lostBoard, HttpSession session) throws IOException {
-		System.out.println("글수정");
-		MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-		System.out.println("넘어온 lostBoard : "+lostBoard.getAnimal());
-		System.out.println("넘어온 session id : "+member.getUserId());
+		@RequestMapping(value="/lostPage/lostPageWrite/modify/{boardNum}", method=RequestMethod.GET)
+		public String lostModify(@PathVariable("boardNum") long boardNum, Model model, 
+				LostBoardWriteCommand lostBoardWriteCommand) {
+			LostBoard detail = dao.selectByBoardNum(boardNum);
+			model.addAttribute("detail", detail);
+			
+			return "lostPage/lostPageModify";
+		}
+			
+		@RequestMapping(value="/lostPage/lostPageWrite/modify/{boardNum}", method=RequestMethod.POST)
+		public String lostModifyRegist(@PathVariable("boardNum") long boardNum,
+				LostBoardWriteCommand lc, HttpSession session, MultipartHttpServletRequest request) throws IOException{
+			System.out.println("글수정");
+					
+			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
+			LostBoard detail = dao.selectByBoardNum(boardNum);
 
-		lostBoardWriteService.modifyLost(lostBoard, member);
-		return "redirect:/lostPage/lostPageList";
-	}
+			lostBoardWriteService.modifyLost(lc, detail, member, request);
+			return "redirect:/lostPage/lostPageDetail/"+boardNum;
+		}
 	
 	// 후기 추가
-	@RequestMapping(value="/lostPage/lostPageWrite/review", method=RequestMethod.POST)
-	public String writeReview(WriteReviewDtoLost dto, HttpSession session) throws IOException {
-		MemberAuthInfo member = (MemberAuthInfo) session.getAttribute("memberAuthInfo");
-		System.out.println(dto.getReview());
-		lostBoardWriteService.writeReview(dto.getReview(), dto.getBoardNum());
-
-		return "redirect:/lostPage/lostPageDetail/" + dto.getBoardNum();
-	}
+		@RequestMapping(value="/lostPage/lostPageWrite/review", method=RequestMethod.POST)
+		public String writeReview(WriteReviewDtoLost dto, HttpSession session) throws IOException {
+			MemberAuthInfo member = (MemberAuthInfo) session.getAttribute("memberAuthInfo");
+			System.out.println(dto.getReview());
+			lostBoardWriteService.writeReview(dto.getReview(), dto.getBoardNum());
+	
+			return "redirect:/lostPage/lostPageDetail/" + dto.getBoardNum();
+		}
 }

@@ -13,7 +13,7 @@ public class FindBoard {
 	private String character;
 	private String email;
 	private String phone;
-	private Date findDate;
+	private String findDate;
 	private String memo;
 	private int meet;
 	private String originalFile;
@@ -25,7 +25,7 @@ public class FindBoard {
 	public FindBoard() {}
 
 	public FindBoard(String title, String writer, Date writeDate, String kind, String gender, String location,
-			String character, String email, String phone, Date findDate, String memo, int meet,
+			String character, String email, String phone, String findDate, String memo, int meet,
 			String originalFile, String originalFileExtension, String storedFileName, int hit, String review) {
 		this.title = title;
 		this.writer = writer;
@@ -126,11 +126,11 @@ public class FindBoard {
 		this.phone = phone;
 	}
 
-	public Date getFindDate() {
+	public String getFindDate() {
 		return findDate;
 	}
 	
-	public void setFindDate(Date findDate) {
+	public void setFindDate(String findDate) {
 		this.findDate = findDate;
 	}
 	

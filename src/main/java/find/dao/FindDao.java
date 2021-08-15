@@ -85,7 +85,7 @@ public class FindDao {
 						rs.getString("gender"),
 						rs.getString("email"),
 						rs.getString("phone"),
-						rs.getDate("lostDate"),
+						rs.getString("lostDate"),
 						rs.getInt("meet"),
 						rs.getString("memo"),
 						rs.getString("originalFile"),
@@ -112,7 +112,7 @@ public class FindDao {
 						rs.getString("character"),
 						rs.getString("email"),
 						rs.getString("phone"),
-						rs.getDate("findDate"),
+						rs.getString("findDate"),
 						rs.getString("memo"),
 						rs.getInt("meet"),
 						rs.getString("originalFile"),
@@ -572,19 +572,41 @@ public class FindDao {
 //        return entity;
 //    }
 	
+	
 	// LostBoard 수정
-	public void modifyLostBoard(LostBoard lb) {
-		jdbcTemplate.update("UPDATE lostBoard SET title=?, kind=?, location=?, character=?, animal=?, gender=?, email=?, phone=?, memo=? WHERE boardNum=?",
-							lb.getTitle(),
-							lb.getKind(),
-							lb.getLocation(),
-							lb.getCharacter(),
-							lb.getAnimal(),
-							lb.getGender(),
-							lb.getEmail(),
-							lb.getPhone(),
-							lb.getMemo(),
-							lb.getBoardNum());		
+	public void modifyLostBoard(LostBoard lb, long boardNum) {
+		jdbcTemplate.update("UPDATE lostBoard SET title=?, kind=?, location=?, character=?, animal=?, gender=?, email=?, phone=?, lostDate=?, memo=?, originalFile=?, originalFileExtension=?, storedFileName=? WHERE boardNum=?",
+				lb.getTitle(),
+				lb.getKind(),
+				lb.getLocation(),
+				lb.getCharacter(),
+				lb.getAnimal(),
+				lb.getGender(),
+				lb.getEmail(),
+				lb.getPhone(),
+				lb.getLostDate(),
+				lb.getMemo(),
+				lb.getOriginalFile(),
+				lb.getOriginalFileExtension(),
+				lb.getStoredFileName(),
+				boardNum);		
+	}
+	
+	public void modifyFindBoard(FindBoard fb, long boardNum) {
+		jdbcTemplate.update("UPDATE findBoard SET title=?, kind=?, location=?, character=?, gender=?, email=?, phone=?, findDate=?, memo=?, originalFile=?, originalFileExtension=?, storedFileName=? WHERE boardNum=?",
+				fb.getTitle(),
+				fb.getKind(),
+				fb.getLocation(),
+				fb.getCharacter(),
+				fb.getGender(),
+				fb.getEmail(),
+				fb.getPhone(),
+				fb.getFindDate(),
+				fb.getMemo(),
+				fb.getOriginalFile(),
+				fb.getOriginalFileExtension(),
+				fb.getStoredFileName(),
+				boardNum);		
 	}
 	
 	
@@ -598,4 +620,5 @@ public class FindDao {
 		System.out.println("나도도착 리뷰-lost");
 		jdbcTemplate.update("UPDATE lostBoard SET REVIEW=? WHERE boardNum=?", review, boardNum);
 	}
+	
 }
