@@ -70,8 +70,7 @@
 					<c:if test="${detail.meet==1 and not empty detail.review}">
 						<div class="reviewContents">
 							<p style="white-space: pre-line;">
-								<i class="fas fa-quote-left"></i>${detail.review}
-								<i class="fas fa-quote-right"></i>
+								<i class="fas fa-quote-left"></i>${detail.review}<i class="fas fa-quote-right"></i>
 							</p>
 						</div>
 					</c:if>

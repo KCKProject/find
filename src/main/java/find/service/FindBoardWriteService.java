@@ -52,27 +52,35 @@ public class FindBoardWriteService {
 
 		MultipartFile img = fc.getImg();
 		String originalFile = img.getOriginalFilename();
-		String originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
-		String storedFileName = UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
-		String filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
-		File file = new File(filePath,storedFileName);
-		img.transferTo(file);
-
-		System.out.println(filePath+" : 저장된 경로");
-
-		// 썸네일 만들기 → 서버 구동 최적화를 위하여
-		// 기존 파일의 축소판인 썸네일을 생성하여 게시글 목록에서 보여지도록 구현
-		BufferedImage sourceImg = ImageIO.read(new File(filePath,storedFileName));
-
-		BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);
-
-		String thumbnailName = filePath+File.separator+"s_"+storedFileName;
-
-		File newFile = new File(thumbnailName);
-		String formatName = storedFileName.substring(storedFileName.lastIndexOf(".")+1);
-
-		ImageIO.write(destImg, formatName.toUpperCase(), newFile);
-		thumbnailName.substring(filePath.length()).replace(File.separatorChar, '/');
+		String originalFileExtension=null;
+		String storedFileName = null;
+		String filePath = null;
+		
+		if(originalFile!="") { // 사진 등록했을 때
+			originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+			storedFileName = UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
+			filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+			File file = new File(filePath,storedFileName);
+			img.transferTo(file);
+	
+			System.out.println(filePath+" : 저장된 경로");
+	
+			// 썸네일 만들기 → 서버 구동 최적화를 위하여
+			// 기존 파일의 축소판인 썸네일을 생성하여 게시글 목록에서 보여지도록 구현
+			BufferedImage sourceImg = ImageIO.read(new File(filePath,storedFileName));
+	
+			BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);
+	
+			String thumbnailName = filePath+File.separator+"s_"+storedFileName;
+	
+			File newFile = new File(thumbnailName);
+			String formatName = storedFileName.substring(storedFileName.lastIndexOf(".")+1);
+	
+			ImageIO.write(destImg, formatName.toUpperCase(), newFile);
+			thumbnailName.substring(filePath.length()).replace(File.separatorChar, '/');
+		}else { // 사진 등록 안 했을 때
+			originalFile = null;
+		}
 
 		fb.setTitle(fc.getTitle());
 		fb.setWriter(member.getUserId());
@@ -82,7 +90,7 @@ public class FindBoardWriteService {
 		fb.setGender(fc.getGender());
 		fb.setEmail(member.getEmail());
 		fb.setPhone(member.getPhone());
-		//fb.setFindDate(fc.getFindDate());
+		fb.setFindDate(fc.getFindDate());
 		fb.setMemo(fc.getMemo());
 		fb.setOriginalFile(originalFile);
 		fb.setOriginalFileExtension(originalFileExtension);
@@ -155,6 +163,15 @@ public class FindBoardWriteService {
 			}
 		}
 		
+		String email = fc.getEmail();
+		String phone = fc.getPhone();
+		if(email==null) {
+			member.setEmail("비공개");
+		}
+		if(phone==null) {
+			member.setPhone("비공개");
+		}
+		
 		FindBoard fb = new FindBoard();
 		
 		fb.setTitle(fc.getTitle());
@@ -163,8 +180,8 @@ public class FindBoardWriteService {
 		fb.setCharacter(fc.getCharacter());
 		fb.setKind(fc.getKind());
 		fb.setGender(fc.getGender());
-		fb.setEmail(fc.getEmail());
-		fb.setPhone(fc.getPhone());
+		fb.setEmail(email);
+		fb.setPhone(phone);
 		fb.setFindDate(fc.getFindDate());
 		fb.setMemo(fc.getMemo());
 		fb.setOriginalFile(originalFile);
