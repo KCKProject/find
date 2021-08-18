@@ -6,13 +6,16 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import find.dao.FindDao;
 import find.service.LostBoardWriteService;
+import find.validator.BoardLostCommandValidator;
 import find.vo.LostBoard;
 import find.vo.LostBoardWriteCommand;
 import find.vo.MemberAuthInfo;
@@ -42,11 +45,20 @@ public class BoardLostWriteController {
 	// 글 등록
 //	@RequestMapping(method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 		@RequestMapping(value="/lostPage/lostPageWrite", method=RequestMethod.POST)
-		public String regist(LostBoardWriteCommand lostBoardWriteCommand, HttpSession session, MultipartHttpServletRequest request) throws IOException {
-			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-		
-			lostBoardWriteService.boardRegist(lostBoardWriteCommand, session, request);			
-			return "redirect:/lostPage/lostPageList";
+		public String regist(LostBoardWriteCommand lostBoardWriteCommand, HttpSession session,
+				MultipartHttpServletRequest request, Errors errors) throws IOException {
+
+			new BoardLostCommandValidator().validate(lostBoardWriteCommand, errors);
+			if(errors.hasErrors()) {
+				return "lostPage/lostPageWrite";
+			}
+			try {
+				lostBoardWriteService.boardRegist(lostBoardWriteCommand, session, request);			
+				return "redirect:/lostPage/lostPageList";
+			}catch(Exception e) {
+				e.printStackTrace();
+				return "lostPage/lostPageWrite";
+			}
 		}
 	
 	// 글 수정
@@ -61,8 +73,18 @@ public class BoardLostWriteController {
 			
 		@RequestMapping(value="/lostPage/lostPageWrite/modify/{boardNum}", method=RequestMethod.POST)
 		public String lostModifyRegist(@PathVariable("boardNum") long boardNum,
-				LostBoardWriteCommand lc, HttpSession session, MultipartHttpServletRequest request) throws IOException{
-			System.out.println("글수정");
+				LostBoardWriteCommand lc, HttpSession session, MultipartHttpServletRequest request, Errors errors) throws IOException{
+
+			new BoardLostCommandValidator().validate(lc, errors);
+			if(errors.hasErrors()) {
+				return "lostPage/lostPageModify";
+			}
+			try {
+				lostBoardWriteService.boardRegist(lc, session, request);			
+			}catch(Exception e) {
+				e.printStackTrace();
+				return "lostPage/lostPageModify";
+			}
 					
 			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
 			LostBoard detail = dao.selectByBoardNum(boardNum);

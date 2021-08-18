@@ -482,7 +482,6 @@ public class FindDao {
 	
 	
 	public void writeLostBoard(LostBoard lb) {
-//		KeyHolder key = new GeneratedKeyHolder();
 		jdbcTemplate.update("INSERT INTO lostBoard (boardNum, title, writer, writeDate, kind, location, character, animal,"
 				+ " gender, email, phone, lostDate, meet, memo, originalFile, originalFileExtension, storedFileName, hit) VALUES(lostBoard_seq.nextval,?,?,sysdate,?,?,?,?,?,?,?,?,0,?,?,?,?,0)",
 				lb.getTitle(),
@@ -499,32 +498,36 @@ public class FindDao {
 				lb.getOriginalFile(),
 				lb.getOriginalFileExtension(),
 				lb.getStoredFileName());
-		
+	}
+//		KeyHolder key = new GeneratedKeyHolder();
 //		jdbcTemplate.update(new PreparedStatementCreator() {
 //			@Override
 //			public PreparedStatement createPreparedStatement(Connection con)throws SQLException{
 //				PreparedStatement psmt = con.prepareStatement(
-//						"INSERT INTO lostBoard VALUES(lostBoard_seq.nextval,?,?,sysdate,?,?,?,?,?,?,?,?,?,?,0);");
-//						
+//						"INSERT INTO lostBoard (boardNum, title, writer, writeDate, kind, location, character, animal,"
+//								+ " gender, email, phone, lostDate, meet, memo, originalFile, originalFileExtension, storedFileName, hit) VALUES(lostBoard_seq.nextval,?,?,sysdate,?,?,?,?,?,?,?,?,0,?,?,?,?,0)");
+//				
 //				psmt.setString(1,lb.getTitle());
 //				psmt.setString(2,lb.getWriter());
-//				psmt.setString(3,lb.getLocation());
-//				psmt.setString(4,lb.getCharacter());
-//				psmt.setString(5,lb.getAnimal());
-//				psmt.setString(6,lb.getKind());
+//				psmt.setString(3,lb.getKind());
+//				psmt.setString(4,lb.getLocation());
+//				psmt.setString(5,lb.getCharacter());
+//				psmt.setString(6,lb.getAnimal());
 //				psmt.setString(7,lb.getGender());
-//				psmt.setString(8,lb.getImg());
-//				psmt.setString(9,lb.getEmail());
-//				psmt.setString(10,lb.getPhone());
-//				psmt.setDate(11,lb.getLostDate());
-//				psmt.setString(12,lb.getMemo());
+//				psmt.setString(8,lb.getEmail());
+//				psmt.setString(9,lb.getPhone());
+//				psmt.setString(10,lb.getLostDate());
+//				psmt.setString(11,lb.getMemo());
+//				psmt.setString(12,lb.getOriginalFile());
+//				psmt.setString(13,lb.getOriginalFileExtension());
+//				psmt.setString(14,lb.getStoredFileName());
 //				
 //				return psmt;
 //			}
 //		},key);
 //		Number keyValue = key.getKey();
 //		lb.setBoardNum(keyValue.longValue());
-	}
+//		}	
 
 	public void writeFindBoard(FindBoard fb) {
 		// find 게시판 업로드

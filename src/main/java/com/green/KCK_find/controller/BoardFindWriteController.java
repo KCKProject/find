@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -13,6 +14,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import find.dao.FindDao;
 import find.service.FindBoardWriteService;
+import find.validator.BoardFindCommandValidator;
 import find.vo.FindBoard;
 import find.vo.FindBoardWriteCommand;
 import find.vo.MemberAuthInfo;
@@ -42,12 +44,20 @@ public class BoardFindWriteController {
 	
 	// 글 등록
 		@RequestMapping(method=RequestMethod.POST)
-		public String regist(FindBoardWriteCommand findBoardWriteCommand, HttpSession session, MultipartHttpServletRequest request) throws IOException {
-			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-			System.out.println("넘어온 session id : "+member.getUserId());
+		public String regist(FindBoardWriteCommand findBoardWriteCommand, HttpSession session, MultipartHttpServletRequest request, Errors errors) throws IOException {
 			
-			findBoardWriteService.boardRegist(findBoardWriteCommand, session, request);			
-			return "redirect:/findPage/findPageList";
+			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
+			
+			new BoardFindCommandValidator().validate(findBoardWriteCommand, errors);
+			if(errors.hasErrors()) {
+				return "findPage/findPageWrite";
+			}
+			try {
+				findBoardWriteService.boardRegist(findBoardWriteCommand, session, request);			
+				return "redirect:/findPage/findPageList";
+			}catch(Exception e) {
+				return "findPate/findPageWrite";
+			}
 		}
 	
 	// 글 수정
@@ -62,8 +72,17 @@ public class BoardFindWriteController {
 			
 		@RequestMapping(value="/modify/{boardNum}", method=RequestMethod.POST)
 		public String findModifyRegist(@PathVariable("boardNum") long boardNum,
-				FindBoardWriteCommand fc, HttpSession session, MultipartHttpServletRequest request) throws IOException{
-			System.out.println("글수정");
+				FindBoardWriteCommand fc, HttpSession session, MultipartHttpServletRequest request, Errors errors) throws IOException{
+			
+			new BoardFindCommandValidator().validate(fc, errors);
+			if(errors.hasErrors()) {
+				return "findPage/findPageModify";
+			}
+			try {
+				findBoardWriteService.boardRegist(fc, session, request);
+			}catch(Exception e) {
+				return "findPate/findPageModify";
+			}
 					
 			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
 			FindBoard detail = dao.selectByFindBoardNum(boardNum);

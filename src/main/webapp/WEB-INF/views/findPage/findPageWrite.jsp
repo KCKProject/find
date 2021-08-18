@@ -25,38 +25,51 @@
 		
 		<div class="wrapWritePage"> 
 		<%--  enctype="multipart/form-data" 필요 --%>
-			<form:form commandName="findBoardWriteCommand" enctype="multipart/form-data" method="POST">
+			<form:form commandName="findBoardWriteCommand" enctype="multipart/form-data" method="POST" id="form">
 				<table id="input-findPageWrite"> <!-- 입력칸 부분 -->
 					<tr>
 						<td><span>*</span>글제목</td>
-						<td><form:input path="title" placeholder="글제목"/></td>
+						<td>
+							<form:input path="title" placeholder="글제목"/>
+							<form:errors path="title"/>
+						</td>
 					</tr>
 					<tr>
 						<td><span style="color: white;">*</span>품종</td>
 						<td><form:input path="kind" placeholder="품종"/></td>
 					</tr>
 					<tr>
-						<td><span>*</span>성별</td>
-						<td><form:input path="gender" placeholder="남아/여아(중성화수술 여부 까지 적어주세요)"/></td>
+						<td><span style="color: white;">*</span>성별</td>
+						<td><form:input path="gender" placeholder="남아/여아(중성화수술 여부 까지 적어주세요)"/>						</td>
 					</tr>
 					<tr>
 						<td><span>*</span>발견위치</td>
-						<td><form:input path="location" placeholder="발견위치"/></td>
+						<td>
+							<form:input path="location" placeholder="발견위치"/>
+							<form:errors path="location"/>
+						</td>
 					</tr>
 					<tr>
 						<td><span>*</span>발견시각</td>
-						<td><form:input path="findDate" placeholder="발견시각"/></td>
+						<td>
+							<form:input path="findDate" placeholder="발견시각"/>
+							<form:errors path="findDate"/>
+						</td>
 					</tr>
 					<tr>  
 					
 						<td><span>*</span>특징</td>
-						<td><form:input path="character" placeholder="특징(30자 이내)"/></td>
+						<td>
+							<form:input path="character" placeholder="특징(30자 이내)"/>
+							<form:errors path="character"/>
+						</td>
 					</tr>
 					<tr>
 						<td><span>*</span>상세내용</td>
 						<td>
 							<form:textarea path="memo" rows="10" cols="65" onkeyup="javascript:fnChkByte(this,'2000')" style="white-space: pre-line;"></form:textarea>
 							<span id="byteInfo">0</span> / 2000bytes
+							<form:errors path="memo"/>
 						</td>
 					</tr>
 					<tr>
@@ -65,14 +78,7 @@
 					</tr>
 				</table>
 
-				<div> <!-- 약관 -->
-					<!-- <div class="writeTerms">
-						<label class="checkbox"><input type="checkbox" name="term" id="term" value="agree" class="AllOkay"><span class="icon"></span><span class="text">전체동의</span></label> 
-						<label class="checkbox"><input type="checkbox" name="term" id="term" value="phoneAgree" class="okay"><span class="icon"></span><span class="text">연락처 노출 동의 
-									<br>(회원가입 시 등록 한 연락처를 연락받을 번호로 기재 합니다. <span style="color: red; font-size: 20px;">*</span>미체크시 별도의 연락수단 상세내용에 기재 요망)<br> </span></label> 
-						<label class="checkbox"><input type="checkbox" name="term" id="term" value="emailAgree" class="okay"><span class="icon"></span><span class="text">이메일 노출 동의 
-									<br>(회원가입 시 등록 한 이메일을 연락받을 메일로 기재 합니다.)</span></label> 
-					</div> -->
+				<div><!-- 약관 -->
 					<div class="writeTerms">
 						<label class="checkbox"><input type="checkbox" name="term" id="term" value="agree" class="AllOkay"><span class="icon"></span><span class="text">전체동의</span></label> 
 						<label class="checkbox"><input type="checkbox" name="term" id="term" value="phoneAgree" class="okay"><span class="icon"></span><span class="text">연락처 노출 동의 
@@ -82,7 +88,7 @@
 					</div>
 				</div>
 				<div > <!-- 작성완료 버튼 -->
-					<input type="submit" value="작성완료" class="completeBtn">
+					<input type="button" value="작성완료" class="completeBtn" onclick="imgCheck()">
 				</div>
 			</form:form>
 		</div>
@@ -122,6 +128,14 @@
 		        }
 		    });
 		});
+		
+		function imgCheck(){
+			if($('#img').val()==""){
+				alert("첨부파일은 필수입니다.");
+				document.getElementById('form').submit();
+			}
+			document.getElementById('form').submit();
+		};		
 	</script>
 </body>
 </html>

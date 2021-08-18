@@ -33,34 +33,46 @@
 					</tr>
 					<tr>
 						<td><span>*</span>글제목</td>
-						<td><form:input path="title" value="${detail.title}"/></td>
+						<td>
+							<form:input path="title" value="${detail.title}"/>
+							<form:errors path="title"/>
+						</td>
 					</tr>
 					<tr>
 						<td><span style="color: white;">*</span>품종</td>
 						<td><form:input path="kind" value="${detail.kind}"/></td>
 					</tr>
 					<tr>
-						<td><span>*</span>성별</td>
+						<td><span style="color: white;">*</span>성별</td>
 						<td><form:input path="gender" value="${detail.gender}"/></td>
 					</tr>
 					<tr>
 						<td><span>*</span>발견위치</td>
-						<td><form:input path="location" value="${detail.location}"/></td>
+						<td>
+							<form:input path="location" value="${detail.location}"/>
+							<form:errors path="location"/>
+						</td>
 					</tr>
 					<tr>
 						<td><span>*</span>발견시각</td>
-						<td><form:input path="findDate" value="${detail.findDate}"/></td>
+						<td>
+							<form:input path="findDate" value="${detail.findDate}"/>
+							<form:errors path="findDate"/>
+						</td>
 					</tr>
 					<tr>  
 						<td><span>*</span>특징</td>
-						<td><form:input path="character" value="${detail.character}"/></td>
+						<td>
+							<form:input path="character" value="${detail.character}"/>
+							<form:errors path="character"/>
+						</td>
 					</tr>
 					<tr>
-						<td><span>*</span>연락처</td>
+						<td><span style="color: white;">*</span>연락처</td>
 						<td><form:input path="phone" value="${detail.phone}"/></td>
 					</tr>
 					<tr>
-						<td><span>*</span>이메일</td>
+						<td><span style="color: white;">*</span>이메일</td>
 						<td><form:input path="email" value="${detail.email}"/></td>
 					</tr>
 					<tr>
@@ -68,6 +80,7 @@
 						<td>
 							<textarea id="memo" name="memo" rows="10" cols="65" onkeyup="javascript:fnChkByte(this,'2000')">${detail.memo}</textarea>
 							<span id="byteInfo">0</span> / 2000bytes
+							<form:errors path="memo"/>
 						</td>
 					</tr>
 					<tr>

@@ -1,6 +1,5 @@
 package find.validator;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.springframework.validation.Errors;
@@ -11,7 +10,7 @@ import find.vo.SignUpCommand;
 
 public class SignUpCommandValidator implements Validator{
 
-   // ºñ¹Ğ¹øÈ£ Á¤±Ô½Ä (¿µ¹®,¼ıÀÚ,Æ¯¼ö¹®ÀÚ Æ÷ÇÔ 6~15ÀÚ¸®¼ö)
+   // ë¹„ë°€ë²ˆí˜¸ ì²´í¬ (ì˜ë¬¸, ìˆ«ì, íŠ¹ìˆ˜ë¬¸ì í¬í•¨ 6~15 ìë¦¬)
    private static final String PWD_EXP = 
          "^.*(?=^.{6,15}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$";
    private Pattern pattern;
@@ -29,20 +28,20 @@ public class SignUpCommandValidator implements Validator{
    public void validate(Object target, Errors errors) {
       SignUpCommand command = (SignUpCommand)target;
       
-      ValidationUtils.rejectIfEmpty(errors, "userPassword", "required", "ÇÊ¼ö ÀÔ·Â»çÇ×ÀÔ´Ï´Ù");
+      ValidationUtils.rejectIfEmpty(errors, "userPassword", "required", "í•„ìˆ˜ì…ë ¥ì‚¬í•­ì…ë‹ˆë‹¤.");
       
       if(!command.getUserPassword().isEmpty()) {
          boolean matcher = Pattern.matches(PWD_EXP,command.getUserPassword());
          if(matcher != true) {
-            errors.rejectValue("userPassword", "wrong", "¿µ¹®,¼ıÀÚ,Æ¯¼ö¹®ÀÚ Á¶ÇÕ 6~15ÀÚ¸®·Î ÀÛ¼ºÇØÁÖ¼¼¿ä");
+            errors.rejectValue("userPassword", "wrong", "ì˜ë¬¸, ìˆ«ì, íŠ¹ìˆ˜ë¬¸ì í¬í•¨ 6~15ë¡œ ë§Œë“¤ì–´ì£¼ì„¸ìš”");
          }else if(!command.isPasswordEqual()) {
-            errors.rejectValue("userPwdChk","nomatch","ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù");
+            errors.rejectValue("userPwdChk","nomatch","ë¹„ë°€ë²ˆí˜¸ì™€ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
          }
       }
 
-      ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required", "ÇÊ¼ö ÀÔ·Â»çÇ×ÀÔ´Ï´Ù");
-      ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "required", "ÇÊ¼ö ÀÔ·Â»çÇ×ÀÔ´Ï´Ù");
-      ValidationUtils.rejectIfEmpty(errors, "phone", "required", "ÇÊ¼ö ÀÔ·Â»çÇ×ÀÔ´Ï´Ù");
+      ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required", "í•„ìˆ˜ì…ë ¥ì‚¬í•­ì…ë‹ˆë‹¤.");
+      ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "required", "í•„ìˆ˜ì…ë ¥ì‚¬í•­ì…ë‹ˆë‹¤.");
+      ValidationUtils.rejectIfEmpty(errors, "phone", "required", "í•„ìˆ˜ì…ë ¥ì‚¬í•­ì…ë‹ˆë‹¤.");
    }
 
 }

@@ -25,41 +25,60 @@
 		
 		<div class="wrapWritePage"> 
 		<%--  enctype="multipart/form-data" 필요 --%>
-			<form:form commandName="lostBoardWriteCommand" enctype="multipart/form-data" method="POST">
+			<form:form commandName="lostBoardWriteCommand" enctype="multipart/form-data" method="POST" id="form">
 				<table id="input-lostPageWrite"> <!-- 입력칸 부분 -->
 					<tr>
 						<td><span>*</span>글제목</td>
-						<td><form:input path="title" placeholder="글제목"/></td>
+						<td>
+							<form:input path="title" placeholder="글제목"/>
+							<form:errors path="title"/>
+						</td>
 					</tr>
 					<tr>
 						<td><span style="color: white;">*</span>동물이름</td>
 						<td><form:input path="animal" placeholder="동물이름 ex.마루, 초코..."/></td>
 					</tr>
 					<tr>
-						<td><span style="color: white;">*</span>품종</td>
-						<td><form:input path="kind" placeholder="품종"/></td>
+						<td>*</span>품종</td>
+						<td>
+							<form:input path="kind" placeholder="품종"/>
+							<form:errors path="kind"/>
+						</td>
 					</tr>
 					<tr>
 						<td><span>*</span>성별</td>
-						<td><form:input path="gender" placeholder="남아/여아(중성화수술 여부 까지 적어주세요)"/></td>
+						<td>
+							<form:input path="gender" placeholder="남아/여아(중성화수술 여부 까지 적어주세요)"/>
+							<form:errors path="gender"/>
+						</td>
 					</tr>
 					<tr>
 						<td><span>*</span>실종위치</td>
-						<td><form:input path="location" placeholder="실종위치"/></td>
+						<td>
+							<form:input path="location" placeholder="실종위치"/>
+							<form:errors path="location"/>
+						</td>
 					</tr>
 					<tr>
 						<td><span>*</span>실종시각</td>
-						<td><form:input path="lostDate" placeholder="실종시각"/></td>
+						<td>
+							<form:input path="lostDate" placeholder="실종시각"/>
+							<form:errors path="lostDate"/>
+						</td>
 					</tr>
 					<tr>  
 						<td><span>*</span>특징</td>
-						<td><form:input path="character" placeholder="특징(30자 이내)"/></td>
+						<td>
+							<form:input path="character" placeholder="특징(30자 이내)"/>
+							<form:errors path="character"/>
+						</td>
 					</tr>
 					<tr>
 						<td><span>*</span>상세내용</td>
 						<td>
 							<form:textarea path="memo" rows="10" cols="65" onkeyup="javascript:fnChkByte(this,'2000')"/>
 							<span id="byteInfo">0</span> / 2000bytes
+							<form:errors path="memo"/>
 						</td>
 					</tr>
 					<tr>
@@ -78,7 +97,7 @@
 					</div>
 				</div>
 				<div > <!-- 작성완료 버튼 -->
-					<input type="submit" value="작성완료" class="completeBtn">
+					<input type="button" value="작성완료" class="completeBtn" onclick="imgCheck()">
 				</div>
 			</form:form>
 		</div>
@@ -118,6 +137,14 @@
 		        }
 		    });
 		});
+		
+		function imgCheck(){
+			if($('#img').val()==""){
+				alert("첨부파일은 필수입니다.");
+				document.getElementById('form').submit();
+			}
+			document.getElementById('form').submit();
+		};		
 	</script>
 </body>
 </html>
