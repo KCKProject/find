@@ -11,6 +11,7 @@ import find.dao.FindDao;
 import find.vo.Criteria;
 import find.vo.PageMaker;
 import find.vo.QnABoard;
+import find.vo.SearchCriteria;
 
 
 @Controller
@@ -28,7 +29,7 @@ public class AdminQuestionPageController {
 	
 
 	@RequestMapping("/admin/adminQuestionPage")
-	public String list(@ModelAttribute("cri") Criteria cri, Model model) {
+	public String list(@ModelAttribute("scri") SearchCriteria cri, Model model) {
 		
 		List<QnABoard> questions= dao.selectAllQnABoard(cri);
 		model.addAttribute("questions",questions);

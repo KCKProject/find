@@ -9,6 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="../resources/css/style.css">
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <script src="resources/script/script.js" defer></script>
@@ -42,10 +43,15 @@
 					</c:forEach> --%>
 					${pageMaker.totalCount}명
 					<!-- 읽어서 받아올수 있게 만들기 -->
-					<input type="text" name="search" id="search"
+					<!-- <input type="text" name="search" id="search"
 						placeholder="검색어를 입력해주세요"> <a href=""> <img
 						src="../resources/img/search.png" alt="검색" width="15px"
-						height="15px"></a>
+						height="15px"></a> -->
+						<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" placeholder="검색어를 입력해주세요"/>
+
+ 						<button id="searchBtn" onclick=""><img
+						src="../resources/img/search.png" alt="검색" width="15px"
+						height="15px"></button>
 				</p>
 			</div>
 			<!-- <div>
@@ -83,13 +89,13 @@
 				<div class="paging">
 					 <ul>
   						<c:if test="${pageMaker.prev}">
-					   		<li><a href="${pageMaker.makeQuery(pageMaker.startPage - 1)}">이전</a></li>
+					   		<li><a href="${pageMaker.makeSearch(pageMaker.startPage - 1)}">이전</a></li>
 					  	</c:if>
 					  	<c:forEach begin="${pageMaker.startPage}" end="${pageMaker.endPage}" var="idx">
-					   		<li><a href="${pageMaker.makeQuery(idx)}">${idx}</a></li>
+					   		<li><a href="${pageMaker.makeSearch(idx)}">${idx}</a></li>
 					  	</c:forEach>
 					  	<c:if test="${pageMaker.next && pageMaker.endPage > 0}">
-					   		<li><a href="${pageMaker.makeQuery(pageMaker.endPage + 1)}">다음</a></li>
+					   		<li><a href="${pageMaker.makeSearch(pageMaker.endPage + 1)}">다음</a></li>
 					  	</c:if> 
 					 </ul>
 				</div>
@@ -154,5 +160,12 @@
 			</tr>
 		</table>
 	</div> --%>
+	<script>
+ 	$(function(){
+	  	$('#searchBtn').click(function() {
+	  			self.location = "" + '${pageMaker.makeSearch(1)}' + encodeURIComponent($('#keywordInput').val());
+    	});
+	 });   
+	</script>
 </body>
 </html>

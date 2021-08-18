@@ -1,21 +1,14 @@
 package find.dao;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.sql.DataSource;
 
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
@@ -31,6 +24,7 @@ import find.vo.FindBoard;
 import find.vo.LostBoard;
 import find.vo.Member;
 import find.vo.QnABoard;
+import find.vo.SearchCriteria;
 
 @Component
 public class FindDao {
@@ -155,6 +149,11 @@ public class FindDao {
 				"SELECT count(memberNumber) FROM Member where memberNumber > 0",Integer.class);
 		return cnt;
 	}
+//	public int searchMemberCount(SearchCriteria cri) {
+//		Integer cnt = jdbcTemplate.queryForObject(
+//				"SELECT count(memberNumber) FROM Member where userName like '%' || ? || '%' and memberNumber > 0;",Integer.class,cri.getKeyword());
+//		return cnt;
+//	}
 	public int qnaCount() {
 		Integer cnt = jdbcTemplate.queryForObject(
 				"SELECT count(boardnum) FROM qnaboard where open = 1 and boardnum > 0",Integer.class);
@@ -214,17 +213,30 @@ public class FindDao {
 	
 	
 	// 게시글 전체 불러오기(+cri)
-	public List<Member> selectAll(Criteria cri) {
+	public List<Member> selectAll(SearchCriteria cri) {
 		List<Member> results = jdbcTemplate.query(
 				"SELECT memberNumber, userId, userPassword, UserName, phone, email " + 
 				"    FROM(" + 
 				"    SELECT memberNumber, userId, userPassword, UserName, phone, email, " + 
 				"    row_number() over(order by memberNumber ASC) as rNum " + 
-				"    from member" + 
+				"    from member" +
 				"    ) mb" + 
 				"    where rNum between ? and ? " + 
 				"    order by memberNumber ASC",
 				rowMapper,cri.getRowStart() ,cri.getRowEnd());
+		return results;
+	}
+	public List<Member> searchSelectAll(SearchCriteria cri) {
+		List<Member> results = jdbcTemplate.query(
+				"SELECT memberNumber, userId, userPassword, UserName, phone, email " + 
+				"    FROM(" + 
+				"    SELECT memberNumber, userId, userPassword, UserName, phone, email, " + 
+				"    row_number() over(order by memberNumber ASC) as rNum " + 
+				"    from member where userName like '%' || ? || '%'" + 
+				"    ) mb" + 
+				"    where rNum between ? and ? " + 
+				"    order by memberNumber ASC",
+				rowMapper,cri.getKeyword(),cri.getRowStart() ,cri.getRowEnd());
 		return results;
 	}
 	
