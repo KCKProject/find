@@ -201,7 +201,7 @@ public class FindDao {
 	
 	// 메인 페이지 게시글
 	public List<LostBoard> selectMainLostBoard(){
-		String sql = "SELECT * FROM (SELECT * FROM lostBoard ORDER BY rowNum DESC) WHERE rowNum<=10 AND meet=0";
+		String sql = "SELECT * FROM (SELECT * FROM lostBoard ORDER BY boardNum DESC) WHERE rowNum<=10 AND meet=0";
 		List<LostBoard> results = jdbcTemplate.query(sql, lostBoardRowMapper);
 		return results;
 	}
