@@ -14,6 +14,7 @@ import find.vo.Criteria;
 import find.vo.FindBoard;
 import find.vo.LostBoard;
 import find.vo.PageMaker;
+import find.vo.SearchCriteria;
 
 @Controller
 public class AdminBoardController {
@@ -47,7 +48,7 @@ public class AdminBoardController {
 	}
 
 	@RequestMapping(value = "/admin/adminBoard", method = RequestMethod.GET)
-	public String lostlist(@ModelAttribute("cri") Criteria cri, Model model) {
+	public String lostlist(@ModelAttribute("scri") SearchCriteria cri, Model model) {
 		
 		List<LostBoard> losts = dao.selectAllLostBoard(cri);
 		model.addAttribute("losts",losts);
@@ -65,7 +66,7 @@ public class AdminBoardController {
 	
 	
 	@RequestMapping(value = "/admin/adminFindBoard", method = RequestMethod.GET)
-	public String findlist(@ModelAttribute("cri") Criteria cri, Model model) {
+	public String findlist(@ModelAttribute("scri") SearchCriteria cri, Model model) {
 		
 
 		

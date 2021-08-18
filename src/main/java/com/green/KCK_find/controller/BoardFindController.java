@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import find.dao.FindDao;
-import find.vo.CriteriaMainBoard;
 import find.vo.FindBoard;
 import find.vo.PageMakerMainBoard;
+import find.vo.SearchCriteriaMainBoard;
 
 @Controller
 public class BoardFindController {
@@ -30,7 +30,7 @@ public class BoardFindController {
 
 	// 글 목록 불러오기
 	@RequestMapping("/findPage/findPageList")
-	public String find(@ModelAttribute("cri") CriteriaMainBoard cri, Model model) {
+	public String find(@ModelAttribute("cri") SearchCriteriaMainBoard cri, Model model) {
 		
 		List<FindBoard> finds = dao.selectAllFindBoard(cri);
 		model.addAttribute("finds",finds);
