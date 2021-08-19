@@ -15,7 +15,7 @@ public class SearchCriteria extends Criteria{
 	public String toString() {
 		return super.toString() + " SearchCriteria [keyword=" + keyword + "]";
 	}
-	
+
 	public String reset() {
 		keyword = "";
 		return keyword;

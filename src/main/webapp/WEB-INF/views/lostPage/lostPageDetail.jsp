@@ -197,7 +197,7 @@
 						! 리뷰 버튼 클릭 시 리뷰 작성  혹은 수정 가능 합니다.
 					</p>
 				</div>
-				<button class="jellybutton sidebtn7" name="review" id="review" onclick="window.scrollTo(800,800)">REVIEW</button>
+				<button class="jellybutton sidebtn7 reviewToggleBtn" name="review" id="review" onclick="window.scrollTo(800,800)">REVIEW</button>
 			</div>
 		</c:if>
 	</c:if>

@@ -5,10 +5,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../resources/css/style.css">
+<link rel="stylesheet" href="../../resources/css/style.css">
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
-<script src="../resources/script/script.js" defer></script>
+<script src="../../resources/script/script.js" defer></script>
 
 <title>마이페이지</title>
 </head>
@@ -16,8 +16,7 @@
 	<jsp:include page="../include/header.jsp" />
 	<section class="myPage">
 	
-		<h1>마이페이지</h1>
-		
+		<h1>마이페이지</h1>		
 		<div class="wrapMyInfo">
 			<div class="myInfo">	
 				<div class="myGrade">
@@ -25,9 +24,8 @@
 						<i class="fas fa-dove"></i>
 					</div>
 					<div>
-						<p>${memberAuthInfo.getUserId()}님의 회원등급은 NEW 입니다.</p>
-						<P>${memberAuthInfo.getUserId()}님의 반려동물의 사진과 정보를 등록 해 주세요.</P>
-						<a>등록 하러 가기 > </a>
+						<p>${memberAuthInfo.getUserId()}님 환영합니다.</p>
+						<p class="changeMyInfodBtn">나의 정보 확인 & 변경 >><span class="clickText">click</span></p>
 					</div>
 				</div>
 				<div class="myActivities">
@@ -36,28 +34,124 @@
 					</div>
 					<div class="wrapMyActivitiesContents">
 						<div class="myActivitiesContents">
-							<p>반려동물 정보<br>미등록</p>
-							<p>내가 작성한 글<br>1개</p>
+							<p>나의 정보<br>등록완료</p>
+							<p>찾아주세요 글<br>1개</p>
 						</div>
 						<div class="myActivitiesContents">
-							<p>내가 작성한 리뷰<br>1개</p>
-							<p>내가 작성한 댓글<br>1개</p>
+							<p>현재 미완료 글<br>1개</p>
+							<p>찾아가세요 글<br>1개</p>
 						</div>
+					</div>
+				</div>		
+			</div>
+		</div>
+
+		<div class="wrapMyInfoDetail">
+			<h3>내 정보<span class="changePasswordToggle">비밀번호 변경 >><span class="clickText">click</span></span></h3>
+			<div class=myInfoDetail>
+				<div class="myInfoDetailContents">
+					<div>
+						<p><i class="fas fa-user-edit" style="color: white;"></i>아이디</p>
+						<p><i class="fas fa-user-edit" style="color: white;"></i>이름</p>
+						<p><i class="fas fa-user-edit changePhoneToggle"></i>연락처</p>
+						<p><i class="fas fa-user-edit changeEmailToggle"></i>이메일</p>
+					</div>
+					<div>
+						<p>${memberAuthInfo.getUserId()}</p>
+						<p>${memberAuthInfo.getUserName()}</p>
+						<p>
+							<span class="currentPhone active">${memberAuthInfo.getPhone()}</span>
+							<input type="text" value="${memberAuthInfo.getPhone()}" class="changePhone">
+							<label for="changePhoneBtn" class="changePhoneBtn"><i class="fas fa-check-circle"></i><input type="submit" value="변경" id="changePhoneBtn" hidden></label>
+						</p>
+						<p>
+							<span class="currentEmail active">${memberAuthInfo.getEmail()}</span>
+							<input type="text" value="${memberAuthInfo.getEmail()}" class="changeEmail">
+							<label for="changeEmsailBtn" class="changeEmailBtn"><i class="fas fa-check-circle"></i><input type="submit" value="변경" id="changeEmailBtn" hidden></label>
+						</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="changePassword">
+				<div class="changePasswordContents">
+					<i class="fas fa-times exitchangePasswordBtn"></i>
+					<div>
+						현재 비밀번호 <input type="text">
+					</div>
+					<div>
+						변경 비밀번호 <input type="text">
+					</div>
+					<div>
+						비밀번호 확인 <input type="text">
+					</div>
+					<div>
+						<input type="submit" value="비밀번호 변경" class="changePasswordBtn">
 					</div>
 				</div>	
 			</div>
+
 		</div>
-		
-		<h3>내가 작성한 글</h3>
+
 		<div class="wrapMyPost">
+			<h3>내가 작성한 글<span>찾아주세요</span></h3>
 			<div class="myPost">
-				<div><p>1</p><p>8/27 수원시청역 근처에서 잃어버렸어요</p><p>2021-08-28</p></div>
-				<div><p>2</p><p>8/27 수원시청역 근처에서 잃어버렸어요</p><p>2021-08-28</p></div>
-				<div><p>3</p><p>8/27 수원시청역 근처에서 잃어버렸어요</p><p>2021-08-28</p></div>
+				<div class="myPostBx">
+					<div>
+						<c:if test="${!empty lostPosts}">
+							<c:forEach var="p" items="${lostPosts}">
+								<div>
+									<p>
+										<c:if test="${p.meet==1}"><i class="fas fa-stamp" style="color: gray;"></i></c:if>
+										<c:if test="${p.meet==0}"><i class="fas fa-stamp" style="color: #ed4848;"></i></c:if>
+									</p>
+									<p>${p.title}</p>
+									<p>${p.writeDate}</p>
+								</div>
+							</c:forEach>
+						</c:if>
+						<c:if test="${empty lostPosts}">
+							<div>
+								<p></p>
+								<p>찾아주세요 게시글이 없습니다.</p>
+								<p></p>
+							</div>
+						</c:if>
+					</div>
+				</div>
+			</div>
+			
+			<h3>내가 작성한 글<span>찾아가세요</span></h3>
+			<div class="myPost">
+				<div class="myPostBx">	
+					<div>
+						<c:if test="${!empty findPosts}">		
+							<c:forEach var="p" items="${findPosts}">
+								<div>
+									<p>
+										<c:if test="${p.meet==1}"><i class="fas fa-stamp" style="color: gray;"></i></c:if>
+										<c:if test="${p.meet==0}"><i class="fas fa-stamp" style="color: #ed4848;"></i></c:if>
+									</p>
+									<p>${p.title}</p>
+									<p>${p.writeDate}</p>
+								</div>
+							</c:forEach>
+						</c:if>
+						<c:if test="${empty lostPosts}">
+							<div>
+								<p></p>
+								<p>찾아가세요 게시글이 없습니다.</p>
+								<p></p>
+							</div>
+						</c:if>	
+					</div>	
+				</div>
 			</div>
 		</div>
 	</section>
 	<jsp:include page="../include/footer.jsp" />
+	
+	<button class="jellybutton topbtn" type="button" onclick="goTop()">TOP</button>
 
 </body>
 </html>

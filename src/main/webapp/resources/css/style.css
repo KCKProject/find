@@ -436,6 +436,8 @@ footer {
 .signUpCommand p {
     margin: 20px;
     height: 30px;
+    display: flex;
+    align-items: center;
 }
 
 .signUpCommandBox p input {
@@ -1038,6 +1040,19 @@ label.right {
 	border: 1px solid gray;
 	transition: all.3s;
 }
+
+
+.wrapWritePage input[type=file] {
+    border: none;
+    cursor: pointer;
+}
+
+.wrapWritePage input[type=file]:hover {
+    border: none;
+    border-radius: 0px;
+}
+
+
 	
 /* ========================= */
 /* index-7 board(lost,find) detail page
@@ -1608,6 +1623,12 @@ label.right {
 /* ========================= */
 /* index-13 myPage */
 
+.clickText {
+	color: pink;
+	opacity: 0;
+	margin: 0 0 0 5px;
+}
+
 .myPage {
     padding: 80px 0;
 }
@@ -1617,7 +1638,6 @@ label.right {
     flex-direction: column;
     align-items: center;
     flex-wrap: wrap;
-    margin: 0 0 50px 0;
 }
 
 .myPage h1 {
@@ -1657,6 +1677,25 @@ label.right {
 	align-items: center;
 }
 
+.changeMyInfodBtn {
+	cursor: pointer;
+}
+
+.changeMyInfodBtn:hover .clickText {
+	opacity: 1;
+	transition: all .5s;
+}
+.changePasswordToggle:hover .clickText {
+	opacity: 1;
+	transition: all .5s;
+}
+.changePhoneBtn:hover .clickText, .changeEmailBtn:hover .clickText {
+	opacity: 1;
+	transition: all .5s;
+}
+
+
+
 .myActivities {
   	border-left: 1px solid #d0d0d0;
     padding: 0 0 0 30px;
@@ -1678,24 +1717,186 @@ label.right {
     padding: 10px;
 }
 
-.wrapMyPost {
+.wrapMyPost h3 span {
+	padding-left: 10px;
+    font-size: 12px;
+    color: #ed4848;
+}
+
+.myPost {
     display: flex;
     justify-content: center;
     margin: 0 0 50px 0;
 }
 
-.myPost {
+.myPostBx {
+    border-top: 1px solid darkgray;
+    border-bottom: 1px solid lightgrey;
+    width: 50%;
+    padding: 0 70px;
+}
+
+.myPostBx div div {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px dashed whitesmoke;
+}
+
+
+.wrapMyInfoDetail {
+	display: none;
+    margin: -10px 0 150px 0;
+}
+
+.wrapMyInfoDetail.active {
+	display: block;
+}
+
+.wrapMyInfoDetail h3 span {
+	padding-left: 10px;
+    font-size: 10px;
+    cursor: pointer;
+}
+
+.myInfoDetail {
+    display: flex;
+    justify-content: center;
+}
+
+.myInfoDetailContents {
+    display: flex;
+    justify-content: center;
     border-top: 1px solid darkgray;
     border-bottom: 1px solid lightgrey;
     width: 50%;
 }
 
-.myPost div {
-    display: flex;
-    justify-content: space-around;
-    padding: 20px 0;
-    border-bottom: 1px dashed whitesmoke;
+
+
+.currentPhone, .currentEmail, .changeEmail, .changePhone, .changePhoneBtn, .changeEmailBtn {
+	display: none;
 }
+
+.currentPhone.active, .currentEmail.active, .changeEmail.active, .changePhone.active, .changePhoneBtn.active, .changeEmailBtn.active {
+	display: block;
+}
+
+.changePhoneToggle, .changeEmailToggle {
+	cursor: pointer;
+}
+
+.myInfoDetailContents input[type=text] {
+	padding: 3px 0;
+	border: none;
+    border-bottom: 1px solid palevioletred;
+    width: 130px;
+}
+
+.myInfoDetailContents label {
+	cursor: pointer;
+	font-size: 16px;
+    position: relative;
+    top: -20px;
+    left: 140px;
+}
+
+.fa-check-circle:hover {
+	color: palevioletred;
+}
+
+.myInfoDetailContents div {
+    display: flex;
+    align-items: flex-start;
+    padding: 20px 20px 30px 20px;
+    border-bottom: 1px dashed whitesmoke;
+    flex-direction: column;
+}
+
+.myInfoDetailContents div p {
+    padding: 25px 20px;
+    height: 20px;
+}
+
+.fa-user-edit {
+	padding: 0 5px 0 0;
+}
+
+.fa-user-edit:hover {
+	animation: jelly 0.6s ease;
+	color: pink;
+}
+
+.changePassword {
+	display: none;
+}
+
+.changePassword.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.changePasswordContents {
+    border-bottom: 1px solid lightgrey;
+    background-color: #fbfbfb52;
+    width: 50%;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.changePasswordContents div {
+    padding: 15px 0;
+}
+
+
+
+.changePasswordContents div input[type=text] {
+    padding: 5px 20px;
+    margin: 0 0 0 20px;
+    border: 1px solid gray;
+    border-radius: 8px;
+}
+
+.exitchangePasswordBtn {
+	padding: 5px;
+	position: relative;
+    right: -45%;
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+.exitchangePasswordBtn:hover {
+	padding: 5px;
+	color: palevioletred;
+    border: 1px solid palevioletred;
+    border-radius: 30px;
+    animation: jelly 0.6s ease;
+}
+
+.changePasswordBtn {
+	padding: 10px 5px;
+    margin: 20px 0 0 0;
+    border-radius: 15px;
+    border: 1px solid whitesmoke;
+    background: none;
+}
+
+.changePasswordBtn:hover {
+    cursor: pointer;
+    color: palevioletred;
+    padding: 10px 5px;
+    border: 1px solid white;
+    transition: all 0.5s;
+    border-radius: 15px;
+}
+
+
+
+
+
+
+
 
 
 /* ========================= */

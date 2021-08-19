@@ -123,7 +123,7 @@ public class PageMaker {
 			.queryParam("page", page)
 			.queryParam("perPageNum", cri.getPerPageNum())
 			.queryParam("keyword", encoding(((SearchCriteria)cri).getKeyword()))
-			.build();
+			.build(); 
 		((SearchCriteria)cri).reset();
 	 return uriComponents.toUriString();  
 	}

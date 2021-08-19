@@ -24,6 +24,8 @@ import find.vo.CriteriaQnABoard;
 import find.vo.FindBoard;
 import find.vo.LostBoard;
 import find.vo.Member;
+import find.vo.MyPageFindPostCommand;
+import find.vo.MyPageLostPostCommand;
 import find.vo.QnABoard;
 import find.vo.SearchCriteria;
 
@@ -149,6 +151,37 @@ public class FindDao {
 				return c;
 			}
 		};
+
+		private RowMapper<MyPageLostPostCommand> userLostPostMapper = new RowMapper<MyPageLostPostCommand>() {
+			
+			@Override
+			public MyPageLostPostCommand mapRow(ResultSet rs, int rowNum) throws SQLException{
+				System.out.println("mypage-lost");
+				MyPageLostPostCommand p = new MyPageLostPostCommand(
+							rs.getString("title"),
+							rs.getDate("writeDate"),
+							rs.getInt("meet")
+						);
+				p.setBoardNum(rs.getLong("BoardNum")); 
+				return p;
+			}
+		};
+		
+		private RowMapper<MyPageFindPostCommand> userFindPostMapper = new RowMapper<MyPageFindPostCommand>() {
+			
+			@Override
+			public MyPageFindPostCommand mapRow(ResultSet rs, int rowNum) throws SQLException{
+				System.out.println("mypage-find");
+				MyPageFindPostCommand p = new MyPageFindPostCommand(
+						rs.getString("title"),
+						rs.getDate("writeDate"),
+						rs.getInt("meet")
+						);
+//				p.setBoardNum(rs.getLong("BoardNum"));
+				return p;
+			}
+		};
+		
 	
 			/*
 			 * public List<Member> selectAll() { List<Member> results = jdbcTemplate.query(
@@ -425,6 +458,20 @@ public class FindDao {
 		return results.isEmpty() ? null : results.get(0);	
 	}
 	
+	public List<MyPageLostPostCommand> userLostPost(String id) {
+		String sql="SELECT * FROM lostboard WHERE writer=?";
+		List<MyPageLostPostCommand> results = jdbcTemplate.query(sql, userLostPostMapper, id);
+		
+		return results.isEmpty() ? null : results;
+	}
+	
+	public List<MyPageFindPostCommand> userFindPost(String id) {
+		String sql="SELECT * FROM findboard WHERE writer=?";
+		List<MyPageFindPostCommand> results = jdbcTemplate.query(sql, userFindPostMapper, id);
+		
+		return results.isEmpty() ? null : results;
+	}
+	
 	public void updateLostHit(long boardNum) {
 		jdbcTemplate.update(
 				new PreparedStatementCreator() {
@@ -660,4 +707,3 @@ public class FindDao {
 		jdbcTemplate.update("UPDATE lostBoard SET REVIEW=? WHERE boardNum=?", review, boardNum);
 	}
 
-}
