@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class memberInformationFindController {
+public class MemberInformationFindController {
 
 	@RequestMapping("/enter/memberInformationFind")
 	public String memberInformationFind(HttpSession session,HttpServletRequest req) {

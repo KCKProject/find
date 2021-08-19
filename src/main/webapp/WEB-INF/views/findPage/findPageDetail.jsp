@@ -200,7 +200,7 @@
 						합니다.
 					</p>
 				</div>
-				<button class="jellybutton sidebtn7" name="review" id="review"
+				<button class="jellybutton sidebtn7 reviewToggleBtn" name="review" id="review"
 					onclick="window.scrollTo(800,800)">REVIEW</button>
 			</div>
 		</c:if>

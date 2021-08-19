@@ -55,23 +55,19 @@
 							</p>
 						</div>
 					</div>
+					
 					<div class="signUpTerms">
 			
- 					<div class="checkbox">
+ 					<label class="checkbox" for="ageAgree">
                      	<input type="checkbox" name="term" id="ageAgree" value="ageAgree" >
            				<span class="icon"></span>
-                     	<span class="text"><label for="ageAgree">만 14세 이상입니다.(필수)</label></span>
-                 	</div>
-                  	<div class="checkbox">
+                     	<span class="text">만 14세 이상입니다.(필수)</span>
+                 	</label>
+                  	<label class="checkbox" for="infoAgree">
                      	<input type="checkbox" name="term" id="infoAgree" value="infoAgree" > 
                      	<span class="icon"></span>
-                     	<span class="text"><label for="infoAgree">개인정보 수집 이용 동의 (필수)</label></span>
-                  	</div>
-                  	<div class="checkbox">
-                     	<input type="checkbox" name="term" id="term" value="addAgree"> 
-                     	<span class="icon"></span>
-                     	<span class="text"><label for="term">추가추가</label></span>
-                  	</div>  
+                     	<span class="text">개인정보 수집 이용 동의 (필수)</span>
+                  	</label>
 						
 					</div>
 					<div class="signUpBoxbtn">
