@@ -17,6 +17,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import find.vo.Admin;
+import find.vo.CommentVo;
 import find.vo.Criteria;
 import find.vo.CriteriaMainBoard;
 import find.vo.CriteriaQnABoard;
@@ -135,6 +136,19 @@ public class FindDao {
 			}
 		};
 		
+		private RowMapper<CommentVo> commentRowMapper = new RowMapper<CommentVo>() {
+			
+			public CommentVo mapRow(ResultSet rs, int rowNum) throws SQLException{
+				CommentVo c = new CommentVo(
+							rs.getLong("bNum"),
+							rs.getString("writer"),
+							rs.getDate("writeDate"),
+							rs.getNString("content")
+						);
+				c.setcNum(rs.getLong("cNum"));
+				return c;
+			}
+		};
 	
 			/*
 			 * public List<Member> selectAll() { List<Member> results = jdbcTemplate.query(
@@ -549,7 +563,17 @@ public class FindDao {
 				fb.getStoredFileName());
 	}
 
-
+///////////////////////// 댓글 (comment)
+	// 댓글 목록 불러오기
+		public List<CommentVo> selectAllComment(int bno) {
+			String sql="SELECT * FROM lostComment WHERE bNum=?";
+			List<CommentVo> results = jdbcTemplate.query(sql, commentRowMapper, bno);
+			
+			return results;
+		}
+		
+		
+		
 //	public ResponseEntity<byte[]> disPlay(HttpServletRequest request) throws Exception{
 //        //fileName 은 /년/월/일/파일명의 형태로 입력을 받는다.
 //        System.out.println("서비스까지 이동");
@@ -635,5 +659,5 @@ public class FindDao {
 		System.out.println("나도도착 리뷰-lost");
 		jdbcTemplate.update("UPDATE lostBoard SET REVIEW=? WHERE boardNum=?", review, boardNum);
 	}
-	
+
 }

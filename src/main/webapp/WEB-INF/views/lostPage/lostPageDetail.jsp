@@ -123,6 +123,13 @@
 				</div>
 				<div class="lostPage-comment-bottom">
 					<ul>
+						<c:forEach var="c" items="${cList}">
+							<li>
+								${c.content}
+							</li>
+						</c:forEach>
+					</ul>
+					<!-- <ul>
 						<li>
 							<p>털이 하얘서 금방 찾을 수 있을거에요 !! 힘내세요 ㅠㅠ</p>
 							<p>프젝님 | 2021-05-21</p>
@@ -143,16 +150,18 @@
 							<p>수원시청 뒤쪽 ㅠㅠㅠㅠㅠㅠ</p>
 							<p>프젝님 | 2021-05-21</p>
 						</li>
-					</ul>
-					<div>
-						<textarea rows="10" cols="10"></textarea>
-					</div>
-					<div class="mainMore">
-						<!-- 댓글등록 버튼 -->
-	                    <button class="btn btn-swap" name="uploadComment" id="uploadComment" onclick="uploadComment()">
-	                        upload <span>댓글등록 >></span>
-	                    </button>
-                	</div>	
+					</ul> -->
+					<c:if test="${memberAuthInfo.userId!=null}">
+						<div>
+							<textarea rows="10" cols="10" id="content"></textarea>
+						</div>					
+						<div class="mainMore">
+							<!-- 댓글등록 버튼 -->
+		                    <button class="btn btn-swap" name="uploadComment" id="uploadComment" onclick="uploadComment()">
+		                        upload <span>댓글등록 >></span>
+		                    </button>
+	                	</div>
+	               	</c:if>
 				</div> 
 			</div>
 		</div>
@@ -193,7 +202,32 @@
 		</c:if>
 	</c:if>
 	
+	
 	<script>
+	$(document).ready(function(){
+		commentList();
+		
+		// 댓글 쓰기 버튼 클릭 시
+		uploadComment(){
+			var text=$("#content").val();
+			var bno="${detail.boardNum}"
+			var param
+		}
+	});
+	
+	// 댓글 목록 불러오기
+	function commentList(){
+		$.ajax({
+			type : "GET",
+			url : "${path}/lostPage/selectCommentList",
+			data : {"boardNo" : "${detail.boardNum}"},
+			success : function(result){
+				$("#commentList").html(result);
+			}			
+		});
+	}
+	
+	// 게시글 삭제 기능
 	function del(boardNum) {
 		var chk = confirm("정말 삭제하시겠습니까?");
 		if (chk) {

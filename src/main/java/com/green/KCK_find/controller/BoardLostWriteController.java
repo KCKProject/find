@@ -1,6 +1,7 @@
 package com.green.KCK_find.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -10,12 +11,15 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import find.dao.FindDao;
 import find.service.LostBoardWriteService;
 import find.validator.BoardLostCommandValidator;
+import find.vo.CommentVo;
 import find.vo.LostBoard;
 import find.vo.LostBoardWriteCommand;
 import find.vo.MemberAuthInfo;
@@ -101,5 +105,14 @@ public class BoardLostWriteController {
 			lostBoardWriteService.writeReview(dto.getReview(), dto.getBoardNum());
 	
 			return "redirect:/lostPage/lostPageDetail/" + dto.getBoardNum();
+		}
+		
+	// 댓글 목록 조회
+		@ResponseBody
+		@RequestMapping(value="/lostPage/selectCommentList")
+		public List<CommentVo> listCommand(@RequestParam int bno, Model model){
+			List<CommentVo> cList = dao.selectAllComment(bno);
+			model.addAttribute("cList", cList);
+			return cList;
 		}
 }
