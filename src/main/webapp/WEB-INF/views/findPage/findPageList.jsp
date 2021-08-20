@@ -48,7 +48,10 @@
 							<div><p><br><p></div>
 						</c:if>
 						<div>
-							<p>동물 종류 : ${f.kind} | 성별 : ${f.gender}</P>
+							<p>동물 종류 : ${f.kind}</P>
+						</div>
+						<div>
+							<p>성별 : ${f.gender}</P>
 						</div>
 						<div>
 							<p>발견 위치 : ${f.location}</p>

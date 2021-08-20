@@ -53,7 +53,7 @@
 				
 				<div>
 				<%-- <input type="button" name="insertQnA" id="insertQnA" value="QnA 등록" onclick="location.href='/admin/questionPageWrite'"> --%>
-				<a href="<c:url value='questionPageWrite'/>"><button class="completeBtn qnaBtn">QnA등록</button></a>
+				<a href="<c:url value='questionPageWrite'/>"><button class="qnaBtn">QnA등록</button></a>
 				<%-- <input type="button" value="QnA등록" onclick="<c:url value='/admin/questionPageWrite'/>"/> --%>
 				</div>
 			</div>
@@ -62,8 +62,8 @@
 					<c:if test="${!empty questions}">
 							<tr class="adminContentsListTitle">
 								<td>번호</td>
+								<td>글제목<span class="clickText clickTextDisplay">click</span></td>
 								<td>작성자</td>
-								<td>글제목</td>
 								<td>작성일</td>
 								<td>공개여부</td>
 							</tr>
@@ -71,10 +71,10 @@
 							<c:forEach var="m" items="${questions}">
 								<tr>
 									<td>${m.boardNum}</td>
-									<td>${m.writer}</td>
 									<td>
-									<a href="<c:url value="/admin/questionDetail/${m.boardNum}"/>">${m.title}</a>
+										<a href="<c:url value="/admin/questionDetail/${m.boardNum}"/>">${m.title}</a>
 									</td>
+									<td>${m.writer}</td>
 									<td><fmt:formatDate value="${m.writeDate}" pattern="yyyy-MM-dd"/></td>
 									<c:if test="${m.open ==1}">
 										<td>공개</td>

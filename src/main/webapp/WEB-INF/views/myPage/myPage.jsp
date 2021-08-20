@@ -34,12 +34,24 @@
 					</div>
 					<div class="wrapMyActivitiesContents">
 						<div class="myActivitiesContents">
-							<p>찾아가세요<br>${findPosts.size()}개</p>
-							<p>찾아주세요<br>${lostPosts.size()}개</p>
+							<p>찾아가세요<br>
+								<c:if test="${empty findPosts.size()}">0개</c:if>
+								<c:if test="${!empty findPosts.size()}">${findPosts.size()}개</c:if>
+							</p>
+							<p>나의 연락처<br>
+								<c:if test="${!empty memberAuthInfo.getPhone()}"><span> 등록완료 <span> </c:if>
+								<c:if test="${empty memberAuthInfo.getPhone()}"><span style="color: #ed4848;"> 미등록 <span> </c:if>
+							</p>
 						</div>
 						<div class="myActivitiesContents">
-							<p><i class="fas fa-stamp" style="color: gray;"></i> 미발견<br>1개</p>
-							<p><i class="fas fa-stamp" style="color: gray;"></i> 미발견<br>1개</p>
+							<p>찾아주세요<br>
+								<c:if test="${empty lostPosts.size()}">0개</c:if>
+								<c:if test="${!empty lostPosts.size()}">${lostPosts.size()}개</c:if>
+							</p>
+							<p>나의 이메일<br>
+								<c:if test="${!empty memberAuthInfo.getEmail()}"><span> 등록완료 <span> </c:if>
+								<c:if test="${empty memberAuthInfo.getEmail()}"><span style="color: #ed4848;"> 미등록<span> </c:if>
+							</p>
 						</div>
 <!-- 						<div class="myActivitiesContents">
 							<p><i class="fas fa-stamp" style="color: #ed4848;"></i> 발견완료<br>1개</p>
@@ -91,10 +103,12 @@
 					</div>
 				</div>	
 			</div>
-			<a class="changePasswordToggle changeInfoBtn"><span class="clickText">click</span><i class="fas fa-unlock-alt editIcon"></i>비밀번호 변경</a>
-			<a href="<c:url value='/myPage/myInfoUpdate/${memberAuthInfo.getMemberNumber()}'/>" class="changeInfoBtn"><i class="fas fa-user-edit editIcon"></i>나의정보 수정<span class="clickText">click</span></a>
+			<div>
+				<a class="changePasswordToggle changeInfoBtn"><span class="clickText">click</span><i class="fas fa-unlock-alt editIcon"></i>비밀번호 변경</a>
+				<a href="<c:url value='/myPage/myInfoUpdate/${memberAuthInfo.getMemberNumber()}'/>" class="changeInfoBtn"><i class="fas fa-user-edit editIcon"></i>나의정보 수정<span class="clickText">click</span></a>
+			</div>
 		</div>
-s
+
 		<div class="wrapMyPost">
 			<h3>내가 작성한 글<span>찾아주세요</span></h3>
 			<div class="myPost">

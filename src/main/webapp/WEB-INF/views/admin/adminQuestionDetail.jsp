@@ -20,9 +20,11 @@
 			<div>
 				<p class="adminTitle">Q&A 관리</p>
 			</div>
-			<ul>
+			<div>
+				<ul>
 					<a href="<c:url value='/admin/adminQuestionPage'/>"><li>Q&A 관리</li></a>
-			</ul>
+				</ul>
+			</div>
 		</div>
 
 		<span class="line"></span>
@@ -41,13 +43,13 @@
 						작성일 : <fmt:formatDate value="${qnABoard.writeDate}" pattern="yyyy-MM-dd"/>
 					</label>
 					<br>
-					<label>
-						내용 : ${qnABoard.contents}
+					<label class="questionDetailContents">
+						<p>내용 : ${qnABoard.contents}</p>
 					</label>
-					<br>
+					
 					<div class="adminBoardDetailBtn">
 						<a href="<c:url value='/admin/adminQuestionPage'/>">
-							<button class="btn btn-swap"> MORE <span>전체 글 보기 >></span> </button>
+							<button class="btn btn-swap"> MORE <span>전체 글 보기</span> </button>
 						</a>
 						<a href="<c:url value='/admin/adminQuestionPage'/>">
 							<button class="btn btn-swap" onclick="delQnA(${qnABoard.boardNum})"> DELETE <span>글 삭제 >></span> </button>

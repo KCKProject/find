@@ -105,7 +105,7 @@
 				</div>
                 <div class="mainMore">
                     <button class="btn btn-swap" name="more" id="more" onclick="location='<c:url value="/lostPage/lostPageList"/>'">
-                        more <span>찾아주세요 >></span>
+                        more <span>찾아주세요</span>
                     </button>
                 </div>
 			</div>
@@ -137,7 +137,7 @@
 				<!-- 후기 게시판은 따로 없으니 버튼을 없앨까요? -->
 				<%-- <div class="mainMore">
 					<button class="btn btn-swap" name="more" id="more" onclick="location='<c:url value="/findPage/findPageList"/>'">
-						more <span>찾아가세요 >></span>
+						more <span>찾아가세요</span>
 					</button>
 				</div> --%>
 			</div>

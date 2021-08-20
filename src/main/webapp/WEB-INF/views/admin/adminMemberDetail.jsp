@@ -32,26 +32,37 @@
 			<div>
 				<p>회원 정보</p>
 			</div>
-			<div class="wrapContents">
-				<label>
-					아이디 : ${member.userId}
-				</label>
-				<br>
-				<label>
-					이름 : ${member.userName}
-				</label>
-				<br>
-				<label>
-					전화번호 : ${member.phone}
-				</label>
-				<br>
-				<label>
-					이메일 : ${member.email}
-				</label>
-				<br>
+			<div class="wrapContents adminMemberDetail">
+
+				<h3>Member Contents</h3>
+				<div class="adminMemberDetailContents">
+					<label>
+						<div>
+							<p>
+								<i class="fas fa-paperclip adminBoardDetailContentsIcon"></i>
+								아이디 : ${member.userId}
+							</p>
+							<p>
+								<i class="fas fa-paperclip adminBoardDetailContentsIcon"></i>
+								이름 : ${member.userName}
+							</p>
+							<p>
+								<i class="fas fa-paperclip adminBoardDetailContentsIcon"></i>
+								전화번호 : ${member.phone}
+							</p>
+							<p>
+								<i class="fas fa-paperclip adminBoardDetailContentsIcon"></i>
+								이메일 : ${member.email}
+							</p>
+						</div>
+					</label>
+				</div>
+
+
+
 				<div class="adminBoardDetailBtn">
 					<a href="<c:url value='/admin/adminMember'/>">
-						<button class="btn btn-swap"> MORE <span>전체 화원 보기 >></span> </button>
+						<button class="btn btn-swap"> MORE <span>전체 화원 보기</span> </button>
 					</a>
 				<%-- 	<a href="<c:url value='/admin/adminMember'/>">
 						<button class="btn btn-swap"> DELETE <span>글 삭제 >></span> </button>

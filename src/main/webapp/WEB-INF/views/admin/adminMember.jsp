@@ -67,7 +67,7 @@
 					<c:if test="${!empty members}">
 						<tr class="adminContentsListTitle">
 							<td>번호</td>
-							<td>이름</td>
+							<td>이름<span class="clickText clickTextDisplay">click</span></td>
 							<td>아이디</td>
 							<td>연락처</td>
 							<td>이메일</td>

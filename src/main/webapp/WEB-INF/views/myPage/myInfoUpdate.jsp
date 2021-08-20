@@ -21,7 +21,7 @@
 
 	<section class="myInfoUpdatePage myPage">
 		<h1>회원 정보 수정</h1>
-		<a class="changePasswordToggle changeInfoBtn changeInfoBtn-myInfoUpdatePage"><span class="clickText">click</span><i class="fas fa-unlock-alt editIcon"></i>비밀번호 변경</a>
+		
 
 		<div class=myInfoDetail>
 			<div class="myInfoDetailContents">
@@ -61,10 +61,14 @@
 					</table>
 
 						<button class="btn btn-swap" type="submit"> EDIT <span>수정완료 >></span> </button>
-				</form:form>
-				
+				</form:form>			
 			</div>
 			
+			<div class="myInfoUpdatePageBtn">
+				<a class="changePasswordToggle changeInfoBtn"><span class="clickText">click</span><i class="fas fa-unlock-alt editIcon"></i>비밀번호 변경</a>
+				<a href="<c:url value='/myPage/myPage/${memberAuthInfo.getUserId()}'/>" class="changeInfoBtn"><i class="fas fa-user-alt editIcon"></i>마이페이지<span class="clickText">click</span></a>
+			</div>
+
 			<div class="myInfoUpdateNotice">
 				<h3>NOTICE</h3>
 				<p><i class="fas fa-info"></i>아이디는 수정 불가 합니다.</p>
@@ -73,19 +77,10 @@
 			</div>	
 		</div>
 
-
-
-		
-
-
 	</section>
 
-
-
-	<jsp:include page="../include/footer.jsp" />
-	
+	<jsp:include page="../include/footer.jsp" />	
 	<button class="jellybutton topbtn" type="button" onclick="goTop()">TOP</button>
-	
 
 </body>
 </html>

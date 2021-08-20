@@ -50,23 +50,23 @@
                <table class="adminContents">
                      <tr class="adminContentsListTitle">
                         <td>번호</td>
+                        <td>글제목<span class="clickText clickTextDisplay">click</span></td>
                         <td>완료</td>
-                        <td>글제목</td>
                         <td>작성자</td>
                         <td>날짜</td>
                      </tr>
                      <c:forEach var="m" items="${losts}">
                         <tr>
                            <td>${m.boardNum}</td>
-                           <c:if test="${m.meet ==1}">
-                              <td>완료</td>
-                           </c:if>
-                           <c:if test="${m.meet ==0}">
-                              <td>미완료</td>
-                           </c:if>
                            <td>
-                           <a href="<c:url value="/admin/lostBoardDetail/${m.boardNum}"/>">${m.title}</a>
-                           </td>
+                           		<a href="<c:url value="/admin/lostBoardDetail/${m.boardNum}"/>">${m.title}</a>
+                           	</td>
+	                           <c:if test="${m.meet ==1}">
+	                              <td>완료</td>
+	                           </c:if>
+	                           <c:if test="${m.meet ==0}">
+	                              <td>미완료</td>
+	                           </c:if>
                            <td>${m.writer}</td>
                            <td><fmt:formatDate value="${m.writeDate}" pattern="yyyy-MM-dd"/></td>
                         </tr>
@@ -92,8 +92,8 @@
                <table class="adminContents">
                   <tr class="adminContentsListTitle">
                      <td>번호</td>
+                     <td>글제목<span class="clickText clickTextDisplay">click</span></td>
                      <td>완료</td>
-                     <td>글제목</td>
                      <td>작성자</td>
                      <td>날짜</td>
                   </tr>
@@ -101,15 +101,15 @@
                   <c:forEach var="f" items="${finds}">
                      <tr>
                         <td>${f.boardNum}</td>
-                        <c:if test="${f.meet ==1}">
-                           <td>완료</td>
-                        </c:if>
-                        <c:if test="${f.meet ==0}">
-                           <td>미완료</td>
-                        </c:if>
-                        <td>
-                        <a href="<c:url value="/admin/findBoardDetail/${f.boardNum}"/>">${f.title}</a>
+                        <td class="adminBoardClickHere">
+                        	<a href="<c:url value="/admin/findBoardDetail/${f.boardNum}"/>">${f.title}</a>
                         </td>
+                        	<c:if test="${f.meet ==1}">
+	                           <td>완료</td>
+	                        </c:if>
+	                        <c:if test="${f.meet ==0}">
+	                           <td>미완료</td>
+	                        </c:if>
                         <td>${f.writer}</td>
                         <td><fmt:formatDate value="${f.writeDate}" pattern="yyyy-MM-dd"/></td>
                      </tr>
