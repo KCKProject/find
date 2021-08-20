@@ -25,7 +25,7 @@
 					</div>
 					<div>
 						<p>${memberAuthInfo.getUserId()}님 환영합니다.</p>
-						<p class="changeMyInfodBtn">나의 정보 확인 & 변경 >><span class="clickText">click</span></p>
+						<p class="changeMyInfodToggle">나의 정보 확인 & 변경 >><span class="clickText">click</span></p>
 					</div>
 				</div>
 				<div class="myActivities">
@@ -47,32 +47,29 @@
 		</div>
 
 		<div class="wrapMyInfoDetail">
-			<h3>내 정보<span class="changePasswordToggle">비밀번호 변경 >><span class="clickText">click</span></span></h3>
+			<h3>내 정보</h3>
 			<div class=myInfoDetail>
 				<div class="myInfoDetailContents">
 					<div>
-						<p><i class="fas fa-user-edit" style="color: white;"></i>아이디</p>
-						<p><i class="fas fa-user-edit" style="color: white;"></i>이름</p>
-						<p><i class="fas fa-user-edit changePhoneToggle"></i>연락처</p>
-						<p><i class="fas fa-user-edit changeEmailToggle"></i>이메일</p>
+						<div>
+							<p>아이디</p>
+							<p>이름</p>
+							<p>연락처</p>
+							<p>이메일</p>
+						</div>
 					</div>
 					<div>
-						<p>${memberAuthInfo.getUserId()}</p>
-						<p>${memberAuthInfo.getUserName()}</p>
-						<p>
-							<span class="currentPhone active">${memberAuthInfo.getPhone()}</span>
-							<input type="text" value="${memberAuthInfo.getPhone()}" class="changePhone">
-							<label for="changePhoneBtn" class="changePhoneBtn"><i class="fas fa-check-circle"></i><input type="submit" value="변경" id="changePhoneBtn" hidden></label>
-						</p>
-						<p>
-							<span class="currentEmail active">${memberAuthInfo.getEmail()}</span>
-							<input type="text" value="${memberAuthInfo.getEmail()}" class="changeEmail">
-							<label for="changeEmsailBtn" class="changeEmailBtn"><i class="fas fa-check-circle"></i><input type="submit" value="변경" id="changeEmailBtn" hidden></label>
-						</p>
+						<div>
+							<p>${memberAuthInfo.getUserId()}</p>
+							<p>${memberAuthInfo.getUserName()}</p>
+							<p>${memberAuthInfo.getPhone()}</p>
+							<p>${memberAuthInfo.getEmail()}</p>
+						</div>
 					</div>
 				</div>
 			</div>
-			
+
+
 			<div class="changePassword">
 				<div class="changePasswordContents">
 					<i class="fas fa-times exitchangePasswordBtn"></i>
@@ -90,9 +87,10 @@
 					</div>
 				</div>	
 			</div>
-
+			<a class="changePasswordToggle changeInfoBtn"><span class="clickText">click</span><i class="fas fa-unlock-alt editIcon"></i>비밀번호 변경</a>
+			<a href="<c:url value='/myPage/myInfoUpdate/${memberAuthInfo.getMemberNumber()}'/>" class="changeInfoBtn"><i class="fas fa-user-edit editIcon"></i>나의정보 수정<span class="clickText">click</span></a>
 		</div>
-
+s
 		<div class="wrapMyPost">
 			<h3>내가 작성한 글<span>찾아주세요</span></h3>
 			<div class="myPost">

@@ -28,6 +28,6 @@ public class MemberAuthService {
 			throw new IdPasswordNotMatchingException();
 		}
 		
-		return new MemberAuthInfo(mem.getUserId(),mem.getUserPassword(),mem.getUserName(),mem.getPhone(),mem.getEmail());
+		return new MemberAuthInfo(mem.getUserId(),mem.getUserPassword(),mem.getUserName(),mem.getPhone(),mem.getEmail(), mem.getMemberNumber());
 	}
 }

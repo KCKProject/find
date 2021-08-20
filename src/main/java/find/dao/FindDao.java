@@ -23,6 +23,7 @@ import find.vo.CriteriaQnABoard;
 import find.vo.FindBoard;
 import find.vo.LostBoard;
 import find.vo.Member;
+import find.vo.MemberAuthInfo;
 import find.vo.MyPageFindPostCommand;
 import find.vo.MyPageLostPostCommand;
 import find.vo.QnABoard;
@@ -49,6 +50,22 @@ public class FindDao {
 							rs.getString("userName"),
 							rs.getString("phone"),
 							rs.getString("email")
+						);
+				m.setMemberNumber(rs.getLong("membernumber"));
+				return m;
+			}
+		};
+		
+		private RowMapper<MemberAuthInfo> rowMapper1 = new RowMapper<MemberAuthInfo>() {
+			
+			@Override
+			public MemberAuthInfo mapRow(ResultSet rs, int rowNum) throws SQLException{
+				MemberAuthInfo m = new MemberAuthInfo(
+						rs.getString("userId"),
+						rs.getString("userPassword"),
+						rs.getString("userName"),
+						rs.getString("phone"),
+						rs.getString("email")
 						);
 				m.setMemberNumber(rs.getLong("membernumber"));
 				return m;
@@ -420,6 +437,13 @@ public class FindDao {
 		
 		return results.isEmpty() ? null : results.get(0);
 	}
+	
+	public MemberAuthInfo selectByMemberNumber1(long memberNumber) {
+		String sql="SELECT * FROM member WHERE memberNumber=?";
+		List<MemberAuthInfo> results = jdbcTemplate.query(sql, rowMapper1, memberNumber);
+		
+		return results.isEmpty() ? null : results.get(0);
+	}
 
 	public LostBoard selectByBoardNum(long boardNum) {
 		String sql="SELECT * FROM lostBoard WHERE boardNum=?";
@@ -682,6 +706,13 @@ public class FindDao {
 		jdbcTemplate.update("UPDATE lostBoard SET REVIEW=? WHERE boardNum=?", review, boardNum);
 	}
 	
+	// 마이페이지 회원 정보 수정
+	public void myInfoUpdate(long memberNumber, MemberAuthInfo myInfoUpdate) {
+		System.out.println("마이페이지 회원정보 수정");
+		String sql="update member set username=?, phone=?, email=? where membernumber=?";
+		jdbcTemplate.update(sql,myInfoUpdate.getUserName(), myInfoUpdate.getPhone(), myInfoUpdate.getEmail(), memberNumber);
+	}
+
 
 	
 }
