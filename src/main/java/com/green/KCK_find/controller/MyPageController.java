@@ -33,20 +33,14 @@ public class MyPageController {
 	@RequestMapping(value = "/myPage/myPage/{memberAuthInfo.getUserId}", method=RequestMethod.GET)
 	public String myPageLostPosts(@PathVariable("memberAuthInfo.getUserId") String id, Model model) {
 		List<MyPageLostPostCommand> lostPosts = dao.userLostPost(id);
-		
-		if(lostPosts == null) {
-			throw new MemberNotFoundException();
-		}
 		model.addAttribute("lostPosts",lostPosts);
 		
 		/////////////////////////////////////////////////////////////////
 		
-		List<MyPageFindPostCommand> findPosts = dao.userFindPost(id);
-		
-		if(findPosts == null) {
-			throw new MemberNotFoundException();
-		}
+		List<MyPageFindPostCommand> findPosts = dao.userFindPost(id);		
 		model.addAttribute("findPosts",findPosts);
+		
+		
 		
 		return "myPage/myPage";
 	}

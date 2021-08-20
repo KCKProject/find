@@ -34,13 +34,17 @@
 					</div>
 					<div class="wrapMyActivitiesContents">
 						<div class="myActivitiesContents">
-							<p>나의 정보<br>등록완료</p>
-							<p>찾아주세요 글<br>1개</p>
+							<p>찾아가세요<br>${findPosts.size()}개</p>
+							<p>찾아주세요<br>${lostPosts.size()}개</p>
 						</div>
 						<div class="myActivitiesContents">
-							<p>현재 미완료 글<br>1개</p>
-							<p>찾아가세요 글<br>1개</p>
+							<p><i class="fas fa-stamp" style="color: gray;"></i> 미발견<br>1개</p>
+							<p><i class="fas fa-stamp" style="color: gray;"></i> 미발견<br>1개</p>
 						</div>
+<!-- 						<div class="myActivitiesContents">
+							<p><i class="fas fa-stamp" style="color: #ed4848;"></i> 발견완료<br>1개</p>
+							<p><i class="fas fa-stamp" style="color: #ed4848;"></i> 발견완료<br>1개</p>
+						</div> -->
 					</div>
 				</div>		
 			</div>
@@ -135,7 +139,7 @@ s
 								</div>
 							</c:forEach>
 						</c:if>
-						<c:if test="${empty lostPosts}">
+						<c:if test="${empty findPosts}">
 							<div>
 								<p></p>
 								<p>찾아가세요 게시글이 없습니다.</p>

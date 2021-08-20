@@ -51,16 +51,19 @@
 								<div><p><br><p></div>
 							</c:if>
 							<div>
-								<p>이름 : ${l.animal} | 성별 : ${l.gender}</P>
+								<p>이름 | ${l.animal}</P>
 							</div>
 							<div>
-								<p>잃어버린 위치 : ${l.location}</p>
+								<p>성별 | ${l.gender}</P>
 							</div>
 							<div>
-								<p>실종 시각 : ${l.lostDate}</p>
+								<p>잃어버린 위치 | ${l.location}</p>
 							</div>
 							<div>
-								<p>특징 : ${l.character}</p>
+								<p>실종 시각 | ${l.lostDate}</p>
+							</div>
+							<div>
+								<p>특징 | ${l.character}</p>
 							</div>
 						</div>
 					</a>

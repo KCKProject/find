@@ -35,19 +35,18 @@
 		<div class="right">
 			<div>
 				<p>
-					회원 
 					<%-- <c:forEach items="${members}" var="i" varStatus="status">
 						<c:if test="${status.last}">
 							${i.memberNumber}명
 						</c:if>
 					</c:forEach> --%>
-					${pageMaker.totalCount}명
+					총 회원 ${pageMaker.totalCount}명
 					<!-- 읽어서 받아올수 있게 만들기 -->
 					<!-- <input type="text" name="search" id="search"
 						placeholder="검색어를 입력해주세요"> <a href=""> <img
 						src="../resources/img/search.png" alt="검색" width="15px"
 						height="15px"></a> -->
-						<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" placeholder="검색어를 입력해주세요"/>
+						<input type="text" name="keyword" id="keywordInput" value="${scri.keyword}" placeholder="이름으로 검색"/>
 
  						<button id="searchBtn" onclick=""><img
 						src="../resources/img/search.png" alt="검색" width="15px"

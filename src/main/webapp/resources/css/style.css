@@ -1743,7 +1743,7 @@ label.right {
 }
 
 .myActivitiesContents p {
-    padding: 10px;
+    padding: 10px 50px 10px 5px;
 }
 
 .wrapMyPost h3 span {
@@ -1913,6 +1913,12 @@ label.right {
     height: 30px;
     border: none;
     border-bottom: 1px solid grey;
+    text-align: center;
+    color: currentColor;
+}
+
+.myInfoUpdate form table tbody tr td input:hover {
+	color: palevioletred;
 }
 
 .myInfoUpdate form table tbody tr td input:hover {

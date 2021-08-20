@@ -26,21 +26,23 @@ public class AdminMemberController {
 		return dao.memberCount();
 	}
 	
-//	public int searchMemberCount(SearchCriteria scri) {
-//		return dao.searchMemberCount(scri);
-//	}
+	
+	public int searchMemberCount(SearchCriteria scri) {
+		return dao.searchMemberCount(scri);
+	}
 
 	@RequestMapping(value = "/admin/adminMember", method= RequestMethod.GET)
 	public String list(@ModelAttribute("scri") SearchCriteria cri, Model model) {
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(memberCount());
+		pageMaker.setTotalCount(searchMemberCount(cri));
 		model.addAttribute("pageMaker",pageMaker);
 		
 		
 		List<Member> members= dao.searchSelectAll(cri);
 		model.addAttribute("members",members);
+		System.out.println(members.size());
 		
 		return "admin/adminMember";
 	}

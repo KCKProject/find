@@ -198,11 +198,11 @@ public class FindDao {
 				"SELECT count(memberNumber) FROM Member where memberNumber > 0",Integer.class);
 		return cnt;
 	}
-//	public int searchMemberCount(SearchCriteria cri) {
-//		Integer cnt = jdbcTemplate.queryForObject(
-//				"SELECT count(memberNumber) FROM Member where userName like '%' || ? || '%' and memberNumber > 0;",Integer.class,cri.getKeyword());
-//		return cnt;
-//	}
+	public int searchMemberCount(SearchCriteria cri) {
+		Integer cnt = jdbcTemplate.queryForObject(
+				"SELECT count(memberNumber) FROM Member where userName like '%' || ? || '%' and memberNumber > 0",Integer.class,cri.getKeyword());
+		return cnt;
+	}
 	public int qnaCount() {
 		Integer cnt = jdbcTemplate.queryForObject(
 				"SELECT count(boardnum) FROM qnaboard where open = 1 and boardnum > 0",Integer.class);

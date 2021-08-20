@@ -36,27 +36,27 @@
 				<div>
 					<div>
 						<p>${memberAuthInfo.getUserId()}</p>
-						<p>${memberAuthInfo.getUserName()}</p>
-						<p>${memberAuthInfo.getPhone()}</p>
-						<p>${memberAuthInfo.getEmail()}</p>
+						<p>${myInfoUpdate.getUserName()}</p>
+						<p>${myInfoUpdate.getPhone()}</p>
+						<p>${myInfoUpdate.getEmail()}</p>
 					</div>
 				</div>
 			</div>
 			
 			<div class="myInfoUpdate"> 
-				<form:form commandName="myInfoUpdateCommand" enctype="multipart/form=data" method="GET">
+				<form:form commandName="myInfoUpdateCommand" enctype="multipart/form=data" method="POST">
 						<table>
 						<tr>
 							<td><i class="fas fa-user myInfoUpdateIcon"></i>이름</td>
-							<td><form:input path="userName" placeholder="수정할 이름" /></td>
+							<td><form:input path="userName" value="${myInfoUpdate.getUserName()}" /></td>
 						</tr>
 						<tr>
 							<td><i class="fas fa-mobile-alt myInfoUpdateIcon"></i>연락처</td>
-							<td><form:input path="phone" placeholder="수정할 연락처" /></td>
+							<td><form:input path="phone" value="${myInfoUpdate.getPhone()}" /></td>
 						</tr>
 						<tr>
 							<td><i class="fas fa-mail-bulk myInfoUpdateIcon"></i>이메일</td>
-							<td><form:input path="email" placeholder="수정할 이메일" /></td>
+							<td><form:input path="email" value="${myInfoUpdate.getEmail()}" /></td>
 						</tr>
 					</table>
 
