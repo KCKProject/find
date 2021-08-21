@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import find.dao.FindDao;
+import find.vo.CommentVo;
 import find.vo.CriteriaMainBoard;
 import find.vo.LostBoard;
 import find.vo.PageMakerMainBoard;
@@ -54,6 +55,10 @@ public class BoardLostController {
 		dao.updateLostHit(boardNum);
 		LostBoard detail = dao.selectByBoardNum(boardNum);
 		model.addAttribute("detail", detail);
+		
+		// 댓글 기능
+		List<CommentVo> cList = dao.selectAllComment(boardNum);
+		model.addAttribute("cList", cList);
 		
 		return "lostPage/lostPageDetail";
 	}

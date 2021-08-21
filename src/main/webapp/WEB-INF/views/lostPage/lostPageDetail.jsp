@@ -11,6 +11,7 @@
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <script src="../../resources/script/script.js" defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
@@ -125,7 +126,8 @@
 					<ul>
 						<c:forEach var="c" items="${cList}">
 							<li>
-								${c.content}
+								<p>${c.content}</p>
+								<p>${c.writer} | ${c.writeDate}</p>
 							</li>
 						</c:forEach>
 					</ul>
@@ -151,17 +153,15 @@
 							<p>프젝님 | 2021-05-21</p>
 						</li>
 					</ul> -->
-					<c:if test="${memberAuthInfo.userId!=null}">
-						<div>
-							<textarea rows="10" cols="10" id="content"></textarea>
-						</div>					
-						<div class="mainMore">
-							<!-- 댓글등록 버튼 -->
-		                    <button class="btn btn-swap" name="uploadComment" id="uploadComment" onclick="uploadComment()">
-		                        upload <span>댓글등록 >></span>
-		                    </button>
-	                	</div>
-	               	</c:if>
+					<div>
+						<textarea rows="10" cols="10" id="content"></textarea>
+					</div>					
+					<div class="mainMore">
+						<!-- 댓글등록 버튼 -->
+	                    <button class="btn btn-swap" name="uploadComment" id="uploadComment" onclick="uploadComment()">
+	                        upload <span>댓글등록 >></span>
+	                    </button>
+                	</div>
 				</div> 
 			</div>
 		</div>
@@ -204,7 +204,7 @@
 	
 	
 	<script>
-	$(document).ready(function(){
+	/*  $(document).ready(function(){
 		commentList();
 		
 		// 댓글 쓰기 버튼 클릭 시
@@ -223,7 +223,29 @@
 			data : {"boardNo" : "${detail.boardNum}"},
 			success : function(result){
 				$("#commentList").html(result);
-			}			
+			}
+		});
+	}  */
+	
+	// 댓글 쓰기 버튼 클릭 시
+	function uploadComment(){
+		if(${memberAuthInfo.userId==null}){
+			alert("로그인 후 이용가능합니다.");
+			location.href="<c:url value='/enter/login'/>";
+		}
+		var text=$("#content").val();
+		var bno="${detail.boardNum}";
+		var param={"comment":text, "bno":bno};
+		$.ajax({
+			type : "POST",
+			url : "${path}/lostPage/writeComment",
+			data : param,
+			success : function(){
+				alert('댓글 등록에 성공했습니다.');
+			}
+			error : function(){
+				alert('댓글 등록에 실패했습니다.');
+			}
 		});
 	}
 	

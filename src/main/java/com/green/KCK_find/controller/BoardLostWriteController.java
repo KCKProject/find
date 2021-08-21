@@ -107,12 +107,21 @@ public class BoardLostWriteController {
 			return "redirect:/lostPage/lostPageDetail/" + dto.getBoardNum();
 		}
 		
-	// 댓글 목록 조회
+	// 댓글 등록
+		@RequestMapping(value="/lostPage/writeComment", method=RequestMethod.POST)
 		@ResponseBody
-		@RequestMapping(value="/lostPage/selectCommentList")
-		public List<CommentVo> listCommand(@RequestParam int bno, Model model){
-			List<CommentVo> cList = dao.selectAllComment(bno);
-			model.addAttribute("cList", cList);
-			return cList;
+		public String writeComment() {
+			System.out.println("댓글 등록 구현");
+			
+			return "lostPage/lostPageList";
 		}
+	// 댓글 목록 조회
+//		@ResponseBody
+//		@RequestMapping(value="/lostPage/selectCommentList", method=RequestMethod.GET)
+//		public List<CommentVo> listCommand(@RequestParam int bno, Model model){
+//			System.out.println("컨트롤러");
+//			List<CommentVo> cList = dao.selectAllComment(bno);
+//			model.addAttribute("cList", cList);
+//			return cList;
+//		}
 }

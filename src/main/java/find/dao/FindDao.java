@@ -145,7 +145,7 @@ public class FindDao {
 							rs.getLong("bNum"),
 							rs.getString("writer"),
 							rs.getDate("writeDate"),
-							rs.getNString("content")
+							rs.getString("content")
 						);
 				c.setcNum(rs.getLong("cNum"));
 				return c;
@@ -612,11 +612,11 @@ public class FindDao {
 
 ///////////////////////// 댓글 (comment)
 	// 댓글 목록 불러오기
-		public List<CommentVo> selectAllComment(int bno) {
+		public List<CommentVo> selectAllComment(long bNum) {
 			String sql="SELECT * FROM lostComment WHERE bNum=?";
-			List<CommentVo> results = jdbcTemplate.query(sql, commentRowMapper, bno);
+			List<CommentVo> results = jdbcTemplate.query(sql, commentRowMapper, bNum);
 			
-			return results;
+			return results.isEmpty() ? null : results;
 		}
 		
 		
@@ -706,4 +706,5 @@ public class FindDao {
 		System.out.println("나도도착 리뷰-lost");
 		jdbcTemplate.update("UPDATE lostBoard SET REVIEW=? WHERE boardNum=?", review, boardNum);
 	}
+}
 
