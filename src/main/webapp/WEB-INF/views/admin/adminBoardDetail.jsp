@@ -47,7 +47,7 @@
 				<br>
 				<div class="adminBoardDetailBtn">
 					<a href="<c:url value='/admin/adminBoard'/>">
-						<button class="btn btn-swap"> MORE <span>전체 글 보기 >></span> </button>
+						<button class="btn btn-swap"> MORE <span>전체 글 보기</span> </button>
 					</a>
 					<a href="<c:url value='/admin/adminBoard'/>">
 						<button class="btn btn-swap"> DELETE <span>글 삭제 >></span> </button>

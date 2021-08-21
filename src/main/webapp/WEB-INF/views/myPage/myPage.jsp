@@ -25,7 +25,7 @@
 					</div>
 					<div>
 						<p>${memberAuthInfo.getUserId()}님 환영합니다.</p>
-						<p class="changeMyInfodBtn">나의 정보 확인 & 변경 >><span class="clickText">click</span></p>
+						<p class="changeMyInfodToggle">나의 정보 확인 & 변경 >><span class="clickText">click</span></p>
 					</div>
 				</div>
 				<div class="myActivities">
@@ -34,45 +34,58 @@
 					</div>
 					<div class="wrapMyActivitiesContents">
 						<div class="myActivitiesContents">
-							<p>나의 정보<br>등록완료</p>
-							<p>찾아주세요 글<br>1개</p>
+							<p>찾아가세요<br>
+								<c:if test="${empty findPosts.size()}">0개</c:if>
+								<c:if test="${!empty findPosts.size()}">${findPosts.size()}개</c:if>
+							</p>
+							<p>나의 연락처<br>
+								<c:if test="${!empty memberAuthInfo.getPhone()}"><span> 등록완료 <span> </c:if>
+								<c:if test="${empty memberAuthInfo.getPhone()}"><span style="color: #ed4848;"> 미등록 <span> </c:if>
+							</p>
 						</div>
 						<div class="myActivitiesContents">
-							<p>현재 미완료 글<br>1개</p>
-							<p>찾아가세요 글<br>1개</p>
+							<p>찾아주세요<br>
+								<c:if test="${empty lostPosts.size()}">0개</c:if>
+								<c:if test="${!empty lostPosts.size()}">${lostPosts.size()}개</c:if>
+							</p>
+							<p>나의 이메일<br>
+								<c:if test="${!empty memberAuthInfo.getEmail()}"><span> 등록완료 <span> </c:if>
+								<c:if test="${empty memberAuthInfo.getEmail()}"><span style="color: #ed4848;"> 미등록<span> </c:if>
+							</p>
 						</div>
+<!-- 						<div class="myActivitiesContents">
+							<p><i class="fas fa-stamp" style="color: #ed4848;"></i> 발견완료<br>1개</p>
+							<p><i class="fas fa-stamp" style="color: #ed4848;"></i> 발견완료<br>1개</p>
+						</div> -->
 					</div>
 				</div>		
 			</div>
 		</div>
 
 		<div class="wrapMyInfoDetail">
-			<h3>내 정보<span class="changePasswordToggle">비밀번호 변경 >><span class="clickText">click</span></span></h3>
+			<h3>내 정보</h3>
 			<div class=myInfoDetail>
 				<div class="myInfoDetailContents">
 					<div>
-						<p><i class="fas fa-user-edit" style="color: white;"></i>아이디</p>
-						<p><i class="fas fa-user-edit" style="color: white;"></i>이름</p>
-						<p><i class="fas fa-user-edit changePhoneToggle"></i>연락처</p>
-						<p><i class="fas fa-user-edit changeEmailToggle"></i>이메일</p>
+						<div>
+							<p>아이디</p>
+							<p>이름</p>
+							<p>연락처</p>
+							<p>이메일</p>
+						</div>
 					</div>
 					<div>
-						<p>${memberAuthInfo.getUserId()}</p>
-						<p>${memberAuthInfo.getUserName()}</p>
-						<p>
-							<span class="currentPhone active">${memberAuthInfo.getPhone()}</span>
-							<input type="text" value="${memberAuthInfo.getPhone()}" class="changePhone">
-							<label for="changePhoneBtn" class="changePhoneBtn"><i class="fas fa-check-circle"></i><input type="submit" value="변경" id="changePhoneBtn" hidden></label>
-						</p>
-						<p>
-							<span class="currentEmail active">${memberAuthInfo.getEmail()}</span>
-							<input type="text" value="${memberAuthInfo.getEmail()}" class="changeEmail">
-							<label for="changeEmsailBtn" class="changeEmailBtn"><i class="fas fa-check-circle"></i><input type="submit" value="변경" id="changeEmailBtn" hidden></label>
-						</p>
+						<div>
+							<p>${memberAuthInfo.getUserId()}</p>
+							<p>${memberAuthInfo.getUserName()}</p>
+							<p>${memberAuthInfo.getPhone()}</p>
+							<p>${memberAuthInfo.getEmail()}</p>
+						</div>
 					</div>
 				</div>
 			</div>
-			
+
+
 			<div class="changePassword">
 				<div class="changePasswordContents">
 					<i class="fas fa-times exitchangePasswordBtn"></i>
@@ -90,7 +103,10 @@
 					</div>
 				</div>	
 			</div>
-
+			<div>
+				<a class="changePasswordToggle changeInfoBtn"><span class="clickText">click</span><i class="fas fa-unlock-alt editIcon"></i>비밀번호 변경</a>
+				<a href="<c:url value='/myPage/myInfoUpdate/${memberAuthInfo.getMemberNumber()}'/>" class="changeInfoBtn"><i class="fas fa-user-edit editIcon"></i>나의정보 수정<span class="clickText">click</span></a>
+			</div>
 		</div>
 
 		<div class="wrapMyPost">
@@ -137,7 +153,7 @@
 								</div>
 							</c:forEach>
 						</c:if>
-						<c:if test="${empty lostPosts}">
+						<c:if test="${empty findPosts}">
 							<div>
 								<p></p>
 								<p>찾아가세요 게시글이 없습니다.</p>

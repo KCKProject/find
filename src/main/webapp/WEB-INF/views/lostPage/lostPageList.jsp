@@ -51,7 +51,10 @@
 								<div><p><br><p></div>
 							</c:if>
 							<div>
-								<p>이름 : ${l.animal} | 성별 : ${l.gender}</P>
+								<p>이름 : ${l.animal}</P>
+							</div>
+							<div>
+								<p>성별 : ${l.gender}</P>
 							</div>
 							<div>
 								<p>잃어버린 위치 : ${l.location}</p>

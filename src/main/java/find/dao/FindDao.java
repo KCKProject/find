@@ -24,6 +24,7 @@ import find.vo.CriteriaQnABoard;
 import find.vo.FindBoard;
 import find.vo.LostBoard;
 import find.vo.Member;
+import find.vo.MemberAuthInfo;
 import find.vo.MyPageFindPostCommand;
 import find.vo.MyPageLostPostCommand;
 import find.vo.QnABoard;
@@ -50,6 +51,22 @@ public class FindDao {
 							rs.getString("userName"),
 							rs.getString("phone"),
 							rs.getString("email")
+						);
+				m.setMemberNumber(rs.getLong("membernumber"));
+				return m;
+			}
+		};
+		
+		private RowMapper<MemberAuthInfo> rowMapper1 = new RowMapper<MemberAuthInfo>() {
+			
+			@Override
+			public MemberAuthInfo mapRow(ResultSet rs, int rowNum) throws SQLException{
+				MemberAuthInfo m = new MemberAuthInfo(
+						rs.getString("userId"),
+						rs.getString("userPassword"),
+						rs.getString("userName"),
+						rs.getString("phone"),
+						rs.getString("email")
 						);
 				m.setMemberNumber(rs.getLong("membernumber"));
 				return m;
@@ -196,11 +213,11 @@ public class FindDao {
 				"SELECT count(memberNumber) FROM Member where memberNumber > 0",Integer.class);
 		return cnt;
 	}
-//	public int searchMemberCount(SearchCriteria cri) {
-//		Integer cnt = jdbcTemplate.queryForObject(
-//				"SELECT count(memberNumber) FROM Member where userName like '%' || ? || '%' and memberNumber > 0;",Integer.class,cri.getKeyword());
-//		return cnt;
-//	}
+	public int searchMemberCount(SearchCriteria cri) {
+		Integer cnt = jdbcTemplate.queryForObject(
+				"SELECT count(memberNumber) FROM Member where userName like '%' || ? || '%' and memberNumber > 0",Integer.class,cri.getKeyword());
+		return cnt;
+	}
 	public int qnaCount() {
 		Integer cnt = jdbcTemplate.queryForObject(
 				"SELECT count(boardnum) FROM qnaboard where open = 1 and boardnum > 0",Integer.class);
@@ -432,6 +449,13 @@ public class FindDao {
 	public Member selectByMemberNumber(long memberNumber) {
 		String sql="SELECT * FROM member WHERE memberNumber=?";
 		List<Member> results = jdbcTemplate.query(sql, rowMapper, memberNumber);
+		
+		return results.isEmpty() ? null : results.get(0);
+	}
+	
+	public MemberAuthInfo selectByMemberNumber1(long memberNumber) {
+		String sql="SELECT * FROM member WHERE memberNumber=?";
+		List<MemberAuthInfo> results = jdbcTemplate.query(sql, rowMapper1, memberNumber);
 		
 		return results.isEmpty() ? null : results.get(0);
 	}
@@ -705,6 +729,13 @@ public class FindDao {
 	public void writeReview2(String review, long boardNum) {
 		System.out.println("나도도착 리뷰-lost");
 		jdbcTemplate.update("UPDATE lostBoard SET REVIEW=? WHERE boardNum=?", review, boardNum);
+	}
+	
+	// 마이페이지 회원 정보 수정
+	public void myInfoUpdate(long memberNumber, MemberAuthInfo myInfoUpdate) {
+		System.out.println("마이페이지 회원정보 수정");
+		String sql="update member set username=?, phone=?, email=? where membernumber=?";
+		jdbcTemplate.update(sql,myInfoUpdate.getUserName(), myInfoUpdate.getPhone(), myInfoUpdate.getEmail(), memberNumber);
 	}
 }
 

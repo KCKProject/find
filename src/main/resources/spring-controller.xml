@@ -100,5 +100,10 @@
    <bean id="MyPageController" class="com.green.KCK_find.controller.MyPageController">
    		<property name="dao" ref="findDao"/>
    </bean>   
+   
+    <!-- myPage -> myInfoUpdate -->
+   <bean id="MyInfoUpdateController" class="com.green.KCK_find.controller.MyInfoUpdateController">
+   		<property name="dao" ref="findDao"/>
+   </bean>   
 
 </beans>

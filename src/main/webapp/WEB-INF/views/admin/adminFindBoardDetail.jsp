@@ -32,18 +32,33 @@
 		<span class="line"></span>
 
 		<div class="right">
-			<div class="wrapContents">
+			<div class="wrapContents adminBoardDetail">
 				<label>
 					글제목 : ${findBoard.title}
 				</label>
 				<br>
 				<label>
-					작성자 : ${findBoard.writer}
+					작성자 : ${findBoard.writer} | 작성일 : <fmt:formatDate value="${findBoard.writeDate}" pattern="yyyy-MM-dd"/>
 				</label>
 				<br>
-				<label>
-					작성일 : <fmt:formatDate value="${findBoard.writeDate}" pattern="yyyy-MM-dd"/>
-				</label>
+				<h3>Board Contents</h3>
+					<div class="adminBoardDetailContents">
+						<label>
+							<div>
+								<p><i class="fas fa-paperclip adminBoardDetailContentsIcon"></i> kind : ${findBoard.kind}</p>
+								<p><i class="fas fa-paperclip adminBoardDetailContentsIcon"></i> location : ${findBoard.location}</p>
+								<p><i class="fas fa-paperclip adminBoardDetailContentsIcon"></i> character : ${findBoard.character}</p>
+								<p><i class="fas fa-paperclip adminBoardDetailContentsIcon"></i> gender : ${findBoard.gender}</p>
+								<p><i class="fas fa-paperclip adminBoardDetailContentsIcon"></i> email : ${findBoard.email}</p>
+								<p><i class="fas fa-paperclip adminBoardDetailContentsIcon"></i> phone : ${findBoard.phone}</p>
+								<p><i class="fas fa-paperclip adminBoardDetailContentsIcon"></i> lostDate : ${findBoard.findDate}</p>
+								<p><i class="fas fa-paperclip adminBoardDetailContentsIcon"></i> memo : ${findBoard.memo}</p>
+								<p><i class="fas fa-paperclip adminBoardDetailContentsIcon"></i> meet : ${findBoard.meet} (1 = 발견완료 | 0 = 미발견)</p>
+								<p><i class="fas fa-paperclip adminBoardDetailContentsIcon"></i> review : ${findBoard.review}</p>
+								<p><i class="fas fa-paperclip adminBoardDetailContentsIcon"></i> hit : ${findBoard.hit}</p>
+							</div>
+						</label>
+					</div>
 				<br>
 				<div class="adminBoardDetailBtn">
 					<a href="<c:url value='/admin/adminBoard'/>">

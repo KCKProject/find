@@ -16,54 +16,38 @@ if (reviewToggleBtn != null ) {
 }
 
 
-var changeMyInfodBtn = document.querySelector('.changeMyInfodBtn');
+var changeMyInfodToggle = document.querySelector('.changeMyInfodToggle');
 var wrapMyInfoDetail = document.querySelector('.wrapMyInfoDetail');
 
-changeMyInfodBtn.addEventListener('click', () => {
-    wrapMyInfoDetail.classList.toggle('active');
-    document.documentElement.scrollTop = 300;
-});
+if (changeMyInfodToggle != null) {
+	changeMyInfodToggle.addEventListener('click', () => {
+	    wrapMyInfoDetail.classList.toggle('active');
+	    document.documentElement.scrollTop = 300;
+	});
+}
 
 
 var changePasswordToggle = document.querySelector('.changePasswordToggle');
 var changePassword = document.querySelector('.changePassword');
 
-changePasswordToggle.addEventListener('click', () => {
-    changePassword.classList.toggle('active');
-    document.documentElement.scrollTop = 400;
-});
+if (changePasswordToggle != null) {
+	changePasswordToggle.addEventListener('click', () => {
+	    changePassword.classList.toggle('active');
+	    document.documentElement.scrollTop = 400;
+	});
+}	
 
 var exitchangePasswordBtn = document.querySelector('.exitchangePasswordBtn');
 var changePassword = document.querySelector('.changePassword');
 
-exitchangePasswordBtn.addEventListener('click', () => {
-    changePassword.classList.toggle('active');
-    document.documentElement.scrollTop = 200;
-});
+if (exitchangePasswordBtn != null) {
+	exitchangePasswordBtn.addEventListener('click', () => {
+	    changePassword.classList.toggle('active');
+	    document.documentElement.scrollTop = 200;
+	});
+}
 
 
-
-var changePhoneToggle = document.querySelector('.changePhoneToggle');
-var changePhone = document.querySelector('.changePhone');
-var changePhoneBtn = document.querySelector('.changePhoneBtn');
-var currentPhone = document.querySelector('.currentPhone');
-
-changePhoneToggle.addEventListener('click', () => {
-    changePhone.classList.toggle('active');
-    changePhoneBtn.classList.toggle('active');
-    currentPhone.classList.toggle('active');
-});
-
-var changeEmailToggle = document.querySelector('.changeEmailToggle');
-var changeEmail = document.querySelector('.changeEmail');
-var changeEmailBtn = document.querySelector('.changeEmailBtn');
-var currentEmail = document.querySelector('.currentEmail');
-
-changeEmailToggle.addEventListener('click', () => {
-    changeEmail.classList.toggle('active');
-    changeEmailBtn.classList.toggle('active');
-    currentEmail.classList.toggle('active');
-});
 
 
 

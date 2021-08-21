@@ -1,6 +1,7 @@
 package find.vo;
 
 public class MemberAuthInfo { // 회원 로그인 정보를 기억할 클래스
+	private long memberNumber;
 	private String userId;
 	private String userPassword;
 	private String userName;
@@ -13,6 +14,28 @@ public class MemberAuthInfo { // 회원 로그인 정보를 기억할 클래스
 		this.userName = userName;
 		this.phone = phone;
 		this.email = email;
+	}
+	
+	public MemberAuthInfo(String userId, String userPassword, String userName, String phone, String email, Long memberNumber) {
+		this.memberNumber = memberNumber;
+		this.userId = userId;
+		this.userPassword = userPassword;
+		this.userName = userName;
+		this.phone = phone;
+		this.email = email;
+	}
+	
+	public MemberAuthInfo(String userName, String phone, String email) {
+		this.userName = userName;
+		this.phone = phone;
+		this.email = email;
+	}
+	
+	public long getMemberNumber() {
+		return memberNumber;
+	}
+	public void setMemberNumber(long memberNumber) {
+		this.memberNumber = memberNumber;
 	}
 
 	public String getUserId() {
