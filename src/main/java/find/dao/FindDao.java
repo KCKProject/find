@@ -496,6 +496,8 @@ public class FindDao {
 		return results.isEmpty() ? null : results;
 	}
 	
+	
+	// 게시판 조회수
 	public void updateLostHit(long boardNum) {
 		jdbcTemplate.update(
 				new PreparedStatementCreator() {
@@ -515,6 +517,8 @@ public class FindDao {
 				boardNum);
 	}
 	
+	
+	// 게시판 삭제
 	public void deleteByLostBoardNum(long boardNum) {
 		String sql="DELETE FROM lostBoard WHERE boardNum=?";
 		jdbcTemplate.update(sql,boardNum);
@@ -530,6 +534,13 @@ public class FindDao {
 		jdbcTemplate.update(sql,boardNum);
 	}
 	
+	public void deleteCommentByBoardNum(long boardNum, String board) {
+		String sql="DELETE FROM "+board+" WHERE bNum=?";
+		jdbcTemplate.update(sql,boardNum);		
+	}
+	
+	
+	// 게시판 발견완료 여부 & 공개 여부
 	public void updateMeet(long boardNum, int meet, String board) {
 		String sql = "";
 		
@@ -635,53 +646,27 @@ public class FindDao {
 	}
 
 ///////////////////////// 댓글 (comment)
-	// 댓글 목록 불러오기
-		public List<CommentVo> selectAllComment(long bNum) {
-			String sql="SELECT * FROM lostComment WHERE bNum=?";
+		// 댓글 목록 불러오기	
+		public List<CommentVo> selectAllComment(long bNum, String board) {
+			String sql="SELECT * FROM "+board+" WHERE bNum=?";
 			List<CommentVo> results = jdbcTemplate.query(sql, commentRowMapper, bNum);
 			
 			return results.isEmpty() ? null : results;
 		}
 		
+		// 댓글 등록
+		public int insertLostComment(CommentVo cVo) {
+			String sql="INSERT INTO LostComment VALUES(lost_c_seq.nextval, ?, ?, sysdate, ?)";
+			jdbcTemplate.update(sql,cVo.getbNum(),cVo.getWriter(),cVo.getContent());
+			return 1;
+		}
+				
+		public int insertFindComment(CommentVo cVo) {
+			String sql="INSERT INTO FindComment VALUES(find_c_seq.nextval, ?, ?, sysdate, ?)";
+			jdbcTemplate.update(sql,cVo.getbNum(),cVo.getWriter(),cVo.getContent());
+			return 1;
+		}
 		
-		
-//	public ResponseEntity<byte[]> disPlay(HttpServletRequest request) throws Exception{
-//        //fileName 은 /년/월/일/파일명의 형태로 입력을 받는다.
-//        System.out.println("서비스까지 이동");
-//		String uploadPath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
-//		System.out.println("uploadPath : "+uploadPath);
-//		
-//        InputStream in=null;
-//        //ResponseEntity<byte[]> 로 결과는 실제로 파일의 데이터가 된다.
-//        //컨트롤에서 @ResponseBody 를 이용해야 하며 
-//        //byte[] 데이터가 그대로 전송될 것임을 명시한다.
-//        ResponseEntity<byte[]> entity=null;
-//         
-//        try{
-////        	String formatName =fileName.substring(fileName.lastIndexOf(".")+1);
-////            
-////           MediaType mType =MediaUtils.getMediaType(formatName);
-//        	String fileName = detail.getStoredFileName();
-//    		String mType = detail.getOriginalFileExtension();
-//            System.out.println("fileName : "+fileName);
-//            HttpHeaders headers =new HttpHeaders();
-//            //   경로 +/년/월/일 /파일이름
-//            in =new FileInputStream(uploadPath+fileName);
-//            
-//            //실제로 데이터를 읽는 부분은 commons 라이브러리의 기능을 활용해서 대상
-//            // 파일에서 데이터를 읽어내는 IOUtils.toByteArray() 이다.
-//            entity=new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
-//             
-//        }catch(Exception e){
-//            e.printStackTrace();
-//            entity=new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
-//        }finally{
-//            in.close();
-//        }
-//        System.out.println("entity : "+entity);
-//        return entity;
-//    }
-	
 	
 	// LostBoard 수정
 	public void modifyLostBoard(LostBoard lb, long boardNum) {
@@ -737,5 +722,6 @@ public class FindDao {
 		String sql="update member set username=?, phone=?, email=? where membernumber=?";
 		jdbcTemplate.update(sql,myInfoUpdate.getUserName(), myInfoUpdate.getPhone(), myInfoUpdate.getEmail(), memberNumber);
 	}
+
 }
 

@@ -881,6 +881,20 @@ label.right {
 
 }
 
+/* 버튼수정 */
+#lostPage-comment-bottom .btn{
+	width: 50px;
+	border-radius: 8px;
+	color: white;
+	background-color: #b3aeae;
+	padding: 7px 5px;
+	margin-top: 2px;
+}
+
+#lostPage-comment-bottom .btn:hover{
+	background-color: #ed4848;
+}
+
 /* -- more 버튼 효과 설정 -- */
 
 

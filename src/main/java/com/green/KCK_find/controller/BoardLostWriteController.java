@@ -1,7 +1,6 @@
 package com.green.KCK_find.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -11,9 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import find.dao.FindDao;
@@ -110,7 +107,12 @@ public class BoardLostWriteController {
 	// 댓글 등록
 		@RequestMapping(value="/lostPage/writeComment", method=RequestMethod.POST)
 		@ResponseBody
-		public String writeComment() {
+		public String writeComment(CommentVo cVo, HttpSession session) {
+			MemberAuthInfo user = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
+			String userId = user.getUserId();
+			String comment = cVo.getContent();
+			System.out.println("userId : "+userId);
+			System.out.println("comment : "+comment);
 			System.out.println("댓글 등록 구현");
 			
 			return "lostPage/lostPageList";

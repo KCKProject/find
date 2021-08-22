@@ -11,6 +11,8 @@
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <script src="../../resources/script/script.js" defer></script>
+<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
@@ -123,45 +125,34 @@
 				</form>
 			</div>
 
-
-
 			<div class="wrap-lostPage-comment">
 				<div class="lostPage-comment-top">
 					<h4>댓글을 남겨주세요 !</h4>
 					<p>*댓글을 남겨주세요! 여러분의 작은 관심이 희망의 끈이 됩니다. 욕설/명예훼손의 글은 동의 없이 삭제됩니다.</p>
 				</div>
 				<div class="lostPage-comment-bottom">
-					<ul>
-						<li>
-							<p>털이 하얘서 금방 찾을 수 있을거에요 !! 힘내세요 ㅠㅠ</p>
-							<p>프젝님 | 2021-05-21</p>
-						</li>
-						<li>
-							<p>털이 하얘서 금방 찾을 수 있을거에요 !! 힘내세요 ㅠㅠ</p>
-							<p>프젝님 | 2021-05-21</p>
-						</li>
-						<li>
-							<p>힘내세요 ㅠㅠ</p>
-							<p>프젝님 | 2021-05-21</p>
-						</li>
-						<li>
-							<p>프로젝트 마감일정 0825</p>
-							<p>프젝님 | 2021-05-21</p>
-						</li>
-						<li>
-							<p>수원시청 뒤쪽 ㅠㅠㅠㅠㅠㅠ</p>
-							<p>프젝님 | 2021-05-21</p>
-						</li>
-					</ul>
+					<div id="lostPage-comment-bottom">
+						<ul>
+							<c:forEach var="c" items="${cList}">
+								<li>
+									<p>${c.content}</p>
+									<p>${c.writer} | ${c.writeDate}</p>									
+								</li>
+								<c:if test="${c.writer==memberAuthInfo.userId}">
+           							<button class="btn">수정</button>
+           							<button class="btn">삭제</button>
+           						</c:if>
+							</c:forEach>
+						</ul>
+					</div>
 					<div>
-						<textarea rows="10" cols="10"></textarea>
+						<textarea rows="10" cols="10" id="content"></textarea>
 					</div>
 					<div class="mainMore">
 						<!-- 댓글등록 버튼 -->
-						<button class="btn btn-swap" name="uploadComment"
-							id="uploadComment" onclick="uploadComment()">
+						<a class="btn btn-swap" name="uploadComment" id="uploadComment">
 							upload <span>댓글등록 >></span>
-						</button>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -207,22 +198,94 @@
 	</c:if>
 
 	<script>
-		function del(boardNum) {
-			var chk = confirm("정말 삭제하시겠습니까?");
-			if (chk) {
-				location.href="<c:url value='/findPage/delete/'/>"+boardNum;
+	$(document).ready(function() {
+		// 댓글 쓰기 버튼 클릭 시
+		$("#uploadComment").on("click", function(){
+			if(!'${memberAuthInfo.userId}'){
+				alert("로그인 후 이용가능합니다.");
+			}else{
+				var text=$("#content").val();
+				var bno=${detail.boardNum};
+				var writer="${memberAuthInfo.userId}";
+				$.ajax({
+					type : "POST",
+					url : "writeComment",
+					data : {"writer" : writer,
+                			"bno" : bno,
+                       		"text" : text},
+					success : function(result){
+		                var msg;
+
+		                switch(result) {
+		                case 1 :  //성공
+		                msg = "댓글이 등록되었습니다.";
+		                // 내용을 작성한 textarea를 다 지워줌
+		                $("#content").val("");
+		                selectRlist(); // selectRlist()함수 호출
+		                break;
+   
+		                case 0 :  //등록실패
+		                	msg = "댓글 등록에 실패했습니다.";
+		                    break;
+		                }
+	                    alert(msg);
+	                },
+	                error : function(){
+	                	console.log("ajax 통신 실패");
+	                }
+				});
 			}
-		}
+		});
+	});
 		
-		function onClickHandler(meet) {
-			alert(meet)
+	// 댓글 목록 조회 함수
+    function selectRlist() {
+    	var bNo = "${detail.boardNum}";
+        
+        $.ajax({
+        	url : "commentList",
+            type : "POST",
+            data : {"bNo" : bNo},
+            dataType : "json",
+            success : function(cList){
+            	var output = "<ul>";
+            	for(var i in cList){
+            		output += "<li>";
+            		output += "<p>"+cList[i].content+"</p>";
+            		output += "<p>"+cList[i].writer+" | "+cList[i].writeDate+"</p>";
+            		output += "</li>";
+            		if(cList[i].writer=="${memberAuthInfo.userId}"){
+            			output += '<button class="btn">수정</button>'; 
+            			output += '<button class="btn">삭제</button>';
+            		}
+            		
+            	}
+            	output += "</ul>";
+            	$("#lostPage-comment-bottom").html(output);
+            },
+            error : function(){
+            	console.log("댓글 목록 조회 ajax 통신 실패");
+            }
+        });
+    }
+	
+	// 게시글 삭제
+	function del(boardNum) {
+		var chk = confirm("정말 삭제하시겠습니까?");
+		if (chk) {
+			location.href="<c:url value='/findPage/delete/'/>"+boardNum;
 		}
-		
-		// 이미지 클릭시 원본 크기로 팝업 보기
-		var img = document.getElementsByTagName("img");
-	    for (var x = 0; x < img.length; x++) {
-	      img.item(x).onclick=function() {window.open(this.src)}; 
-	    }
+	}
+	
+	function onClickHandler(meet) {
+		alert(meet)
+	}
+	
+	// 이미지 클릭시 원본 크기로 팝업 보기
+	var img = document.getElementsByTagName("img");
+    for (var x = 0; x < img.length; x++) {
+      img.item(x).onclick=function() {window.open(this.src)}; 
+    }
 	</script>
 </body>
 </html>
