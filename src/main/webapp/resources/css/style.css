@@ -915,29 +915,38 @@ label.right {
 	margin-bottom: 30px;
     padding: 20px 30px 0px 23px;
     border-radius: 10px;
-    border-color: white;
 }
 
 .wrapBoardlist ul li:hover {
-    box-shadow: 2px 5px 10px 6px ghostwhite;
+    box-shadow: 2px 5px 10px 6px #cccccc21;
     cursor: pointer;
 }
 
-
-
-.wrapBoardlist ul li:hover .post-photo-top img{ 
-	width: 205px;
-	height: 255px;
-} 
-
-.post-photo-top { 
-	box-shadow: 2px 2px 2px 2px #80808036;
+.img_box {
+	overflow: hidden;
+	border-radius: 8px;
+	border: none;
 	width: 200px;
-	height: 250px;
-	border-radius: 10px;
+    height: 250px;
 }
 
-.post-photo-top img {
+.img_box > img {
+	transition: transform 1.5s;
+	width: 200px;
+	height: 250px;
+}
+
+.wrapBoardlist ul li:hover img {
+	transform: scale(1.2);
+}
+
+.wrapBoardlist ul li:hover .img_box {
+    border: 1px solid #fed400;
+}
+
+
+.post-photo-top { 
+	box-shadow: 2px 2px 10px 2px #80808036;
 	width: 200px;
 	height: 250px;
 	border-radius: 8px;
@@ -956,6 +965,9 @@ label.right {
 .finishText {
 	color: #ed4848;
 }
+
+
+
 
 /* ========================= */
 /* index-6 board(lost,find) write page
