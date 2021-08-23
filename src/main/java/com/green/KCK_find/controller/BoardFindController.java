@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import find.dao.FindDao;
 import find.vo.CommentVo;
 import find.vo.FindBoard;
-import find.vo.MemberAuthInfo;
 import find.vo.PageMakerMainBoard;
 import find.vo.SearchCriteriaMainBoard;
 
@@ -101,14 +100,12 @@ public class BoardFindController {
 		// image = storedFileName = 저장된 이미지 이름
 		FindBoard detail = dao.selectByFindBoardNum(boardNum);
 		String image = detail.getStoredFileName();
-		String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
-		File file = new File(path,image);
-		File thumb = new File(path,"s_"+image);
-			if(file.exists()) {
-				file.delete();
-				thumb.delete();
-			}
-	
+		if(image!=null) {
+			String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+			File file = new File(path,image);
+			file.delete();
+		}
+		
 		// 게시글 댓글 삭제
 		String board = "findComment";
 		dao.deleteCommentByBoardNum(boardNum, board);

@@ -134,17 +134,27 @@
 					<div id="lostPage-comment-bottom">
 						<ul>
 							<c:forEach var="c" items="${cList}">
+							<%-- <c:set var="i" value="${i+1}"/> --%>
 								<li>
-									<p>${c.content}</p>
+									<input type="hidden" class="cNum" value="${c.cNum}">
+									<p class="con">${c.content}</p>
 									<p>${c.writer} | ${c.writeDate}</p>									
 								</li>
 								<c:if test="${c.writer==memberAuthInfo.userId}">
-           							<button class="btn">수정</button>
-           							<button class="btn">삭제</button>
+           							<button class="btn commentMod">수정</button>
+           							<button class="btn commentDel">삭제</button>
            						</c:if>
 							</c:forEach>
 						</ul>
 					</div>
+					
+					<!-- 댓글 변경 영역 -->
+					<div id="comment-modify" style="display:none">
+						<textarea rows="10" cols="10" id="modifyContent"></textarea>
+						<button class="btn" id="commentModFin" class="commentModFin">완료</button>
+           				<button class="btn" id="commentDel">삭제</button>
+					</div>
+					
 					<div>
 						<textarea rows="10" cols="10" id="content"></textarea>
 					</div>
@@ -205,6 +215,9 @@
 				alert("로그인 후 이용가능합니다.");
 			}else{
 				var text=$("#content").val();
+				if(!text){
+					alert('내용을 입력해주세요.');
+				};				
 				var bno=${detail.boardNum};
 				var writer="${memberAuthInfo.userId}";
 				$.ajax({
@@ -236,39 +249,76 @@
 				});
 			}
 		});
-	});
+	
 		
 	// 댓글 목록 조회 함수
-    function selectRlist() {
-    	var bNo = "${detail.boardNum}";
-        
-        $.ajax({
-        	url : "commentList",
-            type : "POST",
-            data : {"bNo" : bNo},
-            dataType : "json",
-            success : function(cList){
-            	var output = "<ul>";
-            	for(var i in cList){
-            		output += "<li>";
-            		output += "<p>"+cList[i].content+"</p>";
-            		output += "<p>"+cList[i].writer+" | "+cList[i].writeDate+"</p>";
-            		output += "</li>";
-            		if(cList[i].writer=="${memberAuthInfo.userId}"){
-            			output += '<button class="btn">수정</button>'; 
-            			output += '<button class="btn">삭제</button>';
-            		}
-            		
-            	}
-            	output += "</ul>";
-            	$("#lostPage-comment-bottom").html(output);
-            },
-            error : function(){
-            	console.log("댓글 목록 조회 ajax 통신 실패");
-            }
-        });
-    }
+	    function selectRlist() {
+	    	var bNo = "${detail.boardNum}";
+	        
+	        $.ajax({
+	        	url : "commentList",
+	            type : "POST",
+	            data : {"bNo" : bNo},
+	            dataType : "json",
+	            success : function(cList){
+	            	var output = "<ul>";
+	            	for(var i in cList){
+	            		output += "<li>";
+	            		output += '<input type="hidden" id="cNum" value="'+cList[i].cNum+'">'
+	            		output += "<p>"+cList[i].content+"</p>";
+	            		output += "<p>"+cList[i].writer+" | "+cList[i].writeDate+"</p>";
+	            		output += "</li>";
+	            		if(cList[i].writer=="${memberAuthInfo.userId}"){
+	            			output += '<button class="btn" id="commentMod">수정</button>'; 
+	            			output += '<button class="btn" id="commentDel">삭제</button>';
+	            		}	            		
+	            	}
+	            	output += "</ul>";
+	            	$("#lostPage-comment-bottom").html(output);
+	            },
+	            error : function(){
+	            	console.log("댓글 목록 조회 ajax 통신 실패");
+	            }
+	        });
+	    }
+		
+		// 댓글 수정
+		$(".commentMod").on("click", function(){
+			alert('수정 하시겠습니까?');
+			var content = $(".con").val();
+			var cNum = $(".cNum").val();
+			console.log(content);
+			console.log(cNum);
+			/* $(".lostPage-comment-bottom").hide();
+			$(".comment-modify").show(); */
+		});
+	});
+	/* $("#commentMod").click(function(){
+		$(".lostPage-comment-bottom").hide();
+		$(".comment-modify").show();
+	});
 	
+	$("#commentModFin").click(function(){
+		$.ajax({
+			url : "commentModify",
+			type : "POST",
+			data : {
+				cNum : $("#cNum").val(),
+				bNum : ${detail.boardNum},
+				content : $("#content").val(),
+			},
+			success: function(){
+				alert('댓글이 수정되었습니다.');
+				selectRlist();
+			},
+		});
+	}); */
+	
+	// 댓글 삭제
+	
+	
+	/////////////////////////////////////////////////////////////
+		
 	// 게시글 삭제
 	function del(boardNum) {
 		var chk = confirm("정말 삭제하시겠습니까?");

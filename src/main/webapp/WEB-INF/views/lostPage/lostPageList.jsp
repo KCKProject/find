@@ -39,7 +39,7 @@
 					<a href="<c:url value="/lostPage/lostPageDetail/${l.boardNum}"/>">
 						<div class="post-photo-top"> <!-- 게시글 사진 나오는 부분 -->
 							<div class="img_box">
-								<img src="../resources/imgUpload/s_${l.storedFileName}" width="200" height="250"/>
+								<img src="../resources/imgUpload/${l.storedFileName}" width="200" height="250"/>
 							</div>
 						</div>
 						<div class="post-contents-bottom"> <!-- 게시글 내용 나오는 부분 -->

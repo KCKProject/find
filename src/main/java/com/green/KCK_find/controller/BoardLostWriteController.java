@@ -77,20 +77,17 @@ public class BoardLostWriteController {
 				LostBoardWriteCommand lc, HttpSession session, MultipartHttpServletRequest request, Errors errors) throws IOException{
 
 			new BoardLostCommandValidator().validate(lc, errors);
+			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
+			LostBoard detail = dao.selectByBoardNum(boardNum);
 			if(errors.hasErrors()) {
 				return "lostPage/lostPageModify";
 			}
 			try {
-				lostBoardWriteService.boardRegist(lc, session, request);			
+				lostBoardWriteService.modifyLost(lc, detail, member, request);		
 			}catch(Exception e) {
 				e.printStackTrace();
 				return "lostPage/lostPageModify";
 			}
-					
-			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-			LostBoard detail = dao.selectByBoardNum(boardNum);
-
-			lostBoardWriteService.modifyLost(lc, detail, member, request);
 			return "redirect:/lostPage/lostPageDetail/"+boardNum;
 		}
 	
@@ -117,13 +114,4 @@ public class BoardLostWriteController {
 			
 			return "lostPage/lostPageList";
 		}
-	// 댓글 목록 조회
-//		@ResponseBody
-//		@RequestMapping(value="/lostPage/selectCommentList", method=RequestMethod.GET)
-//		public List<CommentVo> listCommand(@RequestParam int bno, Model model){
-//			System.out.println("컨트롤러");
-//			List<CommentVo> cList = dao.selectAllComment(bno);
-//			model.addAttribute("cList", cList);
-//			return cList;
-//		}
 }

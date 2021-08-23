@@ -10,8 +10,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import find.dao.FindDao;
@@ -47,9 +45,7 @@ public class BoardFindWriteController {
 	// 글 등록
 		@RequestMapping(method=RequestMethod.POST)
 		public String regist(FindBoardWriteCommand findBoardWriteCommand, HttpSession session, MultipartHttpServletRequest request, Errors errors) throws IOException {
-			
-			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-			
+
 			new BoardFindCommandValidator().validate(findBoardWriteCommand, errors);
 			if(errors.hasErrors()) {
 				return "findPage/findPageWrite";
@@ -77,19 +73,16 @@ public class BoardFindWriteController {
 				FindBoardWriteCommand fc, HttpSession session, MultipartHttpServletRequest request, Errors errors) throws IOException{
 			
 			new BoardFindCommandValidator().validate(fc, errors);
+			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
+			FindBoard detail = dao.selectByFindBoardNum(boardNum);
 			if(errors.hasErrors()) {
 				return "findPage/findPageModify";
 			}
 			try {
-				findBoardWriteService.boardRegist(fc, session, request);
+				findBoardWriteService.modifyFind(fc, detail, member, request);
 			}catch(Exception e) {
 				return "findPate/findPageModify";
 			}
-					
-			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-			FindBoard detail = dao.selectByFindBoardNum(boardNum);
-
-			findBoardWriteService.modifyFind(fc, detail, member, request);
 			return "redirect:/findPage/findPageDetail/"+boardNum;
 		}
 			

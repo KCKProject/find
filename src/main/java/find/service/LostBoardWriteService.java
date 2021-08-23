@@ -65,20 +65,20 @@ public class LostBoardWriteService {
 			File file = new File(filePath,storedFileName);
 			img.transferTo(file);
 			
-			// 썸네일 만들기 → 서버 구동 최적화를 위하여
-			// 기존 파일의 축소판인 썸네일을 생성하여 게시글 목록에서 보여지도록 구현
-			// 화소를 높이지 못한다면 생략해야할듯
-			BufferedImage sourceImg = ImageIO.read(new File(filePath,storedFileName));
-
-			BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);
-
-			String thumbnailName = filePath+File.separator+"s_"+storedFileName;
-
-			File newFile = new File(thumbnailName);
-			String formatName = storedFileName.substring(storedFileName.lastIndexOf(".")+1);
-
-			ImageIO.write(destImg, formatName.toUpperCase(), newFile);
-			thumbnailName.substring(filePath.length()).replace(File.separatorChar, '/');
+//			// 썸네일 만들기 → 서버 구동 최적화를 위하여
+//			// 기존 파일의 축소판인 썸네일을 생성하여 게시글 목록에서 보여지도록 구현
+//			// 화소를 높이지 못한다면 생략해야할듯
+//			BufferedImage sourceImg = ImageIO.read(new File(filePath,storedFileName));
+//
+//			BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);
+//
+//			String thumbnailName = filePath+File.separator+"s_"+storedFileName;
+//
+//			File newFile = new File(thumbnailName);
+//			String formatName = storedFileName.substring(storedFileName.lastIndexOf(".")+1);
+//
+//			ImageIO.write(destImg, formatName.toUpperCase(), newFile);
+//			thumbnailName.substring(filePath.length()).replace(File.separatorChar, '/');
 		}else { // 사진 등록 안 했을 때
 			originalFile = null;
 		}
@@ -136,10 +136,8 @@ public class LostBoardWriteService {
 				String image = detail.getStoredFileName();
 				String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
 				File file = new File(path,image);
-				File thumb = new File(path,"s_"+image);
 					if(file.exists()) {
 						file.delete();
-						thumb.delete();
 					}					
 				System.out.println("삭제 성공");
 			}
@@ -154,19 +152,6 @@ public class LostBoardWriteService {
 				String filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
 				File file = new File(filePath,storedFileName);
 				img.transferTo(file);
-				
-				// 기존 파일의 축소판인 썸네일을 생성하여 게시글 목록에서 보여지도록 구현
-				BufferedImage sourceImg = ImageIO.read(new File(filePath,storedFileName));
-	
-				BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);
-	
-				String thumbnailName = filePath+File.separator+"s_"+storedFileName;
-	
-				File newFile = new File(thumbnailName);
-				String formatName = storedFileName.substring(storedFileName.lastIndexOf(".")+1);
-	
-				ImageIO.write(destImg, formatName.toUpperCase(), newFile);
-				thumbnailName.substring(filePath.length()).replace(File.separatorChar, '/');
 	
 				System.out.println(filePath+" : 저장된 경로");
 			}

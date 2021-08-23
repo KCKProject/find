@@ -668,7 +668,7 @@ public class FindDao {
 		}
 		
 	
-	// LostBoard 수정
+	// 게시글 수정
 	public void modifyLostBoard(LostBoard lb, long boardNum) {
 		jdbcTemplate.update("UPDATE lostBoard SET title=?, kind=?, location=?, character=?, animal=?, gender=?, email=?, phone=?, lostDate=?, memo=?, originalFile=?, originalFileExtension=?, storedFileName=? WHERE boardNum=?",
 				lb.getTitle(),
@@ -688,6 +688,7 @@ public class FindDao {
 	}
 	
 	public void modifyFindBoard(FindBoard fb, long boardNum) {
+		System.out.println("dao로 넘어온 boardNum : "+boardNum);
 		jdbcTemplate.update("UPDATE findBoard SET title=?, kind=?, location=?, character=?, gender=?, email=?, phone=?, findDate=?, memo=?, originalFile=?, originalFileExtension=?, storedFileName=? WHERE boardNum=?",
 				fb.getTitle(),
 				fb.getKind(),

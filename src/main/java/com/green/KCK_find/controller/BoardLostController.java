@@ -107,13 +107,9 @@ public class BoardLostController {
 		String image = detail.getStoredFileName();
 		String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
 		File file = new File(path,image);
-		File thumb = new File(path,"s_"+image);
 			if(file.exists()) {
 				file.delete();
-				thumb.delete();
 			}
-			
-		System.out.println("게시물도 잘 삭제됐는지 추후에 확인 필요");
 		
 		// 게시글 댓글 삭제
 		String board = "lostComment";
