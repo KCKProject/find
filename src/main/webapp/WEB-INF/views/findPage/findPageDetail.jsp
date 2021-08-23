@@ -141,8 +141,9 @@
 									<p>${c.writer} | ${c.writeDate}</p>									
 								</li>
 								<c:if test="${c.writer==memberAuthInfo.userId}">
-           							<button class="btn commentMod">수정</button>
-           							<button class="btn commentDel">삭제</button>
+
+           						<button class="commentBtn commentMod">수정</button>"><i class="fas fa-pencil-alt"></i><p>수정</p></button>
+           						<button class="commentBtn commentDel">삭제</button>"><i class="fas fa-trash-alt"></i><p>삭제</p></button>
            						</c:if>
 							</c:forEach>
 						</ul>
