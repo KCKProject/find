@@ -39,8 +39,8 @@
 								<c:if test="${!empty findPosts.size()}">${findPosts.size()}개</c:if>
 							</p>
 							<p>나의 연락처<br>
-								<c:if test="${!empty memberAuthInfo.getPhone()}"><span> 등록완료 <span> </c:if>
-								<c:if test="${empty memberAuthInfo.getPhone()}"><span style="color: #ed4848;"> 미등록 <span> </c:if>
+								<c:if test="${!empty memberAuthInfo.getPhone()}"><span> 등록완료 </span> </c:if>
+								<c:if test="${empty memberAuthInfo.getPhone()}"><span style="color: #ed4848;"> 미등록 </span> </c:if>
 							</p>
 						</div>
 						<div class="myActivitiesContents">
@@ -49,8 +49,8 @@
 								<c:if test="${!empty lostPosts.size()}">${lostPosts.size()}개</c:if>
 							</p>
 							<p>나의 이메일<br>
-								<c:if test="${!empty memberAuthInfo.getEmail()}"><span> 등록완료 <span> </c:if>
-								<c:if test="${empty memberAuthInfo.getEmail()}"><span style="color: #ed4848;"> 미등록<span> </c:if>
+								<c:if test="${!empty memberAuthInfo.getEmail()}"><span> 등록완료 </span> </c:if>
+								<c:if test="${empty memberAuthInfo.getEmail()}"><span style="color: #ed4848;"> 미등록</span> </c:if>
 							</p>
 						</div>
 <!-- 						<div class="myActivitiesContents">

@@ -881,20 +881,6 @@ label.right {
 
 }
 
-/* 버튼수정 */
-#lostPage-comment-bottom .btn{
-	width: 50px;
-	border-radius: 8px;
-	color: white;
-	background-color: #b3aeae;
-	padding: 7px 5px;
-	margin-top: 2px;
-}
-
-#lostPage-comment-bottom .btn:hover{
-	background-color: #ed4848;
-}
-
 /* -- more 버튼 효과 설정 -- */
 
 
@@ -966,6 +952,17 @@ label.right {
 	border-radius: 8px;
 }
 
+.post-photo-top img {
+	width: 200px;
+	height: 250px;
+	border: 1px solid whitesmoke;
+	border-radius: 8px;
+}
+
+.post-photo-top img:hover {
+	border: 1px solid #fed400;
+}
+
 .post-contents-bottom div {
 	display: flex;
     padding-top: 20px;
@@ -977,8 +974,10 @@ label.right {
 }
 
 .finishText {
-	color: #ed4848;
+	color: fed400;
 }
+
+
 
 
 
@@ -1140,6 +1139,7 @@ label.right {
     justify-content: space-between;
     padding: 15px;
     border-bottom: 1px solid silver;
+    width: 90%;
 }
 
 .lostPage-comment-bottom textarea {
@@ -1211,7 +1211,39 @@ label.right {
 }
 	
 	
-	
+.commentBtn {
+  	background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+/*     border-bottom: 1px solid whitesmoke; */
+    position: relative;
+    top: -40px;
+    left: 46%;
+    width: 40px;
+}	
+
+.commentBtn p {
+	font-size: 10px;
+    position: relative;
+    top: -38px;
+    color: #f68100;
+    display: none;
+    height: 0px;
+}
+
+.commentBtn:hover i {
+	color: #f68100;
+	animation: jelly 0.6s ease;
+}
+
+.commentBtn:hover p {
+	display: block;
+	animation: jelly 0.6s ease;
+}
+
+
+
 	
 	
 	
