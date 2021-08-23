@@ -11,7 +11,8 @@ public class MyPageFindPostCommand {
 		
 		public MyPageFindPostCommand() {}
 
-		public MyPageFindPostCommand(String title, Date writeDate, int meet) {
+		public MyPageFindPostCommand(long boardNum, String title, Date writeDate, int meet) {
+			this.BoardNum = boardNum;
 			this.title = title;
 			this.writeDate = writeDate;
 			this.meet = meet;

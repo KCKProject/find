@@ -175,6 +175,7 @@ public class FindDao {
 			public MyPageLostPostCommand mapRow(ResultSet rs, int rowNum) throws SQLException{
 				System.out.println("mypage-lost");
 				MyPageLostPostCommand p = new MyPageLostPostCommand(
+							rs.getInt("boardNum"),
 							rs.getString("title"),
 							rs.getDate("writeDate"),
 							rs.getInt("meet")
@@ -190,6 +191,7 @@ public class FindDao {
 			public MyPageFindPostCommand mapRow(ResultSet rs, int rowNum) throws SQLException{
 				System.out.println("mypage-find");
 				MyPageFindPostCommand p = new MyPageFindPostCommand(
+						rs.getInt("boardNum"),
 						rs.getString("title"),
 						rs.getDate("writeDate"),
 						rs.getInt("meet")

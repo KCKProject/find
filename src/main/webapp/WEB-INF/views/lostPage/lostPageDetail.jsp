@@ -143,7 +143,7 @@
 					<div class="mainMore">
 						<!-- 댓글등록 버튼 -->
 	                    <button class="btn btn-swap" name="uploadComment" id="uploadComment">
-	                        upload <span>댓글등록 >></span>
+	                        upload <span>등록 >></span>
 	                    </button>
                 	</div>
 				</div> 
