@@ -22,9 +22,6 @@ public class AdminQuestionPageController {
 	public void setDao(FindDao dao) {
 		this.dao = dao;
 	}
-	public int memberCount() {
-		return dao.qnaAllCount();
-	}
 	
 	
 
@@ -36,7 +33,7 @@ public class AdminQuestionPageController {
 		
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(memberCount());
+		pageMaker.setTotalCount(dao.qnaAllCount(cri));
 		model.addAttribute("pageMaker",pageMaker);
 		
 		return "admin/adminQuestionPage";
