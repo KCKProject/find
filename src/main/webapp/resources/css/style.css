@@ -1215,12 +1215,22 @@ label.right {
     border: none;
     cursor: pointer;
     padding: 10px;
-/*     border-bottom: 1px solid whitesmoke; */
+/*     border-bottom: 1px solid whitesmoke; 
     position: relative;
     top: -40px;
-    left: 46%;
+    left: 46%; */
     width: 40px;
+    height: 0px;       
+    float: right;
+    position: relative;
+    top: -30px;
+    left: 10px;
+    margin: -10px 0;
 }	
+
+.commentMod, .commentModFin {
+    left: -30px;
+}
 
 .commentBtn p {
 	font-size: 10px;
@@ -1247,6 +1257,8 @@ label.right {
 	text-align-last: left;
 	border: 1px silver solid;
 }
+
+
 
 	
 	

@@ -1,16 +1,9 @@
 package find.vo;
 
-public class SearchCriteriaQnABoard extends CriteriaQnABoard{
+public class SearchCriteriaQnABoard extends CriteriaQnABoard {
 
-	private String searchType ="";
 	private String keyword = "";
- 
-	public String getSearchType() {
-		return searchType;
-	}
-	public void setSearchType(String searchType) {
-		this.searchType = searchType;
-	}
+	 
 	public String getKeyword() {
 		return keyword;
 	}
@@ -20,6 +13,10 @@ public class SearchCriteriaQnABoard extends CriteriaQnABoard{
  
 	@Override
 	public String toString() {
-		return super.toString() + " SearchCriteria [searchType=" + searchType + ", keyword=" + keyword + "]";
+		return super.toString() + " SearchCriteria [keyword=" + keyword + "]";
+	}
+	public String reset() {
+		keyword = "";
+		return keyword;
 	}
 }

@@ -105,6 +105,10 @@
    		<property name="dao" ref="findDao"/>
    </bean>   
    
+
+   <!-- 날짜별 검색 -->
+	
+
    <bean id="MyPasswordUpdateController" class="com.green.KCK_find.controller.MyPasswordUpdateController">
    		<property name="dao" ref="findDao"/>
    </bean>   

@@ -117,7 +117,7 @@
 				</form>
 			</div>
 			
-			<div class="wrap-lostPage-comment">
+			<div class="wrap-comment">
 				<div class="lostPage-comment-top">
 					<h4>댓글을 남겨주세요 !</h4>
 					<p>*댓글을 남겨주세요! 여러분의 작은 관심이 희망의 끈이 됩니다. 욕설/명예훼손의 글은 동의 없이 삭제됩니다.</p>
@@ -132,11 +132,11 @@
 									<p class="con">${c.content}</p>
 									<p>${c.writer} | ${c.writeDate}</p>									
 								</li>
-								<input type="hidden" class="cNum" value="${c.cNum}">												
-								<c:if test="${c.writer==memberAuthInfo.userId}">
-           						<button class="commentBtn commentMod"><i class="fas fa-pencil-alt"></i><p>수정</p></button>
-           						<button class="commentBtn commentDel"><i class="fas fa-trash-alt"></i><p>삭제</p></button>
-           						</c:if>
+									<input type="hidden" class="cNum" value="${c.cNum}">												
+									<c:if test="${c.writer==memberAuthInfo.userId}">
+	           						<button class="commentBtn commentMod"><i class="fas fa-pencil-alt"></i><p>수정</p></button>
+	           						<button class="commentBtn commentDel"><i class="fas fa-trash-alt"></i><p>삭제</p></button>
+	           						</c:if>
 							</c:forEach>
 						</ul>
 					</div>

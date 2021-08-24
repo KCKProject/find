@@ -22,9 +22,6 @@ public class AdminMemberController {
 	public void setDao(FindDao dao) {
 		this.dao = dao;
 	}
-	public int memberCount() {
-		return dao.memberCount();
-	}
 	
 	
 	public int searchMemberCount(SearchCriteria scri) {
@@ -39,10 +36,8 @@ public class AdminMemberController {
 		pageMaker.setTotalCount(searchMemberCount(cri));
 		model.addAttribute("pageMaker",pageMaker);
 		
-		
 		List<Member> members= dao.searchSelectAll(cri);
 		model.addAttribute("members",members);
-		System.out.println(members.size());
 		
 		return "admin/adminMember";
 	}
