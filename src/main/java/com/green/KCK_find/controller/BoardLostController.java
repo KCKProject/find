@@ -16,11 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import find.dao.FindDao;
-<<<<<<< HEAD
-=======
 import find.vo.CommentVo;
 import find.vo.CriteriaMainBoard;
->>>>>>> aa17be95adb9c2adad06f4f7e6844617040fadb1
 import find.vo.LostBoard;
 import find.vo.PageMakerMainBoard;
 import find.vo.SearchCriteriaMainBoard;

@@ -18,13 +18,10 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import find.vo.Admin;
-<<<<<<< HEAD
-=======
 import find.vo.CommentVo;
 import find.vo.Criteria;
 import find.vo.CriteriaMainBoard;
 import find.vo.CriteriaQnABoard;
->>>>>>> aa17be95adb9c2adad06f4f7e6844617040fadb1
 import find.vo.FindBoard;
 import find.vo.LostBoard;
 import find.vo.Member;
@@ -790,24 +787,23 @@ public class FindDao {
 		jdbcTemplate.update(sql,myInfoUpdate.getUserName(), myInfoUpdate.getPhone(), myInfoUpdate.getEmail(), memberNumber);
 	}
 	
-<<<<<<< HEAD
 	
 	// 날짜 별 검색 
-	public List<FindBoard> selectByFindWriteDate(Date from,Date to){
-		List<FindBoard> result = jdbcTemplate.query(
-				"SELECT * FROM FINDBOARD WHERE WRITEDATE BETWEEN ? AND ? ORDER BY WRITEDATE ASC",findBoardRowMapper,from,to);
-		return result;			
-	}
-	public List<LostBoard> selectByLostWriteDate(Date from,Date to){
-		List<LostBoard> result = jdbcTemplate.query(
-				"SELECT * FROM LOSTBOARD WHERE WRITEDATE BETWEEN ? AND ? ORDER BY WRITEDATE ASC", lostBoardRowMapper,from,to);
-		return result;	
-	}
-	public List<QnABoard> selectByQnAWriteDate(Date from,Date to){
-		List<QnABoard> result = jdbcTemplate.query(
-				"SELECT * FROM LOSTBOARD WHERE WRITEDATE BETWEEN ? AND ? ORDER BY WRITEDATE ASC", qnABoardRowMapper,from,to);
-		return result;	
-=======
+//	public List<FindBoard> selectByFindWriteDate(Date from,Date to){
+//		List<FindBoard> result = jdbcTemplate.query(
+//				"SELECT * FROM FINDBOARD WHERE WRITEDATE BETWEEN ? AND ? ORDER BY WRITEDATE ASC",findBoardRowMapper,from,to);
+//		return result;			
+//	}
+//	public List<LostBoard> selectByLostWriteDate(Date from,Date to){
+//		List<LostBoard> result = jdbcTemplate.query(
+//				"SELECT * FROM LOSTBOARD WHERE WRITEDATE BETWEEN ? AND ? ORDER BY WRITEDATE ASC", lostBoardRowMapper,from,to);
+//		return result;	
+//	}
+//	public List<QnABoard> selectByQnAWriteDate(Date from,Date to){
+//		List<QnABoard> result = jdbcTemplate.query(
+//				"SELECT * FROM LOSTBOARD WHERE WRITEDATE BETWEEN ? AND ? ORDER BY WRITEDATE ASC", qnABoardRowMapper,from,to);
+//	return result;	
+//	}
 
 	// 마이페이지 회원 비밀번호 수정
 	public void myPasswordUpdate(long memberNumber, MemberAuthInfo myPasswordUpdate) {
@@ -815,7 +811,6 @@ public class FindDao {
 		String sql="update member set userpassword=? where membernumber=?";
 		
 		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(), memberNumber);
->>>>>>> aa17be95adb9c2adad06f4f7e6844617040fadb1
 	}
 
 
