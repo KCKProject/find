@@ -140,13 +140,11 @@
 									<p class="con">${c.content}</p>
 									<p>${c.writer} | ${c.writeDate}</p>									
 								</li>	
-								<div>
 									<input type="hidden" class="cNum" value="${c.cNum}">												
 									<c:if test="${c.writer==memberAuthInfo.userId}">
 	           						<button class="commentBtn commentMod"><i class="fas fa-pencil-alt"></i><p>수정</p></button>
 	           						<button class="commentBtn commentDel"><i class="fas fa-trash-alt"></i><p>삭제</p></button>
 	           						</c:if>
-           						</div>
 							</c:forEach>
 						</ul>
 					</div>
