@@ -153,8 +153,9 @@
 					</div>					
 					<div class="mainMore">
 						<!-- 댓글등록 버튼 -->
+
 	                    <a class="btn btn-swap" name="uploadComment" id="uploadComment">
-	                        upload <span>댓글등록 >></span>
+	                        upload <span>등록 >></span>
 	                    </a>
                 	</div>
 				</div> 
@@ -240,7 +241,6 @@
 		
 		// 댓글 수정
 		$("#lostPage-comment-bottom").on("click", ".commentMod", function modifyClick(){
-			alert('하이');
 			var div = $("#comment-modify");
 			var num = div.children().length;
 			var li = $(this).prev().prev();
@@ -249,13 +249,9 @@
 			var move = ul.find("#commentModFin");
 			
 			if(!num){
-				alert(num);
-				alert("null아님");
 				div.prepend(mod_con);
 				div.prepend(move);
-				alert("시작준비");
 				selectRlist();
-				alert("새로시작");
 				
 				modifyClick();
 			}
@@ -263,7 +259,6 @@
 			
 			var li = $(this).prev().prev();
 			var con = li.children('.con').text();
-			alert("con : "+con);
 			var p = li.children('p');
 			var cArea = $("#modifyContent");
 			var fin = $("#commentModFin");			
@@ -272,7 +267,6 @@
 			var input = allLi.children('input');			
 			
 			if(move.text()===""){
-				alert("null임");
 				li.prepend(cArea);
 				p.hide();
 				$(this).after(fin);
@@ -356,14 +350,14 @@
 	            	var output = "<ul>";
 	            	for(var i in cList){
 	            		output += "<li>";
-	            		output += "<p>"+cList[i].content+"</p>";
+	            		output += "<p class='con'>"+cList[i].content+"</p>";
 	            		output += "<p>"+cList[i].writer+" | "+cList[i].writeDate+"</p>";
 	            		output += "</li>";
+	            		output += '<input type="hidden" value="'+cList[i].cNum+'">'
 	            		if(cList[i].writer=="${memberAuthInfo.userId}"){
-	            			output += '<button class="btn">수정</button>'; 
-	            			output += '<button class="btn">삭제</button>';
-	            		}
-	            		
+	            			output += '<button class="commentBtn commentMod"><i class="fas fa-pencil-alt"></i><p>수정</p></button>'; 
+	            			output += '<button class="commentBtn commentDel"><i class="fas fa-trash-alt"></i><p>삭제</p></button>';
+	            		}	            		
 	            	}
 	            	output += "</ul>";
 	            	$("#lostPage-comment-bottom").html(output);

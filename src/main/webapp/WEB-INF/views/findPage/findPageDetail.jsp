@@ -161,7 +161,7 @@
 					</div>
 					<div class="mainMore">
 						<a class="btn btn-swap" name="uploadComment" id="uploadComment">
-							upload <span>댓글등록 >></span>
+							upload <span>등록>></span>
 						</a>
 					</div>
 				</div>
@@ -252,7 +252,6 @@
 
 		// 댓글 수정
 		$("#lostPage-comment-bottom").on("click", ".commentMod", function modifyClick(){
-			alert('하이');
 			var div = $("#comment-modify");
 			var num = div.children().length;
 			var li = $(this).prev().prev();
@@ -261,11 +260,8 @@
 			var move = ul.find("#commentModFin");
 			
 			if(!num){
-				alert(num);
-				alert("null아님");
 				div.prepend(mod_con);
 				div.prepend(move);
-				alert("시작준비");
 				selectRlist();
 				alert("새로시작");
 				
@@ -275,7 +271,6 @@
 			
 			var li = $(this).prev().prev();
 			var con = li.children('.con').text();
-			alert("con : "+con);
 			var p = li.children('p');
 			var cArea = $("#modifyContent");
 			var fin = $("#commentModFin");			
@@ -284,7 +279,6 @@
 			var input = allLi.children('input');			
 			
 			if(move.text()===""){
-				alert("null임");
 				li.prepend(cArea);
 				p.hide();
 				$(this).after(fin);

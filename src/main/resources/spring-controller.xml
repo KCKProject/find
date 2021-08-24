@@ -101,8 +101,13 @@
    		<property name="dao" ref="findDao"/>
    </bean>   
    
-    <!-- myPage -> myInfoUpdate -->
+    <!-- myInfoUpdate -->
    <bean id="MyInfoUpdateController" class="com.green.KCK_find.controller.MyInfoUpdateController">
+   		<property name="dao" ref="findDao"/>
+   </bean>   
+   
+    <!-- myPasswordUpdate -->
+   <bean id="MyPasswordUpdateController" class="com.green.KCK_find.controller.MyPasswordUpdateController">
    		<property name="dao" ref="findDao"/>
    </bean>   
 

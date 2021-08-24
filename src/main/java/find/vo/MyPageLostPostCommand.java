@@ -11,7 +11,8 @@ public class MyPageLostPostCommand {
 		
 		public MyPageLostPostCommand() {}
 
-		public MyPageLostPostCommand(String title, Date writeDate, int meet) {
+		public MyPageLostPostCommand(long boardNum, String title, Date writeDate, int meet) {
+			this.BoardNum = boardNum;
 			this.title = title;
 			this.writeDate = writeDate;
 			this.meet = meet;

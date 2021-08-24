@@ -27,16 +27,6 @@ if (changeMyInfodToggle != null) {
 }
 
 
-var changePasswordToggle = document.querySelector('.changePasswordToggle');
-var changePassword = document.querySelector('.changePassword');
-
-if (changePasswordToggle != null) {
-	changePasswordToggle.addEventListener('click', () => {
-	    changePassword.classList.toggle('active');
-	    document.documentElement.scrollTop = 400;
-	});
-}	
-
 var exitchangePasswordBtn = document.querySelector('.exitchangePasswordBtn');
 var changePassword = document.querySelector('.changePassword');
 
