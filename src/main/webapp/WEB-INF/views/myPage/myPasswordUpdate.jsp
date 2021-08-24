@@ -26,7 +26,7 @@
 		<div class=myInfoDetail>			
     		<div class="changePassword">
 				<div class="changePasswordContents">
-					<form:form commandName="myPasswordUpdateCommand" enctype="multipart/form=data" method="POST">
+					<form:form commandName="myPasswordUpdateCommand" method="POST">
 						<div>
 							현재 비밀번호 <!-- <input type="text"> -->
 							<form:input type="text" path="userPasswordCurrent" value=""  />
