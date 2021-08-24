@@ -740,5 +740,14 @@ public class FindDao {
 	}
 	
 
+	// 마이페이지 회원 비밀번호 수정
+	public void myPasswordUpdate(long memberNumber, MemberAuthInfo myPasswordUpdate) {
+		System.out.println("마이페이지 회원 비밀번호 수정");
+		String sql="update member set userpassword=? where membernumber=?";
+		
+		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(), memberNumber);
+	}
+
+
 }
 

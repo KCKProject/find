@@ -30,12 +30,9 @@ public class MyInfoUpdateController {
 	
 	
 	@RequestMapping(value="/myPage/myInfoUpdate/{memberAuthInfo.getMemberNumber}", method=RequestMethod.GET)
-	public String modify1(@PathVariable("memberAuthInfo.getMemberNumber") long memberNumber, Model model, MyInfoUpdateCommand myInfoUpdateCommand) {
+	public String modify(@PathVariable("memberAuthInfo.getMemberNumber") long memberNumber, Model model, MyInfoUpdateCommand myInfoUpdateCommand) {
 		
 		MemberAuthInfo myInfoUpdate = dao.selectByMemberNumber1(memberNumber);
-//		if(myInfoUpdate == null) {
-//			throw new MemberNotFoundException();
-//		}
 		model.addAttribute("myInfoUpdate",myInfoUpdate);
 		
 		return "/myPage/myInfoUpdate";

@@ -288,7 +288,6 @@ footer {
 
 .footerIcon ul li i:hover {
     cursor: pointer;
-    font-size: 22px;
     color: #ed4848;
 }
 
@@ -1962,55 +1961,7 @@ label.right {
 }
 
 
-.changePassword {
-    width: 100%;
-    display: contents;
-}
 
-
-.changePasswordContents {
-    border-top: 1px solid darkgray;	
-    border-bottom: 1px solid lightgrey;
-    background-color: #fbfbfb52;
-    width: 50%;
-    text-align: center;
-    padding: 80px 0;
-}
-
-.changePasswordContents div {
-    padding: 15px 0;
-}
-
-
-
-.changePasswordContents div input[type=text] {
-    padding: 5px 20px;
-    margin: 0 0 0 20px;
-    border: 1px solid gray;
-    border-radius: 8px;
-}
-
-
-
-.changePasswordBtn {
-	padding: 10px 5px;
-    margin: 20px 0 0 0;
-    border:none;
-    border-radius: 10px;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
-    background: none;
-}
-
-.changePasswordBtn:hover {
-    cursor: pointer;
-    color: palevioletred;
-    padding: 10px 15px;
-    border-radius: 20px;
-    border: 1px solid palevioletred;
-    transition: all 0.5s;
-    border-radius: 15px;
-}
 
 /* ======회원정보수정 페이지======== */
 
@@ -2088,6 +2039,61 @@ label.right {
 .myPasswordUpdatePageBtn {
     position: relative;
     left: 10%;
+}
+
+.changePassword {
+    width: 100%;
+    display: contents;
+}
+
+
+.changePasswordContents {
+    border-top: 1px solid darkgray;	
+    border-bottom: 1px solid lightgrey;
+    background-color: #fbfbfb52;
+    width: 50%;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.changePasswordContents div {
+    padding: 15px 0;
+}
+
+
+
+.changePasswordContents div input[type=text] {
+    padding: 5px 20px;
+    margin: 0 0 0 20px;
+    border: 1px solid gray;
+    border-radius: 8px;
+}
+
+.changePasswordContents div input[type=text]:hover {
+	border: 1px solid palevioletred;
+	border-radius: 10px;
+}
+
+
+
+.changePasswordBtn {
+	padding: 10px 5px;
+    margin: 50px 0 0 0;
+    border:none;
+    border-radius: 10px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    background: none;
+}
+
+.changePasswordBtn:hover {
+    cursor: pointer;
+    color: palevioletred;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid palevioletred;
+    transition: all 0.5s;
+    border-radius: 15px;
 }
 
 /* ========================= */
