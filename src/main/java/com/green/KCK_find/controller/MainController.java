@@ -26,10 +26,6 @@ public class MainController {
 		this.dao = dao;
 	}
 	
-	public int lostCount() {
-		return dao.lostCount();
-	}
-	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Model model, HttpServletRequest request) {
 		List<LostBoard> losts = dao.selectMainLostBoard();

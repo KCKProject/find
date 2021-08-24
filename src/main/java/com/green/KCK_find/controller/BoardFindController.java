@@ -24,9 +24,7 @@ public class BoardFindController {
 	public void setDao(FindDao dao) {
 		this.dao = dao;
 	}
-	public int findCount() {
-		return dao.findCount();
-	}
+	
 
 	// 글 목록 불러오기
 	@RequestMapping("/findPage/findPageList")
@@ -37,7 +35,7 @@ public class BoardFindController {
 		
 		PageMakerMainBoard pageMaker = new PageMakerMainBoard();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(findCount());
+		pageMaker.setTotalCount(dao.searchFindCount(cri));
 		model.addAttribute("pageMaker",pageMaker);
 		
 		return "findPage/findPageList";

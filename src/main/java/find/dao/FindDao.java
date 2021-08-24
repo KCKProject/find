@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -17,9 +18,6 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import find.vo.Admin;
-import find.vo.Criteria;
-import find.vo.CriteriaMainBoard;
-import find.vo.CriteriaQnABoard;
 import find.vo.FindBoard;
 import find.vo.LostBoard;
 import find.vo.Member;
@@ -28,6 +26,8 @@ import find.vo.MyPageFindPostCommand;
 import find.vo.MyPageLostPostCommand;
 import find.vo.QnABoard;
 import find.vo.SearchCriteria;
+import find.vo.SearchCriteriaMainBoard;
+import find.vo.SearchCriteriaQnABoard;
 
 @Component
 public class FindDao {
@@ -193,55 +193,80 @@ public class FindDao {
 
 	// 카운터
 	
-	public int memberCount() {
-		Integer cnt = jdbcTemplate.queryForObject(
-				"SELECT count(memberNumber) FROM Member where memberNumber > 0",Integer.class);
-		return cnt;
-	}
+//	public int memberCount() {
+//		Integer cnt = jdbcTemplate.queryForObject(
+//				"SELECT count(memberNumber) FROM Member where memberNumber > 0",Integer.class);
+//		return cnt;
+//	}
 	public int searchMemberCount(SearchCriteria cri) {
 		Integer cnt = jdbcTemplate.queryForObject(
 				"SELECT count(memberNumber) FROM Member where userName like '%' || ? || '%' and memberNumber > 0",Integer.class,cri.getKeyword());
 		return cnt;
 	}
-	public int qnaCount() {
+	public int searchLostCount(SearchCriteria cri) {
 		Integer cnt = jdbcTemplate.queryForObject(
-				"SELECT count(boardnum) FROM qnaboard where open = 1 and boardnum > 0",Integer.class);
+				"SELECT count(boardNum) FROM lostBoard where title like '%' || ? || '%' and boardNum > 0",Integer.class,cri.getKeyword());
+		return cnt;
+	}
+	public int searchLostCount(SearchCriteriaMainBoard cri) {
+		Integer cnt = jdbcTemplate.queryForObject(
+				"SELECT count(boardNum) FROM lostBoard where title like '%' || ? || '%' and boardNum > 0",Integer.class,cri.getKeyword());
+		return cnt;
+	}
+	public int searchFindCount(SearchCriteria cri) {
+		Integer cnt = jdbcTemplate.queryForObject(
+				"SELECT count(boardNum) FROM findBoard where title like '%' || ? || '%' and boardNum > 0",Integer.class,cri.getKeyword());
+		return cnt;
+	}
+	public int searchFindCount(SearchCriteriaMainBoard cri) {
+		Integer cnt = jdbcTemplate.queryForObject(
+				"SELECT count(boardNum) FROM findBoard where title like '%' || ? || '%' and boardNum > 0",Integer.class,cri.getKeyword());
+		return cnt;
+	}
+	public int searchQnACount(SearchCriteria cri) {
+		Integer cnt = jdbcTemplate.queryForObject(
+				"SELECT count(boardNum) FROM qnaBoard where title like '%' || ? || '%' and boardNum > 0",Integer.class,cri.getKeyword());
+		return cnt;
+	}
+	public int qnaCount(SearchCriteriaQnABoard cri) {
+		Integer cnt = jdbcTemplate.queryForObject(
+				"SELECT count(boardnum) FROM qnaboard where title like '%' || ? || '%' and open = 1 and boardnum > 0",Integer.class,cri.getKeyword());
 		return cnt;
 	}
 	
-	public int qnaAllCount() {
+	public int qnaAllCount(SearchCriteria cri) {
 		Integer cnt = jdbcTemplate.queryForObject(
-				"SELECT count(boardnum) FROM qnaboard where boardnum > 0",Integer.class);
+				"SELECT count(boardnum) FROM qnaboard where title like '%' || ? || '%' and boardnum > 0",Integer.class,cri.getKeyword());
 		return cnt;
 	}
-	public int lostCount() {
+//	public int lostCount() {
+//		Integer cnt = jdbcTemplate.queryForObject(
+//				"SELECT count(boardnum) FROM lostboard where boardnum > 0",Integer.class);
+//		return cnt;
+//	}
+//	public int findCount() {
+//		Integer cnt = jdbcTemplate.queryForObject(
+//				"SELECT count(boardnum) FROM findboard where boardnum > 0",Integer.class);
+//		return cnt;
+//	}
+	public int findCompleteCount(SearchCriteria cri) {
 		Integer cnt = jdbcTemplate.queryForObject(
-				"SELECT count(boardnum) FROM lostboard where boardnum > 0",Integer.class);
+				"SELECT count(boardnum) FROM findboard where title like '%' || ? || '%' and boardnum > 0 and meet= 1",Integer.class,cri.getKeyword());
 		return cnt;
 	}
-	public int findCount() {
+	public int findIncompleteCount(SearchCriteria cri) {
 		Integer cnt = jdbcTemplate.queryForObject(
-				"SELECT count(boardnum) FROM findboard where boardnum > 0",Integer.class);
+				"SELECT count(boardnum) FROM findboard where title like '%' || ? || '%' and boardnum > 0 and meet= 0",Integer.class,cri.getKeyword());
 		return cnt;
 	}
-	public int findCompleteCount() {
+	public int lostCompleteCount(SearchCriteria cri) {
 		Integer cnt = jdbcTemplate.queryForObject(
-				"SELECT count(boardnum) FROM findboard where boardnum > 0 and meet= 1",Integer.class);
+				"SELECT count(boardnum) FROM lostboard where title like '%' || ? || '%' and boardnum > 0 and meet= 1",Integer.class,cri.getKeyword());
 		return cnt;
 	}
-	public int findIncompleteCount() {
+	public int lostIncompleteCount(SearchCriteria cri) {
 		Integer cnt = jdbcTemplate.queryForObject(
-				"SELECT count(boardnum) FROM findboard where boardnum > 0 and meet= 0",Integer.class);
-		return cnt;
-	}
-	public int lostCompleteCount() {
-		Integer cnt = jdbcTemplate.queryForObject(
-				"SELECT count(boardnum) FROM lostboard where boardnum > 0 and meet= 1",Integer.class);
-		return cnt;
-	}
-	public int lostIncompleteCount() {
-		Integer cnt = jdbcTemplate.queryForObject(
-				"SELECT count(boardnum) FROM lostboard where boardnum > 0 and meet= 0",Integer.class);
+				"SELECT count(boardnum) FROM lostboard where title like '%' || ? || '%' and boardnum > 0 and meet= 0",Integer.class,cri.getKeyword());
 		return cnt;
 	}
 	// 카운터 끝
@@ -289,71 +314,89 @@ public class FindDao {
 		return results;
 	}
 	
-	public List<LostBoard> selectAllLostBoard(Criteria cri) {
-		List<LostBoard> results = jdbcTemplate.query(
-				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
-				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW " + 
-						"from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
-						+ "PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " + 
-						"over(order by boardnum desc) as rNum " + 
-						"from lostBoard) mb where rNum between ? and ? order by boardnum desc"
-						,lostBoardRowMapper,cri.getRowStart(), cri.getRowEnd());
-		return results;
-	}
+//	public List<LostBoard> selectByLostWriteDate(Date from,Date to){
+//		List<LostBoard> result = jdbcTemplate.query(
+//				"SELECT * FROM LOSTBOARD WHERE WRITEDATE BETWEEN ? AND ? ORDER BY WRITEDATE ASC", lostBoardRowMapper,from,to);
+//		return result;	
+//	}
+//	public List<LostBoard> selectAllLostBoard(SearchCriteria cri, DateSearchCommand dsc) {
+//		List<LostBoard> results = jdbcTemplate.query(
+//				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
+//				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW " + 
+//						"from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
+//						+ "PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " + 
+//						"over(order by boardnum desc) as rNum " + 
+//						"from lostBoard) mb where rNum between ? and ? and WRITEDATE BETWEEN ? AND ? ORDER BY WRITEDATE ASC"
+//						,lostBoardRowMapper,cri.getRowStart(), cri.getRowEnd(),dsc.getFrom(),dsc.getTo());
+//		return results;
+//	}
 	
-	public List<LostBoard> selectAllLostBoard(CriteriaMainBoard cri) {
+	public List<LostBoard> selectAllLostBoard(SearchCriteriaMainBoard cri) {
 		List<LostBoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
 				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW " + 
 						"from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
 						+ "PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " + 
 						"over(order by boardnum desc) as rNum " + 
-						"from lostBoard) mb where rNum between ? and ? order by boardnum desc"
-						,lostBoardRowMapper,cri.getRowStart(), cri.getRowEnd());
+						"from lostBoard where TITLE like '%' || ? || '%') mb where rNum between ? and ? order by boardnum desc"
+						,lostBoardRowMapper,cri.getKeyword(),cri.getRowStart(), cri.getRowEnd());
+		return results;
+	}
+	public List<LostBoard> selectAllLostBoard(SearchCriteria cri) {
+		List<LostBoard> results = jdbcTemplate.query(
+				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
+				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW " + 
+						"from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
+						+ "PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " + 
+						"over(order by boardnum desc) as rNum " + 
+						"from lostBoard where TITLE like '%' || ? || '%') mb where rNum between ? and ? order by boardnum desc"
+						,lostBoardRowMapper,cri.getKeyword(),cri.getRowStart(), cri.getRowEnd());
 		return results;
 	}
 
-	public List<FindBoard> selectAllFindBoard(Criteria cri) {
+	
+	
+	public List<FindBoard> selectAllFindBoard(SearchCriteria cri) {
 		List<FindBoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, EMAIL, "
 						+ " FINDDATE, MEET, MEMO, PHONE,  ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW " 
 						+ "from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, EMAIL, "
 						+ "FINDDATE, MEET, MEMO, PHONE, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " 
 						+ "over(order by boardnum desc) as rNum " 
-						+ "from FindBoard) mb where rNum between ? and ? order by boardnum desc",
-						findBoardRowMapper, cri.getRowStart(), cri.getRowEnd());
+						+ "from FindBoard where TITLE like '%' || ? || '%') mb where rNum between ? and ? order by boardnum desc",
+						findBoardRowMapper,cri.getKeyword(), cri.getRowStart(), cri.getRowEnd());
 		return results;
 	}
 	
-	public List<FindBoard> selectAllFindBoard(CriteriaMainBoard cri) {
+	public List<FindBoard> selectAllFindBoard(SearchCriteriaMainBoard cri) {
 		List<FindBoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, EMAIL, "
 						+ " FINDDATE, MEET, MEMO, PHONE,  ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW " 
 						+ "from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, EMAIL, "
 						+ "FINDDATE, MEET, MEMO, PHONE, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " 
 						+ "over(order by boardnum desc) as rNum " 
-						+ "from FindBoard) mb where rNum between ? and ? order by boardnum desc",
-						findBoardRowMapper, cri.getRowStart(), cri.getRowEnd());
+						+ "from FindBoard where TITLE like '%' || ? || '%') mb where rNum between ? and ? order by boardnum desc",
+						findBoardRowMapper, cri.getKeyword(), cri.getRowStart(), cri.getRowEnd());
 		return results;
 	}
 	
-	public List<QnABoard> selectAllQnABoard(Criteria cri) {
+	public List<QnABoard> selectAllQnABoard(SearchCriteria cri) {
 		List<QnABoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, CONTENTS, OPEN " + 
 				"from(select BOARDNUM, TITLE, WRITER, WRITEDATE, CONTENTS, OPEN, row_number() " + 
 				"over(order by boardnum desc) as rNum " + 
-				"from qnaboard) mb where rNum between ? and ? order by boardnum asc"
-				,qnABoardRowMapper,cri.getRowStart(), cri.getRowEnd());
+				"from qnaboard where TITLE like '%' || ? || '%') mb where rNum between ? and ? order by boardnum asc"
+				,qnABoardRowMapper,cri.getKeyword(),cri.getRowStart(), cri.getRowEnd());
 		return results;
 	}
 	
-	public List<QnABoard> selectAllQnABoard(CriteriaQnABoard cri) {
+	public List<QnABoard> selectAllQnABoard(SearchCriteriaQnABoard cri) {
 		List<QnABoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, CONTENTS, OPEN " + 
 				"from(select BOARDNUM, TITLE, WRITER, WRITEDATE, CONTENTS, OPEN, row_number() " + 
 				"over(order by boardnum asc) as rNum " + 
-				"from qnaboard) mb where rNum between ? and ? and open='1' order by boardnum asc"
-				,qnABoardRowMapper,cri.getRowStart(), cri.getRowEnd());
+				"from qnaboard where TITLE like '%' || ? || '%') mb where rNum between ? and ? and open='1' order by boardnum asc"
+				,qnABoardRowMapper,cri.getKeyword(),cri.getRowStart(), cri.getRowEnd());
 		return results;
 	}
 
@@ -711,6 +754,24 @@ public class FindDao {
 		System.out.println("마이페이지 회원정보 수정");
 		String sql="update member set username=?, phone=?, email=? where membernumber=?";
 		jdbcTemplate.update(sql,myInfoUpdate.getUserName(), myInfoUpdate.getPhone(), myInfoUpdate.getEmail(), memberNumber);
+	}
+	
+	
+	// 날짜 별 검색 
+	public List<FindBoard> selectByFindWriteDate(Date from,Date to){
+		List<FindBoard> result = jdbcTemplate.query(
+				"SELECT * FROM FINDBOARD WHERE WRITEDATE BETWEEN ? AND ? ORDER BY WRITEDATE ASC",findBoardRowMapper,from,to);
+		return result;			
+	}
+	public List<LostBoard> selectByLostWriteDate(Date from,Date to){
+		List<LostBoard> result = jdbcTemplate.query(
+				"SELECT * FROM LOSTBOARD WHERE WRITEDATE BETWEEN ? AND ? ORDER BY WRITEDATE ASC", lostBoardRowMapper,from,to);
+		return result;	
+	}
+	public List<QnABoard> selectByQnAWriteDate(Date from,Date to){
+		List<QnABoard> result = jdbcTemplate.query(
+				"SELECT * FROM LOSTBOARD WHERE WRITEDATE BETWEEN ? AND ? ORDER BY WRITEDATE ASC", qnABoardRowMapper,from,to);
+		return result;	
 	}
 
 

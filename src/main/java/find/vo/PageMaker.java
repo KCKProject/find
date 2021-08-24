@@ -2,6 +2,7 @@ package find.vo;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Date;
 
 import org.springframework.web.util.UriComponents;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -113,8 +114,9 @@ public class PageMaker {
 		UriComponents uriComponents = UriComponentsBuilder.newInstance()
 				.queryParam("page", page)
 				.queryParam("perPageNum", cri.getPerPageNum())
+//				.queryParam("from",encoding(((DateSearchCommand)cri).getFrom()))
+//				.queryParam("to", encoding(((DateSearchCommand)cri).getTo()))
 				.build();
-	   
 		return uriComponents.toUriString();
 	}
 	
@@ -132,12 +134,12 @@ public class PageMaker {
 	 	if(keyword == null || keyword.trim().length() == 0){
  				return ""; 
 	 	}
-		 
 	 	try {
 	 		return URLEncoder.encode(keyword, "UTF-8");
 	 	} 
 	 	catch(UnsupportedEncodingException e){ 
 	 		return ""; }
 		}
+	
 	
 }

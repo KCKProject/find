@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import find.dao.FindDao;
-import find.vo.CriteriaMainBoard;
 import find.vo.LostBoard;
 import find.vo.PageMakerMainBoard;
+import find.vo.SearchCriteriaMainBoard;
 
 @Controller
 public class BoardLostController {
@@ -25,20 +25,17 @@ public class BoardLostController {
 		this.dao = dao;
 	}
 	
-	public int lostCount() {
-		return dao.lostCount();
-	}
 	
 	// 게시글 목록 불러오기
 	@RequestMapping("/lostPage/lostPageList")
-	public String lost(@ModelAttribute("cri") CriteriaMainBoard cri, Model model, HttpServletRequest request) {
+	public String lost(@ModelAttribute("cri") SearchCriteriaMainBoard cri, Model model, HttpServletRequest request) {
 		
 		List<LostBoard> losts = dao.selectAllLostBoard(cri);
 		model.addAttribute("losts",losts);
 		
 		PageMakerMainBoard pageMaker = new PageMakerMainBoard();
 		pageMaker.setCri(cri);
-		pageMaker.setTotalCount(lostCount());
+		pageMaker.setTotalCount(dao.searchLostCount(cri));
 		
 //		ResponseEntity<byte[]> imgUrl = dao.disPlay(request);
 //		

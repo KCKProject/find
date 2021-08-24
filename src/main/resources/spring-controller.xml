@@ -105,5 +105,7 @@
    <bean id="MyInfoUpdateController" class="com.green.KCK_find.controller.MyInfoUpdateController">
    		<property name="dao" ref="findDao"/>
    </bean>   
-
+   
+   <!-- 날짜별 검색 -->
+	
 </beans>
