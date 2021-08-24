@@ -96,7 +96,28 @@ public class BoardLostController {
 		
 		return cList;
 	}
-		
+	
+	// 댓글 수정
+	@ResponseBody
+	@RequestMapping(value="/lostPage/lostPageDetail/modifyComment", method=RequestMethod.POST)
+	public int modifyComment(@RequestParam("cNum") long cNum,
+							 @RequestParam("content") String content) {
+		int result = 0;
+		String board = "LostComment";
+		result = dao.modifyComment(cNum, content, board);
+		return result;
+	}
+	
+	// 댓글 삭제
+	@ResponseBody
+	@RequestMapping(value="/lostPage/lostPageDetail/deleteComment")
+	public int deleteComment(@RequestParam("cNum") long cNum) {
+		int result = 0;
+		String board = "LostComment";
+		result = dao.deleteComment(cNum, board);
+		return result;
+	}
+
 	// 글 삭제 메서드
 	@RequestMapping("/lostPage/delete/{boardNum}")
 	public String delete(@PathVariable("boardNum") long boardNum,

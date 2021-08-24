@@ -101,17 +101,18 @@ public class BoardLostWriteController {
 			return "redirect:/lostPage/lostPageDetail/" + dto.getBoardNum();
 		}
 		
-	// 댓글 등록
-		@RequestMapping(value="/lostPage/writeComment", method=RequestMethod.POST)
-		@ResponseBody
-		public String writeComment(CommentVo cVo, HttpSession session) {
-			MemberAuthInfo user = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-			String userId = user.getUserId();
-			String comment = cVo.getContent();
-			System.out.println("userId : "+userId);
-			System.out.println("comment : "+comment);
-			System.out.println("댓글 등록 구현");
-			
-			return "lostPage/lostPageList";
-		}
+		/*
+		 * // 댓글 등록
+		 * 
+		 * @RequestMapping(value="/lostPage/writeComment", method=RequestMethod.POST)
+		 * 
+		 * @ResponseBody public String writeComment(CommentVo cVo, HttpSession session)
+		 * { MemberAuthInfo user =
+		 * (MemberAuthInfo)session.getAttribute("memberAuthInfo"); String userId =
+		 * user.getUserId(); String comment = cVo.getContent();
+		 * System.out.println("userId : "+userId);
+		 * System.out.println("comment : "+comment); System.out.println("댓글 등록 구현");
+		 * 
+		 * return "lostPage/lostPageList"; }
+		 */
 }

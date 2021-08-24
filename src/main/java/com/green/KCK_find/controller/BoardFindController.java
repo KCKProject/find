@@ -92,6 +92,27 @@ public class BoardFindController {
 		return cList;
 	}
 	
+	// 댓글 수정
+	@ResponseBody
+	@RequestMapping(value="/findPage/findPageDetail/modifyComment", method=RequestMethod.POST)
+	public int modifyComment(@RequestParam("cNum") long cNum,
+							 @RequestParam("content") String content) {
+		int result = 0;
+		String board = "findComment";
+		result = dao.modifyComment(cNum, content, board);
+		return result;
+	}
+	
+	// 댓글 삭제
+	@ResponseBody
+	@RequestMapping(value="/findPage/findPageDetail/deleteComment")
+	public int deleteComment(@RequestParam("cNum") long cNum) {
+		int result = 0;
+		String board = "findComment";
+		result = dao.deleteComment(cNum, board);
+		return result;
+	}
+	
 	// 글 삭제 메서드
 	@RequestMapping("/findPage/delete/{boardNum}")
 	public String delete(@PathVariable("boardNum") long boardNum,

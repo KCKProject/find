@@ -667,7 +667,20 @@ public class FindDao {
 			return 1;
 		}
 		
+		// 댓글 수정
+		public int modifyComment(long cNum, String content, String board) {
+			String sql="UPDATE "+board+" SET content=? WHERE cNum=?";
+			jdbcTemplate.update(sql,content,cNum);
+			return 1;
+		}
 	
+		// 댓글 삭제
+		public int deleteComment(long cNum, String board) {
+			String sql="DELETE FROM "+board+" WHERE cNum=?";
+			jdbcTemplate.update(sql,cNum);
+			return 1;
+		}
+		
 	// 게시글 수정
 	public void modifyLostBoard(LostBoard lb, long boardNum) {
 		jdbcTemplate.update("UPDATE lostBoard SET title=?, kind=?, location=?, character=?, animal=?, gender=?, email=?, phone=?, lostDate=?, memo=?, originalFile=?, originalFileExtension=?, storedFileName=? WHERE boardNum=?",
@@ -723,6 +736,7 @@ public class FindDao {
 		String sql="update member set username=?, phone=?, email=? where membernumber=?";
 		jdbcTemplate.update(sql,myInfoUpdate.getUserName(), myInfoUpdate.getPhone(), myInfoUpdate.getEmail(), memberNumber);
 	}
+	
 
 }
 

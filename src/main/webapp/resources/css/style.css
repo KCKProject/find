@@ -1242,7 +1242,12 @@ label.right {
 	animation: jelly 0.6s ease;
 }
 
-
+#modifyContent{
+	border-radius: 7px;
+	height: 30px;
+	text-align-last: left;
+	border: 1px silver solid;
+}
 
 	
 	
