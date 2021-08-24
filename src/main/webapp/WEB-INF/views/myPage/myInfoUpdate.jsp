@@ -45,7 +45,7 @@
 			
 			<div class="myInfoUpdate"> 
 				<form:form commandName="myInfoUpdateCommand" enctype="multipart/form=data" method="POST">
-						<table>
+					<table>
 						<tr>
 							<td><i class="fas fa-user myInfoUpdateIcon"></i>이름</td>
 							<td><form:input path="userName" value="${myInfoUpdate.getUserName()}" /></td>
@@ -65,7 +65,7 @@
 			</div>
 			
 			<div class="myInfoUpdatePageBtn">
-				<a class="changePasswordToggle changeInfoBtn"><span class="clickText">click</span><i class="fas fa-unlock-alt editIcon"></i>비밀번호 변경</a>
+				<a href="<c:url value='/myPage/myPasswordUpdate/${memberAuthInfo.getMemberNumber()}'/>" class="changeInfoBtn"><span class="clickText">click</span><i class="fas fa-unlock-alt editIcon"></i>비밀번호 변경</a>
 				<a href="<c:url value='/myPage/myPage/${memberAuthInfo.getUserId()}'/>" class="changeInfoBtn"><i class="fas fa-user-alt editIcon"></i>마이페이지<span class="clickText">click</span></a>
 			</div>
 

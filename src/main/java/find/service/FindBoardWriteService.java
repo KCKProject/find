@@ -1,14 +1,11 @@
 package find.service;
 
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 
-import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -46,7 +43,7 @@ public class FindBoardWriteService {
 		}else if(term.equals("emailAgree")) {
 			member.setPhone("비공개");
 		}
-		
+
 		// 이미지 업로드
 		FindBoard fb = new FindBoard();
 
@@ -55,29 +52,16 @@ public class FindBoardWriteService {
 		String originalFileExtension=null;
 		String storedFileName = null;
 		String filePath = null;
-		
+
 		if(originalFile!="") { // 사진 등록했을 때
 			originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
 			storedFileName = UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
 			filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
 			File file = new File(filePath,storedFileName);
 			img.transferTo(file);
-	
+
 			System.out.println(filePath+" : 저장된 경로");
-	
-			// 썸네일 만들기 → 서버 구동 최적화를 위하여
-			// 기존 파일의 축소판인 썸네일을 생성하여 게시글 목록에서 보여지도록 구현
-			BufferedImage sourceImg = ImageIO.read(new File(filePath,storedFileName));
-	
-			BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);
-	
-			String thumbnailName = filePath+File.separator+"s_"+storedFileName;
-	
-			File newFile = new File(thumbnailName);
-			String formatName = storedFileName.substring(storedFileName.lastIndexOf(".")+1);
-	
-			ImageIO.write(destImg, formatName.toUpperCase(), newFile);
-			thumbnailName.substring(filePath.length()).replace(File.separatorChar, '/');
+
 		}else { // 사진 등록 안 했을 때
 			originalFile = null;
 		}
@@ -112,6 +96,7 @@ public class FindBoardWriteService {
 		String storedFileName = null;
 		MultipartFile img = fc.getImg();
 		long boardNum = detail.getBoardNum();
+		System.out.println("service에서의 boardNum : "+boardNum);
 		
 		// 첨부파일 처리
 		// 더 간결한 방법은 없을까...
@@ -129,12 +114,9 @@ public class FindBoardWriteService {
 				String image = detail.getStoredFileName();
 				String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
 				File file = new File(path,image);
-				File thumb = new File(path,"s_"+image);
 					if(file.exists()) {
 						file.delete();
-						thumb.delete();
 					}					
-				System.out.println("삭제 성공");
 			}
 			originalFile = img.getOriginalFilename();
 			if(originalFile!="") {
@@ -145,20 +127,6 @@ public class FindBoardWriteService {
 				String filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
 				File file = new File(filePath,storedFileName);
 				img.transferTo(file);
-				
-				// 기존 파일의 축소판인 썸네일을 생성하여 게시글 목록에서 보여지도록 구현
-				BufferedImage sourceImg = ImageIO.read(new File(filePath,storedFileName));
-	
-				BufferedImage destImg = Scalr.resize(sourceImg, Scalr.Method.AUTOMATIC, Scalr.Mode.FIT_TO_HEIGHT,100);
-	
-				String thumbnailName = filePath+File.separator+"s_"+storedFileName;
-	
-				File newFile = new File(thumbnailName);
-				String formatName = storedFileName.substring(storedFileName.lastIndexOf(".")+1);
-	
-				ImageIO.write(destImg, formatName.toUpperCase(), newFile);
-				thumbnailName.substring(filePath.length()).replace(File.separatorChar, '/');
-	
 				System.out.println(filePath+" : 저장된 경로");
 			}
 		}
@@ -171,9 +139,9 @@ public class FindBoardWriteService {
 		if(phone==null) {
 			member.setPhone("비공개");
 		}
-		
+
 		FindBoard fb = new FindBoard();
-		
+
 		fb.setTitle(fc.getTitle());
 		fb.setWriter(member.getUserId());
 		fb.setLocation(fc.getLocation());
@@ -188,7 +156,6 @@ public class FindBoardWriteService {
 		fb.setOriginalFileExtension(originalFileExtension);
 		fb.setStoredFileName(storedFileName);
 
-		dao.modifyFindBoard(fb, boardNum);
-		
+		dao.modifyFindBoard(fb, boardNum);		
 	}
 }

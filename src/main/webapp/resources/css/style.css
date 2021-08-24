@@ -288,7 +288,6 @@ footer {
 
 .footerIcon ul li i:hover {
     cursor: pointer;
-    font-size: 22px;
     color: #ed4848;
 }
 
@@ -851,7 +850,7 @@ label.right {
 
 .btn-swap span {
     position: absolute;
-    top: 0;
+    top: -3px;
     left: 0;
     padding: 13px 20px;
     width: 100%;
@@ -952,6 +951,17 @@ label.right {
 	border-radius: 8px;
 }
 
+.post-photo-top img {
+	width: 200px;
+	height: 250px;
+	border: 1px solid whitesmoke;
+	border-radius: 8px;
+}
+
+.post-photo-top img:hover {
+	border: 1px solid #fed400;
+}
+
 .post-contents-bottom div {
 	display: flex;
     padding-top: 20px;
@@ -963,8 +973,10 @@ label.right {
 }
 
 .finishText {
-	color: #ed4848;
+	color: fed400;
 }
+
+
 
 
 
@@ -1126,6 +1138,7 @@ label.right {
     justify-content: space-between;
     padding: 15px;
     border-bottom: 1px solid silver;
+    width: 90%;
 }
 
 .lostPage-comment-bottom textarea {
@@ -1197,7 +1210,53 @@ label.right {
 }
 	
 	
-	
+.commentBtn {
+  	background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+/*     border-bottom: 1px solid whitesmoke; 
+    position: relative;
+    top: -40px;
+    left: 46%; */
+    width: 40px;
+    height: 0px;
+}	
+
+.commentBtn p {
+	font-size: 10px;
+    position: relative;
+    top: -38px;
+    color: #f68100;
+    display: none;
+    height: 0px;
+}
+
+.commentBtn:hover i {
+	color: #f68100;
+	animation: jelly 0.6s ease;
+}
+
+.commentBtn:hover p {
+	display: block;
+/* 	animation: jelly 0.6s ease; */
+}
+
+#modifyContent{
+	border-radius: 7px;
+	height: 30px;
+	text-align-last: left;
+	border: 1px silver solid;
+}
+
+.wrap-comment ul > div {
+    float: right;
+    position: relative;
+    top: -30px;
+    left: 10px;
+    margin: -10px 0;
+}
+
 	
 	
 	
@@ -1785,16 +1844,14 @@ label.right {
 	cursor: pointer;
 }
 
-.changeMyInfodToggle:hover .clickText {
+
+
+.myPostTitle:hover .clickText {
 	opacity: 1;
 	transition: all 1s;
 	animation: twinkle 1s infinite cubic-bezier(0.4, 0, 1, 1);
 }
-.changePasswordToggle:hover .clickText {
-	opacity: 1;
-	transition: all 1s;
-	animation: twinkle 1s infinite cubic-bezier(0.4, 0, 1, 1);
-}
+
 
 .changeInfoBtn {
 	padding-left: 10px;
@@ -1913,72 +1970,7 @@ label.right {
 }
 
 
-.changePassword {
-	display: none;
-}
 
-.changePassword.active {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.changePasswordContents {
-    border-bottom: 1px solid lightgrey;
-    background-color: #fbfbfb52;
-    width: 50%;
-    text-align: center;
-    padding: 20px 0;
-}
-
-.changePasswordContents div {
-    padding: 15px 0;
-}
-
-
-
-.changePasswordContents div input[type=text] {
-    padding: 5px 20px;
-    margin: 0 0 0 20px;
-    border: 1px solid gray;
-    border-radius: 8px;
-}
-
-.exitchangePasswordBtn {
-	padding: 5px;
-	position: relative;
-    right: -45%;
-    cursor: pointer;
-    border: 1px solid white;
-}
-
-.exitchangePasswordBtn:hover {
-	padding: 5px;
-	color: palevioletred;
-    border: 1px solid palevioletred;
-    border-radius: 30px;
-    animation: jelly 0.6s ease;
-}
-
-.changePasswordBtn {
-	padding: 10px 5px;
-    margin: 20px 0 0 0;
-    border:none;
-    border-radius: 10px;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
-    background: none;
-}
-
-.changePasswordBtn:hover {
-    cursor: pointer;
-    color: palevioletred;
-    padding: 10px 15px;
-    border-radius: 20px;
-    border: 1px solid palevioletred;
-    transition: all 0.5s;
-    border-radius: 15px;
-}
 
 /* ======회원정보수정 페이지======== */
 
@@ -2049,6 +2041,68 @@ label.right {
 .fa-info {
 	color: lightcoral;
     padding: 0 10px 0 0;
+}
+
+/* ============비번수정페이지============= */
+
+.myPasswordUpdatePageBtn {
+    position: relative;
+    left: 10%;
+}
+
+.changePassword {
+    width: 100%;
+    display: contents;
+}
+
+
+.changePasswordContents {
+    border-top: 1px solid darkgray;	
+    border-bottom: 1px solid lightgrey;
+    background-color: #fbfbfb52;
+    width: 50%;
+    text-align: center;
+    padding: 80px 0;
+}
+
+.changePasswordContents div {
+    padding: 15px 0;
+}
+
+
+
+.changePasswordContents div input[type=text] {
+    padding: 5px 20px;
+    margin: 0 0 0 20px;
+    border: 1px solid gray;
+    border-radius: 8px;
+}
+
+.changePasswordContents div input[type=text]:hover {
+	border: 1px solid palevioletred;
+	border-radius: 10px;
+}
+
+
+
+.changePasswordBtn {
+	padding: 10px 5px;
+    margin: 50px 0 0 0;
+    border:none;
+    border-radius: 10px;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    background: none;
+}
+
+.changePasswordBtn:hover {
+    cursor: pointer;
+    color: palevioletred;
+    padding: 10px 15px;
+    border-radius: 20px;
+    border: 1px solid palevioletred;
+    transition: all 0.5s;
+    border-radius: 15px;
 }
 
 /* ========================= */

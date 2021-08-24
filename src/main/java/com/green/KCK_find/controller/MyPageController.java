@@ -1,11 +1,7 @@
 package com.green.KCK_find.controller;
 
-import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.http.HttpSession;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,12 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import find.dao.FindDao;
-import find.exception.MemberNotFoundException;
-import find.vo.MyInfoUpdateCommand;
 import find.vo.MyPageFindPostCommand;
 import find.vo.MyPageLostPostCommand;
-
-
 
 @Controller
 public class MyPageController {
@@ -38,9 +30,7 @@ public class MyPageController {
 		/////////////////////////////////////////////////////////////////
 		
 		List<MyPageFindPostCommand> findPosts = dao.userFindPost(id);		
-		model.addAttribute("findPosts",findPosts);
-		
-		
+		model.addAttribute("findPosts",findPosts);		
 		
 		return "myPage/myPage";
 	}

@@ -39,8 +39,8 @@
 								<c:if test="${!empty findPosts.size()}">${findPosts.size()}개</c:if>
 							</p>
 							<p>나의 연락처<br>
-								<c:if test="${!empty memberAuthInfo.getPhone()}"><span> 등록완료 <span> </c:if>
-								<c:if test="${empty memberAuthInfo.getPhone()}"><span style="color: #ed4848;"> 미등록 <span> </c:if>
+ 								<c:if test="${!empty memberAuthInfo.getPhone()}"><span> 등록완료 </span> </c:if>
+								<c:if test="${empty memberAuthInfo.getPhone()}"><span style="color: #ed4848;"> 미등록 </span> </c:if> 
 							</p>
 						</div>
 						<div class="myActivitiesContents">
@@ -49,8 +49,8 @@
 								<c:if test="${!empty lostPosts.size()}">${lostPosts.size()}개</c:if>
 							</p>
 							<p>나의 이메일<br>
-								<c:if test="${!empty memberAuthInfo.getEmail()}"><span> 등록완료 <span> </c:if>
-								<c:if test="${empty memberAuthInfo.getEmail()}"><span style="color: #ed4848;"> 미등록<span> </c:if>
+ 								<c:if test="${!empty memberAuthInfo.getEmail()}"><span> 등록완료 </span> </c:if>
+								<c:if test="${empty memberAuthInfo.getEmail()}"><span style="color: #ed4848;"> 미등록</span> </c:if> 
 							</p>
 						</div>
 <!-- 						<div class="myActivitiesContents">
@@ -84,27 +84,8 @@
 					</div>
 				</div>
 			</div>
-
-
-			<div class="changePassword">
-				<div class="changePasswordContents">
-					<i class="fas fa-times exitchangePasswordBtn"></i>
-					<div>
-						현재 비밀번호 <input type="text">
-					</div>
-					<div>
-						변경 비밀번호 <input type="text">
-					</div>
-					<div>
-						비밀번호 확인 <input type="text">
-					</div>
-					<div>
-						<input type="submit" value="비밀번호 변경" class="changePasswordBtn">
-					</div>
-				</div>	
-			</div>
 			<div>
-				<a class="changePasswordToggle changeInfoBtn"><span class="clickText">click</span><i class="fas fa-unlock-alt editIcon"></i>비밀번호 변경</a>
+				<a href="<c:url value='/myPage/myPasswordUpdate/${memberAuthInfo.getMemberNumber()}'/>" class="changeInfoBtn"><span class="clickText">click</span><i class="fas fa-unlock-alt editIcon"></i>비밀번호 변경</a>
 				<a href="<c:url value='/myPage/myInfoUpdate/${memberAuthInfo.getMemberNumber()}'/>" class="changeInfoBtn"><i class="fas fa-user-edit editIcon"></i>나의정보 수정<span class="clickText">click</span></a>
 			</div>
 		</div>
@@ -121,7 +102,15 @@
 										<c:if test="${p.meet==1}"><i class="fas fa-stamp" style="color: gray;"></i></c:if>
 										<c:if test="${p.meet==0}"><i class="fas fa-stamp" style="color: #ed4848;"></i></c:if>
 									</p>
-									<p>${p.title}</p>
+									<!-- 댓글 존재 여부에 따른 표시 -->
+									<c:choose>
+										<c:when test="${p.commentNum!=0}">
+											<p class="myPostTitle"><a href="<c:url value="/lostPage/lostPageDetail/${p.boardNum}"/>">${p.title} (${p.commentNum})<span class="clickText">click</span></a></p>
+										</c:when>
+										<c:when test="${p.commentNum==0}">
+											<p class="myPostTitle"><a href="<c:url value="/lostPage/lostPageDetail/${p.boardNum}"/>">${p.title}<span class="clickText">click</span></a></p>
+										</c:when>
+									</c:choose>
 									<p>${p.writeDate}</p>
 								</div>
 							</c:forEach>
@@ -148,7 +137,14 @@
 										<c:if test="${p.meet==1}"><i class="fas fa-stamp" style="color: gray;"></i></c:if>
 										<c:if test="${p.meet==0}"><i class="fas fa-stamp" style="color: #ed4848;"></i></c:if>
 									</p>
-									<p>${p.title}</p>
+									<c:choose>
+										<c:when test="${p.commentNum!=0}">
+											<p class="myPostTitle"><a href="<c:url value="/findPage/findPageDetail/${p.boardNum}"/>">${p.title} (${p.commentNum})<span class="clickText">click</span></a></p>
+										</c:when>
+										<c:when test="${p.commentNum==0}">
+											<p class="myPostTitle"><a href="<c:url value="/findPage/findPageDetail/${p.boardNum}"/>">${p.title}<span class="clickText">click</span></a></p>
+										</c:when>
+									</c:choose>
 									<p>${p.writeDate}</p>
 								</div>
 							</c:forEach>

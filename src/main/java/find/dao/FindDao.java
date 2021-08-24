@@ -18,6 +18,13 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import find.vo.Admin;
+<<<<<<< HEAD
+=======
+import find.vo.CommentVo;
+import find.vo.Criteria;
+import find.vo.CriteriaMainBoard;
+import find.vo.CriteriaQnABoard;
+>>>>>>> aa17be95adb9c2adad06f4f7e6844617040fadb1
 import find.vo.FindBoard;
 import find.vo.LostBoard;
 import find.vo.Member;
@@ -154,15 +161,31 @@ public class FindDao {
 			}
 		};
 		
+		private RowMapper<CommentVo> commentRowMapper = new RowMapper<CommentVo>() {
+			
+			public CommentVo mapRow(ResultSet rs, int rowNum) throws SQLException{
+				CommentVo c = new CommentVo(
+							rs.getLong("bNum"),
+							rs.getString("writer"),
+							rs.getDate("writeDate"),
+							rs.getString("content")
+						);
+				c.setcNum(rs.getLong("cNum"));
+				return c;
+			}
+		};
+
 		private RowMapper<MyPageLostPostCommand> userLostPostMapper = new RowMapper<MyPageLostPostCommand>() {
 			
 			@Override
 			public MyPageLostPostCommand mapRow(ResultSet rs, int rowNum) throws SQLException{
 				System.out.println("mypage-lost");
 				MyPageLostPostCommand p = new MyPageLostPostCommand(
+							rs.getInt("boardNum"),
 							rs.getString("title"),
 							rs.getDate("writeDate"),
-							rs.getInt("meet")
+							rs.getInt("meet"),
+							rs.getInt("commentNum")
 						);
 				p.setBoardNum(rs.getLong("BoardNum")); 
 				return p;
@@ -175,9 +198,11 @@ public class FindDao {
 			public MyPageFindPostCommand mapRow(ResultSet rs, int rowNum) throws SQLException{
 				System.out.println("mypage-find");
 				MyPageFindPostCommand p = new MyPageFindPostCommand(
+						rs.getInt("boardNum"),
 						rs.getString("title"),
 						rs.getDate("writeDate"),
-						rs.getInt("meet")
+						rs.getInt("meet"),
+						rs.getInt("commentNum")
 						);
 //				p.setBoardNum(rs.getLong("BoardNum"));
 				return p;
@@ -274,7 +299,7 @@ public class FindDao {
 	
 	// 메인 페이지 게시글
 	public List<LostBoard> selectMainLostBoard(){
-		String sql = "SELECT * FROM (SELECT * FROM lostBoard ORDER BY rowNum DESC) WHERE rowNum<=10 AND meet=0";
+		String sql = "SELECT * FROM (SELECT * FROM lostBoard ORDER BY boardNum DESC) WHERE rowNum<=10 AND meet=0";
 		List<LostBoard> results = jdbcTemplate.query(sql, lostBoardRowMapper);
 		return results;
 	}
@@ -511,19 +536,21 @@ public class FindDao {
 	}
 	
 	public List<MyPageLostPostCommand> userLostPost(String id) {
-		String sql="SELECT * FROM lostboard WHERE writer=?";
+		String sql="SELECT boardNum, title, writeDate, meet, (SELECT COUNT(*) FROM lostComment WHERE bNum=boardNum) AS commentNum FROM lostBoard WHERE writer=? group by boardNum, title, writeDate, meet";
 		List<MyPageLostPostCommand> results = jdbcTemplate.query(sql, userLostPostMapper, id);
 		
 		return results.isEmpty() ? null : results;
 	}
 	
 	public List<MyPageFindPostCommand> userFindPost(String id) {
-		String sql="SELECT * FROM findboard WHERE writer=?";
+		String sql="SELECT boardNum, title, writeDate, meet, (SELECT COUNT(*) FROM findComment WHERE bNum=boardNum) AS commentNum FROM findBoard WHERE writer=? group by boardNum, title, writeDate, meet ORDER BY boardNum";
 		List<MyPageFindPostCommand> results = jdbcTemplate.query(sql, userFindPostMapper, id);
 		
 		return results.isEmpty() ? null : results;
 	}
 	
+	
+	// 게시판 조회수
 	public void updateLostHit(long boardNum) {
 		jdbcTemplate.update(
 				new PreparedStatementCreator() {
@@ -543,6 +570,8 @@ public class FindDao {
 				boardNum);
 	}
 	
+	
+	// 게시판 삭제
 	public void deleteByLostBoardNum(long boardNum) {
 		String sql="DELETE FROM lostBoard WHERE boardNum=?";
 		jdbcTemplate.update(sql,boardNum);
@@ -558,6 +587,13 @@ public class FindDao {
 		jdbcTemplate.update(sql,boardNum);
 	}
 	
+	public void deleteCommentByBoardNum(long boardNum, String board) {
+		String sql="DELETE FROM "+board+" WHERE bNum=?";
+		jdbcTemplate.update(sql,boardNum);		
+	}
+	
+	
+	// 게시판 발견완료 여부 & 공개 여부
 	public void updateMeet(long boardNum, int meet, String board) {
 		String sql = "";
 		
@@ -662,46 +698,43 @@ public class FindDao {
 				fb.getStoredFileName());
 	}
 
-
-//	public ResponseEntity<byte[]> disPlay(HttpServletRequest request) throws Exception{
-//        //fileName 은 /년/월/일/파일명의 형태로 입력을 받는다.
-//        System.out.println("서비스까지 이동");
-//		String uploadPath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
-//		System.out.println("uploadPath : "+uploadPath);
-//		
-//        InputStream in=null;
-//        //ResponseEntity<byte[]> 로 결과는 실제로 파일의 데이터가 된다.
-//        //컨트롤에서 @ResponseBody 를 이용해야 하며 
-//        //byte[] 데이터가 그대로 전송될 것임을 명시한다.
-//        ResponseEntity<byte[]> entity=null;
-//         
-//        try{
-////        	String formatName =fileName.substring(fileName.lastIndexOf(".")+1);
-////            
-////           MediaType mType =MediaUtils.getMediaType(formatName);
-//        	String fileName = detail.getStoredFileName();
-//    		String mType = detail.getOriginalFileExtension();
-//            System.out.println("fileName : "+fileName);
-//            HttpHeaders headers =new HttpHeaders();
-//            //   경로 +/년/월/일 /파일이름
-//            in =new FileInputStream(uploadPath+fileName);
-//            
-//            //실제로 데이터를 읽는 부분은 commons 라이브러리의 기능을 활용해서 대상
-//            // 파일에서 데이터를 읽어내는 IOUtils.toByteArray() 이다.
-//            entity=new ResponseEntity<byte[]>(IOUtils.toByteArray(in), headers, HttpStatus.CREATED);
-//             
-//        }catch(Exception e){
-//            e.printStackTrace();
-//            entity=new ResponseEntity<byte[]>(HttpStatus.BAD_REQUEST);
-//        }finally{
-//            in.close();
-//        }
-//        System.out.println("entity : "+entity);
-//        return entity;
-//    }
+///////////////////////// 댓글 (comment)
+		// 댓글 목록 불러오기	
+		public List<CommentVo> selectAllComment(long bNum, String board) {
+			String sql="SELECT * FROM "+board+" WHERE bNum=?";
+			List<CommentVo> results = jdbcTemplate.query(sql, commentRowMapper, bNum);
+			
+			return results.isEmpty() ? null : results;
+		}
+		
+		// 댓글 등록
+		public int insertLostComment(CommentVo cVo) {
+			String sql="INSERT INTO LostComment VALUES(lost_c_seq.nextval, ?, ?, sysdate, ?)";
+			jdbcTemplate.update(sql,cVo.getbNum(),cVo.getWriter(),cVo.getContent());
+			return 1;
+		}
+				
+		public int insertFindComment(CommentVo cVo) {
+			String sql="INSERT INTO FindComment VALUES(find_c_seq.nextval, ?, ?, sysdate, ?)";
+			jdbcTemplate.update(sql,cVo.getbNum(),cVo.getWriter(),cVo.getContent());
+			return 1;
+		}
+		
+		// 댓글 수정
+		public int modifyComment(long cNum, String content, String board) {
+			String sql="UPDATE "+board+" SET content=? WHERE cNum=?";
+			jdbcTemplate.update(sql,content,cNum);
+			return 1;
+		}
 	
-	
-	// LostBoard 수정
+		// 댓글 삭제
+		public int deleteComment(long cNum, String board) {
+			String sql="DELETE FROM "+board+" WHERE cNum=?";
+			jdbcTemplate.update(sql,cNum);
+			return 1;
+		}
+		
+	// 게시글 수정
 	public void modifyLostBoard(LostBoard lb, long boardNum) {
 		jdbcTemplate.update("UPDATE lostBoard SET title=?, kind=?, location=?, character=?, animal=?, gender=?, email=?, phone=?, lostDate=?, memo=?, originalFile=?, originalFileExtension=?, storedFileName=? WHERE boardNum=?",
 				lb.getTitle(),
@@ -721,6 +754,7 @@ public class FindDao {
 	}
 	
 	public void modifyFindBoard(FindBoard fb, long boardNum) {
+		System.out.println("dao로 넘어온 boardNum : "+boardNum);
 		jdbcTemplate.update("UPDATE findBoard SET title=?, kind=?, location=?, character=?, gender=?, email=?, phone=?, findDate=?, memo=?, originalFile=?, originalFileExtension=?, storedFileName=? WHERE boardNum=?",
 				fb.getTitle(),
 				fb.getKind(),
@@ -756,6 +790,7 @@ public class FindDao {
 		jdbcTemplate.update(sql,myInfoUpdate.getUserName(), myInfoUpdate.getPhone(), myInfoUpdate.getEmail(), memberNumber);
 	}
 	
+<<<<<<< HEAD
 	
 	// 날짜 별 검색 
 	public List<FindBoard> selectByFindWriteDate(Date from,Date to){
@@ -772,8 +807,17 @@ public class FindDao {
 		List<QnABoard> result = jdbcTemplate.query(
 				"SELECT * FROM LOSTBOARD WHERE WRITEDATE BETWEEN ? AND ? ORDER BY WRITEDATE ASC", qnABoardRowMapper,from,to);
 		return result;	
+=======
+
+	// 마이페이지 회원 비밀번호 수정
+	public void myPasswordUpdate(long memberNumber, MemberAuthInfo myPasswordUpdate) {
+		System.out.println("마이페이지 회원 비밀번호 수정");
+		String sql="update member set userpassword=? where membernumber=?";
+		
+		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(), memberNumber);
+>>>>>>> aa17be95adb9c2adad06f4f7e6844617040fadb1
 	}
 
 
-	
 }
+

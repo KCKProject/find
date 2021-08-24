@@ -8,13 +8,16 @@ public class MyPageFindPostCommand {
 		private String title;
 		private Date writeDate;
 		private int meet;
+		private int commentNum;
 		
 		public MyPageFindPostCommand() {}
 
-		public MyPageFindPostCommand(String title, Date writeDate, int meet) {
+		public MyPageFindPostCommand(long boardNum, String title, Date writeDate, int meet, int commentNum) {
+			this.BoardNum = boardNum;
 			this.title = title;
 			this.writeDate = writeDate;
 			this.meet = meet;
+			this.commentNum = commentNum;
 		}
 
 		public Long getBoardNum() {
@@ -47,6 +50,14 @@ public class MyPageFindPostCommand {
 
 		public void setMeet(int meet) {
 			this.meet = meet;
+		}
+
+		public int getCommentNum() {
+			return commentNum;
+		}
+
+		public void setCommentNum(int commentNum) {
+			this.commentNum = commentNum;
 		}
 
 }

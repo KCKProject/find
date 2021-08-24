@@ -101,11 +101,17 @@
    		<property name="dao" ref="findDao"/>
    </bean>   
    
-    <!-- myPage -> myInfoUpdate -->
    <bean id="MyInfoUpdateController" class="com.green.KCK_find.controller.MyInfoUpdateController">
    		<property name="dao" ref="findDao"/>
    </bean>   
    
+<<<<<<< HEAD
    <!-- 날짜별 검색 -->
 	
+=======
+   <bean id="MyPasswordUpdateController" class="com.green.KCK_find.controller.MyPasswordUpdateController">
+   		<property name="dao" ref="findDao"/>
+   </bean>   
+
+>>>>>>> aa17be95adb9c2adad06f4f7e6844617040fadb1
 </beans>

@@ -4,14 +4,23 @@ import java.io.File;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import find.dao.FindDao;
+<<<<<<< HEAD
+=======
+import find.vo.CommentVo;
+import find.vo.CriteriaMainBoard;
+>>>>>>> aa17be95adb9c2adad06f4f7e6844617040fadb1
 import find.vo.LostBoard;
 import find.vo.PageMakerMainBoard;
 import find.vo.SearchCriteriaMainBoard;
@@ -52,31 +61,86 @@ public class BoardLostController {
 		LostBoard detail = dao.selectByBoardNum(boardNum);
 		model.addAttribute("detail", detail);
 		
+		// 댓글 리스트
+		String board = "LostComment";
+		List<CommentVo> cList = dao.selectAllComment(boardNum, board);
+		model.addAttribute("cList", cList);
+		
 		return "lostPage/lostPageDetail";
 	}
 	
+	// 댓글 등록
+	@ResponseBody
+	@RequestMapping(value="/lostPage/lostPageDetail/writeComment", method=RequestMethod.POST)
+	public int writeComment(@RequestParam("writer") String writer,
+							@RequestParam("bno") long bNum,
+							@RequestParam("text") String content,
+							HttpSession session) {
+		int result=0;
+		
+		CommentVo cVo = new CommentVo();
+		cVo.setbNum(bNum);
+		cVo.setWriter(writer);
+		cVo.setContent(content);
+
+		result = dao.insertLostComment(cVo);
+
+		return result;
+	}
+	
+	// 댓글 목록 조회
+	@ResponseBody
+	@RequestMapping(value="/lostPage/lostPageDetail/commentList", method=RequestMethod.POST)
+	public List<CommentVo> selectAllComment(@RequestParam("bNo") long bNum) {
+		String board = "Lostcomment";
+		List<CommentVo> cList = dao.selectAllComment(bNum, board);
+		
+		return cList;
+	}
+	
+	// 댓글 수정
+	@ResponseBody
+	@RequestMapping(value="/lostPage/lostPageDetail/modifyComment", method=RequestMethod.POST)
+	public int modifyComment(@RequestParam("cNum") long cNum,
+							 @RequestParam("content") String content) {
+		int result = 0;
+		String board = "LostComment";
+		result = dao.modifyComment(cNum, content, board);
+		return result;
+	}
+	
+	// 댓글 삭제
+	@ResponseBody
+	@RequestMapping(value="/lostPage/lostPageDetail/deleteComment")
+	public int deleteComment(@RequestParam("cNum") long cNum) {
+		int result = 0;
+		String board = "LostComment";
+		result = dao.deleteComment(cNum, board);
+		return result;
+	}
+
 	// 글 삭제 메서드
-		@RequestMapping("/lostPage/delete/{boardNum}")
-		public String delete(@PathVariable("boardNum") long boardNum,
-							 HttpServletRequest request) {
-			// 첨부파일 삭제
-			// image = storedFileName = 저장된 이미지 이름
-			LostBoard detail = dao.selectByBoardNum(boardNum);
-			String image = detail.getStoredFileName();
-			String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
-			File file = new File(path,image);
-			File thumb = new File(path,"s_"+image);
-				if(file.exists()) {
-					file.delete();
-					thumb.delete();
-				}
-				
-			System.out.println("게시물도 잘 삭제됐는지 추후에 확인 필요");
-			
-			// 게시글 DB 삭제
-			dao.deleteByLostBoardNum(boardNum);
-			return "redirect:/lostPage/lostPageList";
-		}
+	@RequestMapping("/lostPage/delete/{boardNum}")
+	public String delete(@PathVariable("boardNum") long boardNum,
+						 HttpServletRequest request) {
+		// 첨부파일 삭제
+		// image = storedFileName = 저장된 이미지 이름
+		LostBoard detail = dao.selectByBoardNum(boardNum);
+		String image = detail.getStoredFileName();
+		String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+		File file = new File(path,image);
+			if(file.exists()) {
+				file.delete();
+			}
+		
+		// 게시글 댓글 삭제
+		String board = "lostComment";
+		dao.deleteCommentByBoardNum(boardNum, board);
+		
+		// 게시글 DB 삭제
+		dao.deleteByLostBoardNum(boardNum);
+		return "redirect:/lostPage/lostPageList";
+	}
 
 	// 발견완료/미발견 체크박스 변경 메서드
 	@RequestMapping("/lostPage/changeMeet/{boardNum}&{meet}")
