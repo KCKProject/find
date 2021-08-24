@@ -144,6 +144,6 @@ public class BoardFindController {
 		FindBoard detail = dao.selectByFindBoardNum(boardNum);
 		model.addAttribute("detail", detail);
 		
-		return "findPage/findPageDetail";
+		return "redirect:/findPage/findPageDetail/"+boardNum;
 	}
 }

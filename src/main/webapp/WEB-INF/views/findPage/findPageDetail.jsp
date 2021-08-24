@@ -125,7 +125,7 @@
 				</form>
 			</div>
 
-			<div class="wrap-comment">
+			<div class="wrap-lostPage-comment">
 				<div class="lostPage-comment-top">
 					<h4>댓글을 남겨주세요 !</h4>
 					<p>*댓글을 남겨주세요! 여러분의 작은 관심이 희망의 끈이 됩니다. 욕설/명예훼손의 글은 동의 없이 삭제됩니다.</p>
@@ -140,11 +140,11 @@
 									<p class="con">${c.content}</p>
 									<p>${c.writer} | ${c.writeDate}</p>									
 								</li>	
-									<input type="hidden" class="cNum" value="${c.cNum}">												
-									<c:if test="${c.writer==memberAuthInfo.userId}">
-	           						<button class="commentBtn commentMod"><i class="fas fa-pencil-alt"></i><p>수정</p></button>
-	           						<button class="commentBtn commentDel"><i class="fas fa-trash-alt"></i><p>삭제</p></button>
-	           						</c:if>
+								<input type="hidden" class="cNum" value="${c.cNum}">												
+								<c:if test="${c.writer==memberAuthInfo.userId}">
+           						<button class="commentBtn commentMod"><i class="fas fa-pencil-alt"></i><p>수정</p></button>
+           						<button class="commentBtn commentDel"><i class="fas fa-trash-alt"></i><p>삭제</p></button>
+           						</c:if>
 							</c:forEach>
 						</ul>
 					</div>
@@ -251,72 +251,43 @@
 		});	
 
 		// 댓글 수정
-		$("#lostPage-comment-bottom").on("click", ".commentMod", function modifyClick(){
-			alert('클릭');
+		$("#lostPage-comment-bottom").on("click", ".commentMod", function modifyClick(){	
 			var div = $("#comment-modify");
 			var num = div.children().length;
 			var li = $(this).prev().prev();
-			var ul = li.parent();
-			var mod_con = ul.find("#modifyContent");
-			var move = ul.find("#commentModFin");
-			
-			if(!num){
-				alert('첫 번째 num : '+num);
-				div.prepend(mod_con);
-				div.prepend(move);
-				
-				alert("새로시작");
-				
-				modifyClick();
-			}			
-			
-			var li = $(this).prev().prev();
-			var con = li.children('.con').text();
-			var p = li.children('p');
 			var cArea = $("#modifyContent");
-			var fin = $("#commentModFin");			
-			
-			if(num){
-				alert('두 번째 num : '+num);
+			var fin = $("#commentModFin");
+			var con = li.children('.con').text();
+			var p = li.children('p');	
+
+			// 수정작업 중 다른 수정 버튼 클릭 시
+			if(num==0){
+				// 이전에 체크된 부분탐색
+				var ul = li.parent();
+				var mod_con = ul.find("#modifyContent");
+				var move = ul.find("#commentModFin");
+				var prevBtn = move.prev();
+				var prevP = mod_con.nextAll('p');
+				
 				li.prepend(cArea);
-				p.hide();
 				$(this).after(fin);
+				prevP.show();
+				prevBtn.show();
+				p.hide();
 				$(this).hide();
-				fin.show();
-				cArea.show();
 				cArea.val(con);
 			}
 			
-			
-			/* if(move.text()=="완료"){
-				
-				alert(num);
-				alert("null아님");
-				div.prepend(mod_con);
-				div.prepend(move);
-				alert("시작준비");
-				selectRlist();
-				alert("새로시작");
-				
-				modifyClick();
-			}
-			 */
-			
-			/*  if($(this).hasClass('con')){ 
+			// 정상적인 경로
+			if(num==2){
 				li.prepend(cArea);
-				p.hide();
 				$(this).after(fin);
-				$(this).hide();
 				fin.show();
 				cArea.show();
+				p.hide();				
+				$(this).hide();
 				cArea.val(con);
-			}  */
-			/* if(li.hasClass('modifyContent')){
-				div.prepend(cArea);
-				div.prepend(fin);
-				fin.hide();
-				cArea.hide();
-			}		 */	
+			}
 		});
 		
 		$("#lostPage-comment-bottom").on("click", ".commentModFin", function(){

@@ -150,6 +150,6 @@ public class BoardLostController {
 		LostBoard detail = dao.selectByBoardNum(boardNum);
 
 		model.addAttribute("detail", detail);
-		return "lostPage/lostPageDetail";
+		return "redirect:/lostPage/lostPageDetail/"+boardNum;
 	}
 }

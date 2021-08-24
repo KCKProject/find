@@ -244,38 +244,40 @@
 			var div = $("#comment-modify");
 			var num = div.children().length;
 			var li = $(this).prev().prev();
-			var ul = li.parent();
-			var mod_con = ul.find("#modifyContent");
-			var move = ul.find("#commentModFin");
-			
-			if(!num){
-				div.prepend(mod_con);
-				div.prepend(move);
-				selectRlist();
-				
-				modifyClick();
-			}
-			
-			
-			var li = $(this).prev().prev();
-			var con = li.children('.con').text();
-			var p = li.children('p');
 			var cArea = $("#modifyContent");
-			var fin = $("#commentModFin");			
-			var ul = li.parent();			
-			var allLi = ul.children('li');
-			var input = allLi.children('input');			
-			
-			if(move.text()===""){
+			var fin = $("#commentModFin");
+			var con = li.children('.con').text();
+			var p = li.children('p');	
+
+			// 수정작업 중 다른 수정 버튼 클릭 시
+			if(num==0){
+				// 이전에 체크된 부분탐색
+				var ul = li.parent();
+				var mod_con = ul.find("#modifyContent");
+				var move = ul.find("#commentModFin");
+				var prevBtn = move.prev();
+				var prevP = mod_con.nextAll('p');
+				
 				li.prepend(cArea);
-				p.hide();
 				$(this).after(fin);
+				prevP.show();
+				prevBtn.show();
+				p.hide();
 				$(this).hide();
-				fin.show();
-				cArea.show();
 				cArea.val(con);
 			}
-});
+			
+			// 정상적인 경로
+			if(num==2){
+				li.prepend(cArea);
+				$(this).after(fin);
+				fin.show();
+				cArea.show();
+				p.hide();				
+				$(this).hide();
+				cArea.val(con);
+			}
+		});
 		
 		$("#lostPage-comment-bottom").on("click", ".commentModFin", function(){
 			
@@ -321,7 +323,6 @@
 			if (chk) {
 				var input = $(this).prev().prev();
 				var cNum = input.val();
-				alert('cNum : '+cNum);
 				
 				$.ajax({
 					type : "GET",
