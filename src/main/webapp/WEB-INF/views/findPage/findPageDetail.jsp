@@ -334,7 +334,6 @@
 			if (chk) {
 				var input = $(this).prev().prev();
 				var cNum = input.val();
-				alert('cNum : '+cNum);
 				
 				$.ajax({
 					type : "GET",

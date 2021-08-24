@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import find.dao.FindDao;
 import find.vo.CommentVo;
-import find.vo.CriteriaMainBoard;
 import find.vo.LostBoard;
 import find.vo.PageMakerMainBoard;
 import find.vo.SearchCriteriaMainBoard;

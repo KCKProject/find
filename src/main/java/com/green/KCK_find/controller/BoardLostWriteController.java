@@ -10,13 +10,12 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import find.dao.FindDao;
 import find.service.LostBoardWriteService;
 import find.validator.BoardLostCommandValidator;
-import find.vo.CommentVo;
 import find.vo.LostBoard;
 import find.vo.LostBoardWriteCommand;
 import find.vo.MemberAuthInfo;
@@ -37,14 +36,15 @@ public class BoardLostWriteController {
 		this.dao = dao;
 	}
 
-	@RequestMapping(value="/lostPage/lostPageWrite", method=RequestMethod.GET)
-	public String write(LostBoardWriteCommand lostBoardWriteCommand) {
-		
-		return "lostPage/lostPageWrite";
-	}
-
 	// 글 등록
-//	@RequestMapping(method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+		@RequestMapping(value="/lostPage/lostPageWrite", method=RequestMethod.GET)
+		public String write(LostBoardWriteCommand lostBoardWriteCommand) {
+			
+			return "lostPage/lostPageWrite";
+		}
+
+	
+//		@RequestMapping(method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 		@RequestMapping(value="/lostPage/lostPageWrite", method=RequestMethod.POST)
 		public String regist(LostBoardWriteCommand lostBoardWriteCommand, HttpSession session,
 				MultipartHttpServletRequest request, Errors errors) throws IOException {
@@ -94,25 +94,10 @@ public class BoardLostWriteController {
 	// 후기 추가
 		@RequestMapping(value="/lostPage/lostPageWrite/review", method=RequestMethod.POST)
 		public String writeReview(WriteReviewDtoLost dto, HttpSession session) throws IOException {
-			MemberAuthInfo member = (MemberAuthInfo) session.getAttribute("memberAuthInfo");
+			//MemberAuthInfo member = (MemberAuthInfo) session.getAttribute("memberAuthInfo");
 			System.out.println(dto.getReview());
 			lostBoardWriteService.writeReview(dto.getReview(), dto.getBoardNum());
 	
 			return "redirect:/lostPage/lostPageDetail/" + dto.getBoardNum();
 		}
-		
-		/*
-		 * // 댓글 등록
-		 * 
-		 * @RequestMapping(value="/lostPage/writeComment", method=RequestMethod.POST)
-		 * 
-		 * @ResponseBody public String writeComment(CommentVo cVo, HttpSession session)
-		 * { MemberAuthInfo user =
-		 * (MemberAuthInfo)session.getAttribute("memberAuthInfo"); String userId =
-		 * user.getUserId(); String comment = cVo.getContent();
-		 * System.out.println("userId : "+userId);
-		 * System.out.println("comment : "+comment); System.out.println("댓글 등록 구현");
-		 * 
-		 * return "lostPage/lostPageList"; }
-		 */
 }
