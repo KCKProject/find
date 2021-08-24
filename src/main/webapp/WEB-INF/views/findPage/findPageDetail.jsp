@@ -252,6 +252,7 @@
 
 		// 댓글 수정
 		$("#lostPage-comment-bottom").on("click", ".commentMod", function modifyClick(){
+			alert('클릭');
 			var div = $("#comment-modify");
 			var num = div.children().length;
 			var li = $(this).prev().prev();
@@ -260,25 +261,23 @@
 			var move = ul.find("#commentModFin");
 			
 			if(!num){
+				alert('첫 번째 num : '+num);
 				div.prepend(mod_con);
 				div.prepend(move);
-				selectRlist();
+				
 				alert("새로시작");
 				
 				modifyClick();
-			}
-			
+			}			
 			
 			var li = $(this).prev().prev();
 			var con = li.children('.con').text();
 			var p = li.children('p');
 			var cArea = $("#modifyContent");
 			var fin = $("#commentModFin");			
-			var ul = li.parent();			
-			var allLi = ul.children('li');
-			var input = allLi.children('input');			
 			
-			if(move.text()===""){
+			if(num){
+				alert('두 번째 num : '+num);
 				li.prepend(cArea);
 				p.hide();
 				$(this).after(fin);
