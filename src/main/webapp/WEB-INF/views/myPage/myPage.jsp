@@ -102,7 +102,15 @@
 										<c:if test="${p.meet==1}"><i class="fas fa-stamp" style="color: gray;"></i></c:if>
 										<c:if test="${p.meet==0}"><i class="fas fa-stamp" style="color: #ed4848;"></i></c:if>
 									</p>
-									<p class="myPostTitle"><a href="<c:url value="/lostPage/lostPageDetail/${p.boardNum}"/>">${p.title}<span class="clickText">click</span></a></p>
+									<!-- 댓글 존재 여부에 따른 표시 -->
+									<c:choose>
+										<c:when test="${p.commentNum!=0}">
+											<p class="myPostTitle"><a href="<c:url value="/lostPage/lostPageDetail/${p.boardNum}"/>">${p.title} (${p.commentNum})<span class="clickText">click</span></a></p>
+										</c:when>
+										<c:when test="${p.commentNum==0}">
+											<p class="myPostTitle"><a href="<c:url value="/lostPage/lostPageDetail/${p.boardNum}"/>">${p.title}<span class="clickText">click</span></a></p>
+										</c:when>
+									</c:choose>
 									<p>${p.writeDate}</p>
 								</div>
 							</c:forEach>
@@ -129,7 +137,14 @@
 										<c:if test="${p.meet==1}"><i class="fas fa-stamp" style="color: gray;"></i></c:if>
 										<c:if test="${p.meet==0}"><i class="fas fa-stamp" style="color: #ed4848;"></i></c:if>
 									</p>
-									<p class="myPostTitle"><a href="<c:url value="/findPage/findPageDetail/${p.boardNum}"/>">${p.title}<span class="clickText">click</span></a></p>
+									<c:choose>
+										<c:when test="${p.commentNum!=0}">
+											<p class="myPostTitle"><a href="<c:url value="/findPage/findPageDetail/${p.boardNum}"/>">${p.title} (${p.commentNum})<span class="clickText">click</span></a></p>
+										</c:when>
+										<c:when test="${p.commentNum==0}">
+											<p class="myPostTitle"><a href="<c:url value="/findPage/findPageDetail/${p.boardNum}"/>">${p.title}<span class="clickText">click</span></a></p>
+										</c:when>
+									</c:choose>
 									<p>${p.writeDate}</p>
 								</div>
 							</c:forEach>

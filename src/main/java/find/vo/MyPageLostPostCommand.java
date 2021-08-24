@@ -8,14 +8,16 @@ public class MyPageLostPostCommand {
 		private String title;
 		private Date writeDate;
 		private int meet;
+		private int commentNum;
 		
 		public MyPageLostPostCommand() {}
 
-		public MyPageLostPostCommand(long boardNum, String title, Date writeDate, int meet) {
+		public MyPageLostPostCommand(long boardNum, String title, Date writeDate, int meet, int commentNum) {
 			this.BoardNum = boardNum;
 			this.title = title;
 			this.writeDate = writeDate;
 			this.meet = meet;
+			this.commentNum = commentNum;
 		}
 
 		public Long getBoardNum() {
@@ -48,6 +50,14 @@ public class MyPageLostPostCommand {
 
 		public void setMeet(int meet) {
 			this.meet = meet;
+		}
+
+		public int getCommentNum() {
+			return commentNum;
+		}
+
+		public void setCommentNum(int commentNum) {
+			this.commentNum = commentNum;
 		}
 
 }

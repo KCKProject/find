@@ -178,7 +178,8 @@ public class FindDao {
 							rs.getInt("boardNum"),
 							rs.getString("title"),
 							rs.getDate("writeDate"),
-							rs.getInt("meet")
+							rs.getInt("meet"),
+							rs.getInt("commentNum")
 						);
 				p.setBoardNum(rs.getLong("BoardNum")); 
 				return p;
@@ -194,7 +195,8 @@ public class FindDao {
 						rs.getInt("boardNum"),
 						rs.getString("title"),
 						rs.getDate("writeDate"),
-						rs.getInt("meet")
+						rs.getInt("meet"),
+						rs.getInt("commentNum")
 						);
 //				p.setBoardNum(rs.getLong("BoardNum"));
 				return p;
@@ -485,14 +487,14 @@ public class FindDao {
 	}
 	
 	public List<MyPageLostPostCommand> userLostPost(String id) {
-		String sql="SELECT * FROM lostboard WHERE writer=?";
+		String sql="SELECT boardNum, title, writeDate, meet, (SELECT COUNT(*) FROM lostComment WHERE bNum=boardNum) AS commentNum FROM lostBoard WHERE writer=? group by boardNum, title, writeDate, meet";
 		List<MyPageLostPostCommand> results = jdbcTemplate.query(sql, userLostPostMapper, id);
 		
 		return results.isEmpty() ? null : results;
 	}
 	
 	public List<MyPageFindPostCommand> userFindPost(String id) {
-		String sql="SELECT * FROM findboard WHERE writer=?";
+		String sql="SELECT boardNum, title, writeDate, meet, (SELECT COUNT(*) FROM findComment WHERE bNum=boardNum) AS commentNum FROM findBoard WHERE writer=? group by boardNum, title, writeDate, meet ORDER BY boardNum";
 		List<MyPageFindPostCommand> results = jdbcTemplate.query(sql, userFindPostMapper, id);
 		
 		return results.isEmpty() ? null : results;
