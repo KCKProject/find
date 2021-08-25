@@ -155,7 +155,7 @@
 						<!-- 댓글등록 버튼 -->
 
 	                    <a class="btn btn-swap" name="uploadComment" id="uploadComment">
-	                        upload <span>등록 >></span>
+	                        upload <span>등록 </span>
 	                    </a>
                 	</div>
 				</div> 
