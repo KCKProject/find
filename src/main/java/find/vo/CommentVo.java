@@ -51,7 +51,7 @@ public class CommentVo {
 	}
 
 	public String getContent() {
-		return content;
+		return content.replaceAll("(?i)<script", "&lt;script");
 	}
 
 	public void setContent(String content) {

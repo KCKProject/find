@@ -36,24 +36,24 @@
 				<p> Q&A 등록 페이지</p>
 			</div>
 			<div class="wrapWritePage">
-				<form:form commandName="qnAWriteCommand" enctype="multipart/form=data" method="POST">
+				<form:form commandName="qnAWriteCommand" enctype="multipart/form=data" method="POST" onsubmit="check()">
 					<table>
 						<tr>
 							<td><span>*</span>글제목</td>
-							<td><form:input path="title" placeholder="글제목"/></td>
+							<td><form:input path="title" id="title" placeholder="글제목"/></td>
 						</tr>
 						<tr>
 							<td><span>*</span>작성자</td>
-							<td><form:input path="writer" placeholder="작성자"/></td>
+							<td><form:input path="writer" id="writer" placeholder="작성자"/></td>
 						</tr>
 						<tr>
 							<td><span>*</span>내용</td>
-							<td><form:input path="contents" placeholder="내용"/></td>
+							<td><form:input path="contents" id="contents" placeholder="내용"/></td>
 						</tr>
 						<tr  class="qnaOpen">
 							<td><span>*</span>공개여부</td>
 							<td>
-								<form:select path="open">
+								<form:select path="open" id="open">
 									<form:option value="1" label="공개"/>
 									<form:option value="0" label="비공개"/>
 								</form:select>
@@ -68,4 +68,24 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript">
+function check(){
+	if(document.getElementById("title").value==""){
+		alert("글제목은 필수 입력사항입니다.");
+		return false;
+	}
+	else if(document.getElementById("writer").value==""){
+		alert("작성자는 필수 입력사항입니다.")
+		return false;
+	}
+	/* else if(document.getElementById("contents").value==""){
+		alert("내용은 필수 입력사항입니다.")
+		return false;
+	} */
+
+	else{
+		alert("작성완료 되었습니다.")
+	}
+}
+</script>
 </html>
