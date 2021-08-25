@@ -135,9 +135,13 @@
                     <div class="col-md-10 col-lg-8 mx-auto text-center">
                         <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
                         <h2 class="text-white mb-5">Send us your comments!</h2>
- 
- 						
-                        <form class="form-signup" id="contactForm" data-sb-form-api-token="API_TOKEN">
+                        
+<%--                          <form class="form-signup" id="contactForm" method="POST" action="/KCK_find/servicePage/servicePage">
+                         	<input type="text">
+                         	<input type="submit">                       	
+                         </form> --%>
+  						
+                          <form class="form-signup" id="contactForm" method="POST" action="/KCK_find/servicePage/servicePage/serviceComment" data-sb-form-api-token="API_TOKEN">
                             <!-- Email address input-->
                             <div class="row input-group-newsletter">
                                 <div class="col"><input class="form-control" id="emailAddress" type="email" placeholder="Please write your comments..." aria-label="Send us your comments" /></div>
@@ -155,9 +159,8 @@
                             <!---->
                             <!-- This is what your users will see when there is-->
                             <!-- an error submitting the form-->
-                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3 mt-2">Error sending message!</div></div>
-                            
-                        </form>
+                            <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3 mt-2">Error sending message!</div></div>                          
+                        </form>  
                         
                     </div>
                 </div>
@@ -220,66 +223,3 @@
 
 </html>
 
-
-<!-- <body id="bodyServicePate">
-
-	<div class="wrapServicePage">
-	
-		<section class="sectionServicePage">
-			<div>
-				<h2>K C K</h2>
-				<P><i class="fab fa-accusoft"></i><P>
-				<P>KOREA CODING KING</P>
-			</div>
-			<div class="serviceIntroduce">
-				<h2>서비스 소개</h2>
-				<p>
-				최근 애견·애묘 등 반려동물과 함께하는 인구가 증가하고 있다. <BR>
-				국내 반려인구는 2015년에 이미 1,000만 시대에 진입했고 올해는 1500만 명을 넘어섰다. <BR>
-				이는 국민 서너 명 중 한명 꼴로 가정에서 반려동물을 기르고 있는 셈이다.  <BR>
-				이러한 흐름에 발맞춰 최근에는 반려동물 관련 서비스 산업 또한 고급화와 다양화 되고 있다. <BR>
-				최근에는 수가 늘어난 반려인들은 연결해 반려동물 분실 시 정보를 공유해 도움을 요청할 수 있는 여러 앱, 웹 서비스들이 등장 하였다.<BR>
-				하지만 사이트 별 상이한 카테고리와 광범위한 지역 설정으로 인해 상용화에 어려움을 겪고 있다. <BR>
-				이에 해당 서비스를 진행하는 바, 수원 내 분실동물만을 다루어 사용자 접근성은 높이고 ui는 직관적으로 배치 하여 사용성을 높임.
-				</p>
-			</div>
-			<div class="alliance">
-				<h2>제휴문의</h2>
-				<p>
-				The Lorm alphabet is a method of tactile signing named after Hieronymus Lorm, <BR>
-				who developed it in the late 19th century. Letters are spelled by tapping or stroking <BR>
-				different parts of the listener's hand.[1] The Lorm alphabet is mostly used in German-speaking countries, <BR>
-				the Netherlands, Czech Republic, Poland and Georgia.
-				</p>
-			</div>
-			<div class="serviceCenter">
-				<h2>고객센터</h2>
-				<p>
-				The Lorm alphabet is a method of tactile signing named after Hieronymus Lorm, <BR>
-				who developed it in the late 19th century. Letters are spelled by tapping or stroking <BR>
-				different parts of the listener's hand.[1] The Lorm alphabet is mostly used in German-speaking countries, <BR>
-				the Netherlands, Czech Republic, Poland and Georgia.
-				</p>
-			</div>
-			<div class="notice">
-				<h2>공지사항</h2>
-				<p>
-				The Lorm alphabet is a method of tactile signing named after Hieronymus Lorm, <BR>
-				who developed it in the late 19th century. Letters are spelled by tapping or stroking <BR>
-				different parts of the listener's hand.[1] The Lorm alphabet is mostly used in German-speaking countries, <BR>
-				the Netherlands, Czech Republic, Poland and Georgia.
-				</p>
-			</div>
-		
-		
-		</section>
-		<div class="btnServicePage">
-			<div class="sidebtn0" type="button" onclick="goTop()">TOP</div>
-			<div class="sidebtn3" onclick="window.scrollTo(3500,3500);">미정미정</div>
-			sidebtn1,2는 qna페이지에서 설명글로 씀
-			<div class="sidebtn4" onclick="window.scrollTo(2500,2500);">관련사이트</div>
-			<div class="sidebtn5" onclick="window.scrollTo(1700,1700);">제휴문의</div>
-			<div class="sidebtn6" onclick="window.scrollTo(850,850);">서비스소개</div>
-		</div>
-	</div>	
-</body> -->

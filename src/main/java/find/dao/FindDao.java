@@ -32,6 +32,7 @@ import find.vo.QnABoard;
 import find.vo.SearchCriteria;
 import find.vo.SearchCriteriaMainBoard;
 import find.vo.SearchCriteriaQnABoard;
+import find.vo.ServiceCommentDto;
 
 @Component
 public class FindDao {
@@ -812,7 +813,29 @@ public class FindDao {
 		
 		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(), memberNumber);
 	}
-
-
+	
+	// 서비스페이지 코멘트 추가
+//	public void addServiceComment(ServiceCommentDto newComment) {
+//		System.out.println("service comment");
+//		
+//		KeyHolder key = new GeneratedKeyHolder();
+//		jdbcTemplate.update(
+//				new PreparedStatementCreator() {
+//					
+//					@Override
+//					public PreparedStatement createPreparedStatement(Connection con) throws SQLException{
+//						PreparedStatement psmt = con.prepareStatement(
+//							"INSERT INTO SERVICECOMMENT VALUES(serviceComment_seq.nextval,?,?)",
+//							new String[] {"serviceComment"});
+//						
+//						psmt.setDate(1,newComment.getWriteDate());
+//						psmt.setString(2,newComment.getContent());					
+//						return psmt;
+//					}
+//				},key);
+//		Number keyValue = key.getKey();
+//		serviceComment.setCnum(keyValue.longValue());
+//	}
+	
 }
 

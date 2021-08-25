@@ -45,6 +45,11 @@ html {
 
 input::placeholder { font-size: 80%; text-align: center;}
 
+
+input {
+	padding: 0 15px;	
+}
+
 a { text-decoration:none } /*모든 a태그의 text-decoration 없애기*/
 
 [id*='errors'] { color: #f7c180; font-size: 10px;} /*에러메세지 주황색 표기*/
@@ -72,7 +77,6 @@ ul, li {list-style: none;}
 .paging ul li a:hover {
 	color: #f7c180;
 	text-decoration: underline;
-	font-size: 17px
 }
 
 
@@ -186,6 +190,7 @@ nav {
     width: 80%;
     border: none;
     border-bottom: gray 1.5px solid;
+    padding: 0 5px;
 }
 
 .search form button {
@@ -1009,7 +1014,6 @@ label.right {
     height: 30px;
     border: 1px solid gray;
     border-radius: 8px;
-    padding-left: 3px;
 }
 
 .wrapWritePage table tr td input:hover {
@@ -1020,7 +1024,7 @@ label.right {
 .wrapWritePage table tr td textarea {
 	border-radius: 8px;
 	border: 1px gray solid;
-	padding-left: 3px;
+	padding-left: 10px;
 }
 
 .wrapWritePage table tr td textarea:hover {
@@ -1147,6 +1151,7 @@ label.right {
 	border-radius: 12px;
 	border: 1px silver solid;
 	box-shadow: 0px 10px 10px -5px whitesmoke;
+	padding: 10px 0;
 }
 
 .memo {
@@ -1293,7 +1298,6 @@ label.right {
 
 .qaBxListTitle th {
     font-weight: 100;
-    font-size: 15px;
     background: #064420;
     color: white;
     /* border: none; */
@@ -1301,7 +1305,7 @@ label.right {
 
 .qaBx table tr th, .qaBx table tr td {
 	text-align: center;
-    padding: 0 70px;
+	font-size: 13px;
     border-bottom: 1px solid lightgrey;
 }
 
@@ -1334,6 +1338,19 @@ label.right {
 	font-size: 20px;
 	cursor: pointer;
 }
+
+.qaBxContentsTitle {
+    width: 450px;
+}
+
+.qaBxContentsWriter {
+    width: 200px;
+}
+
+.qaBxContentsWriteDate {
+	width: 130px;
+}
+
 
 
 /* ========================= */
@@ -1870,6 +1887,12 @@ label.right {
     top: -50px;
     left: 10%;
 } 
+
+.changeMyInfodToggle:hover .clickText {
+	opacity: 1;
+	transition: all 1s;
+	animation: twinkle 1s infinite cubic-bezier(0.4, 0, 1, 1);
+}
 
 .changeInfoBtn:hover .clickText {
 	opacity: 1;

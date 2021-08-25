@@ -53,10 +53,6 @@
 								<c:if test="${empty memberAuthInfo.getEmail()}"><span style="color: #ed4848;"> 미등록</span> </c:if> 
 							</p>
 						</div>
-<!-- 						<div class="myActivitiesContents">
-							<p><i class="fas fa-stamp" style="color: #ed4848;"></i> 발견완료<br>1개</p>
-							<p><i class="fas fa-stamp" style="color: #ed4848;"></i> 발견완료<br>1개</p>
-						</div> -->
 					</div>
 				</div>		
 			</div>
