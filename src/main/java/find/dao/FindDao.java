@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -19,20 +18,17 @@ import org.springframework.stereotype.Component;
 
 import find.vo.Admin;
 import find.vo.CommentVo;
-import find.vo.Criteria;
-import find.vo.CriteriaMainBoard;
-import find.vo.CriteriaQnABoard;
 import find.vo.FindBoard;
 import find.vo.LostBoard;
 import find.vo.Member;
 import find.vo.MemberAuthInfo;
 import find.vo.MyPageFindPostCommand;
 import find.vo.MyPageLostPostCommand;
+import find.vo.MyPasswordUpdateCommand;
 import find.vo.QnABoard;
 import find.vo.SearchCriteria;
 import find.vo.SearchCriteriaMainBoard;
 import find.vo.SearchCriteriaQnABoard;
-import find.vo.ServiceCommentDto;
 
 @Component
 public class FindDao {
@@ -808,10 +804,8 @@ public class FindDao {
 
 	// 마이페이지 회원 비밀번호 수정
 	public void myPasswordUpdate(long memberNumber, MemberAuthInfo myPasswordUpdate) {
-		System.out.println("마이페이지 회원 비밀번호 수정");
-		String sql="update member set userpassword=? where membernumber=?";
-		
-		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(), memberNumber);
+		String sql="update member set userpassword=? where memberNumber=?";
+		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(),memberNumber);
 	}
 	
 	// 서비스페이지 코멘트 추가

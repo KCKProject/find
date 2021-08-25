@@ -5,7 +5,14 @@ public class MyPasswordUpdateCommand {
 	private String userPasswordCurrent;
 	private String userPasswordNew;
 	private String userPasswordNewConfirm;
+	private String userPasswordCurrentChk;
 	
+	public String getUserPasswordCurrentChk() {
+		return userPasswordCurrentChk;
+	}
+	public void setUserPasswordCurrentChk(String userPasswordCurrentChk) {
+		this.userPasswordCurrentChk = userPasswordCurrentChk;
+	}
 	public String getUserId() {
 		return userId;
 	}

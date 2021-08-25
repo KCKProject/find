@@ -74,7 +74,7 @@ function check(){
 		alert("글제목은 필수 입력사항입니다.");
 		return false;
 	}
-	else if(document.getElementById("writer").value==""){
+	if(document.getElementById("writer").value==""){
 		alert("작성자는 필수 입력사항입니다.")
 		return false;
 	}

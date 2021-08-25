@@ -30,6 +30,10 @@ public class MemberAuthInfo { // 회원 로그인 정보를 기억할 클래스
 		this.phone = phone;
 		this.email = email;
 	}
+	public MemberAuthInfo(String userId,String userPassword) {
+		this.userId = userId;
+		this.userPassword = userPassword;
+	}
 	
 	public long getMemberNumber() {
 		return memberNumber;
