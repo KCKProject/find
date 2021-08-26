@@ -74,7 +74,12 @@
 					</tr>
 					<tr>
 						<td><span>*</span>사진첨부</td>
-						<td><input type="file" name="img" id="img"/></td>
+						<td id="lastTd">
+							<p name="add"><i class="fas fa-plus"></i></p>
+							<input type="file" name="img" id="img1" accept=".jpg, .jpeg, .png">
+							<a id="firstDel"><i class='fas fa-trash-alt'></i></a><br>
+						</td>
+						<!-- accept 성질 -->
 					</tr>
 				</table>
 
@@ -127,6 +132,34 @@
 		            }
 		        }
 		    });
+		    
+		 	// 파일 추가 버튼
+	    	$("table").on("click", "p[name='add']", function () {
+	    		var num = $("table").find("tr").length;
+	    		if(num==11){
+	    			alert('파일은 3개까지 등록할 수 있습니다.');
+	    		}else{
+	    			var addForm = "<tr>";
+	    			addForm += "<td></td>";
+	    			addForm += "<td>";
+	    			addForm += '<input type="file" name="img" id="img"/>'
+	    			addForm += '<a class="del"><i class="fas fa-trash-alt"></i></a><br>';
+	    			addForm += "</td>";
+	    			addForm += "</tr>";
+		    		$("table").append(addForm);
+	    		}
+	    	});
+		    
+		    // 등록 파일 제거
+		    $('table').on("click","#firstDel",function(){
+		    	$(this).prev().val("");	
+		    });
+		    
+		    $('table').on("click",".del",function(){
+		    	$(this).parent().parent().remove();
+		    });
+
+		    
 		});
 		
 		function imgCheck(){

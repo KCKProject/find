@@ -1,6 +1,7 @@
 package com.green.KCK_find.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,6 +20,7 @@ import find.validator.BoardLostCommandValidator;
 import find.vo.LostBoard;
 import find.vo.LostBoardWriteCommand;
 import find.vo.MemberAuthInfo;
+import find.vo.UploadImgVo;
 import find.vo.WriteReviewDtoLost;
 
 @Controller
@@ -67,7 +69,11 @@ public class BoardLostWriteController {
 		public String lostModify(@PathVariable("boardNum") long boardNum, Model model, 
 				LostBoardWriteCommand lostBoardWriteCommand) {
 			LostBoard detail = dao.selectByBoardNum(boardNum);
+			String where = "lostNum";
+			List<UploadImgVo> imgs = dao.selectUploadImgByBoardNum(boardNum, where);
+			
 			model.addAttribute("detail", detail);
+			model.addAttribute("imgs", imgs);
 			
 			return "lostPage/lostPageModify";
 		}
@@ -79,11 +85,14 @@ public class BoardLostWriteController {
 			new BoardLostCommandValidator().validate(lc, errors);
 			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
 			LostBoard detail = dao.selectByBoardNum(boardNum);
+			String where = "lostNum";
+			List<UploadImgVo> imgs = dao.selectUploadImgByBoardNum(boardNum, where);
+			
 			if(errors.hasErrors()) {
 				return "lostPage/lostPageModify";
 			}
 			try {
-				lostBoardWriteService.modifyLost(lc, detail, member, request);		
+				lostBoardWriteService.modifyLost(lc, detail, member, request, imgs);		
 			}catch(Exception e) {
 				e.printStackTrace();
 				return "lostPage/lostPageModify";

@@ -27,11 +27,16 @@
 			
 			<div class="boardPage-contents">
 				<ul>
-					<li class="post-photo-top">
-						<img src="../../resources/imgUpload/${detail.storedFileName}" style="cursor:pointer"/>
-					</li>
-					<li class="post-photo-top"></li>
-					<li class="post-photo-top"></li>
+					<c:if test="${empty imgs}">
+						<li class="post-photo-top">
+							<img src="../../resources/img/defaultImg.png" style="cursor:pointer"/>
+						</li>
+					</c:if>
+					<c:forEach var="i" items="${imgs}">
+						<li class="post-photo-top">
+							<img src="../../resources/imgUpload/${i.storedFileName}" style="cursor:pointer"/>
+						</li>
+					</c:forEach>
 				</ul>
 				<div class="post-contents-bottom"> 
 					<!-- 게시글 내용 나오는 부분 -->

@@ -11,10 +11,8 @@ public class UploadImgVo {
 	
 	public UploadImgVo() {}
 	
-	public UploadImgVo(long iNum, long lostNum, long findNum, String originalFile, String originalFileExtension,
+	public UploadImgVo(long lostNum, long findNum, String originalFile, String originalFileExtension,
 			String storedFileName) {
-		super();
-		this.iNum = iNum;
 		this.lostNum = lostNum;
 		this.findNum = findNum;
 		this.originalFile = originalFile;

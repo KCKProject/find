@@ -84,7 +84,7 @@
 						<td><span>*</span>사진첨부</td>
 						<td id="lastTd">
 							<p name="add"><i class="fas fa-plus"></i></p>
-							<input type="file" name="img" id="img1">
+							<input type="file" name="img" id="img1" accept=".jpg, .jpeg, .png">
 							<a id="firstDel"><i class='fas fa-trash-alt'></i></a><br>
 						</td>
 						<!-- accept 성질 -->
@@ -172,8 +172,8 @@
 		function imgCheck(){
 			if($('#img').val()==""){
 				alert("첨부파일은 필수입니다.");
-				document.getElementById('form').submit();
-			}
+				return;
+			}			
 			document.getElementById('form').submit();
 		};		
 	</script>

@@ -20,6 +20,7 @@ import find.vo.CommentVo;
 import find.vo.FindBoard;
 import find.vo.PageMakerMainBoard;
 import find.vo.SearchCriteriaMainBoard;
+import find.vo.UploadImgVo;
 
 @Controller
 public class BoardFindController {
@@ -31,7 +32,7 @@ public class BoardFindController {
 	}
 	
 
-	// 글 목록 불러오기
+	// 게시글 목록 불러오기
 	@RequestMapping("/findPage/findPageList")
 	public String find(@ModelAttribute("cri") SearchCriteriaMainBoard cri, Model model) {
 		
@@ -51,7 +52,11 @@ public class BoardFindController {
 	public String detail(@PathVariable("boardNum") long boardNum, Model model) {
 		dao.updateFindHit(boardNum);
 		FindBoard detail = dao.selectByFindBoardNum(boardNum);
+		String where = "findNum";
+		List<UploadImgVo> imgs = dao.selectUploadImgByBoardNum(boardNum, where);
+		
 		model.addAttribute("detail", detail);
+		model.addAttribute("imgs", imgs);
 		
 		// 댓글 리스트
 		String board = "FindComment";
@@ -116,14 +121,19 @@ public class BoardFindController {
 	public String delete(@PathVariable("boardNum") long boardNum,
 						 HttpServletRequest request) {
 		// 첨부파일 삭제
-		// image = storedFileName = 저장된 이미지 이름
-		FindBoard detail = dao.selectByFindBoardNum(boardNum);
-		String image = detail.getStoredFileName();
-		if(image!=null) {
+		// image = storedFileName = 저장된 이미지 이름			
+		String where = "findNum";
+		List<UploadImgVo> imgs = dao.selectUploadImgByBoardNum(boardNum, where);
+
+		for(UploadImgVo i : imgs) {
+			String image = i.getStoredFileName();
 			String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
 			File file = new File(path,image);
-			file.delete();
+				if(file.exists()) {
+					file.delete();
+				}
 		}
+		dao.deleteImgByBoardNum(boardNum,where);
 		
 		// 게시글 댓글 삭제
 		String board = "findComment";
