@@ -32,7 +32,7 @@
 						<td>${detail.writer}</td>
 					</tr>
 					<tr>
-						<td><span>*</span>글제목</td>
+						<td><strong>*</strong>글제목</td>
 						<td>
 							<form:input path="title" value="${detail.title}"/>
 							<form:errors path="title"/>
@@ -47,21 +47,21 @@
 						<td><form:input path="gender" value="${detail.gender}"/>						</td>
 					</tr>
 					<tr>
-						<td><span>*</span>발견위치</td>
+						<td><strong>*</strong>발견위치</td>
 						<td>
 							<form:input path="location" value="${detail.location}"/>
 							<form:errors path="location"/>
 						</td>
 					</tr>
 					<tr>
-						<td><span>*</span>발견시각</td>
+						<td><strong>*</strong>발견시각</td>
 						<td>
 							<form:input path="findDate" value="${detail.findDate}"/>
 							<form:errors path="findDate"/>
 						</td>
 					</tr>
 					<tr>  
-						<td><span>*</span>특징</td>
+						<td><strong>*</strong>특징</td>
 						<td>
 							<form:input path="character" value="${detail.character}"/>
 							<form:errors path="character"/>
@@ -78,7 +78,7 @@
 					<tr>
 						<td><span style="color: white;">*</span>상세내용</td>
 						<td>
-							<textarea id="memo" name="memo" rows="10" cols="65" onkeyup="javascript:fnChkByte(this,'2000')">${detail.memo}</textarea>
+							<textarea id="memo" name="memo" rows="10" cols="65" onkeyup="javascript:fnChkByte(this,'2000')">${detail.memo}</textarea><br>
 							<span id="byteInfo">0</span> / 2000bytes
 						</td>
 					</tr>
