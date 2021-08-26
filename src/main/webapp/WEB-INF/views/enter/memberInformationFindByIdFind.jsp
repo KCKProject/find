@@ -11,7 +11,7 @@
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <script src="<spring:url value='/resources/script/script.js'/>" defer></script>
-<title>회원정보 찾기</title>
+<title>아이디 찾기</title>
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
@@ -20,17 +20,13 @@
 			<h3 class="loginTitle"><!-- 로그인 --></h3>
 			<div class="loginBox memberInformationFindBox">
 				<form>
-					<input path="userName" placeholder="이름" />
-					<select path="userQuetion">
-						<option value="question1">어릴적 내가 살던 동네 이름은?</option>
-						<option value="question2">나의 초등학교 이름은?</option>
-						<option value="question3">나의 보물 1호는?</option>
-						<option value="question4">가장 존경하는 선생님의 성함은?</option>
-						<option value="question5">내가 가장 좋아하는 요리는?</option>
-					</select>
-					<input path="userAnswer" placeholder="답변" />
-					<input type="submit" value="찾기" class="loginBoxbtn">
+				<c:forEach var="m" items="${members}">
+					<p>${m.userName}님의 아이디 </p>
+					<input type="text" value="${m.userId}">
+					<input type="button" value="로그인 화면으로 돌아가기 " onclick="location.href='./login'">
+				</c:forEach>
 				</form>
+				
 			</div>
 		
 		

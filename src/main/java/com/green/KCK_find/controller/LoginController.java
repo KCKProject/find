@@ -10,6 +10,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import find.dao.FindDao;
 import find.exception.IdPasswordNotMatchingException;
 import find.service.MemberAuthService;
 import find.validator.MemberLoginCommandVaildator;
@@ -19,7 +20,13 @@ import find.vo.MemberLoginCommand;
 @Controller
 @RequestMapping("/enter/login")
 public class LoginController {
+		private FindDao dao;
 		
+		public void setDao(FindDao dao) {
+			this.dao = dao;
+		}	
+	
+	
 		@Autowired
 		private MemberAuthService memberAuthService;
 		
@@ -29,6 +36,7 @@ public class LoginController {
 		
 		@RequestMapping(method = RequestMethod.GET)
 		public String form(MemberLoginCommand memberLoginCommand) {
+
 			return "enter/login";
 		}
 		

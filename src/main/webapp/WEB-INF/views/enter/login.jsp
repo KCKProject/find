@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,15 +20,16 @@
 		<div class="loginInner">
 			<h3 class="loginTitle"><!-- 로그인 --></h3>
 			<div class="loginBox">
-				<form:form commandName="memberLoginCommand">
-					<form:input path="userId" placeholder="아이디" />
-					<form:password path="userPassword" placeholder="비밀번호" />
+				<form:form commandName="memberLoginCommand" onsubmit="loginChk()">
+					<form:input path="userId" id="userId" placeholder="아이디" />
+					<form:password path="userPassword" id="userPassword" placeholder="비밀번호" />
 					<input type="submit" value="로그인" class="loginBoxbtn">
 				</form:form>
 			</div>
 			<div class="loginBoxLower">
 				<p>
-					<a href="<spring:url value='/enter/memberInformationFind'/>" class="loginBoxLowerText">아이디, 비밀번호 찾기 | </a>
+					<a href="<spring:url value='/enter/memberInformationFindById'/>" class="loginBoxLowerText">아이디 찾기 | </a>
+					<a href="<spring:url value='/enter/memberInformationFindByPassword'/>" class="loginBoxLowerText">비밀번호 찾기 | </a>
 					<a href="<c:url value='/enter/signUp'/>" class="loginBoxLowerText">아직 회원이 아니신가요?</a>
 				</p>
 			</div>
@@ -35,4 +37,18 @@
 	</section>
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
+<script type="text/javascript">
+function loginChk(){
+	if(document.getElementById("userId").value ==""){
+		alert("아이디를 입력해주세요.");
+		return false;
+	}
+	if(document.getElementById("userPassword").value ==""){
+		alert("비밀번호를 입력해주세요.");
+		return false;
+	}
+	
+}
+
+</script>
 </html>

@@ -46,11 +46,11 @@
 								<form:errors path="userName"/>
 							</p>
 							<p>
-								<form:input path="phone" placeholder="연락처" />
+								<form:input path="phone" placeholder="-(하이픈)을 포함한 전체 전화번호를 입력해주세요" />
 								<form:errors path="phone"/>
 							</p>
 							<p>
-								<form:input path="email" type="email" placeholder="이메일(@를 포함한 주소 입력)"/>
+								<form:input path="email" type="email" placeholder="@를 포함한 이메일 주소를 입력해주세요"/>
 								<form:errors path="email"/>
 							</p>
 						</div>

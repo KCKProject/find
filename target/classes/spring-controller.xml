@@ -92,11 +92,13 @@
    
    <!-- servicePage -->
    <bean id="ServicePageController" class="com.green.KCK_find.controller.ServicePageController">
-   	<property name="dao" ref="findDao"/>
+   		<property name="dao" ref="findDao"/>
    </bean>   
    
    <!-- find id/pw -->
-    <bean id="MemberInformationFindController" class="com.green.KCK_find.controller.MemberInformationFindController"/>  
+    <bean id="MemberInformationFindController" class="com.green.KCK_find.controller.MemberInformationFindController">
+    	<property name="dao" ref="findDao"/>
+    </bean>
    
    <!-- myPage -->
    <bean id="MyPageController" class="com.green.KCK_find.controller.MyPageController">
