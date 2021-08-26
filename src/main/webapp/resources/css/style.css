@@ -489,7 +489,7 @@ footer {
 	transition: all.3s;
 }
 
-.signUpCommandTitle p strong {
+strong {
 	color: red;
 }
 
@@ -1077,6 +1077,11 @@ label.right {
 .wrapWritePage input[type=file]:hover {
     border: none;
     border-radius: 0px;
+}
+
+.msg {
+    font-size: 12px;
+    color: cadetblue;
 }
 
 
