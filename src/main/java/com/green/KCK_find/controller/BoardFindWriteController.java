@@ -38,6 +38,8 @@ public class BoardFindWriteController {
 		this.dao = dao;
 	}
 	
+	String where = "findNum";
+	
 	// 글 등록
 		@RequestMapping(method=RequestMethod.GET)
 		public String write(FindBoardWriteCommand findBoardWriteCommand) {
@@ -65,7 +67,11 @@ public class BoardFindWriteController {
 		public String findModify(@PathVariable("boardNum") long boardNum, Model model, 
 				FindBoardWriteCommand fc) {
 			FindBoard detail = dao.selectByFindBoardNum(boardNum);
+			
+			List<UploadImgVo> imgs = dao.selectUploadImgByBoardNum(boardNum, where);
+			
 			model.addAttribute("detail", detail);
+			model.addAttribute("imgs", imgs);
 			
 			return "findPage/findPageModify";
 		}
@@ -77,7 +83,6 @@ public class BoardFindWriteController {
 			new BoardFindCommandValidator().validate(fc, errors);
 			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
 			FindBoard detail = dao.selectByFindBoardNum(boardNum);
-			String where = "findNum";
 			List<UploadImgVo> imgs = dao.selectUploadImgByBoardNum(boardNum, where);
 			
 			if(errors.hasErrors()) {

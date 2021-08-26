@@ -1,15 +1,12 @@
 package find.service;
  
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpSession;
 
-import org.imgscalr.Scalr;
 import org.springframework.beans.factory.annotation.Autowired;
 import
 org.springframework.stereotype.Service;
@@ -17,7 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import find.dao.FindDao;
-import find.vo.CommentVo;
 import find.vo.LostBoard;
 import find.vo.LostBoardWriteCommand;
 import find.vo.MemberAuthInfo;
@@ -32,6 +28,8 @@ public class LostBoardWriteService {
 	public LostBoardWriteService(FindDao dao) {
 		this.dao = dao; 
 	}
+	
+	String where = "lostNum";
 	
 	// 글 등록
 	public void boardRegist(LostBoardWriteCommand lc, 
@@ -106,7 +104,7 @@ public class LostBoardWriteService {
 					uVo.setOriginalFileExtension(originalFileExtension);
 					uVo.setStoredFileName(storedFileName);
 					String board = "lostBoard";
-					dao.writeLostBoardImg(uVo, BoardNum, board);
+					dao.writeBoardImg(uVo, BoardNum, board);
 				}
 			
 //			// 썸네일 만들기 → 서버 구동 최적화를 위하여
@@ -162,46 +160,66 @@ public class LostBoardWriteService {
 		lb.setPhone(phone);
 		lb.setLostDate(lc.getLostDate());
 		lb.setMemo(lc.getMemo());
-		//lb.setOriginalFile(originalFile);
-		//lb.setOriginalFileExtension(originalFileExtension);
-		//lb.setStoredFileName(storedFileName);
 
 		dao.modifyLostBoard(lb, boardNum);
 		
-		MultipartFile[] img = lc.getImg();		 
-		String originalFile = null;
-		String originalFileExtension = null;
-		String storedFileName = null;
-		String filePath = null;		
-		
-		for(MultipartFile f : img) {
-			UploadImgVo uVo = new UploadImgVo();
-			// 기존 저장 파일 전부 삭제
-			for(UploadImgVo i : imgs) {
-				String image = i.getStoredFileName();
+		// 이미지 수정
+		// 기존 이미지 삭제 내역 확인
+		List<UploadImgVo> prevImg = dao.selectUploadImgByBoardNum(boardNum, where);
+		String[] maintain = lc.getOriginalFile();
+		for(UploadImgVo pr : prevImg) {
+			String chk = "";
+			String prevName = pr.getOriginalFile();
+			for(String m : maintain) {
+				if(prevName==m) {
+					chk = "same";
+					break;
+				}
+			}
+			// 새로 넘어온 리스트에서 기존 파일이 존재하지 않을 시, 삭제
+			if(!chk.equals("same")) {
+				String image = pr.getStoredFileName();
 				String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
 				File file = new File(path,image);
 					if(file.exists()) {
 						file.delete();
 					}					
 				System.out.println("삭제 성공");
-			}				
+			}
+		}
+
+		MultipartFile[] img = lc.getImg();		 
+		String originalFile = null;
+		String originalFileExtension = null;
+		String storedFileName = null;
+		String filePath = null;
+		int num = img.length;
+		System.out.println("num : "+num);
+		
+		if(num!=0) { // 사진 등록했을 때
+			originalFile = img[0].getOriginalFilename();
+			if(originalFile!="") {
+				for(MultipartFile f : img) {
+					// 추가 파일 등록
+					UploadImgVo uVo = new UploadImgVo();
+					System.out.println("-----추가 파일 등록");
+					System.out.println("파일 이름 : "+originalFile);
 					
-			// 추가 파일 등록
-			System.out.println("-----추가 파일 등록");
-			System.out.println("파일 이름 : "+originalFile);
-			originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
-			storedFileName = UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
-			filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
-			File file = new File(filePath,storedFileName);
-			f.transferTo(file);
-			
-			// 객체 저장
-			uVo.setOriginalFile(originalFile);
-			uVo.setOriginalFileExtension(originalFileExtension);
-			uVo.setStoredFileName(storedFileName);
-			String board = "lostBoard";
-			dao.writeLostBoardImg(uVo, boardNum, board);
-		}		
+					originalFile = f.getOriginalFilename();
+					originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+					storedFileName = UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
+					filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+					File file = new File(filePath,storedFileName);
+					f.transferTo(file);
+					
+					// 객체 저장
+					uVo.setOriginalFile(originalFile);
+					uVo.setOriginalFileExtension(originalFileExtension);
+					uVo.setStoredFileName(storedFileName);
+					String board = "lostBoard";
+					dao.writeBoardImg(uVo, boardNum, board);
+				}
+			}
+		}
 	}	
 }

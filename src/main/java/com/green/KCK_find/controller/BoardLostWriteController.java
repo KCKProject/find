@@ -11,7 +11,6 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import find.dao.FindDao;
@@ -37,6 +36,8 @@ public class BoardLostWriteController {
 	public void setDao(FindDao dao) {
 		this.dao = dao;
 	}
+	
+	String where = "lostNum";
 
 	// 글 등록
 		@RequestMapping(value="/lostPage/lostPageWrite", method=RequestMethod.GET)
@@ -69,7 +70,7 @@ public class BoardLostWriteController {
 		public String lostModify(@PathVariable("boardNum") long boardNum, Model model, 
 				LostBoardWriteCommand lostBoardWriteCommand) {
 			LostBoard detail = dao.selectByBoardNum(boardNum);
-			String where = "lostNum";
+			
 			List<UploadImgVo> imgs = dao.selectUploadImgByBoardNum(boardNum, where);
 			
 			model.addAttribute("detail", detail);
@@ -85,7 +86,6 @@ public class BoardLostWriteController {
 			new BoardLostCommandValidator().validate(lc, errors);
 			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
 			LostBoard detail = dao.selectByBoardNum(boardNum);
-			String where = "lostNum";
 			List<UploadImgVo> imgs = dao.selectUploadImgByBoardNum(boardNum, where);
 			
 			if(errors.hasErrors()) {

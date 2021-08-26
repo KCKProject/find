@@ -28,6 +28,7 @@ public class FindBoardWriteService {
 		this.dao = dao; 
 	}
 	
+	String where = "findNum";
 	// 글 등록
 	public void boardRegist(FindBoardWriteCommand fc, 
 			HttpSession session,
@@ -98,8 +99,8 @@ public class FindBoardWriteService {
 					uVo.setOriginalFile(originalFile);
 					uVo.setOriginalFileExtension(originalFileExtension);
 					uVo.setStoredFileName(storedFileName);
-					String board = "fi	Board";
-					dao.writeLostBoardImg(uVo, BoardNum, board);
+					String board = "findBoard";
+					dao.writeBoardImg(uVo, BoardNum, board);
 				}
 			}
 		}
@@ -136,47 +137,66 @@ public class FindBoardWriteService {
 		fb.setPhone(phone);
 		fb.setFindDate(fc.getFindDate());
 		fb.setMemo(fc.getMemo());
-		//fb.setOriginalFile(originalFile);
-		//fb.setOriginalFileExtension(originalFileExtension);
-		//fb.setStoredFileName(storedFileName);
 
 		dao.modifyFindBoard(fb, boardNum);
 		
-		MultipartFile[] img = fc.getImg();
-		String originalFile = null;
-		String originalFileExtension = null;
-		String storedFileName = null;		
-		String filePath = null;
-		
-		// 첨부파일 처리
-		for(MultipartFile f : img) {
-			UploadImgVo uVo = new UploadImgVo();
-			// 기존 저장 파일 전부 삭제
-			for(UploadImgVo i : imgs) {
-				String image = i.getStoredFileName();
+		// 이미지 수정
+		// 기존 이미지 삭제 내역 확인
+		List<UploadImgVo> prevImg = dao.selectUploadImgByBoardNum(boardNum, where);
+		String[] maintain = fc.getOriginalFile();
+		for(UploadImgVo pr : prevImg) {
+			String chk = "";
+			String prevName = pr.getOriginalFile();
+			for(String m : maintain) {
+				if(prevName==m) {
+					chk = "same";
+					break;
+				}
+			}
+			// 새로 넘어온 리스트에서 기존 파일이 존재하지 않을 시, 삭제
+			if(!chk.equals("same")) {
+				String image = pr.getStoredFileName();
 				String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
 				File file = new File(path,image);
 					if(file.exists()) {
 						file.delete();
 					}					
 				System.out.println("삭제 성공");
-			}				
-					
-			// 추가 파일 등록
-			System.out.println("-----추가 파일 등록");
-			System.out.println("파일 이름 : "+originalFile);
-			originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
-			storedFileName = UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
-			filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
-			File file = new File(filePath,storedFileName);
-			f.transferTo(file);
-			
-			// 객체 저장
-			uVo.setOriginalFile(originalFile);
-			uVo.setOriginalFileExtension(originalFileExtension);
-			uVo.setStoredFileName(storedFileName);
-			String board = "findBoard";
-			dao.writeLostBoardImg(uVo, boardNum, board);
+			}
 		}
-	}
+
+		MultipartFile[] img = fc.getImg();		 
+		String originalFile = null;
+		String originalFileExtension = null;
+		String storedFileName = null;
+		String filePath = null;
+		int num = img.length;
+		System.out.println("num : "+num);
+		
+		if(num!=0) { // 사진 등록했을 때
+			originalFile = img[0].getOriginalFilename();
+			if(originalFile!="") {
+				for(MultipartFile f : img) {
+					// 추가 파일 등록
+					UploadImgVo uVo = new UploadImgVo();
+					System.out.println("-----추가 파일 등록");
+					System.out.println("파일 이름 : "+originalFile);
+					
+					originalFile = f.getOriginalFilename();
+					originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+					storedFileName = UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
+					filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+					File file = new File(filePath,storedFileName);
+					f.transferTo(file);
+					
+					// 객체 저장
+					uVo.setOriginalFile(originalFile);
+					uVo.setOriginalFileExtension(originalFileExtension);
+					uVo.setStoredFileName(storedFileName);
+					String board = "findBoard";
+					dao.writeBoardImg(uVo, boardNum, board);
+				}
+			}
+		}
+	}	
 }

@@ -39,14 +39,16 @@
 						</td>
 					</tr>
 					<tr>
-						<td><span style="color: white;">*</span>동물이름</td>
-						<td><form:input path="animal" value="${detail.animal}"/></td>
+						<td><span>*</span>동물이름</td>
+						<td>
+							<form:input path="animal" value="${detail.animal}"/>
+							<form:errors path="animal"/>
+						</td>
 					</tr>
 					<tr>
-						<td><span style="color: white;">*</span>품종</td>
+						<td><span>*</span>품종</td>
 						<td>
 							<form:input path="kind" value="${detail.kind}"/>
-							<form:errors path="kind"/>
 						</td>
 					</tr>
 					<tr>
@@ -71,21 +73,18 @@
 					</tr>
 					<tr>  
 						<td><span>*</span>특징</td>
-						<td>
-							<form:input path="character" value="${detail.character}"/>
-							<form:errors path="character"/>
-						</td>
+						<td><form:input path="character" value="${detail.character}"/>						</td>
 					</tr>
 					<tr>
-						<td><span style="color: white;"></span>연락처</td>
+						<td><span style="color: white;">*</span>연락처</td>
 						<td><form:input path="phone" value="${detail.phone}"/></td>
 					</tr>
 					<tr>
-						<td><span style="color: white;"></span>이메일</td>
+						<td><span style="color: white;">*</span>이메일</td>
 						<td><form:input path="email" value="${detail.email}"/></td>
 					</tr>
 					<tr>
-						<td><span>*</span>상세내용</td>
+						<td><span style="color: white;">*</span>상세내용</td>
 						<td>
 							<textarea id="memo" name="memo" rows="10" cols="65" onkeyup="javascript:fnChkByte(this,'2000')">${detail.memo}</textarea>
 							<span id="byteInfo">0</span> / 2000bytes
@@ -95,19 +94,17 @@
 					<tr>
 						<td>  사진첨부</td>
 						<td>
-							<p name="add"><i class="fas fa-plus"></i> (새 파일 등록 시 기존 파일 삭제)</p>
+							<p name="add"><i class="fas fa-plus"></i>(파일 최대 3개 등록 가능)</p>
 						</td>
 					</tr>
 					<c:forEach var="i" items="${imgs}" varStatus="statusNum">
 						<tr>
 							<td></td>
 							<td>
-								<input type="hidden" name="originalFile" value="${pageContext.request.contextPath}/resources/imgUpload/${i.storedFileName}"/>
+								<input type="hidden" name="originalFile" id="originalFile" value="${pageContext.request.contextPath}/resources/imgUpload/${i.storedFileName}"/>
 								<label for="img">
-									파일 선택
-								</label>
-								<input type="file" id="originalFile" class="img" name="img" style="display:none"/>
-								<span class="msg">${i.originalFile}</span>
+									등록된 파일 : ${i.originalFile}
+								</label>								
 								<a class="del" style="cursor:pointer">
 									<i class="far fa-trash-alt"></i><br>
 								</a>
@@ -116,7 +113,7 @@
 					</c:forEach>
 				</table>				
 				<div > <!-- 수정완료 버튼 -->
-					<input type="submit" value="수정완료" class="completeBtn">
+					<input type="submit" value="수정완료" class="completeBtn" onclick="imgCheck()">
 				</div>
 			</form:form>
 		</div>
@@ -133,62 +130,43 @@
 	</div>
 	
 	<script>
-	$(function(){
-		// 파일 추가 버튼
-    	$("table").on("click", "p[name='add']", function (){
-    		var num = $("table").find("tr").length;
-    		if(num==15){
-    			alert(num);
-    			alert('파일은 3개까지 등록할 수 있습니다.');
-    		}else{
-    			var addForm = "<tr>";
-    			addForm += "<td></td>";
-    			addForm += "<td>";
-    			addForm += '<label for="img"> 파일 선택 </label>'
-    			addForm += '<input type="file" class="newImg" id="img" name="img" style="display:none"/>';
-    			addForm += "<span class='msg'>선택된 파일 없음</div>";
-    			addForm += '<a class="del" style="cursor:pointer">';
-    			addForm += '<i class="far fa-trash-alt"></i><br>';
-    			addForm += "</a>";
-	    		$("table").append(addForm);
-    		}
-    	});
+		$(function(){
+			// 파일 추가 버튼
+	    	$("table").on("click", "p[name='add']", function (){
+	    		var num = $("table").find("tr").length;
+	    		if(num==15){
+	    			alert('파일은 3개까지 등록할 수 있습니다.');
+	    		}else{
+	    			var addForm = "<tr>";
+	    			addForm += "<td></td>";
+	    			addForm += "<td>";
+	    			addForm += '<input type="file" class="newImg" id="img" name="img" accept=".jpg, .jpeg, .png"/>';
+	    			addForm += '<a class="del" style="cursor:pointer">';
+	    			addForm += '<i class="far fa-trash-alt"></i><br>';
+	    			addForm += "</a>";
+	    			addForm += "</td></tr>";
+		    		$("table").append(addForm);
+	    		}
+	    	});
+			
+	    	// 등록 파일 제거
+		    $('table').on("click",".del",function(){
+		    	$(this).parent().parent().remove();
+		    });    	
+		});
 		
-    	// 등록 파일 제거
-	    $('table').on("click",".del",function(){
-	    	$(this).parent().parent().remove();
-	    });
-    	
-    	// 파일 업로드 시 파일명 띄우기
-    	$('table').on("change",".img",function(){
-   			//alert($(this).val());
-       		//var current = $(this).val();
-       		var namingForm = document.getElementsByclass('img').files[0].name;
-       		alert(namingForm);
-
-       		$check = $(this).next().text();
-       		alert($(this).next().text());
-       		alert($check);
-       		alert(name);
-       		if(current){
-       			var msg = $(this).closest('.msg');
-       			var what = $(this).next();
-       			
-       			what.text(current);
-       			alert("msg : "+msg.text());
-       			alert("what : "+what.text());
-       			return;
-       		}
-    	});
-	});
-	
-	function imgCheck(){
-		if($('.newImg').val()==""){
-			alert("첨부파일 최소 한개를 등록해주세요.");
-			return;
-		}			
-		document.getElementById('form').submit();
-	};	
+		function imgCheck(){
+			var num = $("table").find("tr").length;
+			if(num==12){
+				alert("첨부파일 최소 한개를 등록해주세요.");
+				return false;
+			}
+			if(!$('#img').val()){
+				alert("첨부파일은 필수입니다.");
+				return false;
+			}
+			document.getElementById('form').submit();
+		};	
 	</script>
 </body>
 </html>

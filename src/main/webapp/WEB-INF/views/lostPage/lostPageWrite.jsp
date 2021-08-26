@@ -170,7 +170,7 @@
 		});
 
 		function imgCheck(){
-			if($('#img').val()==""){
+			if(!$('#img').val()){
 				alert("첨부파일은 필수입니다.");
 				return;
 			}			

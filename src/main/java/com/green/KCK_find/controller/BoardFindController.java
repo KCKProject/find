@@ -42,6 +42,7 @@ public class BoardFindController {
 		PageMakerMainBoard pageMaker = new PageMakerMainBoard();
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(dao.searchFindCount(cri));
+		
 		model.addAttribute("pageMaker",pageMaker);
 		
 		return "findPage/findPageList";

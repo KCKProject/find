@@ -16,7 +16,7 @@ public class LostBoardWriteCommand { // Lost 글 등록시 넘겨줄 객체
 	private String review;
 	private String email;
 	private String phone;
-	private String originalFile;
+	private String[] originalFile;
 	
 	public String getTitle() {
 		return title;
@@ -96,10 +96,10 @@ public class LostBoardWriteCommand { // Lost 글 등록시 넘겨줄 객체
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getOriginalFile() {
+	public String[] getOriginalFile() {
 		return originalFile;
 	}
-	public void setOriginalFile(String originalFile) {
+	public void setOriginalFile(String[] originalFile) {
 		this.originalFile = originalFile;
 	}	
 }

@@ -30,11 +30,13 @@ public class BoardLostCommandValidator implements Validator{
 //		}
 //		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "required", "필수 입력사항입니다.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "animal", "required", "필수 입력사항입니다.");
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "kind", "required", "필수 입력사항입니다.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "gender", "required", "필수 입력사항입니다.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "location", "required", "필수 입력사항입니다.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "lostDate", "required", "필수 입력사항입니다.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "character", "required", "필수 입력사항입니다.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "memo", "required", "필수 입력사항입니다.");
+		
 		
 	}
 	

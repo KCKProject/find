@@ -17,11 +17,9 @@ public class BoardFindCommandValidator implements Validator{
 	public void validate(Object target, Errors errors) {
 		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "title", "required", "필수 입력사항입니다.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "kind", "required", "필수 입력사항입니다.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "location", "required", "필수 입력사항입니다.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "findDate", "required", "필수 입력사항입니다.");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "character", "required", "필수 입력사항입니다.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "memo", "required", "필수 입력사항입니다.");
 	}
 
 }

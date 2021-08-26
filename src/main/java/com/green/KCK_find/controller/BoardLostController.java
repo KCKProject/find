@@ -44,9 +44,6 @@ public class BoardLostController {
 		pageMaker.setCri(cri);
 		pageMaker.setTotalCount(dao.searchLostCount(cri));
 		
-//		ResponseEntity<byte[]> imgUrl = dao.disPlay(request);
-//		
-//		model.addAttribute("imgUrl", imgUrl);
 		model.addAttribute("pageMaker",pageMaker);
 		
 		return "lostPage/lostPageList";

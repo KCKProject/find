@@ -729,7 +729,7 @@ public class FindDao {
 	}
 	
 	// 다중 파일 업로드
-		public void writeLostBoardImg(UploadImgVo uVo, long boardNum, String board) {
+		public void writeBoardImg(UploadImgVo uVo, long boardNum, String board) {
 			String sql="";
 			if(board.equals("lostBoard")) {
 				sql = "INSERT INTO uploadImg VALUES (upload_seq.nextval,?,'',?,?,?)";
