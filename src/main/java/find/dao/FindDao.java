@@ -319,8 +319,27 @@ public class FindDao {
 		return results;
 	}
 	// 메인 페이지 게시글
+//	public List<LostBoard> selectMainLostBoard(){
+//		String sql = "SELECT * FROM (SELECT * FROM lostBoard ORDER BY boardNum DESC) WHERE rowNum<=10 AND meet=0";
+//		List<LostBoard> results = jdbcTemplate.query(sql, lostBoardRowMapper);
+//		return results;
+//	}
+	
 	public List<LostBoard> selectMainLostBoard(){
-		String sql = "SELECT * FROM (SELECT * FROM lostBoard ORDER BY boardNum DESC) WHERE rowNum<=10 AND meet=0";
+		String sql = "select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "+ 
+				"				PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , sub.STOREDFILENAME, HIT, REVIEW " + 
+				"				 from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, " + 
+				"				PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " + 
+				"				 over(order by boardnum desc) as rNum  " + 
+				"				from lostBoard ) mb " + 
+				"                left join " + 
+				"                (SELECT a.inum, a.lostnum, a.storedFileName " + 
+				"				FROM uploadImg a join (SELECT min(inum) as num, lostnum " + 
+				"				 FROM uploadImg " + 
+				"                 GROUP BY lostNum	" + 
+				"                 ORDER BY min(inum)) " + 
+				"				 ON a.inum = num ORDER BY lostNum) sub " + 
+				"				 ON mb.boardNum = sub.lostNum WHERE rowNum<=10 AND meet=0 order by boardnum DESC";
 		List<LostBoard> results = jdbcTemplate.query(sql, lostBoardRowMapper);
 		return results;
 	}
