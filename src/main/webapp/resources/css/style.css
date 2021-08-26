@@ -489,7 +489,7 @@ footer {
 	transition: all.3s;
 }
 
-.signUpCommandTitle p strong {
+strong {
 	color: red;
 }
 
@@ -904,14 +904,16 @@ label.right {
 
 .wrapBoardlist {
 	width: 100%;
+	display: flex;
+	justify-content: center;
 }
 
 .wrapBoardlist ul {
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
-	width: 100%;
-	padding: 15px 400px 200px 400px;
+	width: 60%;
+	padding: 15px 0px 10px 0px;
 }
 
 .wrapBoardlist ul li {
@@ -1077,6 +1079,11 @@ label.right {
 .wrapWritePage input[type=file]:hover {
     border: none;
     border-radius: 0px;
+}
+
+.msg {
+    font-size: 12px;
+    color: cadetblue;
 }
 
 

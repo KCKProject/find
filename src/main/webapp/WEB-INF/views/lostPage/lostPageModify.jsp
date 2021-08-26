@@ -32,47 +32,47 @@
 						<td>${detail.writer}</td>
 					</tr>
 					<tr>
-						<td><span>*</span>글제목</td>
+						<td><strong>*</strong>글제목</td>
 						<td>
 							<form:input path="title" value="${detail.title}"/>
 							<form:errors path="title"/>
 						</td>
 					</tr>
 					<tr>
-						<td><span>*</span>동물이름</td>
+						<td><strong>*</strong>동물이름</td>
 						<td>
 							<form:input path="animal" value="${detail.animal}"/>
 							<form:errors path="animal"/>
 						</td>
 					</tr>
 					<tr>
-						<td><span>*</span>품종</td>
+						<td><strong>*</strong>품종</td>
 						<td>
 							<form:input path="kind" value="${detail.kind}"/>
 						</td>
 					</tr>
 					<tr>
-						<td><span>*</span>성별</td>
+						<td><strong>*</strong>성별</td>
 						<td>
 							<form:input path="gender" value="${detail.gender}"/>
 							<form:errors path="gender"/>
 						</td>
 					</tr>
 					<tr>
-						<td><span>*</span>실종위치</td>
+						<td><strong>*</strong>실종위치</td>
 						<td>
 							<form:input path="location" value="${detail.location}"/>
 						<form:errors path="location"/>
 						</td>
 					</tr>
 					<tr>
-						<td><span>*</span>실종시각</td>
+						<td><strong>*</strong>실종시각</td>
 							<td><form:input path="lostDate" value="${detail.lostDate}"/>
 							<form:errors path="lostDate"/>
 						</td>
 					</tr>
 					<tr>  
-						<td><span>*</span>특징</td>
+						<td><strong>*</strong>특징</td>
 						<td><form:input path="character" value="${detail.character}"/>						</td>
 					</tr>
 					<tr>
@@ -86,7 +86,7 @@
 					<tr>
 						<td><span style="color: white;">*</span>상세내용</td>
 						<td>
-							<textarea id="memo" name="memo" rows="10" cols="65" onkeyup="javascript:fnChkByte(this,'2000')">${detail.memo}</textarea>
+							<textarea id="memo" name="memo" rows="10" cols="65" onkeyup="javascript:fnChkByte(this,'2000')">${detail.memo}</textarea><br>
 							<span id="byteInfo">0</span> / 2000bytes
 							<form:errors path="memo"/>
 						</td>

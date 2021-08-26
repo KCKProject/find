@@ -407,7 +407,7 @@ public class FindDao {
 				+ " FROM uploadImg a join (SELECT min(inum) as num, lostnum "
 				+ " FROM uploadImg GROUP BY lostNum	ORDER BY min(inum)) " 
 				+ " ON a.inum = num	ORDER BY lostNum) sub "
-				+ " ON mb.boardNum = sub.lostNum AND rNum between ? and ? order by boardnum DESC"
+				+ " ON mb.boardNum = sub.lostNum where rNum between ? and ? order by boardnum DESC"
 				,lostBoardRowMapper,cri.getKeyword(),cri.getRowStart(), cri.getRowEnd());
 				
 //				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
@@ -456,7 +456,7 @@ public class FindDao {
 						+ " FROM uploadImg a join (SELECT min(inum) as num, findNum"
 						+ " FROM uploadImg GROUP BY findNum	ORDER BY min(inum)) " 
 						+ " ON a.inum = num	ORDER BY findNum)sub "
-						+ " ON mb.boardNum = sub.findNum AND rNum between ? and ? order by boardnum DESC",
+						+ " ON mb.boardNum = sub.findNum where rNum between ? and ? order by boardnum DESC",
 						findBoardRowMapper, cri.getKeyword(), cri.getRowStart(), cri.getRowEnd());
 		return results;
 	}

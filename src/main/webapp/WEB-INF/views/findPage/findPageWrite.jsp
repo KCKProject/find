@@ -28,7 +28,7 @@
 			<form:form commandName="findBoardWriteCommand" enctype="multipart/form-data" method="POST" id="form">
 				<table id="input-findPageWrite"> <!-- 입력칸 부분 -->
 					<tr>
-						<td><span>*</span>글제목</td>
+						<td><strong>*</strong>글제목</td>
 						<td>
 							<form:input path="title" placeholder="글제목"/>
 							<form:errors path="title"/>
@@ -43,14 +43,14 @@
 						<td><form:input path="gender" placeholder="남아/여아(중성화수술 여부 까지 적어주세요)"/>						</td>
 					</tr>
 					<tr>
-						<td><span>*</span>발견위치</td>
+						<td><strong>*</strong>발견위치</td>
 						<td>
 							<form:input path="location" placeholder="발견위치"/>
 							<form:errors path="location"/>
 						</td>
 					</tr>
 					<tr>
-						<td><span>*</span>발견시각</td>
+						<td><strong>*</strong>발견시각</td>
 						<td>
 							<form:input path="findDate" placeholder="발견시각"/>
 							<form:errors path="findDate"/>
@@ -58,22 +58,22 @@
 					</tr>
 					<tr>  
 					
-						<td><span>*</span>특징</td>
+						<td><strong>*</strong>특징</td>
 						<td>
 							<form:input path="character" placeholder="특징(30자 이내)"/>
 							<form:errors path="character"/>
 						</td>
 					</tr>
 					<tr>
-						<td><span>*</span>상세내용</td>
+						<td><strong>*</strong>상세내용</td>
 						<td>
-							<form:textarea path="memo" rows="10" cols="60" onkeyup="javascript:fnChkByte(this,'2000')"></form:textarea>
+							<form:textarea path="memo" rows="10" cols="60" onkeyup="javascript:fnChkByte(this,'2000')"></form:textarea><br>
 							<span id="byteInfo">0</span> / 2000bytes
 							<form:errors path="memo"/>
 						</td>
 					</tr>
 					<tr>
-						<td><span>*</span>사진첨부</td>
+						<td><strong>*</strong>사진첨부</td>
 						<td id="lastTd">
 							<p name="add"><i class="fas fa-plus"></i></p>
 							<input type="file" name="img" id="img1" accept=".jpg, .jpeg, .png">
