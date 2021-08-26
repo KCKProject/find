@@ -106,7 +106,7 @@
 								<label for="img">
 									파일 선택
 								</label>
-								<input type="file" id="img" class="img" name="img" style="display:none"/>
+								<input type="file" id="originalFile" class="img" name="img" style="display:none"/>
 								<span class="msg">${i.originalFile}</span>
 								<a class="del" style="cursor:pointer">
 									<i class="far fa-trash-alt"></i><br>
@@ -161,9 +161,10 @@
     	
     	// 파일 업로드 시 파일명 띄우기
     	$('table').on("change",".img",function(){
-   			alert($(this).val());
-       		var current = $(this).val();
-       		document.getElementsByclass('newImg').files;
+   			//alert($(this).val());
+       		//var current = $(this).val();
+       		var namingForm = document.getElementsByclass('img').files[0].name;
+       		alert(namingForm);
 
        		$check = $(this).next().text();
        		alert($(this).next().text());
