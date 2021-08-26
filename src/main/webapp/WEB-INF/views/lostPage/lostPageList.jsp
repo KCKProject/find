@@ -36,8 +36,7 @@
 		<ul>
 			 <!-- 게시물 li로 나열  -->
 			<c:forEach var="l" items="${losts}">
-				<li>
-					<a href="<c:url value="/lostPage/lostPageDetail/${l.boardNum}"/>">
+				<li><a href="<c:url value="/lostPage/lostPageDetail/${l.boardNum}"/>">
 						<div class="post-photo-top"> <!-- 게시글 사진 나오는 부분 -->
 							<div class="img_box">
 								<img src="../resources/imgUpload/${l.storedFileName}" width="200" height="250"/>

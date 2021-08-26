@@ -9,7 +9,7 @@ public class LostBoardWriteCommand { // Lost 글 등록시 넘겨줄 객체
 	private String animal;
 	private String kind;
 	private String gender;
-	private MultipartFile img;
+	private MultipartFile[] img;
 	private String lostDate;
 	private String memo;
 	private String term;
@@ -54,10 +54,10 @@ public class LostBoardWriteCommand { // Lost 글 등록시 넘겨줄 객체
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public MultipartFile getImg() {
+	public MultipartFile[] getImg() {
 		return img;
 	}
-	public void setImg(MultipartFile img) {
+	public void setImg(MultipartFile[] img) {
 		this.img = img;
 	}
 	public String getLostDate() {

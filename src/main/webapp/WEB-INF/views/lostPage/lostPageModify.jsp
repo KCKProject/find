@@ -95,19 +95,25 @@
 					<tr>
 						<td>  사진첨부</td>
 						<td>
-							<c:if test="${not empty detail.originalFile}">
-								<p id="preImg">
-								<input type="hidden" name="originalFile" value="${detail.originalFile}">
-									${detail.originalFile}									
-									<a onclick="hideP()" style="cursor:pointer">
-										<i class="far fa-trash-alt"></i><br>
-									</a>
-									<br>(새 파일을 등록하면 기존 파일은 삭제됩니다.)
-								</p>
-							</c:if>
-							<input type="file" name="img" id="img" onchange="newImg()"/>
+							<p name="add"><i class="fas fa-plus"></i> (새 파일 등록 시 기존 파일 삭제)</p>
 						</td>
 					</tr>
+					<c:forEach var="i" items="${imgs}" varStatus="statusNum">
+						<tr>
+							<td></td>
+							<td>
+								<input type="hidden" name="originalFile" value="${pageContext.request.contextPath}/resources/imgUpload/${i.storedFileName}"/>
+								<label for="img">
+									파일 선택
+								</label>
+								<input type="file" id="originalFile" class="img" name="img" style="display:none"/>
+								<span class="msg">${i.originalFile}</span>
+								<a class="del" style="cursor:pointer">
+									<i class="far fa-trash-alt"></i><br>
+								</a>
+							</td>
+						</tr>
+					</c:forEach>
 				</table>				
 				<div > <!-- 수정완료 버튼 -->
 					<input type="submit" value="수정완료" class="completeBtn">
@@ -127,14 +133,62 @@
 	</div>
 	
 	<script>
-		var preImg = document.getElementById('preImg');
-		function hideP(){
-			preImg.remove();
-		};
+	$(function(){
+		// 파일 추가 버튼
+    	$("table").on("click", "p[name='add']", function (){
+    		var num = $("table").find("tr").length;
+    		if(num==15){
+    			alert(num);
+    			alert('파일은 3개까지 등록할 수 있습니다.');
+    		}else{
+    			var addForm = "<tr>";
+    			addForm += "<td></td>";
+    			addForm += "<td>";
+    			addForm += '<label for="img"> 파일 선택 </label>'
+    			addForm += '<input type="file" class="newImg" id="img" name="img" style="display:none"/>';
+    			addForm += "<span class='msg'>선택된 파일 없음</div>";
+    			addForm += '<a class="del" style="cursor:pointer">';
+    			addForm += '<i class="far fa-trash-alt"></i><br>';
+    			addForm += "</a>";
+	    		$("table").append(addForm);
+    		}
+    	});
+		
+    	// 등록 파일 제거
+	    $('table').on("click",".del",function(){
+	    	$(this).parent().parent().remove();
+	    });
+    	
+    	// 파일 업로드 시 파일명 띄우기
+    	$('table').on("change",".img",function(){
+   			//alert($(this).val());
+       		//var current = $(this).val();
+       		var namingForm = document.getElementsByclass('img').files[0].name;
+       		alert(namingForm);
 
-		function newImg(){
-			preImg.remove();
-		};
+       		$check = $(this).next().text();
+       		alert($(this).next().text());
+       		alert($check);
+       		alert(name);
+       		if(current){
+       			var msg = $(this).closest('.msg');
+       			var what = $(this).next();
+       			
+       			what.text(current);
+       			alert("msg : "+msg.text());
+       			alert("what : "+what.text());
+       			return;
+       		}
+    	});
+	});
+	
+	function imgCheck(){
+		if($('.newImg').val()==""){
+			alert("첨부파일 최소 한개를 등록해주세요.");
+			return;
+		}			
+		document.getElementById('form').submit();
+	};	
 	</script>
 </body>
 </html>

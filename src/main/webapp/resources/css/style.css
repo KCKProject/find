@@ -978,7 +978,7 @@ label.right {
 }
 
 .finishText {
-	color: fed400;
+	color: #fed400;
 }
 
 
@@ -1024,7 +1024,7 @@ label.right {
 .wrapWritePage table tr td textarea {
 	border-radius: 8px;
 	border: 1px gray solid;
-	padding-left: 10px;
+	padding: 10px;
 }
 
 .wrapWritePage table tr td textarea:hover {

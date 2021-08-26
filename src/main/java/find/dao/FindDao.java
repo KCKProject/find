@@ -30,6 +30,7 @@ import find.vo.QnABoard;
 import find.vo.SearchCriteria;
 import find.vo.SearchCriteriaMainBoard;
 import find.vo.SearchCriteriaQnABoard;
+import find.vo.UploadImgVo;
 
 @Component
 public class FindDao {
@@ -153,6 +154,20 @@ public class FindDao {
 						);
 				m.setBoardNum(rs.getLong("boardNum"));
 				return m;
+			}
+		};
+		
+		private RowMapper<UploadImgVo> uploadImgMapper = new RowMapper<UploadImgVo>() {
+			public UploadImgVo mapRow(ResultSet rs, int rowNum) throws SQLException{
+				UploadImgVo i = new UploadImgVo(
+							rs.getLong("lostNum"),
+							rs.getLong("findNum"),
+							rs.getString("originalFile"),
+							rs.getString("originalFileExtension"),
+							rs.getString("storedFileName")
+						);
+				i.setiNum(rs.getLong("iNum"));
+				return i;
 			}
 		};
 		
@@ -365,12 +380,24 @@ public class FindDao {
 	public List<LostBoard> selectAllLostBoard(SearchCriteriaMainBoard cri) {
 		List<LostBoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
-				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW " + 
-						"from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
-						+ "PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " + 
-						"over(order by boardnum desc) as rNum " + 
-						"from lostBoard where TITLE like '%' || ? || '%') mb where rNum between ? and ? order by boardnum desc"
-						,lostBoardRowMapper,cri.getKeyword(),cri.getRowStart(), cri.getRowEnd());
+				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , sub.STOREDFILENAME, HIT, REVIEW "
+				+ " from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
+				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() "
+				+ " over(order by boardnum desc) as rNum " 
+				+ " from lostBoard where TITLE like '%' || ? || '%') mb left join (SELECT a.inum, a.lostnum, a.storedFileName "
+				+ " FROM uploadImg a join (SELECT min(inum) as num, lostnum "
+				+ " FROM uploadImg GROUP BY lostNum	ORDER BY min(inum)) " 
+				+ " ON a.inum = num	ORDER BY lostNum) sub "
+				+ " ON mb.boardNum = sub.lostNum AND rNum between ? and ? order by boardnum DESC"
+				,lostBoardRowMapper,cri.getKeyword(),cri.getRowStart(), cri.getRowEnd());
+				
+//				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
+//				+ " PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE , ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW " + 
+//						"from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "
+//						+ "PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " + 
+//						"over(order by boardnum desc) as rNum " + 
+//						"from lostBoard where TITLE like '%' || ? || '%') mb where rNum between ? and ? order by boardnum desc"
+//						,lostBoardRowMapper,cri.getKeyword(),cri.getRowStart(), cri.getRowEnd());
 		return results;
 	}
 	public List<LostBoard> selectAllLostBoard(SearchCriteria cri) {
@@ -402,11 +429,15 @@ public class FindDao {
 	public List<FindBoard> selectAllFindBoard(SearchCriteriaMainBoard cri) {
 		List<FindBoard> results = jdbcTemplate.query(
 				"select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, EMAIL, "
-						+ " FINDDATE, MEET, MEMO, PHONE,  ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW " 
-						+ "from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, EMAIL, "
-						+ "FINDDATE, MEET, MEMO, PHONE, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " 
-						+ "over(order by boardnum desc) as rNum " 
-						+ "from FindBoard where TITLE like '%' || ? || '%') mb where rNum between ? and ? order by boardnum desc",
+						+ " FINDDATE, MEET, MEMO, PHONE, ORIGINALFILE, ORIGINALFILEEXTENSION , sub.STOREDFILENAME, HIT, REVIEW "
+						+ " from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, EMAIL, "
+						+ " FINDDATE, MEET, MEMO, PHONE, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() "
+						+ " over(order by boardnum desc) as rNum " 
+						+ " FROM FindBoard where TITLE like '%' || ? || '%') mb left join (SELECT a.inum, a.findNum, a.storedFileName "
+						+ " FROM uploadImg a join (SELECT min(inum) as num, findNum"
+						+ " FROM uploadImg GROUP BY findNum	ORDER BY min(inum)) " 
+						+ " ON a.inum = num	ORDER BY findNum)sub "
+						+ " ON mb.boardNum = sub.findNum AND rNum between ? and ? order by boardnum DESC",
 						findBoardRowMapper, cri.getKeyword(), cri.getRowStart(), cri.getRowEnd());
 		return results;
 	}
@@ -635,8 +666,7 @@ public class FindDao {
 		jdbcTemplate.update(sql,member.getUserName(), member.getPhone(),member.getEmail(),memeberNumber);
 	}
 	
-	
-	public void writeLostBoard(LostBoard lb) {
+	public List<LostBoard> writeLostBoard(LostBoard lb) {
 		jdbcTemplate.update("INSERT INTO lostBoard (boardNum, title, writer, writeDate, kind, location, character, animal,"
 				+ " gender, email, phone, lostDate, meet, memo, originalFile, originalFileExtension, storedFileName, hit) VALUES(lostBoard_seq.nextval,?,?,sysdate,?,?,?,?,?,?,?,?,0,?,?,?,?,0)",
 				lb.getTitle(),
@@ -653,6 +683,9 @@ public class FindDao {
 				lb.getOriginalFile(),
 				lb.getOriginalFileExtension(),
 				lb.getStoredFileName());
+		
+		List<LostBoard> results = jdbcTemplate.query("SELECT * FROM lostBoard WHERE rowNum=1  ORDER BY boardNum DESC", lostBoardRowMapper);
+		return results;
 	}
 //		KeyHolder key = new GeneratedKeyHolder();
 //		jdbcTemplate.update(new PreparedStatementCreator() {
@@ -684,7 +717,7 @@ public class FindDao {
 //		lb.setBoardNum(keyValue.longValue());
 //		}	
 
-	public void writeFindBoard(FindBoard fb) {
+	public List<FindBoard> writeFindBoard(FindBoard fb) {
 		// find 게시판 업로드
 		jdbcTemplate.update("INSERT INTO findBoard (BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, GENDER, LOCATION, CHARACTER, "
 				+ " EMAIL, FINDDATE, MEET, MEMO, PHONE, originalFile, ORIGINALFILEEXTENSION, STOREDFILENAME, HIT) "
@@ -702,7 +735,23 @@ public class FindDao {
 				fb.getOriginalFile(),
 				fb.getOriginalFileExtension(),
 				fb.getStoredFileName());
+		
+		List<FindBoard> results = jdbcTemplate.query("SELECT * FROM findBoard WHERE rowNum=1  ORDER BY boardNum DESC", findBoardRowMapper);
+		return results;
 	}
+	
+	// 다중 파일 업로드
+		public void writeLostBoardImg(UploadImgVo uVo, long boardNum, String board) {
+			String sql="";
+			if(board.equals("lostBoard")) {
+				sql = "INSERT INTO uploadImg VALUES (upload_seq.nextval,?,'',?,?,?)";
+			}
+			if(board.equals("findBoard")) {
+				sql = "INSERT INTO uploadImg VALUES (upload_seq.nextval,'',?,?,?,?)";
+			}
+			jdbcTemplate.update(sql,boardNum,uVo.getOriginalFile(),uVo.getOriginalFileExtension(),uVo.getStoredFileName());
+			
+		}
 
 ///////////////////////// 댓글 (comment)
 		// 댓글 목록 불러오기	
@@ -739,6 +788,25 @@ public class FindDao {
 			jdbcTemplate.update(sql,cNum);
 			return 1;
 		}
+
+	// 업로드이미지 전부 불러오기
+	public List<UploadImgVo> selectUploadImgByBoardNum(long boardNum, String where) {
+		String sql = "SELECT * FROM uploadImg WHERE "+where+"=?";
+		List<UploadImgVo> results = jdbcTemplate.query(sql, uploadImgMapper, boardNum);
+		return results;
+	}
+	
+	// 업로드이미지 대표 불러오기
+	public List<UploadImgVo> selectOneImage() {
+		List<UploadImgVo> results = jdbcTemplate.query("SELECT lostNum,max(storedFileName) FROM uploadImg GROUP BY lostnum",uploadImgMapper);
+		return results;
+	}
+	
+	// 업로드이미지 삭제
+	public void deleteImgByBoardNum(long boardNum, String where) {
+		String sql = "DELETE FROM  uploadImg WHERE "+where+"=?";
+		jdbcTemplate.update(sql,boardNum);
+	}
 		
 	// 게시글 수정
 	public void modifyLostBoard(LostBoard lb, long boardNum) {
@@ -842,6 +910,5 @@ public class FindDao {
 //		Number keyValue = key.getKey();
 //		serviceComment.setCnum(keyValue.longValue());
 //	}
-	
 }
 

@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import find.dao.FindDao;
 import find.vo.CommentVo;
-import find.vo.CriteriaMainBoard;
 import find.vo.LostBoard;
 import find.vo.PageMakerMainBoard;
 import find.vo.SearchCriteriaMainBoard;
+import find.vo.UploadImgVo;
 
 @Controller
 public class BoardLostController {
@@ -56,7 +57,11 @@ public class BoardLostController {
 	public String detail(@PathVariable("boardNum") long boardNum, Model model) {
 		dao.updateLostHit(boardNum);
 		LostBoard detail = dao.selectByBoardNum(boardNum);
+		String where = "lostNum";
+		List<UploadImgVo> imgs = dao.selectUploadImgByBoardNum(boardNum, where);
+		
 		model.addAttribute("detail", detail);
+		model.addAttribute("imgs", imgs);
 		
 		// 댓글 리스트
 		String board = "LostComment";
@@ -121,15 +126,20 @@ public class BoardLostController {
 	public String delete(@PathVariable("boardNum") long boardNum,
 						 HttpServletRequest request) {
 		// 첨부파일 삭제
-		// image = storedFileName = 저장된 이미지 이름
-		LostBoard detail = dao.selectByBoardNum(boardNum);
-		String image = detail.getStoredFileName();
-		String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
-		File file = new File(path,image);
-			if(file.exists()) {
-				file.delete();
-			}
-		
+		// image = storedFileName = 저장된 이미지 이름			
+		String where = "lostNum";
+		List<UploadImgVo> imgs = dao.selectUploadImgByBoardNum(boardNum, where);
+
+		for(UploadImgVo i : imgs) {
+			String image = i.getStoredFileName();
+			String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+			File file = new File(path,image);
+				if(file.exists()) {
+					file.delete();
+				}
+		}
+		dao.deleteImgByBoardNum(boardNum,where);
+			
 		// 게시글 댓글 삭제
 		String board = "lostComment";
 		dao.deleteCommentByBoardNum(boardNum, board);

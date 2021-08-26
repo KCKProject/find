@@ -11,7 +11,6 @@
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <script src="../../resources/script/script.js" defer></script>
-<!-- <script type="text/javascript" src="http://code.jquery.com/jquery-3.5.1.min.js"></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
@@ -28,11 +27,16 @@
 
 			<div class="boardPage-contents">
 				<ul>
-					<li class="post-photo-top">
-						<img src="../../resources/imgUpload/${detail.storedFileName}" style="cursor:pointer"/>
-					</li>
-					<li class="post-photo-top"></li>
-					<li class="post-photo-top"></li>
+					<c:if test="${empty imgs}">
+						<li class="post-photo-top">
+							<img src="../../resources/img/defaultImg.png" style="cursor:pointer"/>
+						</li>
+					</c:if>
+					<c:forEach var="i" items="${imgs}">
+						<li class="post-photo-top">
+							<img src="../../resources/imgUpload/${i.storedFileName}" style="cursor:pointer"/>
+						</li>
+					</c:forEach>
 				</ul>
 				<div class="post-contents-bottom">
 					<!-- 게시글 내용 나오는 부분 -->
@@ -334,7 +338,6 @@
 			if (chk) {
 				var input = $(this).prev().prev();
 				var cNum = input.val();
-				alert('cNum : '+cNum);
 				
 				$.ajax({
 					type : "GET",

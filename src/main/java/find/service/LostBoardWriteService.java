@@ -21,6 +21,7 @@ import find.vo.CommentVo;
 import find.vo.LostBoard;
 import find.vo.LostBoardWriteCommand;
 import find.vo.MemberAuthInfo;
+import find.vo.UploadImgVo;
 
 @Service
 public class LostBoardWriteService {
@@ -36,6 +37,7 @@ public class LostBoardWriteService {
 	public void boardRegist(LostBoardWriteCommand lc, 
 			HttpSession session,
 			MultipartHttpServletRequest request) throws IOException {
+		
 		MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
 		
 		String term = lc.getTerm();
@@ -51,19 +53,61 @@ public class LostBoardWriteService {
 		
 		// 이미지 업로드
 		LostBoard lb = new LostBoard();
-
-		MultipartFile img = lc.getImg();
-		String originalFile = img.getOriginalFilename();
-		String originalFileExtension=null;
+		
+		MultipartFile[] img = lc.getImg();		 
+		String originalFile = null;
+		String originalFileExtension = null;
 		String storedFileName = null;
 		String filePath = null;
 		
-		if(originalFile!="") { // 사진 등록했을 때
-			originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
-			storedFileName = UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
-			filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
-			File file = new File(filePath,storedFileName);
-			img.transferTo(file);
+		int num = img.length;
+		System.out.println("num : "+num);
+		
+		System.out.println();
+		filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+	
+		System.out.println(filePath+" : 저장된 경로");
+
+		lb.setTitle(lc.getTitle());
+		lb.setWriter(member.getUserId());
+		lb.setLocation(lc.getLocation());
+		lb.setCharacter(lc.getCharacter());
+		lb.setAnimal(lc.getAnimal());
+		lb.setKind(lc.getKind());
+		lb.setGender(lc.getGender());
+		lb.setEmail(member.getEmail());
+		lb.setPhone(member.getPhone());
+		lb.setLostDate(lc.getLostDate());
+		lb.setMemo(lc.getMemo());
+	//	lb.setOriginalFile(originalFile);
+	//	lb.setOriginalFileExtension(originalFileExtension);
+	//	lb.setStoredFileName(storedFileName);
+
+		
+		List<LostBoard> lostBoard = dao.writeLostBoard(lb);
+		long BoardNum = lostBoard.get(0).getBoardNum();
+
+		if(num!=0) { // 사진 등록했을 때
+			originalFile = img[0].getOriginalFilename();
+			if(originalFile!="") {
+				for(MultipartFile f : img) {
+					UploadImgVo uVo = new UploadImgVo();
+					originalFile = f.getOriginalFilename();
+					originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+					storedFileName = UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
+					File file = new File(filePath,storedFileName);
+					f.transferTo(file);
+
+					System.out.println("originalFile : "+originalFile);
+					System.out.println("originalFileExtension : "+originalFileExtension);
+					System.out.println("storedFileName : "+storedFileName);
+
+					uVo.setOriginalFile(originalFile);
+					uVo.setOriginalFileExtension(originalFileExtension);
+					uVo.setStoredFileName(storedFileName);
+					String board = "lostBoard";
+					dao.writeLostBoardImg(uVo, BoardNum, board);
+				}
 			
 //			// 썸네일 만들기 → 서버 구동 최적화를 위하여
 //			// 기존 파일의 축소판인 썸네일을 생성하여 게시글 목록에서 보여지도록 구현
@@ -79,29 +123,12 @@ public class LostBoardWriteService {
 //
 //			ImageIO.write(destImg, formatName.toUpperCase(), newFile);
 //			thumbnailName.substring(filePath.length()).replace(File.separatorChar, '/');
-		}else { // 사진 등록 안 했을 때
-			originalFile = null;
+			} /*
+				 * else { // 사진 등록 안 했을 때 originalFile = null; }
+				 */
 		}
-
-		System.out.println(filePath+" : 저장된 경로");
-
-		lb.setTitle(lc.getTitle());
-		lb.setWriter(member.getUserId());
-		lb.setLocation(lc.getLocation());
-		lb.setCharacter(lc.getCharacter());
-		lb.setAnimal(lc.getAnimal());
-		lb.setKind(lc.getKind());
-		lb.setGender(lc.getGender());
-		lb.setEmail(member.getEmail());
-		lb.setPhone(member.getPhone());
-		lb.setLostDate(lc.getLostDate());
-		lb.setMemo(lc.getMemo());
-		lb.setOriginalFile(originalFile);
-		lb.setOriginalFileExtension(originalFileExtension);
-		lb.setStoredFileName(storedFileName);
-
-		dao.writeLostBoard(lb);
 	}
+	
 
 	// 후기 등록
 	public void writeReview(String review, long boardNum) {
@@ -110,52 +137,8 @@ public class LostBoardWriteService {
 
 	// 글 수정
 	public void modifyLost(LostBoardWriteCommand lc, LostBoard detail,
-				MemberAuthInfo member, MultipartHttpServletRequest request) throws IOException {		
-		String originalFile = null;
-		String originalFileExtension = null;
-		String storedFileName = null;
-		MultipartFile img = lc.getImg();
+				MemberAuthInfo member, MultipartHttpServletRequest request, List<UploadImgVo> imgs) throws IOException {		
 		long boardNum = detail.getBoardNum();
-		
-		// 첨부파일 처리
-		String fileName = lc.getOriginalFile();
-		System.out.println("넘어온 fileName : "+fileName);
-		if(fileName!=null) {
-			// 기존파일 그대로 넘어온 경우
-			System.out.println("-----기존파일 그대로 넘어온 경우");
-			originalFile = detail.getOriginalFile();
-			originalFileExtension = detail.getOriginalFileExtension();
-			storedFileName = detail.getStoredFileName();
-		}
-		
-		if(fileName==null) {
-			if(detail.getOriginalFile()!=null) {
-				// 기존파일 넘어온 경우 제외하고 기존파일이 있는 경우, 무조건 삭제
-				System.out.println("-----기존파일 넘어온 경우 제외하고 기존파일이 있는 경우, 무조건 삭제");
-				System.out.println("원래 파일 이름 : "+detail.getOriginalFile());
-				String image = detail.getStoredFileName();
-				String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
-				File file = new File(path,image);
-					if(file.exists()) {
-						file.delete();
-					}					
-				System.out.println("삭제 성공");
-			}
-			originalFile = img.getOriginalFilename();
-			System.out.println("파일 이름 : "+originalFile);
-			if(originalFile!="") {
-				// 추가 파일 등록
-				System.out.println("-----추가 파일 등록");
-				System.out.println("파일 이름 : "+originalFile);
-				originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
-				storedFileName = UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
-				String filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
-				File file = new File(filePath,storedFileName);
-				img.transferTo(file);
-	
-				System.out.println(filePath+" : 저장된 경로");
-			}
-		}
 		
 		String email = lc.getEmail();
 		String phone = lc.getPhone();
@@ -179,11 +162,46 @@ public class LostBoardWriteService {
 		lb.setPhone(phone);
 		lb.setLostDate(lc.getLostDate());
 		lb.setMemo(lc.getMemo());
-		lb.setOriginalFile(originalFile);
-		lb.setOriginalFileExtension(originalFileExtension);
-		lb.setStoredFileName(storedFileName);
+		//lb.setOriginalFile(originalFile);
+		//lb.setOriginalFileExtension(originalFileExtension);
+		//lb.setStoredFileName(storedFileName);
 
 		dao.modifyLostBoard(lb, boardNum);
-	}
-	
+		
+		MultipartFile[] img = lc.getImg();		 
+		String originalFile = null;
+		String originalFileExtension = null;
+		String storedFileName = null;
+		String filePath = null;		
+		
+		for(MultipartFile f : img) {
+			UploadImgVo uVo = new UploadImgVo();
+			// 기존 저장 파일 전부 삭제
+			for(UploadImgVo i : imgs) {
+				String image = i.getStoredFileName();
+				String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+				File file = new File(path,image);
+					if(file.exists()) {
+						file.delete();
+					}					
+				System.out.println("삭제 성공");
+			}				
+					
+			// 추가 파일 등록
+			System.out.println("-----추가 파일 등록");
+			System.out.println("파일 이름 : "+originalFile);
+			originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));
+			storedFileName = UUID.randomUUID().toString().replace("-", "")+originalFileExtension;
+			filePath = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+			File file = new File(filePath,storedFileName);
+			f.transferTo(file);
+			
+			// 객체 저장
+			uVo.setOriginalFile(originalFile);
+			uVo.setOriginalFileExtension(originalFileExtension);
+			uVo.setStoredFileName(storedFileName);
+			String board = "lostBoard";
+			dao.writeLostBoardImg(uVo, boardNum, board);
+		}		
+	}	
 }

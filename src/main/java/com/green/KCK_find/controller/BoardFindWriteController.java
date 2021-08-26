@@ -1,6 +1,7 @@
 package com.green.KCK_find.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,6 +19,7 @@ import find.validator.BoardFindCommandValidator;
 import find.vo.FindBoard;
 import find.vo.FindBoardWriteCommand;
 import find.vo.MemberAuthInfo;
+import find.vo.UploadImgVo;
 import find.vo.WriteReviewDto;
 
 @Controller
@@ -36,13 +38,13 @@ public class BoardFindWriteController {
 		this.dao = dao;
 	}
 	
-	@RequestMapping(method=RequestMethod.GET)
-	public String write(FindBoardWriteCommand findBoardWriteCommand) {
-		
-		return "findPage/findPageWrite";
-	}
-	
 	// 글 등록
+		@RequestMapping(method=RequestMethod.GET)
+		public String write(FindBoardWriteCommand findBoardWriteCommand) {
+			
+			return "findPage/findPageWrite";
+		}	
+
 		@RequestMapping(method=RequestMethod.POST)
 		public String regist(FindBoardWriteCommand findBoardWriteCommand, HttpSession session, MultipartHttpServletRequest request, Errors errors) throws IOException {
 
@@ -54,7 +56,7 @@ public class BoardFindWriteController {
 				findBoardWriteService.boardRegist(findBoardWriteCommand, session, request);			
 				return "redirect:/findPage/findPageList";
 			}catch(Exception e) {
-				return "findPate/findPageWrite";
+				return "findPage/findPageWrite";
 			}
 		}
 	
@@ -75,11 +77,14 @@ public class BoardFindWriteController {
 			new BoardFindCommandValidator().validate(fc, errors);
 			MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
 			FindBoard detail = dao.selectByFindBoardNum(boardNum);
+			String where = "findNum";
+			List<UploadImgVo> imgs = dao.selectUploadImgByBoardNum(boardNum, where);
+			
 			if(errors.hasErrors()) {
 				return "findPage/findPageModify";
 			}
 			try {
-				findBoardWriteService.modifyFind(fc, detail, member, request);
+				findBoardWriteService.modifyFind(fc, detail, member, request, imgs);
 			}catch(Exception e) {
 				return "findPate/findPageModify";
 			}

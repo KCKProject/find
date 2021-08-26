@@ -1,7 +1,5 @@
 package find.vo;
 
-import java.util.Date;
-
 import org.springframework.web.multipart.MultipartFile;
 
 public class FindBoardWriteCommand { // Find 글 등록시 넘겨줄 객체
@@ -10,14 +8,14 @@ public class FindBoardWriteCommand { // Find 글 등록시 넘겨줄 객체
 	private String character;
 	private String kind;
 	private String gender;
-	private MultipartFile img;
+	private MultipartFile[] img;
 	private String findDate;
 	private String memo;
 	private String term;
 	private String review;
 	private String email;
 	private String phone;
-	private String originalFile;
+	private String[] originalFile;
 	
 	public String getTitle() {
 		return title;
@@ -49,10 +47,10 @@ public class FindBoardWriteCommand { // Find 글 등록시 넘겨줄 객체
 	public void setCharacter(String character) {
 		this.character = character;
 	}
-	public MultipartFile getImg() {
+	public MultipartFile[] getImg() {
 		return img;
 	}
-	public void setImg(MultipartFile img) {
+	public void setImg(MultipartFile[] img) {
 		this.img = img;
 	}
 	public String getFindDate() {
@@ -91,10 +89,10 @@ public class FindBoardWriteCommand { // Find 글 등록시 넘겨줄 객체
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getOriginalFile() {
+	public String[] getOriginalFile() {
 		return originalFile;
 	}
-	public void setOriginalFile(String originalFile) {
+	public void setOriginalFile(String[] originalFile) {
 		this.originalFile = originalFile;
 	}
 }
