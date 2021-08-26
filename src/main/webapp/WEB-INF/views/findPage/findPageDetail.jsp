@@ -165,7 +165,7 @@
 					</div>
 					<div class="mainMore">
 						<a class="btn btn-swap" name="uploadComment" id="uploadComment">
-							upload <span>등록>></span>
+							upload <span>등록</span>
 						</a>
 					</div>
 				</div>

@@ -26,18 +26,19 @@
 		<div class=myInfoDetail>			
     		<div class="changePassword">
 				<div class="changePasswordContents">
-					<form:form commandName="myPasswordUpdateCommand" method="POST">
+					<form:form commandName="myPasswordUpdateCommand" enctype="multipart/form=data" method="POST" onsubmit="pwdcheck()">
 						<div>
 							현재 비밀번호 <!-- <input type="text"> -->
-							<form:input type="text" path="userPasswordCurrent" value=""  />
+							<form:input type="hidden" path="userPasswordCurrentChk" id="userPasswordCurrentChk" value="${myPasswordUpdate.userPassword}"/>
+							<form:input type="text" path="userPasswordCurrent" value="" id="userPasswordCurrent"/>
 						</div>
 						<div>
 							변경 비밀번호<!--  <input type="text"> -->
-							<form:input type="text" path="userPasswordNew" value=""  />
+							<form:input type="text" path="userPasswordNew" value="" id="userPasswordNew" />
 						</div>
 						<div>
 							비밀번호 확인<!--  <input type="text"> -->
-							<form:input type="text" path="userPasswordNewConfirm" value=""  />
+							<form:input type="text" path="userPasswordNewConfirm" value="" id="userPasswordNewConfirm" />
 						</div>
 						<div>
 							<input type="submit" value="비밀번호 변경" class="changePasswordBtn">
@@ -64,7 +65,35 @@
 
 	<jsp:include page="../include/footer.jsp" />	
 	<button class="jellybutton topbtn" type="button" onclick="goTop()">TOP</button>
-
-
 </body>
+<script>
+function pwdcheck(){
+	if(document.getElementById("userPasswordCurrent").value==""){
+		alert("현재 사용중인 비밀번호를 입력해주세요.");
+		return false;
+	}
+	if(document.getElementById("userPasswordCurrent").value != document.getElementById("userPasswordCurrentChk").value){
+		alert("현재 비밀번호가 틀립니다.");
+		return false;
+	}
+	if(document.getElementById("userPasswordNew").value==""){
+		alert("변경하실 비밀번호를 입력해주세요.");
+		return false;
+	}
+	if(document.getElementById("userPasswordNew").value == document.getElementById("userPasswordCurrentChk").value){
+		alert("변경할 비밀번호와 기존 비밀번호가 같습니다.");
+		return false;
+	}
+	if(documnet.getElementById("userPasswordNewConfirm").value==""){
+		alert("비밀번호 확인을 입력해주세요.")
+	}
+	if(document.getElementById("userPasswordNew").value != document.getElementById("userPasswordNewConfirm").value){
+		alert("변경하실 비밀번호가 일치하지 않습니다.");
+		return false;
+	}
+	else{
+		alert("변경완료 되었습니다.");
+	}
+}
+</script>
 </html>

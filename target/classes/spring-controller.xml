@@ -89,9 +89,10 @@
       <property name="dao" ref="findDao"/>
    </bean>
    
-   
    <!-- servicePage -->
-   <bean id="ServicePageController" class="com.green.KCK_find.controller.ServicePageController"/>   
+   <bean id="ServicePageController" class="com.green.KCK_find.controller.ServicePageController">
+   	<property name="dao" ref="findDao"/>
+   </bean>   
    
    <!-- find id/pw -->
     <bean id="MemberInformationFindController" class="com.green.KCK_find.controller.MemberInformationFindController"/>  
@@ -104,7 +105,6 @@
    <bean id="MyInfoUpdateController" class="com.green.KCK_find.controller.MyInfoUpdateController">
    		<property name="dao" ref="findDao"/>
    </bean>   
-   
 
    <!-- 날짜별 검색 -->
    <bean id="MyPasswordUpdateController" class="com.green.KCK_find.controller.MyPasswordUpdateController">

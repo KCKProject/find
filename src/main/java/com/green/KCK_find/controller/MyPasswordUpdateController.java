@@ -4,14 +4,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import find.dao.FindDao;
 import find.service.MemberAuthService;
+import find.validator.MyPasswordCommandValidator;
 import find.vo.MemberAuthInfo;
 import find.vo.MyPasswordUpdateCommand;
 
@@ -19,17 +22,16 @@ import find.vo.MyPasswordUpdateCommand;
 @RequestMapping("/myPage/myPasswordUpdate/{memberAuthInfo.getMemberNumber}")
 public class MyPasswordUpdateController {
 	
+	@Autowired
 	private MemberAuthService memberAuthService;
-	
-	public void setMemberAuthService(MemberAuthService memberAuthService) {
-		this.memberAuthService = memberAuthService;
-	}
-	
 	private FindDao dao;
-
+	
 	public void setDao(FindDao dao) {
 		this.dao = dao;
 	}
+//	public void setMemberAuthService(MemberAuthService memberAuthService) {
+//		this.memberAuthService = memberAuthService;
+//	}
 	
 
 	@RequestMapping(method=RequestMethod.GET)
@@ -41,18 +43,27 @@ public class MyPasswordUpdateController {
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public String myPasswordUpdate(@PathVariable("memberAuthInfo.getMemberNumber") long memberNumber, Model model, MyPasswordUpdateCommand myPasswordUpdateCommand, HttpSession session, HttpServletRequest req, HttpServletResponse response) {
-		MemberAuthInfo myPasswordUpdate = new MemberAuthInfo(
-				myPasswordUpdateCommand.getUserId(), myPasswordUpdateCommand.getUserPasswordNew(), myPasswordUpdateCommand.getUserPasswordNewConfirm());
+	public String myPasswordUpdate(@PathVariable("memberAuthInfo.getMemberNumber") long memberNumber, Model model, MyPasswordUpdateCommand myPasswordUpdateCommand, HttpSession session, HttpServletRequest req, HttpServletResponse response, Errors errors) {
 		
-		dao.myPasswordUpdate(memberNumber, myPasswordUpdate);
+		new MyPasswordCommandValidator().validate(myPasswordUpdateCommand,errors);
 		
-		MemberAuthInfo i = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
-		i.setUserPassword(myPasswordUpdateCommand.getUserPasswordNewConfirm());
+		if(errors.hasErrors()) {
+			return "/myPage/myPasswordUpdate";
+		}
+		try {
+			MemberAuthInfo myPasswordUpdate = new MemberAuthInfo(myPasswordUpdateCommand.getUserId(),myPasswordUpdateCommand.getUserPasswordNew());
+			dao.myPasswordUpdate(memberNumber, myPasswordUpdate);
+		}
+		catch(Exception e) {
+			return "/myPage/myPasswordUpdate";
+		}
 		
-		session.setAttribute("memberAuthInfo",i);
 		
-		return "myPage/myPasswordUpdate";
+//		MemberAuthInfo i = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
+//		i.setUserPassword(myPasswordUpdateCommand.getUserPasswordNewConfirm());
+//		session.setAttribute("memberAuthInfo",i);
+		
+		return "redirect:/myPage/myPasswordUpdate/"+memberNumber;
 	}
 
 }

@@ -30,7 +30,7 @@
 						</div>
 						<div class="signUpCommandBox">
 							<p>
-								<form:input path="userId" placeholder="아이디" requried="requried"/>
+								<form:input path="userId" placeholder="아이디" requried="requried" onkeyup="javascript:fnChkByte(this,'12')"/>
 								<form:errors path="userId"/>
 							</p>
 							<p>

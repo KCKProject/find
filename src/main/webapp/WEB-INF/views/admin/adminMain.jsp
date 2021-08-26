@@ -16,7 +16,7 @@
     <jsp:include page="../admin-include/adminHeader.jsp"></jsp:include>
 	<jsp:include page="../admin-include/adminNav.jsp"></jsp:include>
     <div class="adminMainWrap">
-    	<p>공지사항</p>
+    	<p>LIVE COMMENTS!</p>
     </div>
 </body>
 </html>
