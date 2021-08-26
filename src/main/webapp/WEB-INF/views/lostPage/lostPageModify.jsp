@@ -62,7 +62,7 @@
 						<td><strong>*</strong>실종위치</td>
 						<td>
 							<form:input path="location" value="${detail.location}"/>
-						<form:errors path="location"/>
+							<form:errors path="location"/>
 						</td>
 					</tr>
 					<tr>
@@ -73,7 +73,7 @@
 					</tr>
 					<tr>  
 						<td><strong>*</strong>특징</td>
-						<td><form:input path="character" value="${detail.character}"/>						</td>
+						<td><form:input path="character" value="${detail.character}"/></td>
 					</tr>
 					<tr>
 						<td><span style="color: white;">*</span>연락처</td>
@@ -94,14 +94,14 @@
 					<tr>
 						<td>  사진첨부</td>
 						<td>
-							<p name="add"><i class="fas fa-plus"></i>(파일 최대 3개 등록 가능)</p>
+							<p name="add"><i class="fas fa-plus"></i> 파일추가 (jpg / png / jpeg)</p>
 						</td>
 					</tr>
 					<c:forEach var="i" items="${imgs}" varStatus="statusNum">
 						<tr>
 							<td></td>
 							<td>
-								<input type="hidden" name="originalFile" id="originalFile" value="${pageContext.request.contextPath}/resources/imgUpload/${i.storedFileName}"/>
+								<input type="hidden" name="originalFile" id="originalFile" value="${i.storedFileName}"/>
 								<label for="img">
 									등록된 파일 : ${i.originalFile}
 								</label>								
@@ -113,7 +113,7 @@
 					</c:forEach>
 				</table>				
 				<div > <!-- 수정완료 버튼 -->
-					<input type="submit" value="수정완료" class="completeBtn" onclick="imgCheck()">
+					<input type="submit" value="수정완료" class="completeBtn" onclick="return imgCheck()">
 				</div>
 			</form:form>
 		</div>
@@ -155,18 +155,25 @@
 		    });    	
 		});
 		
+		// 첨부파일 null 체크
 		function imgCheck(){
 			var num = $("table").find("tr").length;
-			if(num==12){
+			if(num==11){
 				alert("첨부파일 최소 한개를 등록해주세요.");
 				return false;
 			}
-			if(!$('#img').val()){
-				alert("첨부파일은 필수입니다.");
-				return false;
+			
+			var test = document.getElementsByClassName('newImg');
+			if(test.length!=0){
+				for(var i=0;i<test.length;i++){
+					if(test[i].files.length==0){
+						alert('파일을 선택해주세요.');
+						return false;
+					}
+				}
 			}
 			document.getElementById('form').submit();
-		};	
+		};
 	</script>
 </body>
 </html>
