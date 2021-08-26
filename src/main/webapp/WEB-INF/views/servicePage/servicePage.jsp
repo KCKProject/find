@@ -84,7 +84,7 @@
                             <h4>To Be Updated!</h4>
                             <p class="text-black-50 mb-0 fontSetting" style="text-align: left">
                             	 - 자유게시판 업데이트 예정 <smaller>2021-11-22 ver 1.2.5</smaller><br>
-                            	 - 실시간 댓글 기능 업데이트 예정 <smaller>2022-01-23 ver 1.2.6</smaller><br>
+                            	 - 서비스페이지 자유 코멘트 기능 업데이트 예정 <smaller>2022-01-23 ver 1.2.6</smaller><br>
                             	 - 반려동물 용품 관련 중고거래 게시판 업데이트 예정 <smaller>2022-03-25 ver 1.2.7</smaller>
                             </p>
                         </div>
