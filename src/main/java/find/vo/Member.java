@@ -24,6 +24,13 @@ public class Member {
 		this.phone = phone;
 		this.email = email;
 	}
+	public Member(String phone, String email) {
+		this.phone = phone;
+		this.email = email;
+	}
+	public Member(String userId) {
+		this.userId = userId;
+	}
 	
 	public long getMemberNumber() {
 		return memberNumber;

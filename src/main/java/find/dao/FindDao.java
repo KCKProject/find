@@ -22,6 +22,7 @@ import find.vo.FindBoard;
 import find.vo.LostBoard;
 import find.vo.Member;
 import find.vo.MemberAuthInfo;
+import find.vo.MemberLoginCommand;
 import find.vo.MyPageFindPostCommand;
 import find.vo.MyPageLostPostCommand;
 import find.vo.MyPasswordUpdateCommand;
@@ -305,7 +306,18 @@ public class FindDao {
 	}
 	// 카운터 끝
 
-	
+	// 
+	public List<Member> selectMember(){
+		String sql = "SELECT * FROM member";
+		List<Member> results = jdbcTemplate.query(sql, rowMapper);
+		return results;
+	}
+	// 아이디 찾기
+	public List<Member> selectMember(Member m){
+		String sql = "SELECT * FROM member WHERE PHONE= ? and EMAIL = ? ";
+		List<Member> results = jdbcTemplate.query(sql, rowMapper, m.getPhone(), m.getEmail());
+		return results;
+	}
 	// 메인 페이지 게시글
 	public List<LostBoard> selectMainLostBoard(){
 		String sql = "SELECT * FROM (SELECT * FROM lostBoard ORDER BY boardNum DESC) WHERE rowNum<=10 AND meet=0";
