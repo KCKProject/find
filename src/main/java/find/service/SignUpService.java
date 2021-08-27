@@ -27,7 +27,8 @@ public class SignUpService {
 
 		Member newMember = new Member(
 				signUpCommand.getUserId(),signUpCommand.getUserPassword(),
-				signUpCommand.getUserName(),signUpCommand.getPhone(),signUpCommand.getEmail());
+				signUpCommand.getUserName(),signUpCommand.getPhone(),signUpCommand.getEmail()
+				,signUpCommand.getPwdQ(),signUpCommand.getPwdA());
 		
 		dao.insertMember(newMember);
 	}

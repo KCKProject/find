@@ -19,23 +19,21 @@
 		<div class="wrap-memberInformationFind">
 			<h3 class="loginTitle"><!-- 로그인 --></h3>
 			<div class="loginBox memberInformationFindBox">
-				<form:form commandName="member" enctype="multipart/form=data" method="POST" onsubmit="chk();">
-					<form:input path="userId" id="userId" placeholder="아이디" requried="requried" />
-					<form:select path="pwdQ" id="pwdQ" requried="requried">
-						<form:option value="0">선택되지 않음</form:option>	
-						<form:option value="1">어릴적 내가 살던 동네 이름은?</form:option>
-						<form:option value="2">나의 초등학교 이름은?</form:option>
-						<form:option value="3">나의 보물 1호는?</form:option>
-						<form:option value="4">가장 존경하는 선생님의 성함은?</form:option>
-						<form:option value="5">내가 가장 좋아하는 요리는?</form:option>
-						<form:option value="6">가장 좋아하는 영화 제목은?</form:option>
-						<form:option value="7">가장 좋아하는 동물은?</form:option>
-						<form:option value="8">나의 어릴적 별명은?</form:option>
-						<form:option value="9">가장 좋아하는 노래 제목은?</form:option>
-						<form:option value="10">가장 좋아하는 숫자는?</form:option>
-					</form:select>
-					<form:input path="pwdA" id="pwdA" placeholder="답변" requried="requried" />
-					<input type="submit" value="찾기" class="loginBoxbtn">
+				<form:form commandName="member" enctype="multipart/form=data" method="POST" onsubmit="pwdcheck()">
+					<c:forEach var="m" items="${members}">
+						<p>${m.userName}님 새로 사용할 비밀번호를 입력해주세요. </p>
+						<form:input type="hidden" path="userPasswordCurrentChk" id="userPasswordCurrentChk" value="${m.userPassword}"/>
+					</c:forEach>
+					<div>
+						변경 비밀번호<!--  <input type="text"> -->
+						
+						<form:input type="text" path="userPasswordNew" value="" id="userPasswordNew" />
+					</div>
+					<div>
+						비밀번호 확인<!--  <input type="text"> -->
+						<form:input type="text" path="userPasswordNewConfirm" value="" id="userPasswordNewConfirm" />
+					</div>
+						<input type="submit" value="비밀번호 변경" class="changePasswordBtn">
 				</form:form>
 			</div>
 		
@@ -60,20 +58,29 @@
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 <script>
-function chk(){
-	if(document.getElementById("userId").value ==""){
-		alert("아이디를 입력해주세요.");
+function pwdcheck(){
+	if(document.getElementById("userPasswordCurrent").value != document.getElementById("userPasswordCurrentChk").value){
+		alert("현재 비밀번호가 틀립니다.");
 		return false;
 	}
-	if(document.getElementById("pwdA").value ==""){
-		alert("답변을 입력해주세요.");
+	if(document.getElementById("userPasswordNew").value==""){
+		alert("변경하실 비밀번호를 입력해주세요.");
 		return false;
 	}
-	if(document.getElementById("pwdQ").value ==""){
-		alert("질문을 선택해주세요.");
+	if(document.getElementById("userPasswordNew").value == document.getElementById("userPasswordCurrentChk").value){
+		alert("변경할 비밀번호와 기존 비밀번호가 같습니다.");
 		return false;
 	}
-	
+	if(documnet.getElementById("userPasswordNewConfirm").value==""){
+		alert("비밀번호 확인을 입력해주세요.")
+	}
+	if(document.getElementById("userPasswordNew").value != document.getElementById("userPasswordNewConfirm").value){
+		alert("변경하실 비밀번호가 일치하지 않습니다.");
+		return false;
+	}
+	else{
+		alert("변경완료 되었습니다.");
+	}
 }
 </script>
 </html>
