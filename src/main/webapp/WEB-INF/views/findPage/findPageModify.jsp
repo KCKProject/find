@@ -39,11 +39,11 @@
 						</td>
 					</tr>
 					<tr>
-						<td><span style="color: white;">*</span>품종</td>
+						<td><strong style="color: white;">*</strong>품종</td>
 						<td><form:input path="kind" value="${detail.kind}"/></td>
 					</tr>
 					<tr>
-						<td><span style="color: white;">*</span>성별</td>
+						<td><strong style="color: white;">*</strong>성별</td>
 						<td><form:input path="gender" value="${detail.gender}"/></td>
 					</tr>
 					<tr>
@@ -63,7 +63,7 @@
 					<tr>  
 						<td><strong>*</strong>특징</td>
 						<td>
-							<form:input path="character" value="${detail.character}"/>
+							<form:input path="character" value="${detail.character}" onkeyup="javascript:fnChkByte(this,'25')"/>
 							<form:errors path="character"/>
 						</td>
 					</tr>

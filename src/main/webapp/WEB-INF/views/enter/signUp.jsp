@@ -29,6 +29,8 @@
 							<p><strong>*</strong> 이름</p>
 							<p><strong>*</strong> 연락처</p>
 							<p><strong>*</strong> 이메일</p>
+							<p><strong>*</strong> 비밀번호 확인 질문</p>
+							<p><strong>*</strong> 비밀번호 확인 답변</p>
 						</div>
 						<div class="signUpCommandBox">
 							<p>
@@ -57,6 +59,26 @@
 							<p>
 								<form:input path="email" type="email" placeholder="@를 포함한 이메일 주소를 입력해주세요"/>
 								<form:errors path="email"/>
+							</p>
+							<p>
+								<form:select path="pwdQ">
+									<form:option value="0">선택되지 않음</form:option>
+									<form:option value="1">어릴적 내가 살던 동네 이름은?</form:option>
+									<form:option value="2">나의 초등학교 이름은?</form:option>
+									<form:option value="3">나의 보물 1호는?</form:option>
+									<form:option value="4">가장 존경하는 선생님의 성함은?</form:option>
+									<form:option value="5">내가 가장 좋아하는 요리는?</form:option>
+									<form:option value="6">가장 좋아하는 영화 제목은?</form:option>
+									<form:option value="7">가장 좋아하는 동물은?</form:option>
+									<form:option value="8">나의 어릴적 별명은?</form:option>
+									<form:option value="9">가장 좋아하는 노래 제목은?</form:option>
+									<form:option value="10">가장 좋아하는 숫자는?</form:option>
+								</form:select>							
+								<form:errors path="pwdQ"/>
+							</p>
+							<p>
+								<form:input path="pwdA" placeholder="질문의 답을 입력해주세요."/>
+								<form:errors path="pwdA"/>
 							</p>
 						</div>
 					</div>

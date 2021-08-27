@@ -22,10 +22,8 @@ import find.vo.FindBoard;
 import find.vo.LostBoard;
 import find.vo.Member;
 import find.vo.MemberAuthInfo;
-import find.vo.MemberLoginCommand;
 import find.vo.MyPageFindPostCommand;
 import find.vo.MyPageLostPostCommand;
-import find.vo.MyPasswordUpdateCommand;
 import find.vo.QnABoard;
 import find.vo.SearchCriteria;
 import find.vo.SearchCriteriaMainBoard;
@@ -318,6 +316,7 @@ public class FindDao {
 		List<Member> results = jdbcTemplate.query(sql, rowMapper, m.getPhone(), m.getEmail());
 		return results;
 	}
+
 	// 아이디 중복체크
 	public int signUpIdChk(String userId) {
 		String sql = "SELECT * FROM member WHERE userId=?";
@@ -325,6 +324,14 @@ public class FindDao {
 		return results.isEmpty() ? 0 : 1;
 	}
 	
+	// 비밀번호 찾기
+	public List<Member> selectMemberForPwd(Member m){
+		String sql = "SELECT * FROM member WHERE userId= ? and pwdq = ? and pwda = ? ";
+		List<Member> results = jdbcTemplate.query(sql, rowMapper, m.getUserId(), m.getPwdQ(), m.getPwdA());
+		return results;
+	}
+
+	// 메인 페이지 게시글
 //	public List<LostBoard> selectMainLostBoard(){
 //		String sql = "SELECT * FROM (SELECT * FROM lostBoard ORDER BY boardNum DESC) WHERE rowNum<=10 AND meet=0";
 //		List<LostBoard> results = jdbcTemplate.query(sql, lostBoardRowMapper);
@@ -516,19 +523,18 @@ public class FindDao {
 		KeyHolder key = new GeneratedKeyHolder();
 		jdbcTemplate.update(
 				new PreparedStatementCreator() {
-					
 					@Override
 					public PreparedStatement createPreparedStatement(Connection con) throws SQLException{
 						PreparedStatement psmt = con.prepareStatement(
-							"INSERT INTO member VALUES(member_seq.nextval,?,?,?,?,?)",
+							"INSERT INTO member VALUES(member_seq.nextval,?,?,?,?,?,?,?)",
 							new String[] {"membernumber"});
-						
 						psmt.setString(1,member.getUserId());
 						psmt.setString(2,member.getUserPassword());
 						psmt.setString(3,member.getUserName());
 						psmt.setString(4,member.getPhone());
-						psmt.setString(5,member.getEmail());					
-						
+						psmt.setString(5,member.getEmail());
+						psmt.setString(6,member.getPwdQ());					
+						psmt.setString(7,member.getPwdA());					
 						return psmt;
 					}
 				},key);
@@ -923,6 +929,11 @@ public class FindDao {
 	public void myPasswordUpdate(long memberNumber, MemberAuthInfo myPasswordUpdate) {
 		String sql="update member set userpassword=? where memberNumber=?";
 		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(),memberNumber);
+	}
+	// 비밀번호 찾기 시 비밀번호 변경
+	public void myPasswordUpdate(String userId, MemberAuthInfo myPasswordUpdate) {
+		String sql="update member set userpassword=? where userId=?";
+		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(),userId);
 	}
 	
 	

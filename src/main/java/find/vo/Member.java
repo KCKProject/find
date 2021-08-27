@@ -8,9 +8,46 @@ public class Member {
 	private String userName;
 	private String phone;
 	private String email;
+	private String pwdQ;
+	private String pwdA;
+	private String userPasswordCurrentChk;
+	private String userPasswordNew;
+	private String userPasswordNewConfirm;
+	
+	public String getUserPasswordNew() {
+		return userPasswordNew;
+	}
+
+
+	public void setUserPasswordNew(String userPasswordNew) {
+		this.userPasswordNew = userPasswordNew;
+	}
+
+
+	public String getUserPasswordNewConfirm() {
+		return userPasswordNewConfirm;
+	}
+
+
+	public void setUserPasswordNewConfirm(String userPasswordNewConfirm) {
+		this.userPasswordNewConfirm = userPasswordNewConfirm;
+	}
+
 
 	public Member() {};
-	
+
+
+	public Member(String userId, String userPassword, String userName, String phone, String email,
+			String pwdQ, String pwdA) {
+		this.userId = userId;
+		this.userPassword = userPassword;
+		this.userName = userName;
+		this.phone = phone;
+		this.email = email;
+		this.pwdQ = pwdQ;
+		this.pwdA = pwdA;
+	}
+
 	public Member(String userId, String userPassword, String userName, String phone, String email) {
 		this.userId = userId;
 		this.userPassword = userPassword;
@@ -68,6 +105,29 @@ public class Member {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+
+	public String getPwdQ() {
+		return pwdQ;
+	}
+
+	public void setPwdQ(String pwdQ) {
+		this.pwdQ = pwdQ;
+	}
+
+	public String getPwdA() {
+		return pwdA;
+	}
+
+	public void setPwdA(String pwdA) {
+		this.pwdA = pwdA;
+	}
+	public String getUserPasswordCurrentChk() {
+		return userPasswordCurrentChk;
+	}
+
+
+	public void setUserPasswordCurrentChk(String userPasswordCurrentChk) {
+		this.userPasswordCurrentChk = userPasswordCurrentChk;
+	}
 	
 }

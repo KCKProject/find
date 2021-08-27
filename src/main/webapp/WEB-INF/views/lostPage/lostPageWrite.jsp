@@ -34,11 +34,11 @@
 						</td>
 					</tr>
 					<tr>
-						<td><span style="color: white;">*</span>동물이름</td>
+						<td><strong>*</strong>동물이름</td>
 						<td><form:input path="animal" placeholder="동물이름 ex.마루, 초코..."/></td>
 					</tr>
 					<tr>
-						<td><strong>*</strong>품종</td>
+						<td><strong style="color: white;">*</strong>품종</td>
 						<td>
 							<form:input path="kind" placeholder="품종"/>
 							<form:errors path="kind"/>
@@ -68,7 +68,7 @@
 					<tr>  
 						<td><strong>*</strong>특징</td>
 						<td>
-							<form:input path="character" placeholder="특징(30자 이내)"/>
+							<form:input path="character" placeholder="특징(10자 이내)" onkeyup="javascript:fnChkByte(this,'25')"/>
 							<form:errors path="character"/>
 						</td>
 					</tr>

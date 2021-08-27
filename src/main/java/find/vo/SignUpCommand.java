@@ -7,6 +7,8 @@ public class SignUpCommand {
 	private String userName;
 	private String phone;
 	private String email;
+	private String pwdQ;
+	private String pwdA;
 
 	// 비밀번호 확인용 메서드
 	public boolean isPasswordEqual() {
@@ -58,5 +60,17 @@ public class SignUpCommand {
 
 	public void setUserPwdChk(String userPwdChk) {
 		this.userPwdChk = userPwdChk;
+	}
+	public String getPwdQ() {
+		return pwdQ;
+	}
+	public void setPwdQ(String pwdQ) {
+		this.pwdQ = pwdQ;
+	}
+	public String getPwdA() {
+		return pwdA;
+	}
+	public void setPwdA(String pwdA) {
+		this.pwdA = pwdA;
 	}
 }
