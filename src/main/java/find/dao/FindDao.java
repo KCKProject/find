@@ -916,7 +916,7 @@ public class FindDao {
 	// 비밀번호 찾기 시 비밀번호 변경
 	public void myPasswordUpdate(String userId, MemberAuthInfo myPasswordUpdate) {
 		String sql="update member set userpassword=? where userId=?";
-		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(),userId);
+		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(),myPasswordUpdate.getUserId());
 	}
 	
 	// 서비스페이지 코멘트 추가

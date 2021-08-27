@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import find.dao.FindDao;
+import find.validator.MemberInfoFindById;
+import find.validator.MemberInfoFindByPassword;
 import find.validator.MyPasswordCommandValidator;
+import find.validator.QnAWriteCommandValidator;
 import find.vo.Member;
 import find.vo.MemberAuthInfo;
 import find.vo.MyPasswordUpdateCommand;
@@ -29,11 +32,13 @@ public class MemberInformationFindController {
 	
 	// 비밀번호 찾기
 	@RequestMapping(value="/enter/memberInformationFindByPassword", method=RequestMethod.GET)
-	public String memberInformationFindByPassword(Member member, Model model) {
+	public String memberInformationFindByPassword(Member member) {
 		return "enter/memberInformationFindByPassword";
 	}
 	@RequestMapping(value="/enter/memberInformationFindByPassword", method=RequestMethod.POST)
 	public String memberInformationFindByPassword2(Member member, Model model, Errors errors) {
+		new MemberInfoFindByPassword().validate(member, errors);
+		
 		if(errors.hasErrors()) {
 			return "enter/memberInformationFindByPassword";
 		}
@@ -75,6 +80,7 @@ public class MemberInformationFindController {
 	@RequestMapping(value="/enter/memberInformationFindById", method=RequestMethod.POST)
 	public String memberInformationFindById2(Member member, Model model, Errors errors) {
 		
+		new MemberInfoFindById().validate(member, errors);
 		if(errors.hasErrors()) {
 			return "enter/memberInformationFindById";
 		}

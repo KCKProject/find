@@ -19,9 +19,9 @@
 		<div class="wrap-memberInformationFind">
 			<h3 class="loginTitle"><!-- 로그인 --></h3>
 			<div class="loginBox memberInformationFindBox memberInformationFindBox-id" >
-				<form:form commandName="member" enctype="multipart/form=data" method="POST">
-					<form:input path="phone" placeholder="전화번호" value="" />
-					<form:input path="email" placeholder="이메일주소" value="" />
+				<form:form commandName="member" enctype="multipart/form=data" method="POST" onsubmit="chk()">
+					<form:input path="phone" placeholder="전화번호" id="phone" value="" required="" />
+					<form:input path="email" placeholder="이메일주소" id="email" value="" required="" />
 					<input type="submit" value="찾기" class="loginBoxbtn">
 				</form:form>
 			</div>
@@ -29,4 +29,17 @@
 	</section>
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
+
+<script type="text/javascript">
+function chk(){
+	if(document.getElementById("phone").value ==""){
+		alert("전화번호를 입력해주세요.");
+		return false;
+	}
+	if(document.getElementById("email").value ==""){
+		alert("이메일 주소를 입력해주세요.");
+		return false;
+	}
+}
+</script>
 </html>
