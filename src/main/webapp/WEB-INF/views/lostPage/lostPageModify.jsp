@@ -28,7 +28,7 @@
 			<form:form commandName="lostBoardWriteCommand" enctype="multipart/form-data">
 				<table id="input-lostPageWrite">
 					<tr>
-						<td><span style="color: white;">*</span>작성자</td>
+						<td><strong style="color: white;">*</strong>작성자</td>
 						<td>${detail.writer}</td>
 					</tr>
 					<tr>
@@ -46,7 +46,7 @@
 						</td>
 					</tr>
 					<tr>
-						<td><strong>*</strong>품종</td>
+						<td><strong style="color: white;">*</strong>품종</td>
 						<td>
 							<form:input path="kind" value="${detail.kind}"/>
 						</td>
@@ -73,7 +73,7 @@
 					</tr>
 					<tr>  
 						<td><strong>*</strong>특징</td>
-						<td><form:input path="character" value="${detail.character}"/></td>
+						<td><form:input path="character" value="${detail.character}" onkeyup="javascript:fnChkByte(this,'25')"/></td>
 					</tr>
 					<tr>
 						<td><span style="color: white;">*</span>연락처</td>

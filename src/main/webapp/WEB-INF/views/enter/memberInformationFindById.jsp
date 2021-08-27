@@ -18,7 +18,7 @@
 	<section class="sectionLogin">
 		<div class="wrap-memberInformationFind">
 			<h3 class="loginTitle"><!-- 로그인 --></h3>
-			<div class="loginBox memberInformationFindBox" >
+			<div class="loginBox memberInformationFindBox memberInformationFindBox-id" >
 				<form:form commandName="member" enctype="multipart/form=data" method="POST">
 					<form:input path="phone" placeholder="전화번호" value="" />
 					<form:input path="email" placeholder="이메일주소" value="" />
