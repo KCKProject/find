@@ -35,11 +35,11 @@
 						</td>
 					</tr>
 					<tr>
-						<td><span style="color: white;">*</span>품종</td>
+						<td><strong style="color: white;">*</strong>품종</td>
 						<td><form:input path="kind" placeholder="품종"/></td>
 					</tr>
 					<tr>
-						<td><span style="color: white;">*</span>성별</td>
+						<td><strong style="color: white;">*</strong>성별</td>
 						<td><form:input path="gender" placeholder="남아/여아(중성화수술 여부 까지 적어주세요)"/>						</td>
 					</tr>
 					<tr>
@@ -60,7 +60,7 @@
 					
 						<td><strong>*</strong>특징</td>
 						<td>
-							<form:input path="character" placeholder="특징(30자 이내)"/>
+							<form:input path="character" placeholder="특징(10자 이내)" onkeyup="javascript:fnChkByte(this,'25')"/>
 							<form:errors path="character"/>
 						</td>
 					</tr>
@@ -75,7 +75,7 @@
 					<tr>
 						<td><strong>*</strong>사진첨부</td>
 						<td id="lastTd">
-							<p name="add"><i class="fas fa-plus"></i></p>
+							<p name="add"><i class="fas fa-plus"></i> 파일추가 (jpg, jpeg, png)</p><br>
 							<input type="file" name="img" id="img1" accept=".jpg, .jpeg, .png">
 							<a id="firstDel"><i class='fas fa-trash-alt'></i></a><br>
 						</td>
@@ -164,8 +164,8 @@
 		
 		function imgCheck(){
 			if($('#img').val()==""){
-				alert("첨부파일은 필수입니다.");
-				document.getElementById('form').submit();
+				alert("파일을 선택해주세요.");
+				return;
 			}
 			document.getElementById('form').submit();
 		};		

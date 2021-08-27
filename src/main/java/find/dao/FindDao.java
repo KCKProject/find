@@ -330,20 +330,18 @@ public class FindDao {
 //	}
 	
 	public List<LostBoard> selectMainLostBoard(){
-		String sql = "select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "+ 
-				"				PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , sub.STOREDFILENAME, HIT, REVIEW " + 
-				"				 from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, " + 
-				"				PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " + 
-				"				 over(order by boardnum desc) as rNum  " + 
-				"				from lostBoard ) mb " + 
-				"                left join " + 
-				"                (SELECT a.inum, a.lostnum, a.storedFileName " + 
-				"				FROM uploadImg a join (SELECT min(inum) as num, lostnum " + 
-				"				 FROM uploadImg " + 
-				"                 GROUP BY lostNum	" + 
-				"                 ORDER BY min(inum)) " + 
-				"				 ON a.inum = num ORDER BY lostNum) sub " + 
-				"				 ON mb.boardNum = sub.lostNum WHERE rowNum<=10 AND meet=0 order by boardnum DESC";
+		String sql = "SELECT BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "+ 
+					"	PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , sub.STOREDFILENAME, HIT, REVIEW " + 
+					"	from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, " + 
+					"	PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " + 
+					"	OVER(ORDER BY boardnum DESC) as rNum  " + 
+					"	FROM lostBoard) mb LEFT JOIN " + 
+					"   (SELECT a.inum, a.lostnum, a.storedFileName " + 
+					"	FROM uploadImg a JOIN (SELECT min(inum) as num, lostnum " + 
+					"	FROM uploadImg GROUP BY lostNum	" + 
+					"   ORDER BY min(inum)) " + 
+					"	ON a.inum = num ORDER BY lostNum) sub " + 
+					"	ON mb.boardNum = sub.lostNum WHERE rowNum<=10 AND meet=0 ORDER BY boardnum DESC";
 		List<LostBoard> results = jdbcTemplate.query(sql, lostBoardRowMapper);
 		return results;
 	}
@@ -824,10 +822,16 @@ public class FindDao {
 		return results;
 	}
 	
-	// 업로드이미지 삭제
+	// 업로드이미지 삭제(게시글 삭제시)
 	public void deleteImgByBoardNum(long boardNum, String where) {
 		String sql = "DELETE FROM  uploadImg WHERE "+where+"=?";
 		jdbcTemplate.update(sql,boardNum);
+	}
+	
+	// 업로드이미지 삭제(게시글 수정시)
+	public void deleteImgByiNum(long iNum) {
+		String sql = "DELETE FROM uploadImg WHERE iNum=?";
+		jdbcTemplate.update(sql,iNum);
 	}
 		
 	// 게시글 수정
