@@ -395,6 +395,10 @@ footer {
    height: 280px;
 }
 
+.memberInformationFindBox-idfound{
+   height: 240px;
+}
+
 .loginBox select {
     border-radius: 8px;
     width: 80%;
