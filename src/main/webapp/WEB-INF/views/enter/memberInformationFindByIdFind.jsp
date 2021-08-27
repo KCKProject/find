@@ -18,13 +18,16 @@
 	<section class="sectionLogin">
 		<div class="wrap-memberInformationFind">
 			<h3 class="loginTitle"><!-- 로그인 --></h3>
-			<div class="loginBox memberInformationFindBox">
+			<div class="loginBox memberInformationFindBox memberInformationFindBox-idfound">
 				<form>
-				<c:forEach var="m" items="${members}">
-					<p>${m.userName}님의 아이디 </p>
-					<input type="text" value="${m.userId}">
-					<input type="button" value="로그인 화면으로 돌아가기 " onclick="location.href='./login'">
-				</c:forEach>
+				<c:if test="${empty members}">등록된 아이디가 없습니다.</c:if>
+				<c:if test="${!empty members}">
+					<c:forEach var="m" items="${members}">
+						<p>${m.userName}님의 아이디 </p>
+						<input type="text" value="${m.userId}">
+						<input type="button" value="로그인 화면으로 돌아가기 " onclick="location.href='./login'">
+					</c:forEach>
+				</c:if>
 				</form>
 				
 			</div>

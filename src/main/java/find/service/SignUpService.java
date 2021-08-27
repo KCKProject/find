@@ -20,10 +20,10 @@ public class SignUpService {
 	
 	public void regist(SignUpCommand signUpCommand) {
 		Member m = dao.selectByUserId(signUpCommand.getUserId());
-		
-		if(m!=null) {
-			throw new AlreadyExistionMemberException("아이디 중복 : "+signUpCommand.getUserName());
-		}
+//		
+//		if(m!=null) {
+//			throw new AlreadyExistionMemberException("아이디 중복 : "+signUpCommand.getUserName());
+//		}
 
 		Member newMember = new Member(
 				signUpCommand.getUserId(),signUpCommand.getUserPassword(),
@@ -33,4 +33,10 @@ public class SignUpService {
 		dao.insertMember(newMember);
 	}
 	
+	public int signUpIdChk(String userId) {
+		System.out.println("들어와따");
+		int result = dao.signUpIdChk(userId);
+		System.out.println("컨트롤러에서의 result : "+result);
+		return result;
+	}
 }

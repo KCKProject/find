@@ -22,7 +22,7 @@
 				<form:form commandName="member" enctype="multipart/form=data" method="POST" onsubmit="chk();">
 					<form:input path="userId" id="userId" placeholder="아이디" requried="requried" />
 					<form:select path="pwdQ" id="pwdQ" requried="requried">
-						<form:option value="0">선택되지 않음</form:option>	
+						<form:option value="">=== 선택해주세요 ===</form:option>	
 						<form:option value="1">어릴적 내가 살던 동네 이름은?</form:option>
 						<form:option value="2">나의 초등학교 이름은?</form:option>
 						<form:option value="3">나의 보물 1호는?</form:option>

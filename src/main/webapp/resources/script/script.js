@@ -151,7 +151,7 @@ function fnChkByte(obj, maxByte) {
         fnChkByte(obj, maxByte);
     }
     else {
-        document.getElementById('byteInfo').innerText = rbyte;
+      //  document.getElementById('byteInfo').innerText = rbyte;
     }
 }
 
