@@ -318,32 +318,46 @@ public class FindDao {
 		List<Member> results = jdbcTemplate.query(sql, rowMapper, m.getPhone(), m.getEmail());
 		return results;
 	}
-	// 메인 페이지 게시글
+	// 아이디 중복체크
+	public int signUpIdChk(String userId) {
+		String sql = "SELECT * FROM member WHERE userId=?";
+		List<Member> results = jdbcTemplate.query(sql, rowMapper, userId);
+		return results.isEmpty() ? 0 : 1;
+	}
+	
 //	public List<LostBoard> selectMainLostBoard(){
 //		String sql = "SELECT * FROM (SELECT * FROM lostBoard ORDER BY boardNum DESC) WHERE rowNum<=10 AND meet=0";
 //		List<LostBoard> results = jdbcTemplate.query(sql, lostBoardRowMapper);
 //		return results;
 //	}
 	
+	// 메인 페이지 게시글
 	public List<LostBoard> selectMainLostBoard(){
-		String sql = "SELECT BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, "+ 
-					"	PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , sub.STOREDFILENAME, HIT, REVIEW " + 
-					"	from(select BOARDNUM, TITLE, WRITER, WRITEDATE, KIND, LOCATION, CHARACTER, ANIMAL, GENDER, EMAIL, " + 
-					"	PHONE, LOSTDATE, MEET, MEMO, ORIGINALFILE, ORIGINALFILEEXTENSION , STOREDFILENAME, HIT, REVIEW, row_number() " + 
-					"	OVER(ORDER BY boardnum DESC) as rNum  " + 
-					"	FROM lostBoard) mb LEFT JOIN " + 
-					"   (SELECT a.inum, a.lostnum, a.storedFileName " + 
-					"	FROM uploadImg a JOIN (SELECT min(inum) as num, lostnum " + 
-					"	FROM uploadImg GROUP BY lostNum	" + 
-					"   ORDER BY min(inum)) " + 
-					"	ON a.inum = num ORDER BY lostNum) sub " + 
-					"	ON mb.boardNum = sub.lostNum WHERE rowNum<=10 AND meet=0 ORDER BY boardnum DESC";
+		String sql = "SELECT boardNum, title, writer, writeDate, location, character, animal, kind, gender, " +
+				"email, phone, lostDate, meet, memo, originalFile, originalFileExtension, sub.storedFileName, hit, review " +
+				" FROM lostBoard l JOIN " + 
+				" (SELECT a.inum, a.lostnum, a.storedFileName " + 
+				" FROM uploadImg a join (SELECT min(inum) as num, lostnum " + 
+				"				 FROM uploadImg GROUP BY lostNum " + 
+				"                HAVING lostNum>0 ORDER BY num) " + 
+				" ON a.inum = num ORDER BY lostNum DESC) sub " + 
+				" ON l.boardNum=sub.lostNum AND l.meet=0 AND rowNum <= 10 " + 
+				" ORDER BY boardNum DESC";
 		List<LostBoard> results = jdbcTemplate.query(sql, lostBoardRowMapper);
 		return results;
 	}
 	
 	public List<LostBoard> selectMainReviewBoard(){ // 랜덤 추출
-		String sql = "SELECT * FROM (SELECT * FROM lostBoard order by dbms_random.value) WHERE rowNum <=5 AND meet=1";
+		String sql = "SELECT boardNum, title, writer, writeDate, location, character, animal, kind, gender, " +
+				"email, phone, lostDate, meet, memo, originalFile, originalFileExtension, sub.storedFileName, hit, review " +
+				" FROM lostBoard l JOIN " + 
+				" (SELECT a.inum, a.lostnum, a.storedFileName " + 
+				" FROM uploadImg a join (SELECT min(inum) as num, lostnum " + 
+				"				 FROM uploadImg GROUP BY lostNum " + 
+				"                HAVING lostNum>0 ORDER BY num) " + 
+				" ON a.inum = num ORDER BY dbms_random.value) sub " + 
+				" ON l.boardNum=sub.lostNum AND l.meet=1 AND rowNum <= 5 " + 
+				" ORDER BY boardNum DESC";
 		List<LostBoard> results = jdbcTemplate.query(sql, lostBoardRowMapper);
 		return results;
 	}
@@ -910,6 +924,7 @@ public class FindDao {
 		String sql="update member set userpassword=? where memberNumber=?";
 		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(),memberNumber);
 	}
+	
 	
 	// 서비스페이지 코멘트 추가
 //	public void addServiceComment(ServiceCommentDto newComment) {

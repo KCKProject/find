@@ -6,6 +6,8 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import find.exception.AlreadyExistionMemberException;
 import find.service.SignUpService;
@@ -13,7 +15,7 @@ import find.validator.SignUpCommandValidator;
 import find.vo.SignUpCommand;
 
 @Controller
-@RequestMapping("/enter/signUp")
+//@RequestMapping("/enter/signUp")
 public class SignUpController {
 
 	private SignUpService signUpService;
@@ -22,13 +24,13 @@ public class SignUpController {
 		this.signUpService = signUpService;
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
+	@RequestMapping(value="/enter/signUp", method = RequestMethod.GET)
 	public String handlerStep2Get(Model model, SignUpCommand signUpCommand) {
 		model.addAttribute("signUpCommand",new SignUpCommand());
 		return "enter/signUp";
 	}
 	
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(value="/enter/signUp", method=RequestMethod.POST)
 	public String handlerStep(@ModelAttribute("signUpCommand") SignUpCommand suCommand, Errors errors) {
 		
 		new SignUpCommandValidator().validate(suCommand,errors);
@@ -41,7 +43,15 @@ public class SignUpController {
 		}catch(AlreadyExistionMemberException e) {
 			errors.rejectValue("userId", "duplicate", "이미 존재하는 아이디입니다");
 			return "enter/signUp";
-		}	
-		
+		}		
+	}
+	
+	// 아이디 중복체크
+	@ResponseBody
+	@RequestMapping(value="/enter/signUpIdChk", method=RequestMethod.GET)
+	public int idChk(@RequestParam("userId") String userId) {
+		int result = 0;
+		result = signUpService.signUpIdChk(userId);
+		return result;
 	}
 }

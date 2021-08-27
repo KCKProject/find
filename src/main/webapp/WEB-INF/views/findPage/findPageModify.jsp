@@ -164,7 +164,7 @@
 				}
 			}
 			document.getElementById('form').submit();
-		};	
+		};
 	</script>
 </body>
 </html>
