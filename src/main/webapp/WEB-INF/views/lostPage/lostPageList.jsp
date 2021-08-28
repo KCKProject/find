@@ -10,24 +10,18 @@
 <link rel="stylesheet" href="../resources/css/style.css">
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
+<script src='https://code.jquery.com/jquery-3.3.1.min.js'></script>
 <script src="../resources/script/script.js" defer></script>
 <title>찾아주세요</title>
-
 </head>
 <body>
 	<jsp:include page="../include/header.jsp" />
 
 	<div class="wrapboardPage">
-
 		<div id="contentsTitle">
 			<h3 class="contentsTitle">찾아주세요</h3>
-			<div class="titleLine"></div>
-			
-		</div>
-
-		<div id="contentsMenu">
-			<p>발견만 | 미발견만</p>
-		</div>
+			<div class="titleLine"></div>			
+		</div>		
 		
 		<div class="wrapBoardlist"> 
 		<!-- 게시글이 존재하지 않을 때 -->
@@ -36,7 +30,9 @@
 				<li>실종된 동물이 없습니다!</li>
 			</ul>
 		</c:if>
-		
+		<div id="contentsMenu">
+			<p><span id="find" style="cursor:pointer">발견 완료</span> | <span id="hide" style="cursor:pointer">미발견</span></p>
+		</div>
 		<!-- 게시글이 1개 이상 존재할 때 -->
 		<ul>
 			 <!-- 게시물 li로 나열  -->
@@ -105,6 +101,16 @@
 	<c:if test="${memberAuthInfo != null }">
 		<button class="jellybutton sidebtn1" name="write" id="write" onclick="location='<c:url value="/lostPage/lostPageWrite"/>'">WRITE</button>
 	</c:if>
-
+<script>
+	$(function(){
+	  	$('#find').click(function() {
+	  		self.location = "" + '${pageMaker.makeSearch(1)}' + encodeURIComponent(1);
+		});
+	  	
+	  	$('#hide').click(function() {
+  			self.location = "" + '${pageMaker.makeSearch(1)}' + encodeURIComponent(0);
+		});
+	});
+</script>
 </body>
 </html>
