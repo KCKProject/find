@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import find.dao.FindDao;
 import find.exception.IdPasswordNotMatchingException;
 import find.service.MemberAuthService;
+import find.utils.SHA256Util;
 import find.validator.MemberLoginCommandVaildator;
 import find.vo.MemberAuthInfo;
 import find.vo.MemberLoginCommand;
@@ -41,13 +42,15 @@ public class LoginController {
 		}
 		
 		@RequestMapping(method = RequestMethod.POST)
-		public String submit(MemberLoginCommand memberLoginCommand, Errors errors, HttpSession session, HttpServletRequest req, HttpServletResponse response) {	
+		public String submit(MemberLoginCommand memberLoginCommand, Errors errors, HttpSession session, HttpServletRequest req, HttpServletResponse response) throws Exception {	
 			new MemberLoginCommandVaildator().validate(memberLoginCommand, errors);
 			
 			if(errors.hasErrors()) {
 				return "enter/login";
 			}
-			try {
+			try {				
+				String pwd = memberLoginCommand.getUserPassword();
+				memberLoginCommand.setUserPassword(SHA256Util.SHA256Encrypt(pwd)); 
 				MemberAuthInfo memberAuthInfo = memberAuthService.authenticate(memberLoginCommand.getUserId(), memberLoginCommand.getUserPassword());
 				session = req.getSession();
 				session.setAttribute("memberAuthInfo", memberAuthInfo);

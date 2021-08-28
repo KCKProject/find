@@ -22,8 +22,13 @@
 		<div id="contentsTitle">
 			<h3 class="contentsTitle">찾아주세요</h3>
 			<div class="titleLine"></div>
+			
 		</div>
 
+		<div id="contentsMenu">
+			<p>발견만 | 미발견만</p>
+		</div>
+		
 		<div class="wrapBoardlist"> 
 		<!-- 게시글이 존재하지 않을 때 -->
 		<c:if test="${empty losts}">

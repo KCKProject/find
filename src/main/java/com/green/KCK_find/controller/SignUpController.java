@@ -39,9 +39,8 @@ public class SignUpController {
 		}
 		try {
 			signUpService.regist(suCommand);
-			return "redirect:/main";
-		}catch(AlreadyExistionMemberException e) {
-			errors.rejectValue("userId", "duplicate", "이미 존재하는 아이디입니다");
+			return "redirect:/";
+		}catch(Exception e) {
 			return "enter/signUp";
 		}		
 	}

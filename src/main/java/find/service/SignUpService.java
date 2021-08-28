@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import find.dao.FindDao;
 import find.exception.AlreadyExistionMemberException;
+import find.utils.SHA256Util;
 import find.vo.Member;
 import find.vo.SignUpCommand;
 
@@ -18,13 +19,16 @@ public class SignUpService {
 		this.dao = dao;
 	}
 	
-	public void regist(SignUpCommand signUpCommand) {
+	public void regist(SignUpCommand signUpCommand){
 		Member m = dao.selectByUserId(signUpCommand.getUserId());
-//		
-//		if(m!=null) {
-//			throw new AlreadyExistionMemberException("아이디 중복 : "+signUpCommand.getUserName());
-//		}
 
+		try {
+			signUpCommand.setUserPassword(SHA256Util.SHA256Encrypt(signUpCommand.getUserPassword()));
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+			return;
+		}
 		Member newMember = new Member(
 				signUpCommand.getUserId(),signUpCommand.getUserPassword(),
 				signUpCommand.getUserName(),signUpCommand.getPhone(),signUpCommand.getEmail()
@@ -33,10 +37,9 @@ public class SignUpService {
 		dao.insertMember(newMember);
 	}
 	
+	// 아이디 중복 체크
 	public int signUpIdChk(String userId) {
-		System.out.println("들어와따");
 		int result = dao.signUpIdChk(userId);
-		System.out.println("컨트롤러에서의 result : "+result);
 		return result;
 	}
 }

@@ -28,8 +28,6 @@ public class SignUpCommandValidator implements Validator{
    public void validate(Object target, Errors errors) {
       SignUpCommand command = (SignUpCommand)target;
       
-      ValidationUtils.rejectIfEmpty(errors, "userPassword", "required", "필수입력사항입니다.");
-      
       if(!command.getUserPassword().isEmpty()) {
          boolean matcher = Pattern.matches(PWD_EXP,command.getUserPassword());
          if(matcher != true) {
@@ -39,9 +37,14 @@ public class SignUpCommandValidator implements Validator{
          }
       }
 
+      ValidationUtils.rejectIfEmpty(errors, "userPassword", "required", "필수입력사항입니다.");
+      ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userId", "required", "필수입력사항입니다.");
       ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required", "필수입력사항입니다.");
       ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "required", "필수입력사항입니다.");
       ValidationUtils.rejectIfEmpty(errors, "phone", "required", "필수입력사항입니다.");
+      
+      //pwdQ 처리필요
+      ValidationUtils.rejectIfEmpty(errors, "pwdA", "required", "필수입력사항입니다.");
    }
 
 }
