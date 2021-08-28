@@ -379,6 +379,10 @@ footer {
    padding-left: 50%;
 }
 
+.loginBoxLower p {
+    height: 30px;
+}
+
 .loginBoxLowerText:hover{
 	font-size: 15px;
 	background-color: lightgoldenrodyellow;
@@ -393,6 +397,26 @@ footer {
 
 .memberInformationFindBox-id{
    height: 280px;
+}
+
+.memberInformationFindBox-idfound{
+   height: 240px;
+}
+
+.memberInformationFindBox-idfound form p {
+    font-size: 15px;
+    text-align: center;
+    margin: 20px 0 30px -90px;
+}
+
+.memberInformationFindBox-idfound strong {
+	color: #1ABC9C;
+}
+
+.fa-frown-open {
+    padding: 0 10px;
+    font-size: 18px;
+    color: #fed400;
 }
 
 .loginBox select {

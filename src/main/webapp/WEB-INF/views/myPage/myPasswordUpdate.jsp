@@ -30,15 +30,15 @@
 						<div>
 							현재 비밀번호 <!-- <input type="text"> -->
 							<form:input type="hidden" path="userPasswordCurrentChk" id="userPasswordCurrentChk" value="${myPasswordUpdate.userPassword}"/>
-							<form:input type="text" path="userPasswordCurrent" value="" id="userPasswordCurrent"/>
+							<form:input type="password" path="userPasswordCurrent" value="" id="userPasswordCurrent"/>
 						</div>
 						<div>
 							변경 비밀번호<!--  <input type="text"> -->
-							<form:input type="text" path="userPasswordNew" value="" id="userPasswordNew" />
+							<form:input type="password" path="userPasswordNew" value="" id="userPasswordNew" />
 						</div>
 						<div>
 							비밀번호 확인<!--  <input type="text"> -->
-							<form:input type="text" path="userPasswordNewConfirm" value="" id="userPasswordNewConfirm" />
+							<form:input type="password" path="userPasswordNewConfirm" value="" id="userPasswordNewConfirm" />
 						</div>
 						<div>
 							<input type="submit" value="비밀번호 변경" class="changePasswordBtn">
