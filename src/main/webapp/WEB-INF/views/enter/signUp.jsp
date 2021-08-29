@@ -34,11 +34,11 @@
 						</div>
 						<div class="signUpCommandBox">
 							<p>
-								<form:input path="userId" placeholder="아이디" check_result="success" requried="requried" onkeyup="javascript:fnChkByte(this,'12')"/>
+								<form:input path="userId" placeholder="아이디" check_result="success" requried="requried" onkeyup="javascript:fnChkByte2(this,'12')"/>
 								<form:errors path="userId"/>
 								<br>
 								<a class="idChk" onclick="idChk()" style="cursor:pointer; display:none">중복 체크</a>
-								<i class="fas fa-check" id="idOk" style="display:none"></i>
+								<i class="fas fa-check" id="idOk" style="display:none">   완료</i>
 							</p>
 							<p>
 								<form:password path="userPassword" placeholder="비밀번호(영문,숫자,특수문자 조합 6~15자리)" />
