@@ -517,6 +517,11 @@ public class FindDao {
 		List<Member> results = jdbcTemplate.query(sql, rowMapper, userId);
 		return results.isEmpty() ? null : results.get(0);		
 	}
+	public List<Member> selectByUserId2(String userId) {
+		String sql = "SELECT * FROM member WHERE userId=?";
+		List<Member> results = jdbcTemplate.query(sql, rowMapper, userId);
+		return results;		
+	}
 	
 
 	public void insertMember(Member member) {
@@ -933,7 +938,7 @@ public class FindDao {
 	// 비밀번호 찾기 시 비밀번호 변경
 	public void myPasswordUpdate(String userId, MemberAuthInfo myPasswordUpdate) {
 		String sql="update member set userpassword=? where userId=?";
-		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(),myPasswordUpdate.getUserId());
+		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(),userId);
 	}
 	
 	

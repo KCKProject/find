@@ -19,14 +19,21 @@
 		<div class="wrap-memberInformationFind">
 			<h3 class="loginTitle"><!-- 로그인 --></h3>
 			<div class="loginBox memberInformationFindBox">
-				<form>
+				<form:form commandName="member" enctype="multipart/form=data" method="POST" onsubmit="pwdcheck()">
 					<c:forEach var="m" items="${members}">
-						<p>${m.userName}님 새로운 비밀번호로 변경 하시겠습니까? </p><br>
-						<a href="<c:url value='/enter/memberInformationFindByPasswordChanges/${m.userId}'/>">
-							<input type="button" value="비밀번호 변경" class="loginBoxbtn">
-						</a>
+						<p>${m.userName}님 새로 사용할 비밀번호를 입력해주세요. </p><br>
+						<form:input type="hidden" path="userPasswordCurrentChk" id="userPasswordCurrentChk" value="${m.userPassword}"/>
 					</c:forEach>
-				</form>
+					<div>
+						변경 비밀번호<!--  <input type="text"> --><br>
+						<form:input type="password" path="userPasswordNew" value="" id="userPasswordNew" />
+					</div>
+					<div>
+						비밀번호 확인<!--  <input type="text"> --><br>
+						<form:input type="password" path="userPasswordNewConfirm" value="" id="userPasswordNewConfirm" />
+					</div>
+						<input type="submit" value="비밀번호 변경" class="loginBoxbtn">
+				</form:form>
 			</div>
 		
 		
@@ -49,4 +56,31 @@
 	</section>
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
+<script>
+function pwdcheck(){
+	if(document.getElementById("userPasswordCurrent").value != document.getElementById("userPasswordCurrentChk").value){
+		alert("현재 비밀번호가 틀립니다.");
+		return false;
+	}
+	if(document.getElementById("userPasswordNew").value==""){
+		alert("변경하실 비밀번호를 입력해주세요.");
+		return false;
+	}
+	if(document.getElementById("userPasswordNew").value == document.getElementById("userPasswordCurrentChk").value){
+		alert("변경할 비밀번호와 기존 비밀번호가 같습니다.");
+		return false;
+	}
+	if(documnet.getElementById("userPasswordNewConfirm").value==""){
+		alert("비밀번호 확인을 입력해주세요.")
+		return false;
+	}
+	if(document.getElementById("userPasswordNew").value != document.getElementById("userPasswordNewConfirm").value){
+		alert("변경하실 비밀번호가 일치하지 않습니다.");
+		return false;
+	}
+	else{
+		alert("변경완료 되었습니다.");
+	}
+}
+</script>
 </html>

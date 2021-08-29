@@ -2,21 +2,17 @@ package com.green.KCK_find.controller;
 
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import find.dao.FindDao;
 import find.validator.MemberInfoFindById;
 import find.validator.MemberInfoFindByPassword;
-import find.validator.MyPasswordCommandValidator;
-import find.validator.QnAWriteCommandValidator;
+import find.validator.MemberInfoFindByPasswordChange;
 import find.vo.Member;
 import find.vo.MemberAuthInfo;
 import find.vo.MyPasswordUpdateCommand;
@@ -36,7 +32,7 @@ public class MemberInformationFindController {
 		return "enter/memberInformationFindByPassword";
 	}
 	@RequestMapping(value="/enter/memberInformationFindByPassword", method=RequestMethod.POST)
-	public String memberInformationFindByPassword2(Member member, Model model, Errors errors) {
+	public String memberInformationFindByPassword2(Member member, Model model, Errors errors, MyPasswordUpdateCommand myPasswordUpdateCommand) {
 		new MemberInfoFindByPassword().validate(member, errors);
 		
 		if(errors.hasErrors()) {
@@ -45,6 +41,7 @@ public class MemberInformationFindController {
 		try {
 			List<Member> members= dao.selectMemberForPwd(member);
 			model.addAttribute("members",members);
+			
 			return "enter/memberInformationFindByPasswordChange";
 		}
 		catch(Exception e) {
@@ -52,23 +49,29 @@ public class MemberInformationFindController {
 		}
 					
 	}
-	@RequestMapping(value="/enter/memberInformationFindByPasswordChange", method=RequestMethod.POST)
+	@RequestMapping(value="/enter/memberInformationFindByPasswordChanges/{userId}", method=RequestMethod.GET)
+	public String memberInformationFindByPassword1(@PathVariable("userId") String userid, Member member, Model model) {
+		List<Member> members = dao.selectByUserId2(userid);
+		model.addAttribute("members",members);
+		return "enter/memberInformationFindByPasswordChanges";
+	}
+	
+	@RequestMapping(value="/enter/memberInformationFindByPasswordChanges/{userId}", method=RequestMethod.POST )
 	public String myPasswordUpdate(Member member, MyPasswordUpdateCommand myPasswordUpdateCommand, Errors errors, Model model) {
-		new MyPasswordCommandValidator().validate(myPasswordUpdateCommand,errors);
+		new MemberInfoFindByPasswordChange().validate(member,errors);
 		
 		if(errors.hasErrors()) {
-			return "enter/memberInformationFindByPasswordChange";
+			return "enter/memberInformationFindByPasswordChanges";
 		}
 		try {
-			System.out.println("진행3");
 			MemberAuthInfo myPasswordUpdate = new MemberAuthInfo(myPasswordUpdateCommand.getUserId(),myPasswordUpdateCommand.getUserPasswordNew());
-			dao.myPasswordUpdate(member.getUserId(), myPasswordUpdate);
+			dao.myPasswordUpdate(myPasswordUpdate.getUserId(), myPasswordUpdate);
+			return "redirect:/enter/login";
 		}
 		catch(Exception e) {
-			return "enter/memberInformationFindByPasswordChange";
+			return "enter/memberInformationFindByPasswordChanges";
 		}
 		
-		return "enter/login";
 	}
 	//아이디 찾기
 	@RequestMapping(value="/enter/memberInformationFindById", method=RequestMethod.GET)
