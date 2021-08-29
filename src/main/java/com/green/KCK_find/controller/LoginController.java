@@ -15,6 +15,7 @@ import find.exception.IdPasswordNotMatchingException;
 import find.service.MemberAuthService;
 import find.utils.SHA256Util;
 import find.validator.MemberLoginCommandVaildator;
+import find.vo.Member;
 import find.vo.MemberAuthInfo;
 import find.vo.MemberLoginCommand;
 
@@ -50,7 +51,10 @@ public class LoginController {
 			}
 			try {				
 				String pwd = memberLoginCommand.getUserPassword();
-				memberLoginCommand.setUserPassword(SHA256Util.SHA256Encrypt(pwd)); 
+				System.out.println(memberLoginCommand.getUserId());
+				String salt = dao.getSaltByMember(memberLoginCommand.getUserId());
+				System.out.println("salt : "+salt);
+				memberLoginCommand.setUserPassword(SHA256Util.SHA256Encrypt(pwd, salt)); 
 				MemberAuthInfo memberAuthInfo = memberAuthService.authenticate(memberLoginCommand.getUserId(), memberLoginCommand.getUserPassword());
 				session = req.getSession();
 				session.setAttribute("memberAuthInfo", memberAuthInfo);

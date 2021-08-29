@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import find.dao.FindDao;
-import find.service.MemberAuthService;
 import find.utils.SHA256Util;
 import find.validator.MyPasswordCommandValidator;
 import find.vo.MemberAuthInfo;
@@ -24,7 +23,6 @@ import find.vo.MyPasswordUpdateCommand;
 public class MyPasswordUpdateController {
 	
 	@Autowired
-	private MemberAuthService memberAuthService;
 	private FindDao dao;
 	
 	public void setDao(FindDao dao) {
@@ -45,14 +43,18 @@ public class MyPasswordUpdateController {
 	
 	@RequestMapping(value="/myPage/myPasswordUpdate/{memberAuthInfo.getMemberNumber}", method=RequestMethod.POST)
 	public String myPasswordUpdate(@PathVariable("memberAuthInfo.getMemberNumber") long memberNumber, Model model, MyPasswordUpdateCommand myPasswordUpdateCommand, HttpSession session, HttpServletRequest req, HttpServletResponse response, Errors errors) {
+		MemberAuthInfo i = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
+		String userId = i.getUserId();
 		
+		String salt = dao.getSaltByMember(userId);
+		myPasswordUpdateCommand.setSalt(salt);
 		new MyPasswordCommandValidator().validate(myPasswordUpdateCommand,errors);
 		if(errors.hasErrors()) {
 			return "myPage/myPasswordUpdate";
 		}
 		try {
 			String newPwd = myPasswordUpdateCommand.getUserPasswordNew();
-			myPasswordUpdateCommand.setUserPasswordNew(SHA256Util.SHA256Encrypt(newPwd));
+			myPasswordUpdateCommand.setUserPasswordNew(SHA256Util.SHA256Encrypt(newPwd,salt));
 			MemberAuthInfo myPasswordUpdate = new MemberAuthInfo(myPasswordUpdateCommand.getUserId(),myPasswordUpdateCommand.getUserPasswordNew());
 			dao.myPasswordUpdate(memberNumber, myPasswordUpdate);
 		}

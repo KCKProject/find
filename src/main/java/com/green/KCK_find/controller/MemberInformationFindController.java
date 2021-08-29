@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import find.dao.FindDao;
+import find.utils.SHA256Util;
 import find.validator.MemberInfoFindById;
 import find.validator.MemberInfoFindByPassword;
 import find.validator.MemberInfoFindByPasswordChange;
@@ -64,8 +65,12 @@ public class MemberInformationFindController {
 			return "enter/memberInformationFindByPasswordChanges";
 		}
 		try {
+			String salt = SHA256Util.getSalt();
+			myPasswordUpdateCommand.setSalt(salt);
+			String newPwd = myPasswordUpdateCommand.getUserPasswordNew();
+			myPasswordUpdateCommand.setUserPasswordNew(SHA256Util.SHA256Encrypt(newPwd,salt));
 			MemberAuthInfo myPasswordUpdate = new MemberAuthInfo(myPasswordUpdateCommand.getUserId(),myPasswordUpdateCommand.getUserPasswordNew());
-			dao.myPasswordUpdate(myPasswordUpdate.getUserId(), myPasswordUpdate);
+			dao.myPasswordUpdate(myPasswordUpdate, salt);
 			return "redirect:/enter/login";
 		}
 		catch(Exception e) {

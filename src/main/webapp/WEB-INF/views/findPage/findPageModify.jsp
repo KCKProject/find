@@ -154,10 +154,10 @@
 				return false;
 			}
 			
-			var test = document.getElementsByClassName('newImg');
-			if(test.length!=0){
-				for(var i=0;i<test.length;i++){
-					if(test[i].files.length==0){
+			var ex = document.getElementsByClassName('newImg');
+			if(ex.length!=0){
+				for(var i=0;i<ex.length;i++){
+					if(ex[i].files.length==0){
 						alert('파일을 선택해주세요.');
 						return false;
 					}

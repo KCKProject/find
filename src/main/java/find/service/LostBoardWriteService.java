@@ -167,16 +167,20 @@ public class LostBoardWriteService {
 		// 기존 이미지 삭제 내역 확인
 		List<UploadImgVo> prevImg = dao.selectUploadImgByBoardNum(boardNum, where);
 		String[] maintain = lc.getOriginalFile();
+
 		for(UploadImgVo pr : prevImg) {
 			String chk = "";
 			String prevName = pr.getStoredFileName();
-			for(String m : maintain) {
-				if(prevName.equals(m)) {
-					chk = "same";
-					break;
+			if(maintain!=null) {
+				for(String m : maintain) {
+					if(prevName.equals(m)) {
+						chk = "same";
+						break;
+					}
 				}
 			}
-			// 새로 넘어온 리스트에서 기존 파일이 존재하지 않을 시, 삭제
+			
+			// 넘어온 리스트에서 존재하지 않는 기존 파일 삭제
 			if(!chk.equals("same")) {
 				String image = pr.getStoredFileName();
 				System.out.println("image : "+image);
@@ -206,7 +210,6 @@ public class LostBoardWriteService {
 				// 추가 파일 등록
 				UploadImgVo uVo = new UploadImgVo();
 				System.out.println("-----추가 파일 등록");
-				System.out.println("파일 이름 : "+originalFile);
 				
 				originalFile = f.getOriginalFilename();
 				originalFileExtension = originalFile.substring(originalFile.lastIndexOf("."));

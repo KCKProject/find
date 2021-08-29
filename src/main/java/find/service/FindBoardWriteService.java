@@ -144,16 +144,20 @@ public class FindBoardWriteService {
 		// 기존 이미지 삭제 내역 확인
 		List<UploadImgVo> prevImg = dao.selectUploadImgByBoardNum(boardNum, where);
 		String[] maintain = fc.getOriginalFile();
+		
 		for(UploadImgVo pr : prevImg) {
 			String chk = "";
 			String prevName = pr.getStoredFileName();
-			for(String m : maintain) {
-				if(prevName.equals(m)) {
-					chk = "same";
-					break;
+			if(maintain!=null) {
+				for(String m : maintain) {
+					if(prevName.equals(m)) {
+						chk = "same";
+						break;
+					}
 				}
 			}
-			// 새로 넘어온 리스트에서 기존 파일이 존재하지 않을 시, 삭제
+			
+			// 넘어온 리스트에서 존재하지 않는 기존 파일 삭제
 			if(!chk.equals("same")) {
 				String image = pr.getStoredFileName();
 				String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");

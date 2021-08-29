@@ -84,7 +84,7 @@
 						<td><strong>*</strong>사진첨부</td>
 						<td id="lastTd">
 							<p name="add"><i class="fas fa-plus"></i> 파일추가 (jpg, jpeg, png)</p><br>
-							<input type="file" name="img" id="img1" accept=".jpg, .jpeg, .png">
+							<input type="file" class="img" name="img" accept=".jpg, .jpeg, .png">
 							<a id="firstDel"><i class='fas fa-trash-alt'></i></a><br>
 						</td>
 						<!-- accept 성질 -->
@@ -150,7 +150,7 @@
 	    			var addForm = "<tr>";
 	    			addForm += "<td></td>";
 	    			addForm += "<td>";
-	    			addForm += '<input type="file" name="img" id="img" accept=".jpg, .jpeg, .png"/>'
+	    			addForm += '<input type="file" class="img" name="img" accept=".jpg, .jpeg, .png"/>'
 	    			addForm += '<a class="del"><i class="fas fa-trash-alt"></i></a><br>';
 	    			addForm += "</td>";
 	    			addForm += "</tr>";
@@ -170,10 +170,15 @@
 		});
 
 		function imgCheck(){
-			if(!$('#img').val()){
-				alert("파일을 선택해주세요.");
-				return;
-			}			
+			var ex = document.getElementsByClassName('img');
+			if(ex.length!=0){
+				for(var i=0;i<ex.length;i++){
+					if(ex[i].files.length==0){
+						alert('파일을 선택해주세요.');
+						return false;
+					}
+				}
+			}
 			document.getElementById('form').submit();
 		};		
 	</script>

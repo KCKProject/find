@@ -78,8 +78,12 @@ function pwdcheck(){
 		alert("변경하실 비밀번호를 입력해주세요.");
 		return false;
 	}
-	if(documnet.getElementById("userPasswordNewConfirm").value==""){
+	if(document.getElementById("userPasswordNewConfirm").value==""){
 		alert("비밀번호 확인을 입력해주세요.");
+		return false;
+	}
+	if(document.getElementById("userPasswordNew").value == document.getElementById("userPasswordCurrent").value){
+		alert("변경할 비밀번호와 기존 비밀번호가 같습니다.");
 		return false;
 	}
 	if(document.getElementById("userPasswordNew").value != document.getElementById("userPasswordNewConfirm").value){
@@ -92,10 +96,7 @@ function pwdcheck(){
 		alert("현재 비밀번호가 틀립니다.");
 		return false;
 	}	
-	if(document.getElementById("userPasswordNew").value == document.getElementById("userPasswordCurrentChk").value){
-		alert("변경할 비밀번호와 기존 비밀번호가 같습니다.");
-		return false;
-	}
+	
 	else{
 		alert("변경완료 되었습니다.");
 	} */

@@ -50,7 +50,8 @@ public class FindDao {
 							rs.getString("userPassword"),
 							rs.getString("userName"),
 							rs.getString("phone"),
-							rs.getString("email")
+							rs.getString("email"),
+							rs.getString("salt")
 						);
 				m.setMemberNumber(rs.getLong("membernumber"));
 				return m;
@@ -69,6 +70,17 @@ public class FindDao {
 						rs.getString("email")
 						);
 				m.setMemberNumber(rs.getLong("membernumber"));
+				return m;
+			}
+		};
+		
+		private RowMapper<Member> saltRowMapper = new RowMapper<Member>() {
+			
+			@Override
+			public Member mapRow(ResultSet rs, int rowNum) throws SQLException{
+				Member m = new Member(
+						rs.getString("salt")
+						);
 				return m;
 			}
 		};
@@ -515,7 +527,7 @@ public class FindDao {
 	public Member selectByUserId(String userId) {
 		String sql = "SELECT * FROM member WHERE userId=?";
 		List<Member> results = jdbcTemplate.query(sql, rowMapper, userId);
-		return results.isEmpty() ? null : results.get(0);		
+		return results.isEmpty() ? null : results.get(0);	
 	}
 	public List<Member> selectByUserId2(String userId) {
 		String sql = "SELECT * FROM member WHERE userId=?";
@@ -531,7 +543,7 @@ public class FindDao {
 					@Override
 					public PreparedStatement createPreparedStatement(Connection con) throws SQLException{
 						PreparedStatement psmt = con.prepareStatement(
-							"INSERT INTO member VALUES(member_seq.nextval,?,?,?,?,?,?,?)",
+							"INSERT INTO member VALUES(member_seq.nextval,?,?,?,?,?,?,?,?)",
 							new String[] {"membernumber"});
 						psmt.setString(1,member.getUserId());
 						psmt.setString(2,member.getUserPassword());
@@ -539,7 +551,8 @@ public class FindDao {
 						psmt.setString(4,member.getPhone());
 						psmt.setString(5,member.getEmail());
 						psmt.setString(6,member.getPwdQ());					
-						psmt.setString(7,member.getPwdA());					
+						psmt.setString(7,member.getPwdA());
+						psmt.setString(8,member.getSalt());
 						return psmt;
 					}
 				},key);
@@ -936,11 +949,15 @@ public class FindDao {
 		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(),memberNumber);
 	}
 	// 비밀번호 찾기 시 비밀번호 변경
-	public void myPasswordUpdate(String userId, MemberAuthInfo myPasswordUpdate) {
-		String sql="update member set userpassword=? where userId=?";
-		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(),userId);
+	public void myPasswordUpdate(MemberAuthInfo myPasswordUpdate, String salt) {
+		String sql="update member set userpassword=?, salt=? where userId=?";
+		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(),salt,myPasswordUpdate.getUserId());
 	}
-	
+	public String getSaltByMember(String userId) {
+		String sql="SELECT * FROM member WHERE userId=?";
+		List<Member> results = jdbcTemplate.query(sql,rowMapper,userId);
+		return results.get(0).getSalt();
+	}
 	
 	// 서비스페이지 코멘트 추가
 //	public void addServiceComment(ServiceCommentDto newComment) {

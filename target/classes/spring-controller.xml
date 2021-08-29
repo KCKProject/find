@@ -56,6 +56,7 @@
    <!-- member -->
    <bean id="loginController" class="com.green.KCK_find.controller.LoginController">
       <property name="memberAuthService" ref="memberAuthSvc"/>
+      <property name="dao" ref="findDao"/>
    </bean>
    
    <bean id="signUpController" class="com.green.KCK_find.controller.SignUpController">
@@ -103,7 +104,6 @@
    <bean id="MyPageController" class="com.green.KCK_find.controller.MyPageController">
    		<property name="dao" ref="findDao"/>
    </bean>   
-   
    <bean id="MyInfoUpdateController" class="com.green.KCK_find.controller.MyInfoUpdateController">
    		<property name="dao" ref="findDao"/>
    </bean>   

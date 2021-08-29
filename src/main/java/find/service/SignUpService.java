@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import find.dao.FindDao;
-import find.exception.AlreadyExistionMemberException;
 import find.utils.SHA256Util;
 import find.vo.Member;
 import find.vo.SignUpCommand;
@@ -20,19 +19,20 @@ public class SignUpService {
 	}
 	
 	public void regist(SignUpCommand signUpCommand){
-		Member m = dao.selectByUserId(signUpCommand.getUserId());
-
+		// 암호화를 위한 salt 생성
+		String salt = SHA256Util.getSalt();
+		
 		try {
-			signUpCommand.setUserPassword(SHA256Util.SHA256Encrypt(signUpCommand.getUserPassword()));
-		} catch (Exception e) {
-			
+			// SHA-256을 위한 해시설정
+			signUpCommand.setUserPassword(SHA256Util.SHA256Encrypt(signUpCommand.getUserPassword(),salt));
+		} catch (Exception e) {			
 			e.printStackTrace();
 			return;
 		}
 		Member newMember = new Member(
 				signUpCommand.getUserId(),signUpCommand.getUserPassword(),
 				signUpCommand.getUserName(),signUpCommand.getPhone(),signUpCommand.getEmail()
-				,signUpCommand.getPwdQ(),signUpCommand.getPwdA());
+				,signUpCommand.getPwdQ(),signUpCommand.getPwdA(), salt);
 		
 		dao.insertMember(newMember);
 	}

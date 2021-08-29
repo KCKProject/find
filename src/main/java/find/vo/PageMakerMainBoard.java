@@ -76,12 +76,12 @@ public class PageMakerMainBoard {
 			return uriComponents.toUriString();
 	}
 	public String makeSearch(int page){
+		((SearchCriteriaMainBoard)cri).reset();
 		UriComponents uriComponents = UriComponentsBuilder.newInstance()
 			.queryParam("page", page)
 			.queryParam("perPageNum", cri.getPerPageNum())
 			.queryParam("keyword", encoding(((SearchCriteriaMainBoard)cri).getKeyword()))
-			.build(); 
-		((SearchCriteriaMainBoard)cri).reset();
+			.build(); 		
 	 return uriComponents.toUriString();  
 	}
 	

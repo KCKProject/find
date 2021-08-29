@@ -19,7 +19,7 @@
 		<div class="wrap-memberInformationFind">
 			<h3 class="loginTitle"><!-- 로그인 --></h3>
 			<div class="loginBox memberInformationFindBox">
-				<form:form commandName="member" enctype="multipart/form=data" method="POST" onsubmit="pwdcheck()">
+				<form:form commandName="member" method="POST" onsubmit="pwdcheck()">
 					<c:forEach var="m" items="${members}">
 						<p>${m.userName}님 새로 사용할 비밀번호를 입력해주세요. </p><br>
 						<form:input type="hidden" path="userPasswordCurrentChk" id="userPasswordCurrentChk" value="${m.userPassword}"/>

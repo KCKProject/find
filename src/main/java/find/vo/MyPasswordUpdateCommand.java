@@ -6,6 +6,7 @@ public class MyPasswordUpdateCommand {
 	private String userPasswordNew;
 	private String userPasswordNewConfirm;
 	private String userPasswordCurrentChk;
+	private String salt;
 	
 	public String getUserPasswordCurrentChk() {
 		return userPasswordCurrentChk;
@@ -36,6 +37,12 @@ public class MyPasswordUpdateCommand {
 	}
 	public void setUserPasswordNewConfirm(String userPasswordNewConfirm) {
 		this.userPasswordNewConfirm = userPasswordNewConfirm;
+	}
+	public String getSalt() {
+		return salt;
+	}
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 	
 	
