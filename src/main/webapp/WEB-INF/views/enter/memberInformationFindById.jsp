@@ -20,8 +20,8 @@
 			<h3 class="loginTitle"><!-- 로그인 --></h3>
 			<div class="loginBox memberInformationFindBox memberInformationFindBox-id" >
 				<form:form commandName="member" enctype="multipart/form=data" method="POST" onsubmit="chk()">
-					<form:input path="phone" placeholder="전화번호(ex. 010-1111-1111 형식으로 기재)" value="" />
-					<form:input path="email" placeholder="이메일주소" value="" />
+					<form:input path="phone" placeholder="전화번호(ex. 010-1111-1111 형식으로 기재)" id="phone" value="" required="" />
+					<form:input path="email" placeholder="이메일주소" id="email" value="" required="" />
 					<input type="submit" value="찾기" class="loginBoxbtn">
 				</form:form>
 			</div>

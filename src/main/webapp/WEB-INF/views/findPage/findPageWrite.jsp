@@ -136,13 +136,13 @@
 		 	// 파일 추가 버튼
 	    	$("table").on("click", "p[name='add']", function () {
 	    		var num = $("table").find("tr").length;
-	    		if(num==11){
+	    		if(num==10){
 	    			alert('파일은 3개까지 등록할 수 있습니다.');
 	    		}else{
 	    			var addForm = "<tr>";
 	    			addForm += "<td></td>";
 	    			addForm += "<td>";
-	    			addForm += '<input type="file" name="img" id="img"/>'
+	    			addForm += '<input type="file" name="img" id="img" accept=".jpg, .jpeg, .png"/>'
 	    			addForm += '<a class="del"><i class="fas fa-trash-alt"></i></a><br>';
 	    			addForm += "</td>";
 	    			addForm += "</tr>";

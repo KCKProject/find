@@ -52,7 +52,7 @@ input {
 
 a { text-decoration:none } /*모든 a태그의 text-decoration 없애기*/
 
-[id*='errors'] { color: #f7c180; font-size: 10px;} /*에러메세지 주황색 표기*/
+[id*='errors'] { color: #f7c180; font-size: 10px; padding-left: 10px;} /*에러메세지 주황색 표기*/
 
 ul, li {list-style: none;}
 
@@ -379,6 +379,10 @@ footer {
    padding-left: 50%;
 }
 
+.loginBoxLower p {
+    height: 30px;
+}
+
 .loginBoxLowerText:hover{
 	font-size: 15px;
 	background-color: lightgoldenrodyellow;
@@ -399,6 +403,22 @@ footer {
    height: 240px;
 }
 
+.memberInformationFindBox-idfound form p {
+    font-size: 15px;
+    text-align: center;
+    margin: 20px 0 30px -90px;
+}
+
+.memberInformationFindBox-idfound strong {
+	color: #1ABC9C;
+}
+
+.fa-frown-open {
+    padding: 0 10px;
+    font-size: 18px;
+    color: #fed400;
+}
+
 .loginBox select {
     border-radius: 8px;
     width: 80%;
@@ -416,23 +436,30 @@ footer {
 /* ========================= */
 /*  index-3 enter-signup  */
 
+
+
 .sectionSignUp {
 	padding: 50px 0;
 }
 
+.signUpInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .signUpTitle {
     padding: 20px 0px;
-    /* width: 100px; */
+    font-size: 15px;
     text-align: center;
 }
 
 .signUpBox {
-   height: 580px;
     width: 580px;
     border: 1px solid gray;
     border-radius: 10px;
     padding: 20px 0 0 0;
-    margin: 0 35%;
+    margin: 20px 0 80px 0;
     background-color: #fbfbfb7d;
     border: 1px solid #dcdcdc;
     box-shadow: 2px 3px 5px 0px #cccccc;
@@ -452,10 +479,32 @@ footer {
     align-items: center;
 }
 
+.idChk {
+    font-size: 5px;
+    padding-left: 10px;
+}
+
+.idChk:hover {
+	color: #f7c180;
+}
+
+i#idOk {
+    font-size: 5px;
+    padding-left: 10px;
+    color: #f7c180;
+}
+
 .signUpCommandBox p input {
 	border: 1px solid gray;
 	border-radius: 8px;
-    width: 300px;
+    width: 265px;
+    height: 30px;
+}
+
+select#pwdQ {
+	border: 1px solid gray;
+	border-radius: 8px;
+    width: 265px;
     height: 30px;
 }
 
@@ -479,6 +528,7 @@ footer {
 .signUpBoxbtn {
     display: flex;
     justify-content: center;
+    margin: 0 0 30px 0;
 }
 
 .signUpBoxbtn Input {
@@ -905,15 +955,26 @@ label.right {
 }
 
 
+#contentsMenu {
+    margin-left: 20px;
+    padding-top: 20px;
+}
+
+
 #contentsTitle {
 	text-align: center;
 	padding: 40px 0 30px 0;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .wrapBoardlist {
 	width: 100%;
-	display: flex;
-	justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .wrapBoardlist ul {
@@ -929,6 +990,7 @@ label.right {
 	margin-bottom: 30px;
     padding: 20px 30px 0px 23px;
     border-radius: 10px;
+    text-align-last: center;
 }
 
 .wrapBoardlist ul li:hover {
@@ -1278,11 +1340,20 @@ label.right {
 	border: 1px silver solid;
 }
 
+.wrapWritePage .fa-plus:hover, .wrapWritePage .fa-trash-alt:hover {
+	cursor: pointer;
+	color: #f7c180;	
+}
 
+.wrapWritePage .fa-plus {
+	padding: 0 10px 0 0;
+}
+.wrapWritePage .fa-trash-alt {
+	padding: 0 10px;
+}
+	
+	
 
-	
-	
-	
 	
 	
 
@@ -2112,14 +2183,14 @@ label.right {
 
 
 
-.changePasswordContents div input[type=text] {
+.changePasswordContents input[id*='userPassword'] {
     padding: 5px 20px;
     margin: 0 0 0 20px;
     border: 1px solid gray;
     border-radius: 8px;
 }
 
-.changePasswordContents div input[type=text]:hover {
+.changePasswordContents input[id*='userPassword']:hover {
 	border: 1px solid palevioletred;
 	border-radius: 10px;
 }
@@ -2163,6 +2234,14 @@ label.right {
 	}	
 	
 	.qaBxContentsWriter, .qaBxContentsWriteDate  {
+		display: none;
+	}
+	
+	.wrapWritePage table tr td:first-of-type {  /* 글작성 페이지 사이즈 축소 시 입력창 옆 내용 안보이기 */
+		display: none
+	}
+	
+	.lostPage-comment-bottom ul li p:last-of-type {
 		display: none;
 	}
 
@@ -2209,13 +2288,7 @@ label.right {
     font-size: 25px;   
 	}
 	
-	.wrapWritePage table tr td:first-of-type {  /* 글작성 페이지 사이즈 축소 시 입력창 옆 내용 안보이기 */
-		display: none
-	}
-	
-	.lostPage-comment-bottom ul li p:last-of-type {
-		display: none;
-	}
+
     
 
 }

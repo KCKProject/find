@@ -28,20 +28,23 @@ public class SignUpCommandValidator implements Validator{
    public void validate(Object target, Errors errors) {
       SignUpCommand command = (SignUpCommand)target;
       
-      ValidationUtils.rejectIfEmpty(errors, "userPassword", "required", "필수입력사항입니다.");
-      
       if(!command.getUserPassword().isEmpty()) {
          boolean matcher = Pattern.matches(PWD_EXP,command.getUserPassword());
          if(matcher != true) {
             errors.rejectValue("userPassword", "wrong", "영문, 숫자, 특수문자 포함 6~15로 만들어주세요");
          }else if(!command.isPasswordEqual()) {
-            errors.rejectValue("userPwdChk","nomatch","비밀번호와 일치하지 않습니다.");
+            errors.rejectValue("userPwdChk","nomatch","비밀번호 불일치");
          }
       }
 
-      ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required", "필수입력사항입니다.");
-      ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "required", "필수입력사항입니다.");
-      ValidationUtils.rejectIfEmpty(errors, "phone", "required", "필수입력사항입니다.");
+      ValidationUtils.rejectIfEmpty(errors, "userPassword", "required", "필수입력사항");
+      ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userId", "required", "필수입력사항");
+      ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required", "필수입력사항");
+      ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "required", "필수입력사항");
+      ValidationUtils.rejectIfEmpty(errors, "phone", "required", "필수입력사항");
+      
+      //pwdQ 처리필요
+      ValidationUtils.rejectIfEmpty(errors, "pwdA", "required", "필수입력사항");
    }
 
 }

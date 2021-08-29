@@ -19,7 +19,7 @@
 		<div class="wrap-memberInformationFind">
 			<h3 class="loginTitle"><!-- 로그인 --></h3>
 			<div class="loginBox memberInformationFindBox">
-				<form:form commandName="member" enctype="multipart/form=data" method="POST" onsubmit="chk();">
+				<form:form commandName="member" method="POST">
 					<form:input path="userId" id="userId" placeholder="아이디" requried="requried" />
 					<form:select path="pwdQ" id="pwdQ" requried="requried">
 						<form:option value="">=== 선택해주세요 ===</form:option>	
@@ -35,7 +35,7 @@
 						<form:option value="10">가장 좋아하는 숫자는?</form:option>
 					</form:select>
 					<form:input path="pwdA" id="pwdA" placeholder="답변" requried="requried" />
-					<input type="submit" value="찾기" class="loginBoxbtn">
+					<input type="submit" value="찾기" class="loginBoxbtn" onclick="return chk();">
 				</form:form>
 			</div>
 		
@@ -62,6 +62,8 @@
 <script>
 function chk(){
 	if(document.getElementById("userId").value ==""){
+		var first = document.getElementById("userId").value;
+		alert(first);
 		alert("아이디를 입력해주세요.");
 		return false;
 	}
@@ -70,10 +72,12 @@ function chk(){
 		return false;
 	}
 	if(document.getElementById("pwdQ").value ==""){
+		var third = document.getElementById("pwdQ").value;
+		alert(third);
 		alert("질문을 선택해주세요.");
 		return false;
 	}
-	
+	document.getElementById('member').submit();
 }
 </script>
 </html>

@@ -76,15 +76,15 @@
 						<td><form:input path="character" value="${detail.character}" onkeyup="javascript:fnChkByte(this,'25')"/></td>
 					</tr>
 					<tr>
-						<td><span style="color: white;">*</span>연락처</td>
+						<td><strong style="color: white;">*</strong>연락처</td>
 						<td><form:input path="phone" value="${detail.phone}"/></td>
 					</tr>
 					<tr>
-						<td><span style="color: white;">*</span>이메일</td>
+						<td><strong style="color: white;">*</strong>이메일</td>
 						<td><form:input path="email" value="${detail.email}"/></td>
 					</tr>
 					<tr>
-						<td><span style="color: white;">*</span>상세내용</td>
+						<td><strong style="color: white;">*</strong>상세내용</td>
 						<td>
 							<textarea id="memo" name="memo" rows="10" cols="65" onkeyup="javascript:fnChkByte(this,'2000')">${detail.memo}</textarea><br>
 							<span id="byteInfo">0</span> / 2000bytes

@@ -14,12 +14,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import find.dao.FindDao;
 import find.service.MemberAuthService;
+import find.utils.SHA256Util;
 import find.validator.MyPasswordCommandValidator;
 import find.vo.MemberAuthInfo;
 import find.vo.MyPasswordUpdateCommand;
 
 @Controller
-@RequestMapping("/myPage/myPasswordUpdate/{memberAuthInfo.getMemberNumber}")
+//@RequestMapping("/myPage/myPasswordUpdate/{memberAuthInfo.getMemberNumber}")
 public class MyPasswordUpdateController {
 	
 	@Autowired
@@ -34,7 +35,7 @@ public class MyPasswordUpdateController {
 //	}
 	
 
-	@RequestMapping(method=RequestMethod.GET)
+	@RequestMapping(value="/myPage/myPasswordUpdate/{memberAuthInfo.getMemberNumber}", method=RequestMethod.GET)
 	public String modify(@PathVariable("memberAuthInfo.getMemberNumber") long memberNumber, Model model, MyPasswordUpdateCommand myPasswordUpdateCommand) {
 		MemberAuthInfo myPasswordUpdate = dao.selectByMemberNumber1(memberNumber);
 		model.addAttribute("myPasswordUpdate",myPasswordUpdate);
@@ -42,20 +43,21 @@ public class MyPasswordUpdateController {
 		return "/myPage/myPasswordUpdate";
 	}
 	
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(value="/myPage/myPasswordUpdate/{memberAuthInfo.getMemberNumber}", method=RequestMethod.POST)
 	public String myPasswordUpdate(@PathVariable("memberAuthInfo.getMemberNumber") long memberNumber, Model model, MyPasswordUpdateCommand myPasswordUpdateCommand, HttpSession session, HttpServletRequest req, HttpServletResponse response, Errors errors) {
 		
 		new MyPasswordCommandValidator().validate(myPasswordUpdateCommand,errors);
-		
 		if(errors.hasErrors()) {
-			return "/myPage/myPasswordUpdate";
+			return "myPage/myPasswordUpdate";
 		}
 		try {
+			String newPwd = myPasswordUpdateCommand.getUserPasswordNew();
+			myPasswordUpdateCommand.setUserPasswordNew(SHA256Util.SHA256Encrypt(newPwd));
 			MemberAuthInfo myPasswordUpdate = new MemberAuthInfo(myPasswordUpdateCommand.getUserId(),myPasswordUpdateCommand.getUserPasswordNew());
 			dao.myPasswordUpdate(memberNumber, myPasswordUpdate);
 		}
 		catch(Exception e) {
-			return "/myPage/myPasswordUpdate";
+			return "myPage/myPasswordUpdate";
 		}
 		
 		
@@ -63,7 +65,6 @@ public class MyPasswordUpdateController {
 //		i.setUserPassword(myPasswordUpdateCommand.getUserPasswordNewConfirm());
 //		session.setAttribute("memberAuthInfo",i);
 		
-		return "redirect:/myPage/myPasswordUpdate/"+memberNumber;
+		return "redirect:/myPage/myPage/"+memberNumber;
 	}
-
 }

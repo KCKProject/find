@@ -34,11 +34,11 @@
 						</div>
 						<div class="signUpCommandBox">
 							<p>
-								<form:input path="userId" placeholder="아이디" check_result="fail" requried="requried" onkeyup="javascript:fnChkByte(this,'12')"/>
+								<form:input path="userId" placeholder="아이디" check_result="success" requried="requried" onkeyup="javascript:fnChkByte2(this,'12')"/>
 								<form:errors path="userId"/>
 								<br>
-								<a class="idChk" onclick="idChk()" style="cursor:pointer">중복 체크</a>
-								<i class="fas fa-check" id="idOk" style="display:none"></i>
+								<a class="idChk" onclick="idChk()" style="cursor:pointer; display:none">중복 체크</a>
+								<i class="fas fa-check" id="idOk" style="display:none">   완료</i>
 							</p>
 							<p>
 								<form:password path="userPassword" placeholder="비밀번호(영문,숫자,특수문자 조합 6~15자리)" />
@@ -107,57 +107,72 @@
 	</section>
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 	<script type="text/javascript">
-		function idChk(){
-			/* $('#idOk').hide();
+	
+		$(document).ready(function(){
+			if($("userId").val()){
+				alert($("userId").val());	
+				$('#userId').attr("check_result", "success");
+			}
+		});
+		
+		$(".signUpCommandBox").on("change", "#userId", function(){
+			$('#idOk').hide();
 			$('.idChk').show();
-			$('#userId').attr("check_result", "fail"); */
-			
+			$('#userId').attr("check_result", "fail");
+		});
+		
+		function idChk(){			
 			var userId=$("#userId").val();
 			console.log(userId);
-			//var $('.signUpCommandBox').children
-			$.ajax({
-				type : "GET",
-				url : "signUpIdChk",
-				data : {"userId" : userId},
-				success : function(result){
-					var msg;
-					console.log("result : "+result);
-					
-					switch(result){					
-						case 1 : //동일 아이디 존재
-							msg = "아이디가 이미 존재합니다.";
-							break;
-						case 0 : //아이디 사용 가능
-							msg = "해당 아이디는 사용 가능합니다.";
-							$("#idChk").hide();
-							$('.idChk').show();
-							break;
+			if(userId){
+				$.ajax({
+					type : "GET",
+					url : "signUpIdChk",
+					data : {"userId" : userId},
+					success : function(result){
+						var msg;
+						console.log("result : "+result);
+						
+						switch(result){					
+							case 1 : //동일 아이디 존재
+								msg = "아이디가 이미 존재합니다.";
+								break;
+							case 0 : //아이디 사용 가능
+								msg = "해당 아이디는 사용 가능합니다.";
+								$(".idChk").hide();
+								$('#idOk').show();
+								$('#userId').attr("check_result", "success");
+								break;
+						}
+					alert(msg);
+					},
+					error : function(){
+						console.log("ajax 통신 실패")
 					}
-				alert(msg);
-				},
-				error : function(){
-					console.log("ajax 통신 실패")
-				}
-			});
+				});
+			}else{
+				alert('아이디를 입력해주세요.');
+			}
 		};
 		
 		function signUpChk(){
 			var ageAgree = document.getElementById("ageAgree");
 			var infoAgree = document.getElementById("infoAgree");
+			var chk = $('#userId').attr('check_result');
 			if(!ageAgree.checked){
-				alert("필수사항을 체크해주세요")
+				alert("필수사항을 체크해주세요");
 				return false;
 			}
 			if(!infoAgree.checked){
-				alert("필수사항을 체크해주세요")
+				alert("필수사항을 체크해주세요");
+				return false;
+			}
+			if(chk=='fail'){
+				alert("아이디 중복체크를 해주세요.");
 				return false;
 			}
 			document.getElementById('signUpCommand').submit();
-			return false;
 		}
-		
-		
-
 	</script>
 </body>
 </html>

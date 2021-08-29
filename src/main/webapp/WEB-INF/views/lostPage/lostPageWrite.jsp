@@ -150,7 +150,7 @@
 	    			var addForm = "<tr>";
 	    			addForm += "<td></td>";
 	    			addForm += "<td>";
-	    			addForm += '<input type="file" name="img" id="img"/>'
+	    			addForm += '<input type="file" name="img" id="img" accept=".jpg, .jpeg, .png"/>'
 	    			addForm += '<a class="del"><i class="fas fa-trash-alt"></i></a><br>';
 	    			addForm += "</td>";
 	    			addForm += "</tr>";
