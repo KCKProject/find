@@ -955,15 +955,26 @@ label.right {
 }
 
 
+#contentsMenu {
+    margin-left: 20px;
+    padding-top: 20px;
+}
+
+
 #contentsTitle {
 	text-align: center;
 	padding: 40px 0 30px 0;
+	display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .wrapBoardlist {
 	width: 100%;
-	display: flex;
-	justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .wrapBoardlist ul {
@@ -979,6 +990,7 @@ label.right {
 	margin-bottom: 30px;
     padding: 20px 30px 0px 23px;
     border-radius: 10px;
+    text-align-last: center;
 }
 
 .wrapBoardlist ul li:hover {

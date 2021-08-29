@@ -19,8 +19,27 @@
 
 	<div class="wrapboardPage">
 		<div id="contentsTitle">
-			<h3 class="contentsTitle">찾아주세요</h3>
-			<div class="titleLine"></div>			
+			<div>
+				<h3 class="contentsTitle">찾아주세요</h3>
+				<div class="titleLine"></div>			
+			</div>
+			<div id="contentsMenu">
+				<p>
+ 					<label class="checkbox" for="find">
+                     	<input type="checkbox" name="" id="find" value="" > 
+                     	<span class="icon"></span>
+                     	<span class="text">발견완료</span>
+                  	</label>
+					<label class="checkbox" for="hide">
+                     	<input type="checkbox" name="" id="hide" value="" > 
+                     	<span class="icon"></span>
+                     	<span class="text">미발견</span>
+                  	</label> 
+<!--  					<span id="find" style="cursor: pointer">발견 완료</span> | 
+					<span id="hide" style="cursor: pointer">미발견</span>  --> 
+				</p>
+				
+			</div>
 		</div>		
 		
 		<div class="wrapBoardlist"> 
@@ -30,9 +49,6 @@
 				<li>실종된 동물이 없습니다!</li>
 			</ul>
 		</c:if>
-		<div id="contentsMenu">
-			<p><span id="find" style="cursor:pointer">발견 완료</span> | <span id="hide" style="cursor:pointer">미발견</span></p>
-		</div>
 		<!-- 게시글이 1개 이상 존재할 때 -->
 		<ul>
 			 <!-- 게시물 li로 나열  -->
