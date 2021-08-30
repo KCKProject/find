@@ -37,15 +37,15 @@
 					<table>
 						<tr>
 							<td><span>*</span>글제목</td>
-							<td><form:input path="title" placeholder="수정할 글제목"/></td>
+							<td><form:input path="title" value="${qnABoard.title}"/></td>
 						</tr>
 						<tr>
 							<td><span>*</span>작성자</td>
-							<td><form:input path="writer" placeholder="수정할 작성자"/></td>
+							<td><form:input path="writer" value="${qnABoard.writer}"/></td>
 						</tr>
 						<tr>
 							<td><span>*</span>내용</td>
-							<td><form:textarea path="contents" placeholder="수정할 내용" rows="20" cols="70"/></td>
+							<td><textarea name="contents" id="contents" rows="20" cols="70">${qnABoard.contents}</textarea></td>
 						</tr>
 						<tr>
 							<td><span>*</span>공개여부</td>
@@ -60,9 +60,9 @@
 					<br>
 					<div class="adminBoardDetailBtn">
 						<a href="<c:url value='/admin/adminQuestionPage'/>">
-							<button class="btn btn-swap"> MORE <span>전체 글 보기 >></span> </button>
+							<input type="button" class="btn btn-swap" value="MORE"/>
 						</a>
-							<button class="btn btn-swap" type="submit"> EDIT <span>글 수정 >></span></button>
+							<input class="btn btn-swap" type="submit" value="EDIT">
 					</div>
 					</form:form>
 				</div>

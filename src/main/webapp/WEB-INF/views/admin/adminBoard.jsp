@@ -44,24 +44,9 @@
 			</p>
             <!-- 읽어서 받아올수 있게 만들기 -->
          </div>
-     <%--     <div>
-          	<form:form commandName="dateSearchCommand" method="GET">
-            	<form:input path="from" type="date" value="2021-07-01" id="from"/> ~ 
-            	<form:input path="to" type="date" value="" id="to"/>
-            	<input type="submit" value="조회" />
-            </form:form>
-            <input type="text" id="form" value="${dsc.from}"/>
-            <input type="text" id="to" value="${dsc.to}"/>
-            <button id="searchBtn" onclick=""><img
-						src="../resources/img/search.png" alt="검색" width="15px"
-						height="15px"></button>
-			
-           <!--  <label class="checkbox"><input type="checkbox" name="all" id="all"><span class="icon"></span><span class="text">전체</span></label>
-            <label class="checkbox"><input type="checkbox" name="proceeding" id="proceeding"><span class="icon"></span><span class="text">진행중</span></label> 
-            <label class="checkbox"><input type="checkbox" name="done" id="done"><span class="icon"></span><span class="text">완료</span></label>  -->
-         </div> --%>
-         <div> <!-- 찾아주세요 -->
-            <c:if test="${!empty losts}">
+          <!-- 찾아주세요 -->
+         <c:if test="${!empty losts}">
+            <div>
                <table class="adminContents">
                      <tr class="adminContentsListTitle">
                         <td>번호</td>
@@ -100,10 +85,11 @@
                        </c:if> 
                    </ul>
                </div>
-            </c:if>
-         </div> <!-- 찾아주세요 -->
-         <div> <!-- 찾아가세요 -->
-            <c:if test="${!empty finds}">
+             </div>
+           </c:if>
+       <!-- 찾아주세요 -->
+         <c:if test="${!empty finds}"> <!-- 찾아가세요 -->
+           	<div>
                <table class="adminContents">
                   <tr class="adminContentsListTitle">
                      <td>번호</td>
@@ -143,8 +129,8 @@
                     </c:if> 
                 </ul>
             </div>
-            </c:if>
-         </div> <!-- 찾아주세요 -->
+           	</div>
+          </c:if> <!-- 찾아가세요 -->
       </div>
    </div>
 </body>

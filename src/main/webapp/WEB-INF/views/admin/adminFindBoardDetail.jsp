@@ -62,14 +62,9 @@
 				<br>
 				<div class="adminBoardDetailBtn">
 					<a href="<c:url value='/admin/adminBoard'/>">
-						<button class="btn btn-swap"> MORE <span>전체 글 보기 >></span> </button>
+						<button class="btn btn-swap"> MORE <span>목록으로</span> </button>
 					</a>
-					<a href="<c:url value='/admin/adminBoard'/>">
-						<button class="btn btn-swap" onclick="delFind(${findBoard.boardNum})"> DELETE <span>글 삭제 >></span> </button>
-					</a>
-					<%-- <a href="<c:url value='/admin/adminBoard'/>">
-						<button class="btn btn-swap"> EDIT <span>글 수정 >></span> </button>
-					</a> --%>
+						<button class="btn btn-swap" onclick="delFind(${findBoard.boardNum})"> DELETE <span>글 삭제 >></span></button>
 					<c:if test="${findBoard.meet != null}">
 						<c:choose>
 							<c:when test="${findBoard.meet eq 0}">

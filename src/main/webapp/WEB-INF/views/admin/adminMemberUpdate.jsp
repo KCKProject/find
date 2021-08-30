@@ -77,9 +77,9 @@
 					<br>
 					<div class="adminBoardDetailBtn">
 						<a href="<c:url value='/admin/adminMember'/>">
-							<button class="btn btn-swap"> MORE <span>전체 회원 보기 >></span> </button>
+							<input type="button" class="btn btn-swap" value=" MORE"/> 
 						</a>
-							<button class="btn btn-swap" type="submit"> EDIT <span>회원정보 수정 >></span></button>
+							<button class="btn btn-swap" type="submit">EDIT</button>
 					</div>
 					</form:form>
 				</div>

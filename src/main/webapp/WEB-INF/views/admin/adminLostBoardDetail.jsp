@@ -65,12 +65,7 @@
 					<a href="<c:url value='/admin/adminBoard'/>">
 						<button class="btn btn-swap"> MORE <span>전체 글 보기</span> </button>
 					</a>
-					<a href="<c:url value='/admin/adminBoard'/>">
 						<button class="btn btn-swap" onclick="delLost(${lostBoard.boardNum})"> DELETE <span>글 삭제 >></span> </button>
-					</a>
-					<%-- <a href="<c:url value='/admin/adminBoard'/>">
-						<button class="btn btn-swap"> EDIT <span>글 수정 >></span> </button>
-					</a> --%>
 					<c:if test="${lostBoard.meet != null}">
 						<c:choose>
 							<c:when test="${lostBoard.meet eq 0}">

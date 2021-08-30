@@ -62,14 +62,14 @@
 
 				<div class="adminBoardDetailBtn">
 					<a href="<c:url value='/admin/adminMember'/>">
-						<button class="btn btn-swap"> MORE <span>전체 화원 보기</span> </button>
+						<button class="btn btn-swap"> MORE <span>목록으로</span> </button>
 					</a>
 				<%-- 	<a href="<c:url value='/admin/adminMember'/>">
 						<button class="btn btn-swap"> DELETE <span>글 삭제 >></span> </button>
 					</a>
 					 --%>
 					<a href="<c:url value='/admin/memberUpdate/${member.memberNumber}'/>">
-						<button class="btn btn-swap"> EDIT <span>정보 변경 >></span> </button>
+						<button class="btn btn-swap"> EDIT <span>변경 >></span> </button>
 					</a>
 				</div>
 			</div>

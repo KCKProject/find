@@ -1,5 +1,10 @@
 package com.green.KCK_find.controller;
 
+import java.io.File;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +14,7 @@ import find.dao.FindDao;
 import find.exception.MemberNotFoundException;
 import find.vo.FindBoard;
 import find.vo.LostBoard;
+import find.vo.UploadImgVo;
 
 @Controller
 public class AdminBoardDetailController {
@@ -70,15 +76,52 @@ public class AdminBoardDetailController {
 		return "redirect:/admin/adminBoard";
 	}
 	
+	// 삭제
 	@RequestMapping("/admin/lostBoardDelete/{boardNum}")
-	public String deleteLost(@PathVariable("boardNum") long boardNum) {
-			dao.deleteByLostBoardNum(boardNum);
+	public String deleteLost(@PathVariable("boardNum") long boardNum, HttpServletRequest request) {
+		// 첨부파일 삭제
+		System.out.println("boardNum : "+boardNum);
+		String where = "lostNum";
+		List<UploadImgVo> imgs = dao.selectUploadImgByBoardNum(boardNum, where);
+
+		for(UploadImgVo i : imgs) {
+			String image = i.getStoredFileName();
+			String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+			File file = new File(path,image);
+				if(file.exists()) {
+					file.delete();
+				}
+		}
+		dao.deleteImgByBoardNum(boardNum,where);
+		
+		String board = "lostComment";		
+		dao.deleteCommentByBoardNum(boardNum, board);
+		
+		dao.deleteByLostBoardNum(boardNum);
+		
 		return "redirect:/admin/adminBoard";
 	}
 	
 	@RequestMapping("/admin/findBoardDelete/{boardNum}")
-	public String deleteFind(@PathVariable("boardNum") long boardNum) {
-			dao.deleteByFindBoardNum(boardNum);
+	public String deleteFind(@PathVariable("boardNum") long boardNum, HttpServletRequest request) {
+		System.out.println("boardNum : "+boardNum);
+		String where = "findNum";
+		List<UploadImgVo> imgs = dao.selectUploadImgByBoardNum(boardNum, where);
+
+		for(UploadImgVo i : imgs) {
+			String image = i.getStoredFileName();
+			String path = request.getSession().getServletContext().getRealPath("resources/imgUpload");
+			File file = new File(path,image);
+				if(file.exists()) {
+					file.delete();
+				}
+		}
+		dao.deleteImgByBoardNum(boardNum,where);
+		String board = "findComment";
+		dao.deleteCommentByBoardNum(boardNum, board);
+		
+		dao.deleteByFindBoardNum(boardNum);
+			
 		return "redirect:/admin/adminFindBoard";
 	}
 }

@@ -45,20 +45,9 @@
 				height="15px"></button>
 				</p>
 			</div>
-			
-			<div>
-				<!-- <input type="date" name="startDate" id="startDate"> ~ 
-				<input type="date" name="endDate" id="endDate">  -->
-				<!-- <label class="checkbox"><input type="checkbox" name="all" id="all"><span class="icon"></span><span class="text">전체</span></label>
-				<label class="checkbox"><input type="checkbox" name="open" id="open"><span class="icon"></span><span class="text">공개</span></label> 
-				<label class="checkbox"><input type="checkbox" name="close" id="close"><span class="icon"></span><span class="text">비공개</span></label> --> 
-				
 				<div>
-				<%-- <input type="button" name="insertQnA" id="insertQnA" value="QnA 등록" onclick="location.href='/admin/questionPageWrite'"> --%>
-				<a href="<c:url value='questionPageWrite'/>"><button class="qnaBtn">QnA등록</button></a>
-				<%-- <input type="button" value="QnA등록" onclick="<c:url value='/admin/questionPageWrite'/>"/> --%>
+					<a href="<c:url value='questionPageWrite'/>"><button class="qnaBtn">QnA등록</button></a>
 				</div>
-			</div>
 			<div>
 				<table class="adminContents">
 					<c:if test="${!empty questions}">
