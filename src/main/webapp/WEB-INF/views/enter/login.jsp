@@ -12,6 +12,7 @@
 <script src="https://kit.fontawesome.com/2d323a629b.js"
 	crossorigin="anonymous"></script>
 <script src="<spring:url value='/resources/script/script.js'/>" defer></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <title>로그인</title>
 </head>
 <body>
@@ -20,7 +21,7 @@
 		<div class="loginInner">
 			<h3 class="loginTitle"><!-- 로그인 --></h3>
 			<div class="loginBox">
-				<form:form commandName="memberLoginCommand" onsubmit="loginChk()">
+				<form:form commandName="memberLoginCommand" onsubmit="return loginChk()">
 					<form:input path="userId" id="userId" placeholder="아이디" />
 					<form:password path="userPassword" id="userPassword" placeholder="비밀번호" />
 					<input type="submit" value="로그인" class="loginBoxbtn">
@@ -38,17 +39,21 @@
 	<jsp:include page="../include/footer.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
-function loginChk(){
-	if(document.getElementById("userId").value ==""){
-		alert("아이디를 입력해주세요.");
-		return false;
-	}
-	if(document.getElementById("userPassword").value ==""){
-		alert("비밀번호를 입력해주세요.");
-		return false;
-	}
+	if('${msg}'){
+		var message="${msg}";
+		alert(message);
+	};
 	
-}
+	function loginChk(){
+		if(document.getElementById("userId").value ==""){
+			alert("아이디를 입력해주세요.");
+			return false;
+		}
+		if(document.getElementById("userPassword").value ==""){
+			alert("비밀번호를 입력해주세요.");
+			return false;
+		}	
+	}
 
 </script>
 </html>

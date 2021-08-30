@@ -39,7 +39,6 @@ public class LostBoardWriteService {
 		MemberAuthInfo member = (MemberAuthInfo)session.getAttribute("memberAuthInfo");
 		
 		String term = lc.getTerm();
-		
 		if(term==null) {
 			member.setEmail("비공개");
 			member.setPhone("비공개");
@@ -77,10 +76,6 @@ public class LostBoardWriteService {
 		lb.setPhone(member.getPhone());
 		lb.setLostDate(lc.getLostDate());
 		lb.setMemo(lc.getMemo());
-	//	lb.setOriginalFile(originalFile);
-	//	lb.setOriginalFileExtension(originalFileExtension);
-	//	lb.setStoredFileName(storedFileName);
-
 		
 		List<LostBoard> lostBoard = dao.writeLostBoard(lb);
 		long BoardNum = lostBoard.get(0).getBoardNum();

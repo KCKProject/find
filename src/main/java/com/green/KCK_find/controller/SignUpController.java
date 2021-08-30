@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import find.exception.AlreadyExistionMemberException;
 import find.service.SignUpService;
 import find.validator.SignUpCommandValidator;
 import find.vo.SignUpCommand;

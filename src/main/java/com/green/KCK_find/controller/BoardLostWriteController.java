@@ -45,9 +45,7 @@ public class BoardLostWriteController {
 			
 			return "lostPage/lostPageWrite";
 		}
-
 	
-//		@RequestMapping(method=RequestMethod.POST, consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 		@RequestMapping(value="/lostPage/lostPageWrite", method=RequestMethod.POST)
 		public String regist(LostBoardWriteCommand lostBoardWriteCommand, HttpSession session,
 				MultipartHttpServletRequest request, Errors errors) throws IOException {

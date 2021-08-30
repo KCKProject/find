@@ -269,7 +269,7 @@ public class FindDao {
 	}
 	public int searchLostCount(SearchCriteriaMainBoard cri) {
 		Integer cnt = jdbcTemplate.queryForObject(
-				"SELECT count(boardNum) FROM lostBoard where title like '%' || ? || '%' and boardNum > 0",Integer.class,cri.getKeyword());
+				"SELECT count(boardNum) FROM lostBoard where meet like '%' || ? || '%' and boardNum > 0",Integer.class,cri.getKeyword());
 		return cnt;
 	}
 	public int searchFindCount(SearchCriteria cri) {
@@ -279,7 +279,7 @@ public class FindDao {
 	}
 	public int searchFindCount(SearchCriteriaMainBoard cri) {
 		Integer cnt = jdbcTemplate.queryForObject(
-				"SELECT count(boardNum) FROM findBoard where title like '%' || ? || '%' and boardNum > 0",Integer.class,cri.getKeyword());
+				"SELECT count(boardNum) FROM findBoard where meet like '%' || ? || '%' and boardNum > 0",Integer.class,cri.getKeyword());
 		return cnt;
 	}
 	public int searchQnACount(SearchCriteria cri) {
