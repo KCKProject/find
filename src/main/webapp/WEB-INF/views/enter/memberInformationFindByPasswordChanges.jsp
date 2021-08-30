@@ -21,7 +21,7 @@
 			<div class="loginBox memberInformationFindBox">
 				<form:form commandName="member" method="POST" onsubmit="return pwdcheck()">
 					<c:forEach var="m" items="${members}">
-						<p>${m.userName}님 새로 사용할 비밀번호를 입력해주세요. </p><br>
+						<p><strong style="color: #1ABC9C;">${m.userName}</strong>님 새로 사용할 비밀번호를 입력해주세요. </p><br>
 						<form:input type="hidden" path="userPasswordCurrentChk" id="userPasswordCurrentChk" value="${m.userPassword}"/>
 						
 					</c:forEach>

@@ -25,7 +25,7 @@
 						<input type="button" value="로그인 화면으로 돌아가기 " onclick="location.href='./login'">
 					</c:if>
 					<c:forEach var="m" items="${members}">
-						<p>${m.userName}님 새로운 비밀번호로 변경 하시겠습니까? </p><br>
+						<p><strong style="color: #1ABC9C;">${m.userName}</strong>님 새로운 비밀번호로 변경 하시겠습니까? </p><br>
 						<a href="<c:url value='/enter/memberInformationFindByPasswordChanges/${m.userId}'/>">
 							<input type="button" value="비밀번호 변경" class="loginBoxbtn">
 						</a>
