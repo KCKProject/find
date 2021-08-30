@@ -24,19 +24,19 @@
 				<div class="titleLine"></div>			
 			</div>
 			<div id="contentsMenu">
-				<p>
- 					<label class="checkbox" for="find">
-                     	<input type="checkbox" name="" id="find" value="" > 
-                     	<span class="icon"></span>
-                     	<span class="text">발견완료</span>
-                  	</label>
-					<label class="checkbox" for="hide">
-                     	<input type="checkbox" name="" id="hide" value="" > 
-                     	<span class="icon"></span>
-                     	<span class="text">미발견</span>
-                  	</label> 
-<!--  					<span id="find" style="cursor: pointer">발견 완료</span> | 
-					<span id="hide" style="cursor: pointer">미발견</span>  --> 
+				<p style="cursor: pointer">
+					 <c:if test="${empty cri.keyword}"> 
+						<span id="find"><i class="far fa-square"></i>발견 완료</span>  
+						<span id="hide"><i class="far fa-square"></i>미발견</span>
+					 </c:if>
+					 <c:if test="${cri.keyword == 1}"> 
+						<span id="find"><i class="far fa-check-square"></i>발견 완료</span>  
+						<span id="hide"><i class="far fa-square"></i>미발견</span>
+					 </c:if>
+					 <c:if test="${cri.keyword == 0 && !empty cri.keyword}"> 
+						<span id="find"><i class="far fa-square"></i>발견 완료</span>  
+						<span id="hide"><i class="far fa-check-square"></i>미발견</span>
+					 </c:if>
 				</p>
 				
 			</div>
