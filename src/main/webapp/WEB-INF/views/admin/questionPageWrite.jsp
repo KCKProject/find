@@ -48,7 +48,7 @@
 						</tr>
 						<tr>
 							<td><span>*</span>내용</td>
-							<td><form:input path="contents" id="contents" placeholder="내용"/></td>
+							<td><form:textarea path="contents" id="contents" placeholder="내용" cols="65" rows="20"/></td>
 						</tr>
 						<tr  class="qnaOpen">
 							<td><span>*</span>공개여부</td>
