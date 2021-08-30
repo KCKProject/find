@@ -28,13 +28,9 @@
 			<form:form commandName="findBoardWriteCommand" enctype="multipart/form-data">
 				<table id="input-lostPageWrite">
 					<tr>
-						<td><span style="color: white;">*</span>작성자</td>
-						<td>${detail.writer}</td>
-					</tr>
-					<tr>
 						<td><strong>*</strong>글제목</td>
 						<td>
-							<form:input path="title" value="${detail.title}"/>
+							<form:input path="title" value="${detail.title}" class="checkBlank"/>
 							<form:errors path="title"/>
 						</td>
 					</tr>
@@ -49,21 +45,21 @@
 					<tr>
 						<td><strong>*</strong>발견위치</td>
 						<td>
-							<form:input path="location" value="${detail.location}" onkeyup="javascript:fnChkByte2(this,'20')"/>
+							<form:input path="location" value="${detail.location}" onkeyup="javascript:fnChkByte2(this,'20')" class="checkBlank"/>
 							<form:errors path="location"/>
 						</td>
 					</tr>
 					<tr>
 						<td><strong>*</strong>발견시각</td>
 						<td>
-							<form:input path="findDate" value="${detail.findDate}" onkeyup="javascript:fnChkByte2(this,'20')"/>
+							<form:input path="findDate" value="${detail.findDate}" onkeyup="javascript:fnChkByte2(this,'20')" class="checkBlank"/>
 							<form:errors path="findDate"/>
 						</td>
 					</tr>
 					<tr>  
 						<td><strong>*</strong>특징</td>
 						<td>
-							<form:input path="character" value="${detail.character}" onkeyup="javascript:fnChkByte2(this,'25')"/>
+							<form:input path="character" value="${detail.character}" onkeyup="javascript:fnChkByte2(this,'25')" class="checkBlank"/>
 							<form:errors path="character"/>
 						</td>
 					</tr>
@@ -149,7 +145,7 @@
 		// 첨부파일 null 체크
 		function imgCheck(){
 			var num = $("table").find("tr").length;
-			if(num==11){
+			if(num==12){
 				alert("첨부파일 최소 한개를 등록해주세요.");
 				return false;
 			}
@@ -163,6 +159,15 @@
 					}
 				}
 			}
+			
+			for(var i=0;i<10;i++){
+				var context = document.getElementsByClassName('checkBlank')[i].value;
+				if(!context){
+					alert('필수사항을 입력해주세요.');
+					return false;
+				}
+			}
+			
 			document.getElementById('form').submit();
 		};
 	</script>

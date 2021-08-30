@@ -35,10 +35,13 @@
 					</tr>
 					<tr>
 						<td><strong>*</strong>동물이름</td>
-						<td><form:input path="animal" placeholder="동물이름 ex.마루, 초코..." onkeyup="javascript:fnChkByte2(this,'20')"/></td>
+						<td>
+							<form:input path="animal" placeholder="동물이름 ex.마루, 초코..." onkeyup="javascript:fnChkByte2(this,'20')"/>
+							<form:errors path="animal"/>
+						</td>
 					</tr>
 					<tr>
-						<td><strong style="color: white;">*</strong>품종</td>
+						<td><strong>*</strong>품종</td>
 						<td>
 							<form:input path="kind" placeholder="품종"/>
 							<form:errors path="kind"/>

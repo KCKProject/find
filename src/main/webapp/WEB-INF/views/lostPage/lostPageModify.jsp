@@ -28,52 +28,52 @@
 			<form:form commandName="lostBoardWriteCommand" enctype="multipart/form-data">
 				<table id="input-lostPageWrite">
 					<tr>
-						<td><strong style="color: white;">*</strong>작성자</td>
-						<td>${detail.writer}</td>
-					</tr>
-					<tr>
 						<td><strong>*</strong>글제목</td>
 						<td>
-							<form:input path="title" value="${detail.title}"/>
+							<form:input path="title" value="${detail.title}" class="checkBlank"/>
 							<form:errors path="title"/>
 						</td>
 					</tr>
 					<tr>
 						<td><strong>*</strong>동물이름</td>
 						<td>
-							<form:input path="animal" value="${detail.animal}" onkeyup="javascript:fnChkByte2(this,'20')"/>
+							<form:input path="animal" value="${detail.animal}" onkeyup="javascript:fnChkByte2(this,'20')" class="checkBlank"/>
 							<form:errors path="animal"/>
 						</td>
 					</tr>
 					<tr>
-						<td><strong style="color: white;">*</strong>품종</td>
+						<td><strong>*</strong>품종</td>
 						<td>
-							<form:input path="kind" value="${detail.kind}"/>
+							<form:input path="kind" value="${detail.kind}" class="checkBlank"/>
+							<form:errors path="kind"/>
 						</td>
 					</tr>
 					<tr>
 						<td><strong>*</strong>성별</td>
 						<td>
-							<form:input path="gender" value="${detail.gender}" onkeyup="javascript:fnChkByte2(this,'20')"/>
+							<form:input path="gender" value="${detail.gender}" onkeyup="javascript:fnChkByte2(this,'20')" class="checkBlank"/>
 							<form:errors path="gender"/>
 						</td>
 					</tr>
 					<tr>
 						<td><strong>*</strong>실종위치</td>
 						<td>
-							<form:input path="location" value="${detail.location}" onkeyup="javascript:fnChkByte2(this,'20')"/>
+							<form:input path="location" value="${detail.location}" onkeyup="javascript:fnChkByte2(this,'20')" class="checkBlank"/>
 							<form:errors path="location"/>
 						</td>
 					</tr>
 					<tr>
 						<td><strong>*</strong>실종시각</td>
-							<td><form:input path="lostDate" value="${detail.lostDate}" onkeyup="javascript:fnChkByte2(this,'20')"/>
+							<td><form:input path="lostDate" value="${detail.lostDate}" onkeyup="javascript:fnChkByte2(this,'20')" class="checkBlank"/>
 							<form:errors path="lostDate"/>
 						</td>
 					</tr>
 					<tr>  
-						<td><strong>*</strong>특징</td>
-						<td><form:input path="character" value="${detail.character}" onkeyup="javascript:fnChkByte2(this,'25')"/></td>
+						<td><strong>*</strong>특징</td>						
+						<td>
+							<form:input path="character" value="${detail.character}" onkeyup="javascript:fnChkByte2(this,'25')" class="checkBlank"/>
+							<form:errors path="character"/>
+						</td>
 					</tr>
 					<tr>
 						<td><strong style="color: white;">*</strong>연락처</td>
@@ -172,8 +172,19 @@
 					}
 				}
 			}
+			
+			for(var i=0;i<10;i++){
+				var context = document.getElementsByClassName('checkBlank')[i].value;
+				if(!context){
+					alert('필수사항을 입력해주세요.');
+					return false;
+				}
+			}
+			
 			document.getElementById('form').submit();
 		};
+		
+		
 	</script>
 </body>
 </html>

@@ -69,37 +69,31 @@
 	<button class="jellybutton topbtn" type="button" onclick="goTop()">TOP</button>
 </body>
 <script>
-function pwdcheck(){	
-	if(document.getElementById("userPasswordCurrent").value==""){
+function pwdcheck(){
+	var current = document.getElementById("userPasswordCurrent");
+	var newPwd = document.getElementById("userPasswordNew");
+	var newConfirm = document.getElementById("userPasswordNewConfirm");
+	
+	if(current.value==""){
 		alert("현재 사용중인 비밀번호를 입력해주세요.");
 		return false;
 	}
-	if(document.getElementById("userPasswordNew").value==""){
+	if(newPwd.value==""){
 		alert("변경하실 비밀번호를 입력해주세요.");
 		return false;
 	}
-	if(document.getElementById("userPasswordNewConfirm").value==""){
+	if(newConfirm.value==""){
 		alert("비밀번호 확인을 입력해주세요.");
 		return false;
 	}
-	if(document.getElementById("userPasswordNew").value == document.getElementById("userPasswordCurrent").value){
+	if(newPwd.value == current.value){
 		alert("변경할 비밀번호와 기존 비밀번호가 같습니다.");
 		return false;
 	}
-	if(document.getElementById("userPasswordNew").value != document.getElementById("userPasswordNewConfirm").value){
+	if(newPwd.value != newConfirm.value){
 		alert("변경하실 비밀번호가 일치하지 않습니다.");
 		return false;
 	}
-	
-	
-	/* if(document.getElementById("userPasswordCurrent").value != document.getElementById("userPasswordCurrentChk").value){
-		alert("현재 비밀번호가 틀립니다.");
-		return false;
-	}	
-	
-	else{
-		alert("변경완료 되었습니다.");
-	} */
 }
 </script>
 </html>

@@ -42,7 +42,7 @@
 							</p>
 							<p>
 								<form:password path="userPassword" placeholder="비밀번호(영문,숫자,특수문자 조합 6~15자리)" />
-								<form:errors path="userPassword"/>
+								<p style="height:0;"><form:errors path="userPassword"/></p>
 							<p>
 								<form:password path="userPwdChk" placeholder="비밀번호 확인" />
 								<form:errors path="userPwdChk"/>

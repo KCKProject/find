@@ -38,7 +38,6 @@ public class SignUpCommandValidator implements Validator{
       }
 
       ValidationUtils.rejectIfEmpty(errors, "userPassword", "required", "필수입력사항");
-      ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userId", "required", "필수입력사항");
       ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "required", "필수입력사항");
       ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userName", "required", "필수입력사항");
       ValidationUtils.rejectIfEmpty(errors, "phone", "required", "필수입력사항");
