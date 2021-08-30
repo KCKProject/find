@@ -36,23 +36,23 @@
 					</tr>
 					<tr>
 						<td><strong style="color: white;">*</strong>품종</td>
-						<td><form:input path="kind" placeholder="품종"/></td>
+						<td><form:input path="kind" placeholder="품종" onkeyup="javascript:fnChkByte2(this,'20')"/></td>
 					</tr>
 					<tr>
 						<td><strong style="color: white;">*</strong>성별</td>
-						<td><form:input path="gender" placeholder="남아/여아(중성화수술 여부 까지 적어주세요)"/>						</td>
+						<td><form:input path="gender" placeholder="남아/여아(중성화수술 여부 까지 적어주세요)" onkeyup="javascript:fnChkByte2(this,'20')"/>						</td>
 					</tr>
 					<tr>
 						<td><strong>*</strong>발견위치</td>
 						<td>
-							<form:input path="location" placeholder="발견위치"/>
+							<form:input path="location" placeholder="발견위치" onkeyup="javascript:fnChkByte2(this,'20')"/>
 							<form:errors path="location"/>
 						</td>
 					</tr>
 					<tr>
 						<td><strong>*</strong>발견시각</td>
 						<td>
-							<form:input path="findDate" placeholder="발견시각"/>
+							<form:input path="findDate" placeholder="발견시각" onkeyup="javascript:fnChkByte2(this,'20')"/>
 							<form:errors path="findDate"/>
 						</td>
 					</tr>
@@ -60,7 +60,7 @@
 					
 						<td><strong>*</strong>특징</td>
 						<td>
-							<form:input path="character" placeholder="특징(10자 이내)" onkeyup="javascript:fnChkByte(this,'25')"/>
+							<form:input path="character" placeholder="특징(10자 이내)" onkeyup="javascript:fnChkByte2(this,'25')"/>
 							<form:errors path="character"/>
 						</td>
 					</tr>

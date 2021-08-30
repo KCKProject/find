@@ -40,30 +40,30 @@
 					</tr>
 					<tr>
 						<td><strong style="color: white;">*</strong>품종</td>
-						<td><form:input path="kind" value="${detail.kind}"/></td>
+						<td><form:input path="kind" value="${detail.kind}" onkeyup="javascript:fnChkByte2(this,'20')"/></td>
 					</tr>
 					<tr>
 						<td><strong style="color: white;">*</strong>성별</td>
-						<td><form:input path="gender" value="${detail.gender}"/></td>
+						<td><form:input path="gender" value="${detail.gender}" onkeyup="javascript:fnChkByte2(this,'20')"/></td>
 					</tr>
 					<tr>
 						<td><strong>*</strong>발견위치</td>
 						<td>
-							<form:input path="location" value="${detail.location}"/>
+							<form:input path="location" value="${detail.location}" onkeyup="javascript:fnChkByte2(this,'20')"/>
 							<form:errors path="location"/>
 						</td>
 					</tr>
 					<tr>
 						<td><strong>*</strong>발견시각</td>
 						<td>
-							<form:input path="findDate" value="${detail.findDate}"/>
+							<form:input path="findDate" value="${detail.findDate}" onkeyup="javascript:fnChkByte2(this,'20')"/>
 							<form:errors path="findDate"/>
 						</td>
 					</tr>
 					<tr>  
 						<td><strong>*</strong>특징</td>
 						<td>
-							<form:input path="character" value="${detail.character}" onkeyup="javascript:fnChkByte(this,'25')"/>
+							<form:input path="character" value="${detail.character}" onkeyup="javascript:fnChkByte2(this,'25')"/>
 							<form:errors path="character"/>
 						</td>
 					</tr>

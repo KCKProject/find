@@ -41,7 +41,7 @@
 					<tr>
 						<td><strong>*</strong>동물이름</td>
 						<td>
-							<form:input path="animal" value="${detail.animal}"/>
+							<form:input path="animal" value="${detail.animal}" onkeyup="javascript:fnChkByte2(this,'20')"/>
 							<form:errors path="animal"/>
 						</td>
 					</tr>
@@ -54,26 +54,26 @@
 					<tr>
 						<td><strong>*</strong>성별</td>
 						<td>
-							<form:input path="gender" value="${detail.gender}"/>
+							<form:input path="gender" value="${detail.gender}" onkeyup="javascript:fnChkByte2(this,'20')"/>
 							<form:errors path="gender"/>
 						</td>
 					</tr>
 					<tr>
 						<td><strong>*</strong>실종위치</td>
 						<td>
-							<form:input path="location" value="${detail.location}"/>
+							<form:input path="location" value="${detail.location}" onkeyup="javascript:fnChkByte2(this,'20')"/>
 							<form:errors path="location"/>
 						</td>
 					</tr>
 					<tr>
 						<td><strong>*</strong>실종시각</td>
-							<td><form:input path="lostDate" value="${detail.lostDate}"/>
+							<td><form:input path="lostDate" value="${detail.lostDate}" onkeyup="javascript:fnChkByte2(this,'20')"/>
 							<form:errors path="lostDate"/>
 						</td>
 					</tr>
 					<tr>  
 						<td><strong>*</strong>특징</td>
-						<td><form:input path="character" value="${detail.character}" onkeyup="javascript:fnChkByte(this,'25')"/></td>
+						<td><form:input path="character" value="${detail.character}" onkeyup="javascript:fnChkByte2(this,'25')"/></td>
 					</tr>
 					<tr>
 						<td><strong style="color: white;">*</strong>연락처</td>

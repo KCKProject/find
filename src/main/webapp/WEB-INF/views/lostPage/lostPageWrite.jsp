@@ -35,7 +35,7 @@
 					</tr>
 					<tr>
 						<td><strong>*</strong>동물이름</td>
-						<td><form:input path="animal" placeholder="동물이름 ex.마루, 초코..."/></td>
+						<td><form:input path="animal" placeholder="동물이름 ex.마루, 초코..." onkeyup="javascript:fnChkByte2(this,'20')"/></td>
 					</tr>
 					<tr>
 						<td><strong style="color: white;">*</strong>품종</td>
@@ -47,28 +47,28 @@
 					<tr>
 						<td><strong>*</strong>성별</td>
 						<td>
-							<form:input path="gender" placeholder="남아/여아(중성화수술 여부 까지 적어주세요)"/>
+							<form:input path="gender" placeholder="남아/여아(중성화수술 여부 까지 적어주세요)" onkeyup="javascript:fnChkByte2(this,'20')"/>
 							<form:errors path="gender"/>
 						</td>
 					</tr>
 					<tr>
 						<td><strong>*</strong>실종위치</td>
 						<td>
-							<form:input path="location" placeholder="실종위치"/>
+							<form:input path="location" placeholder="실종위치" onkeyup="javascript:fnChkByte2(this,'20')"/>
 							<form:errors path="location"/>
 						</td>
 					</tr>
 					<tr>
 						<td><strong>*</strong>실종시각</td>
 						<td>
-							<form:input path="lostDate" placeholder="실종시각"/>
+							<form:input path="lostDate" placeholder="실종시각" onkeyup="javascript:fnChkByte2(this,'20')"/>
 							<form:errors path="lostDate"/>
 						</td>
 					</tr>
 					<tr>  
 						<td><strong>*</strong>특징</td>
 						<td>
-							<form:input path="character" placeholder="특징(10자 이내)" onkeyup="javascript:fnChkByte(this,'25')"/>
+							<form:input path="character" placeholder="특징(10자 이내)" onkeyup="javascript:fnChkByte2(this,'25')"/>
 							<form:errors path="character"/>
 						</td>
 					</tr>

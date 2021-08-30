@@ -18,7 +18,7 @@
 
 	<div class="wrapboardPage">
 
-		<div id="contentsTitle">
+		<div class="contentsTitleDetailPage">
 			<h3 class="contentsTitle">(발견) ${detail.title}</h3>
 			<div class="boardDetailPageLine"></div>
 		</div>
