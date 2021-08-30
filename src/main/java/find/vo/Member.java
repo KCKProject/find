@@ -59,12 +59,18 @@ public class Member {
 		this.salt = salt;
 	}
 
-	public Member(String userId, String userPassword, String userName, String phone, String email, String salt) {
+	public Member(String userId, String userPassword, String userName, String phone, String email) {
 		this.userId = userId;
 		this.userPassword = userPassword;
 		this.userName = userName;
 		this.phone = phone;
 		this.email = email;
+	}
+	
+	public Member(String userId, String userPassword, String userName, String salt) {
+		this.userId = userId;
+		this.userPassword = userPassword;
+		this.userName = userName;
 		this.salt = salt;
 	}
 	

@@ -50,8 +50,7 @@ public class FindDao {
 							rs.getString("userPassword"),
 							rs.getString("userName"),
 							rs.getString("phone"),
-							rs.getString("email"),
-							rs.getString("salt")
+							rs.getString("email")
 						);
 				m.setMemberNumber(rs.getLong("membernumber"));
 				return m;
@@ -79,11 +78,26 @@ public class FindDao {
 			@Override
 			public Member mapRow(ResultSet rs, int rowNum) throws SQLException{
 				Member m = new Member(
-						rs.getString("salt")
+							rs.getString("userId"),
+							rs.getString("userPassword"),
+							rs.getString("userName"),
+							rs.getString("salt")
 						);
+				m.setMemberNumber(rs.getLong("membernumber"));
 				return m;
 			}
 		};
+		
+//		private RowMapper<Member> saltRowMapper = new RowMapper<Member>() {
+//			
+//			@Override
+//			public Member mapRow(ResultSet rs, int rowNum) throws SQLException{
+//				Member m = new Member(
+//						rs.getString("salt")
+//						);
+//				return m;
+//			}
+//		};
 		
 		private RowMapper<Admin> adminRowMapper = new RowMapper<Admin>() {
 				
@@ -953,9 +967,10 @@ public class FindDao {
 		String sql="update member set userpassword=?, salt=? where userId=?";
 		jdbcTemplate.update(sql,myPasswordUpdate.getUserPassword(),salt,myPasswordUpdate.getUserId());
 	}
+	// db에서 id별 salt값 가져오기
 	public String getSaltByMember(String userId) {
 		String sql="SELECT * FROM member WHERE userId=?";
-		List<Member> results = jdbcTemplate.query(sql,rowMapper,userId);
+		List<Member> results = jdbcTemplate.query(sql,saltRowMapper,userId);
 		return results.get(0).getSalt();
 	}
 	
