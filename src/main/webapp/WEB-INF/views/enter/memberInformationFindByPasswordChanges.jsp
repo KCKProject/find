@@ -55,6 +55,11 @@ function pwdcheck(){
 		alert("변경하실 비밀번호가 일치하지 않습니다.");
 		return false;
 	}
+	var pwdRule =/^(?=.*[a-zA-z])(?=.*[0-9])(?=.*[$`~!@$!%*#^?&\\(\\)\-_=+]).{6,15}$/;
+	if(!pwdRule.test(document.getElementById("userPasswordNew").value)){
+     	alert("영문, 숫자, 특수문자 포함 6~15자로 만들어주세요.");
+   		return false;
+	}
 	return true;
 /* 	else{
 		alert("변경완료 되었습니다.");

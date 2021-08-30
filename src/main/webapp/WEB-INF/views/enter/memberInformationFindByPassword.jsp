@@ -39,21 +39,6 @@
 				</form:form>
 			</div>
 		
-		
-<%-- 			<h3 class="loginTitle"><!-- 로그인 --></h3>
-			<div class="loginBox">
-				<form:form commandName="memberInformationFind">
-					<form:select size="3" path="userQuetion">
-						<option value="question1">어릴적 내가 살던 동네 이름은?</option>
-						<option value="question2">나의 초등학교 이름은?</option>
-						<option value="question3">나의 보물 1호는?</option>
-						<option value="question4">가장 존경하는 선생님의 성함은?</option>
-						<option value="question5">내가 가장 좋아하는 요리는?</option>
-					</form:select>
-					<form:input path="userAnswer" placeholder="답변" />
-					<input type="submit" value="찾기" class="loginBoxbtn">
-				</form:form>
-			</div> --%>
 
 		</div>
 	</section>
