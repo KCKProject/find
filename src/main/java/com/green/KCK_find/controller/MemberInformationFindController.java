@@ -33,7 +33,7 @@ public class MemberInformationFindController {
 		return "enter/memberInformationFindByPassword";
 	}
 	@RequestMapping(value="/enter/memberInformationFindByPassword", method=RequestMethod.POST)
-	public String memberInformationFindByPassword2(Member member, Model model, Errors errors, MyPasswordUpdateCommand myPasswordUpdateCommand) {
+	public String memberInformationFindByPassword2(Member member, Model model, Errors errors) {
 		new MemberInfoFindByPassword().validate(member, errors);
 		
 		if(errors.hasErrors()) {
@@ -47,19 +47,21 @@ public class MemberInformationFindController {
 		}
 		catch(Exception e) {
 			return "enter/memberInformationFindByPassword";
-		}
-					
+		}					
 	}
+	
 	@RequestMapping(value="/enter/memberInformationFindByPasswordChanges/{userId}", method=RequestMethod.GET)
 	public String memberInformationFindByPassword1(@PathVariable("userId") String userid, Member member, Model model) {
 		List<Member> members = dao.selectByUserId2(userid);
 		model.addAttribute("members",members);
+		System.out.println("넘겨주는 값  : "+members.get(0).getUserPassword());
 		return "enter/memberInformationFindByPasswordChanges";
 	}
 	
 	@RequestMapping(value="/enter/memberInformationFindByPasswordChanges/{userId}", method=RequestMethod.POST )
 	public String myPasswordUpdate(Member member, MyPasswordUpdateCommand myPasswordUpdateCommand, Errors errors, Model model) {
 		new MemberInfoFindByPasswordChange().validate(member,errors);
+		System.out.println(member.getUserPasswordNewConfirm());
 		
 		if(errors.hasErrors()) {
 			return "enter/memberInformationFindByPasswordChanges";
@@ -71,12 +73,11 @@ public class MemberInformationFindController {
 			myPasswordUpdateCommand.setUserPasswordNew(SHA256Util.SHA256Encrypt(newPwd,salt));
 			MemberAuthInfo myPasswordUpdate = new MemberAuthInfo(myPasswordUpdateCommand.getUserId(),myPasswordUpdateCommand.getUserPasswordNew());
 			dao.myPasswordUpdate(myPasswordUpdate, salt);
-			return "redirect:/enter/login";
 		}
 		catch(Exception e) {
-			return "enter/memberInformationFindByPasswordChanges";
+			return "enter/memberInformationFindByPasswordChanges/"+member.getUserId();
 		}
-		
+		return "redirect:/enter/login";
 	}
 	//아이디 찾기
 	@RequestMapping(value="/enter/memberInformationFindById", method=RequestMethod.GET)

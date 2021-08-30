@@ -501,7 +501,7 @@ i#idOk {
     height: 30px;
 }
 
-select#pwdQ {
+.signUpBox select#pwdQ {
 	border: 1px solid gray;
 	border-radius: 8px;
     width: 265px;
@@ -596,7 +596,7 @@ strong {
 }
 
 .checkbox input:checked ~ .icon {
-	border-color: transparent;/*�뀒�몢由� �닾紐낆쑝濡� 留뚮뱾湲�*/
+	border-color: transparent;
 	background: #ff1616;
 	animation: jelly 0.6s ease;
 }

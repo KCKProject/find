@@ -18,14 +18,7 @@
 				</c:if>
 			</p>
 		</div>
-		<div class="search">
-			<form action="#">
-				<input type="text" path="search" placeholder="검색어를 입력해주세요" />
-				<button>
-					<i class="fas fa-search"></i>
-				</button>
-			</form>
-		</div>
+
 	</div>
 	<div class="headerbottom">
 		<div class="mainTitle">

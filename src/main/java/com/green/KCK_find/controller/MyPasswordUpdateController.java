@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import find.dao.FindDao;
 import find.utils.SHA256Util;
 import find.validator.MyPasswordCommandValidator;
+import find.validator.SignUpCommandValidator;
 import find.vo.MemberAuthInfo;
 import find.vo.MyPasswordUpdateCommand;
 

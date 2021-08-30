@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import find.dao.FindDao;
-import find.vo.DateSearchCommand;
 import find.vo.FindBoard;
 import find.vo.LostBoard;
 import find.vo.PageMaker;

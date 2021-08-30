@@ -35,6 +35,7 @@ public class BoardFindController {
 	// 게시글 목록 불러오기
 	@RequestMapping("/findPage/findPageList")
 	public String find(@ModelAttribute("cri") SearchCriteriaMainBoard cri, Model model) {
+
 		
 		List<FindBoard> finds = dao.selectAllFindBoard(cri);
 		model.addAttribute("finds",finds);
