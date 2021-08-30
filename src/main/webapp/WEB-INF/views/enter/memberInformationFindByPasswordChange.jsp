@@ -18,8 +18,12 @@
 	<section class="sectionLogin">
 		<div class="wrap-memberInformationFind">
 			<h3 class="loginTitle"><!-- 로그인 --></h3>
-			<div class="loginBox memberInformationFindBox">
+			<div class="loginBox memberInformationFindBox memberInformationFindBox2">
 				<form>
+					<c:if test="${empty members}"> 
+						<p><i class="fas fa-frown-open"></i>정보가 일치하지 않습니다.<i class="fas fa-frown-open"></i></p><br>
+						<input type="button" value="로그인 화면으로 돌아가기 " onclick="location.href='./login'">
+					</c:if>
 					<c:forEach var="m" items="${members}">
 						<p>${m.userName}님 새로운 비밀번호로 변경 하시겠습니까? </p><br>
 						<a href="<c:url value='/enter/memberInformationFindByPasswordChanges/${m.userId}'/>">

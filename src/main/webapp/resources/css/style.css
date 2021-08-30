@@ -395,6 +395,15 @@ footer {
    height: 330px;
 }
 
+.memberInformationFindBox2{
+   height: 200px;
+   text-align: center;
+}
+
+.memberInformationFindBox2 form {
+    padding-left: 0;
+}
+
 .memberInformationFindBox-id{
    height: 280px;
 }
