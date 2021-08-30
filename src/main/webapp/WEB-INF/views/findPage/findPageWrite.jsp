@@ -18,7 +18,7 @@
 
 	<div class="wrap-all-findPageWirte">
 
-		<div id="contentsTitle">
+		<div class="contentsTitleDetailPage">
 			<h3 class="contentsTitle">찾아가세요</h3>
 			<div class="titleLine"></div>
 		</div>

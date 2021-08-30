@@ -19,7 +19,7 @@
 
 	<div class="wrapboardPage">
 
-		<div id="contentsTitle">
+		<div class="contentsTitleDetailPage">
 			<h3 class="contentsTitle">찾아주세요</h3>
 			<div class="titleLine"></div>
 		</div>
