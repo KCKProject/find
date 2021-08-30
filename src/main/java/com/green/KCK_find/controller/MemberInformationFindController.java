@@ -64,6 +64,7 @@ public class MemberInformationFindController {
 		System.out.println(member.getUserPasswordNewConfirm());
 		
 		if(errors.hasErrors()) {
+			System.out.println("bbbbb");
 			return "enter/memberInformationFindByPasswordChanges";
 		}
 		try {
@@ -73,9 +74,12 @@ public class MemberInformationFindController {
 			myPasswordUpdateCommand.setUserPasswordNew(SHA256Util.SHA256Encrypt(newPwd,salt));
 			MemberAuthInfo myPasswordUpdate = new MemberAuthInfo(myPasswordUpdateCommand.getUserId(),myPasswordUpdateCommand.getUserPasswordNew());
 			dao.myPasswordUpdate(myPasswordUpdate, salt);
+			System.out.println("aaaaa");
 		}
 		catch(Exception e) {
-			return "enter/memberInformationFindByPasswordChanges/"+member.getUserId();
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			return "enter/memberInformationFindByPasswordChanges";
 		}
 		return "redirect:/enter/login";
 	}

@@ -19,14 +19,16 @@
 		<div class="wrap-memberInformationFind">
 			<h3 class="loginTitle"><!-- 로그인 --></h3>
 			<div class="loginBox memberInformationFindBox">
-				<form:form commandName="member" method="POST" onsubmit="pwdcheck()">
+				<form:form commandName="member" method="POST" onsubmit="return pwdcheck()">
 					<c:forEach var="m" items="${members}">
 						<p>${m.userName}님 새로 사용할 비밀번호를 입력해주세요. </p><br>
 						<form:input type="hidden" path="userPasswordCurrentChk" id="userPasswordCurrentChk" value="${m.userPassword}"/>
+						
 					</c:forEach>
 					<div>
 						변경 비밀번호<!--  <input type="text"> --><br>
 						<form:input type="password" path="userPasswordNew" value="" id="userPasswordNew" />
+						<form:errors path="userPasswordNew" id="userPasswordNew"/>
 					</div>
 					<div>
 						비밀번호 확인<!--  <input type="text"> --><br>
@@ -53,6 +55,7 @@ function pwdcheck(){
 		alert("변경하실 비밀번호가 일치하지 않습니다.");
 		return false;
 	}
+	return true;
 /* 	else{
 		alert("변경완료 되었습니다.");
 	} */

@@ -29,12 +29,12 @@ public class MemberInfoFindByPasswordChange implements Validator {
 		
 		// 비밀번호 형식
 		boolean matcher = Pattern.matches(PWD_EXP,command.getUserPasswordNew());
+		System.out.println("matcher"+matcher);
         if(matcher != true) {
            errors.rejectValue("userPasswordNew", "wrong", "영문, 숫자, 특수문자 포함 6~15로 만들어주세요");
         }
         
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userPasswordNew", "required", "필수 입력사항입니다.");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "userPasswordNewConfirm", "required", "필수 입력사항입니다.");
 	}
 
 }
