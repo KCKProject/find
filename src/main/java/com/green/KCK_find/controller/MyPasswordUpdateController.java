@@ -68,6 +68,6 @@ public class MyPasswordUpdateController {
 //		i.setUserPassword(myPasswordUpdateCommand.getUserPasswordNewConfirm());
 //		session.setAttribute("memberAuthInfo",i);
 		
-		return "redirect:/myPage/myPage/"+memberNumber;
+		return "redirect:/myPage/myPage/"+userId;
 	}
 }
