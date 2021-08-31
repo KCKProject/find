@@ -79,7 +79,7 @@
 						<a href="<c:url value='/admin/adminMember'/>">
 							<input type="button" class="btn btn-swap" value=" MORE"/> 
 						</a>
-							<button class="btn btn-swap" type="submit">EDIT</button>
+							<input class="btn btn-swap" type="submit" value="EDIT"/>
 					</div>
 					</form:form>
 				</div>

@@ -30,7 +30,7 @@
 						<th class="qaBxContentsTitle">제목</th>
 						<th class="qaBxContentsWriter">작성자</th>
 						<th class="qaBxContentsWriteDate">작성일</th>
-						<th class="qaBxContentsMoreBtn">상세</th>
+						<th class="qaBxContentsMoreBtn" style="width: 80px;"></th>
 					</tr>
 					<c:forEach var="q" items="${questions}">
 						<c:if test="${q.open==1}">
