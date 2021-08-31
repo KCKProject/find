@@ -145,7 +145,7 @@
 		// 첨부파일 null 체크
 		function imgCheck(){
 			var num = $("table").find("tr").length;
-			if(num==12){
+			if(num==10){
 				alert("첨부파일 최소 한개를 등록해주세요.");
 				return false;
 			}
